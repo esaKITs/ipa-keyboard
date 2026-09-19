@@ -216,21 +216,23 @@ function insertText(s,btn){
  var originalSym=s;
  s=resolvedDiacritic(s);
  var a=Math.min(savedStart,out.value.length),b=Math.min(savedEnd,out.value.length);
- out.focus();out.setSelectionRange(a,b);warn(s);out.setRangeText(s,a,b,'end');
- remember();snapshot();grow();
+ /* Chart input must not focus the textarea: focusing summons the iPhone keyboard. */
+ out.setRangeText(s,a,b,'end');
+ savedStart=savedEnd=a+s.length;
+ warn(s);snapshot();grow();
  resetDiaPositionAfterUse(originalSym);
  if(btn){btn.classList.add('click-flash');setTimeout(function(){btn.classList.remove('click-flash');},160);}
 }
 function setValue(v){out.value=v;out.focus();out.setSelectionRange(v.length,v.length);remember();grow();}
 function showPop(btn){var r=btn.getBoundingClientRect();pop.textContent=btn.getAttribute('data-sym');pop.style.left=(r.left+r.width/2)+'px';pop.style.top=Math.max(74,r.top-7)+'px';pop.classList.add('show');}
 function hidePop(){pop.classList.remove('show');}
-function press(btn){remember();active=btn;btn.classList.add('pressed');showPop(btn);}
+function press(btn){if(document.activeElement===out)remember();active=btn;btn.classList.add('pressed');showPop(btn);}
 function release(btn,commit){if(!active)return;if(commit&&active===btn)insertText(btn.getAttribute('data-sym'),btn);active.classList.remove('pressed');hidePop();active=null;}
 Array.prototype.forEach.call(document.querySelectorAll('.key[data-sym]'),function(btn){
  btn.addEventListener('touchstart',function(e){e.preventDefault();press(btn);},{passive:false});
  btn.addEventListener('touchend',function(e){e.preventDefault();release(btn,active===btn);suppressMouseUntil=Date.now()+700;},{passive:false});
  btn.addEventListener('touchcancel',function(){release(btn,false);suppressMouseUntil=Date.now()+700;},{passive:false});
- btn.addEventListener('mousedown',function(e){if(Date.now()<suppressMouseUntil)return;e.preventDefault();remember();btn.classList.add('pressed');active=btn;});
+ btn.addEventListener('mousedown',function(e){if(Date.now()<suppressMouseUntil)return;e.preventDefault();if(document.activeElement===out)remember();btn.classList.add('pressed');active=btn;});
  btn.addEventListener('mouseup',function(e){if(Date.now()<suppressMouseUntil)return;e.preventDefault();if(active===btn)insertText(btn.getAttribute('data-sym'),btn);release(btn,false);});
  btn.addEventListener('mouseleave',function(){if(active===btn){btn.classList.remove('pressed');active=null;}});
  btn.addEventListener('click',function(e){e.preventDefault();});
@@ -257,6 +259,13 @@ byId('diaPosition').addEventListener('click',function(e){
  if(pos==='auto')statusMessage('補助記号の位置：自動');
  else statusMessage('次の補助記号だけ「'+b.textContent+'」に入力します。');
 });
-function wrap(l,r){var a=out.selectionStart||0,b=out.selectionEnd||a,sel=out.value.slice(a,b);out.setRangeText(l+sel+r,a,b,'select');out.setSelectionRange(a+l.length,a+l.length+sel.length);remember();snapshot();grow();}byId('phonetic').addEventListener('click',function(){wrap('[',']');});grow();remember();
+function wrap(l,r){
+ var a=Math.min(savedStart,out.value.length),b=Math.min(savedEnd,out.value.length),sel=out.value.slice(a,b);
+ var next=out.value.slice(0,a)+l+sel+r+out.value.slice(b);
+ out.value=next;
+ savedStart=a+l.length;
+ savedEnd=savedStart+sel.length;
+ snapshot();grow();
+}byId('phonetic').addEventListener('click',function(){wrap('[',']');});grow();remember();
 })();
 </script></body></html>

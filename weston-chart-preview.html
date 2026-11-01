@@ -567,66 +567,48 @@ div#adsense {
 #fifthAnniversary:target p { display:block; }
 #fifthAnniversary.target #fifthAnniversaryLink { display:none; }
 #fifthAnniversary:target #fifthAnniversaryLink { display:none; }
-body{margin:0;padding:12px;background:white;overflow-x:auto}#chart{width:1120px;min-width:1120px;margin:0 auto;box-sizing:border-box}#vowels{min-width:0}#vowelQuadrilateral{overflow:visible} .source-note{font:12px system-ui,sans-serif;color:#555;margin:14px 0}
-/* v0.1.3: Explicit Weston-proportion section coordinates.
-   Grid column positions are percentages of the 1120px reference canvas. */
-#chart{display:grid;grid-template-columns:repeat(100,minmax(0,1fr));column-gap:0;row-gap:22px;align-items:start;width:1120px;min-width:1120px}
-#chart>h1#title{grid-column:1 / 101;grid-row:1;margin:0 0 4px}
-#chart>#pulmonicConsonants{grid-column:1 / 101;grid-row:2}
-#chart>#nonPulmonicConsonants{grid-column:1 / 48;grid-row:3}
-#chart>#vowels{grid-column:56 / 101;grid-row:3}
-#chart>#otherSymbols{grid-column:1 / 61;grid-row:4}
-#chart>#suprasegmentals{grid-column:65 / 101;grid-row:4}
-#chart>#diacritics{grid-column:1 / 71;grid-row:5}
-#chart>#tonesAndWordAccents{grid-column:72 / 101;grid-row:5}
-#chart>div{float:none!important;clear:none!important;width:auto!important;margin:0!important;min-width:0;box-sizing:border-box}
-#chart>div table{max-width:100%;box-sizing:border-box}
-#chart #vowelQuadrilateral{width:100%;height:310px;position:relative}
-#chart #vowelBackground{width:100%;height:100%}
-#chart #suprasegmentals table,#chart #tonesAndWordAccents table{width:100%}
-#chart #suprasegmentals th{white-space:normal}
-#chart #suprasegmentals td.example{white-space:nowrap}
-.source-note,body>details{width:1120px;max-width:none;box-sizing:border-box}
-.ipa-text-arrow{font-family:"DejaVu Sans","Arial Unicode MS","Noto Sans Symbols 2","Noto Sans Symbols",Arial,sans-serif!important;font-variant-emoji:text;font-size:20pt;line-height:1;white-space:nowrap}#chart #tonesAndWordAccents .ipa-text-arrow{display:inline-block;min-width:1.25em;text-align:center}/* Japanese chart labels */ #chart{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}#chart .ipa,#chart td{font-family:"Doulos SIL","Charis SIL","DejaVu Sans",sans-serif}#chart h1,#chart h2,#chart th{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}#chart #pulmonicConsonants th{font-size:11px;letter-spacing:-.2px}#chart #nonPulmonicConsonants th,#chart #diacritics th{font-size:12px}#chart #suprasegmentals th,#chart #tonesAndWordAccents th{font-size:12px}#chart #otherSymbols th{font-size:12px}/* v0.1.7 PDF-inspired independently flowing columns */
-#chart{display:grid!important;grid-template-columns:58% 42%!important;grid-template-rows:auto auto auto!important;gap:0!important;width:1040px!important;min-width:1040px!important;align-items:start!important}
-#chart>h1#title{grid-column:1 / 3!important;grid-row:1!important;text-align:center;margin:0 0 18px!important;font-size:19px}
-#chart>#pulmonicConsonants{grid-column:1 / 3!important;grid-row:2!important;width:100%!important;margin:0 0 30px!important}
-#chart>.ipa-pdf-left{grid-column:1!important;grid-row:3!important;display:flex;flex-direction:column;align-items:stretch;gap:22px;padding-right:24px;min-width:0}
-#chart>.ipa-pdf-right{grid-column:2!important;grid-row:3!important;display:flex;flex-direction:column;align-items:stretch;gap:22px;padding-left:12px;min-width:0}
-#chart .ipa-pdf-left>div,#chart .ipa-pdf-right>div{float:none!important;clear:none!important;width:100%!important;margin:0!important;min-width:0!important;grid-column:auto!important;grid-row:auto!important}
-#chart .ipa-pdf-left>#nonPulmonicConsonants{width:75%!important}
-#chart .ipa-pdf-left>#otherSymbols{width:90%!important}
-#chart .ipa-pdf-right>#suprasegmentals{width:90%!important;align-self:flex-end}
-#chart .ipa-pdf-left h2,#chart .ipa-pdf-right h2,#chart #pulmonicConsonants h2{margin:0 0 5px!important;font-size:15px}
-#chart #vowelQuadrilateral{height:275px!important}
-#chart #diacritics table,#chart #otherSymbols table,#chart #suprasegmentals table,#chart #tonesAndWordAccents table{width:100%!important}
-#chart #suprasegmentals th{white-space:nowrap!important}
-#chart .ipa-pdf-left p,#chart .ipa-pdf-right p{margin:5px 0!important}
 
-/* v0.1.9: Japanese IPA PDF visual proportions and type hierarchy */
-#chart{width:1040px!important;min-width:1040px!important;grid-template-columns:61% 39%!important}
-#chart>h1#title{font-size:20px!important;margin:0 0 15px!important}
-#chart>h1#title #alphabetRevision{font-size:11px!important;font-weight:normal}
-#chart>h1#title #appVersion{font-size:11px!important}
-#chart>#pulmonicConsonants{width:80%!important;justify-self:center!important;margin:0 0 26px!important}
-#chart>#pulmonicConsonants table{width:100%!important}
-#chart>#pulmonicConsonants td.ipa,#chart>#pulmonicConsonants .ipa{font-size:21pt!important}
-#chart>.ipa-pdf-left{gap:15px!important;padding-right:20px!important}
-#chart>.ipa-pdf-right{gap:13px!important;padding-left:10px!important}
-#chart .ipa-pdf-left>#nonPulmonicConsonants{width:78%!important}
-#chart .ipa-pdf-left>#otherSymbols{width:88%!important}
-#chart .ipa-pdf-left>#diacritics{width:100%!important}
-#chart .ipa-pdf-right>#vowels{width:94%!important;align-self:center}
-#chart #vowelQuadrilateral{height:255px!important}
-#chart .ipa-pdf-left h2,#chart .ipa-pdf-right h2{font-size:15px!important}
-#chart #diacritics>p{font-size:11px!important;line-height:1.4!important;margin:6px 0 0!important}
-#chart #diacritics table{table-layout:auto}
-#chart #diacritics td{font-size:11px!important}
-#chart #diacritics .ipa{font-size:18pt!important}
-#chart #otherSymbols td,#chart #suprasegmentals td,#chart #tonesAndWordAccents td{font-size:12px}
-#chart #pulmonicConsonants>p,#chart #vowels>p{font-size:11px!important;line-height:1.3!important}
-.source-note,body>details{font-size:10px!important;line-height:1.3!important;width:1040px!important;max-width:1040px!important}
-</style></head><body><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.1.9</span></h1><div id="pulmonicConsonants">
+/* esaKITs v0.2.0 — single authoritative layout block.
+   Fixed 1040px canvas; no grid/float overrides scattered across revisions. */
+html{background:#fff}
+body{margin:0;padding:16px;overflow-x:auto;background:#fff}
+#chart{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);grid-template-rows:auto auto auto;column-gap:0;row-gap:0;width:1040px;min-width:1040px;margin:0 auto;box-sizing:border-box;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}
+#chart,#chart *{box-sizing:border-box}
+#chart>h1#title{grid-column:1 / 3;grid-row:1;text-align:center;font-size:20px;margin:0 0 16px}
+#chart #alphabetRevision{font-size:11px;font-weight:400}
+#chart #appVersion{font-size:11px!important}
+#chart>#pulmonicConsonants{grid-column:1 / 3;grid-row:2;width:82%;justify-self:center;margin:0 0 24px;float:none;clear:none}
+#chart>#pulmonicConsonants table{width:100%}
+#chart>.ipa-pdf-left{grid-column:1;grid-row:3;display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:0 24px 0 0;min-width:0}
+#chart>.ipa-pdf-right{grid-column:2;grid-row:3;display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:0 0 0 12px;min-width:0}
+#chart>.ipa-pdf-left>div,#chart>.ipa-pdf-right>div{float:none;clear:none;position:relative;width:100%;min-width:0;margin:0}
+#chart>.ipa-pdf-left>#nonPulmonicConsonants{width:78%}
+#chart>.ipa-pdf-left>#otherSymbols{width:100%}
+#chart>.ipa-pdf-left>#diacritics{width:100%}
+#chart>.ipa-pdf-right>#vowels{width:100%}
+#chart>.ipa-pdf-right>#suprasegmentals{width:100%}
+#chart>.ipa-pdf-right>#tonesAndWordAccents{width:100%}
+#chart h1,#chart h2,#chart th{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}
+#chart h2{font-size:15px;margin:0 0 5px}
+#chart th{font-size:11px}
+#chart td{font-family:"Doulos SIL","Charis SIL","DejaVu Sans",sans-serif}
+#chart span.ipa{font-family:"Doulos SIL","Charis SIL","DejaVu Sans",sans-serif}
+#chart #pulmonicConsonants th{font-size:11px;letter-spacing:-.2px}
+#chart #pulmonicConsonants td{font-size:20pt}
+#chart #vowelQuadrilateral{width:100%;height:270px;position:relative;overflow:visible}
+#chart #vowelBackground{width:100%;height:100%}
+#chart #suprasegmentals table,#chart #tonesAndWordAccents table,#chart #otherSymbols table,#chart #diacritics table{width:100%;max-width:100%}
+#chart #diacritics>p{font-size:11px;line-height:1.35;margin:7px 0 0}
+#chart #diacritics td{font-size:12px}
+#chart #diacritics span.ipa{font-size:18pt}
+#chart #pulmonicConsonants>p,#chart #vowels>p{font-size:11px;line-height:1.35;margin:4px 0}
+#chart #nonPulmonicConsonants th,#chart #diacritics th,#chart #otherSymbols th,#chart #suprasegmentals th,#chart #tonesAndWordAccents th{font-size:11px}
+#chart #suprasegmentals td,#chart #tonesAndWordAccents td{font-size:12px}
+#chart #suprasegmentals th{white-space:normal}
+.ipa-text-arrow{font-family:"DejaVu Sans","Noto Sans Symbols 2","Noto Sans Symbols",Arial,sans-serif!important;font-variant-emoji:text;font-size:20pt;line-height:1;white-space:nowrap}
+#chart #tonesAndWordAccents .ipa-text-arrow{display:inline-block;min-width:1.25em;text-align:center}
+.source-note,body>details{display:block;width:1040px;max-width:1040px;margin:7px auto;font:10px/1.35 system-ui,sans-serif;color:#555}
+</style></head><body><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.2.0</span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>
 		<table>
 			<!--<caption>記号が対になっている場合、右側は有声子音を表す。灰色の部分は調音が不可能と考えられる箇所を示す。</caption>-->

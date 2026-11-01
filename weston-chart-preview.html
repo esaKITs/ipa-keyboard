@@ -602,7 +602,31 @@ body{margin:0;padding:12px;background:white;overflow-x:auto}#chart{width:1120px;
 #chart #diacritics table,#chart #otherSymbols table,#chart #suprasegmentals table,#chart #tonesAndWordAccents table{width:100%!important}
 #chart #suprasegmentals th{white-space:nowrap!important}
 #chart .ipa-pdf-left p,#chart .ipa-pdf-right p{margin:5px 0!important}
-</style></head><body><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.1.8</span></h1><div id="pulmonicConsonants">
+
+/* v0.1.9: Japanese IPA PDF visual proportions and type hierarchy */
+#chart{width:1040px!important;min-width:1040px!important;grid-template-columns:61% 39%!important}
+#chart>h1#title{font-size:20px!important;margin:0 0 15px!important}
+#chart>h1#title #alphabetRevision{font-size:11px!important;font-weight:normal}
+#chart>h1#title #appVersion{font-size:11px!important}
+#chart>#pulmonicConsonants{width:80%!important;justify-self:center!important;margin:0 0 26px!important}
+#chart>#pulmonicConsonants table{width:100%!important}
+#chart>#pulmonicConsonants td.ipa,#chart>#pulmonicConsonants .ipa{font-size:21pt!important}
+#chart>.ipa-pdf-left{gap:15px!important;padding-right:20px!important}
+#chart>.ipa-pdf-right{gap:13px!important;padding-left:10px!important}
+#chart .ipa-pdf-left>#nonPulmonicConsonants{width:78%!important}
+#chart .ipa-pdf-left>#otherSymbols{width:88%!important}
+#chart .ipa-pdf-left>#diacritics{width:100%!important}
+#chart .ipa-pdf-right>#vowels{width:94%!important;align-self:center}
+#chart #vowelQuadrilateral{height:255px!important}
+#chart .ipa-pdf-left h2,#chart .ipa-pdf-right h2{font-size:15px!important}
+#chart #diacritics>p{font-size:11px!important;line-height:1.4!important;margin:6px 0 0!important}
+#chart #diacritics table{table-layout:auto}
+#chart #diacritics td{font-size:11px!important}
+#chart #diacritics .ipa{font-size:18pt!important}
+#chart #otherSymbols td,#chart #suprasegmentals td,#chart #tonesAndWordAccents td{font-size:12px}
+#chart #pulmonicConsonants>p,#chart #vowels>p{font-size:11px!important;line-height:1.3!important}
+.source-note,body>details{font-size:10px!important;line-height:1.3!important;width:1040px!important;max-width:1040px!important}
+</style></head><body><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.1.9</span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>
 		<table>
 			<!--<caption>記号が対になっている場合、右側は有声子音を表す。灰色の部分は調音が不可能と考えられる箇所を示す。</caption>-->
@@ -990,7 +1014,7 @@ body{margin:0;padding:12px;background:white;overflow-x:auto}#chart{width:1120px;
 		</table>
 		</div><div id="diacritics">
 			<h2>補助記号</h2>
-			<p>下に伸びる部分がある記号では、補助記号を上に付けてもよい。例： <span class="ipa">ŋ̊</span></p>
+			
 			<table>
 				<colgroup span="4">
 					<col width="0*" />
@@ -1177,7 +1201,7 @@ body{margin:0;padding:12px;background:white;overflow-x:auto}#chart{width:1120px;
 					</tr>
 				</tbody>
 			</table>
-		</div></div><div class="ipa-pdf-right"><div id="vowels">
+		</div><p>下に伸びる部分がある記号では、補助記号を上に付けてもよい。例： <span class="ipa">ŋ̊</span></p></div><div class="ipa-pdf-right"><div id="vowels">
 		<h2>母音</h2>
 		<div id="vowelQuadrilateral">
 			<img id="vowelBackground" src="https://westonruter.github.io/ipa-chart/vowelBackground.png" alt="Vowel Quadrilateral" />

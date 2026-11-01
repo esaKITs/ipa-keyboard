@@ -568,7 +568,7 @@ div#adsense {
 #fifthAnniversary.target #fifthAnniversaryLink { display:none; }
 #fifthAnniversary:target #fifthAnniversaryLink { display:none; }
 
-/* esaKITs v0.2.0 — single authoritative layout block.
+/* esaKITs v0.2.1 — single authoritative layout block.
    Fixed 1040px canvas; no grid/float overrides scattered across revisions. */
 html{background:#fff}
 body{margin:0;padding:16px;overflow-x:auto;background:#fff}
@@ -608,7 +608,15 @@ body{margin:0;padding:16px;overflow-x:auto;background:#fff}
 .ipa-text-arrow{font-family:"DejaVu Sans","Noto Sans Symbols 2","Noto Sans Symbols",Arial,sans-serif!important;font-variant-emoji:text;font-size:20pt;line-height:1;white-space:nowrap}
 #chart #tonesAndWordAccents .ipa-text-arrow{display:inline-block;min-width:1.25em;text-align:center}
 .source-note,body>details{display:block;width:1040px;max-width:1040px;margin:7px auto;font:10px/1.35 system-ui,sans-serif;color:#555}
-</style></head><body><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.2.0</span></h1><div id="pulmonicConsonants">
+
+/* v0.2.1: Fit the entire fixed-layout chart as one page on narrow screens. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{padding:8px!important;overflow-x:hidden!important}
+#chartScaleShell{position:relative;margin:0 auto;width:1040px;max-width:calc(100vw - 16px)}
+#chartScaleContent{position:absolute;top:0;left:0;width:1040px;transform-origin:top left}
+#chartScaleContent #chart{margin:0;width:1040px;min-width:1040px}
+#chartScaleContent .source-note,#chartScaleContent>details{width:1040px;max-width:1040px}
+</style></head><body><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.2.0</span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>
 		<table>
 			<!--<caption>記号が対になっている場合、右側は有声子音を表す。灰色の部分は調音が不可能と考えられる箇所を示す。</caption>-->
@@ -1435,4 +1443,22 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-</pre></details><p class="source-note">IPA日本語版資料：<a href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf" target="_blank" rel="noopener">国際音声学会公式PDF</a>。IPA Chart revised to 2015/2005、Japanese version 2020、© 2026 IPA。Weston版の配置を維持。</p></body></html>
+</pre></details><p class="source-note">IPA日本語版資料：<a href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf" target="_blank" rel="noopener">国際音声学会公式PDF</a>。IPA Chart revised to 2015/2005、Japanese version 2020、© 2026 IPA。Weston版の配置を維持。</p></div></div><script>
+(function(){
+  "use strict";
+  var shell=document.getElementById("chartScaleShell");
+  var content=document.getElementById("chartScaleContent");
+  var BASE=1040;
+  function fitChart(){
+    var available=Math.max(1,document.documentElement.clientWidth-16);
+    var scale=Math.min(1,available/BASE);
+    content.style.transform="scale("+scale+")";
+    shell.style.width=(BASE*scale)+"px";
+    shell.style.height=(content.scrollHeight*scale)+"px";
+  }
+  window.addEventListener("resize",fitChart,{passive:true});
+  window.addEventListener("orientationchange",fitChart,{passive:true});
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fitChart);}
+  fitChart();
+})();
+</script></body></html>

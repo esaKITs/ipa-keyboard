@@ -567,7 +567,27 @@ div#adsense {
 #fifthAnniversary:target p { display:block; }
 #fifthAnniversary.target #fifthAnniversaryLink { display:none; }
 #fifthAnniversary:target #fifthAnniversaryLink { display:none; }
-body{margin:0;padding:12px;background:white;overflow-x:auto}#chart{width:1120px;min-width:1120px;margin:0 auto;box-sizing:border-box}#vowels{min-width:0}#vowelQuadrilateral{overflow:visible} .source-note{font:12px system-ui,sans-serif;color:#555;margin:14px 0}</style></head><body><div id="chart"><h1 id="title">The International Phonetic Alphabet <span id="alphabetRevision">(revised to 2005)</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.1.2</span></h1><div id="pulmonicConsonants">
+body{margin:0;padding:12px;background:white;overflow-x:auto}#chart{width:1120px;min-width:1120px;margin:0 auto;box-sizing:border-box}#vowels{min-width:0}#vowelQuadrilateral{overflow:visible} .source-note{font:12px system-ui,sans-serif;color:#555;margin:14px 0}
+/* v0.1.3: Explicit Weston-proportion section coordinates.
+   Grid column positions are percentages of the 1120px reference canvas. */
+#chart{display:grid;grid-template-columns:repeat(100,minmax(0,1fr));column-gap:0;row-gap:22px;align-items:start;width:1120px;min-width:1120px}
+#chart>h1#title{grid-column:1 / 101;grid-row:1;margin:0 0 4px}
+#chart>#pulmonicConsonants{grid-column:1 / 101;grid-row:2}
+#chart>#nonPulmonicConsonants{grid-column:1 / 48;grid-row:3}
+#chart>#vowels{grid-column:56 / 101;grid-row:3}
+#chart>#otherSymbols{grid-column:1 / 61;grid-row:4}
+#chart>#suprasegmentals{grid-column:65 / 101;grid-row:4}
+#chart>#diacritics{grid-column:1 / 71;grid-row:5}
+#chart>#tonesAndWordAccents{grid-column:72 / 101;grid-row:5}
+#chart>div{float:none!important;clear:none!important;width:auto!important;margin:0!important;min-width:0;box-sizing:border-box}
+#chart>div table{max-width:100%;box-sizing:border-box}
+#chart #vowelQuadrilateral{width:100%;height:310px;position:relative}
+#chart #vowelBackground{width:100%;height:100%}
+#chart #suprasegmentals table,#chart #tonesAndWordAccents table{width:100%}
+#chart #suprasegmentals th{white-space:normal}
+#chart #suprasegmentals td.example{white-space:nowrap}
+.source-note,body>details{width:1120px;max-width:none;box-sizing:border-box}
+</style></head><body><div id="chart"><h1 id="title">The International Phonetic Alphabet <span id="alphabetRevision">(revised to 2005)</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.1.3</span></h1><div id="pulmonicConsonants">
 		<h2>Consonants (Pulmonic)</h2>
 		<table>
 			<!--<caption>Where symbols appear in pairs, the one to the right

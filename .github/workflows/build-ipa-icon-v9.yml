@@ -1,0 +1,50 @@
+name: Build and validate IPA Keyboard icon v9
+
+on:
+  push:
+    branches:
+      - artwork/ipa-icon-v9-outline-audit-20261103
+    paths:
+      - artwork/ipa-keyboard-icon-v9-source.svg
+      - scripts/build_ipa_icon_v9.py
+      - .github/workflows/build-ipa-icon-v9.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out exact source branch
+        uses: actions/checkout@v4
+      - name: Install rendering fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu-core fonts-noto-cjk
+      - name: Install vector build dependencies
+        run: python -m pip install --disable-pip-version-check fonttools brotli cairosvg pillow lxml
+      - name: Render, validate and generate hashes
+        run: python scripts/build_ipa_icon_v9.py
+      - name: Upload validated outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa-keyboard-icon-v9-validated
+          path: |
+            artwork/ipa-keyboard-icon-v9-outlined.svg
+            artwork/ipa-keyboard-icon-v9-1024.png
+            artwork/ipa-keyboard-icon-v9-512.png
+            artwork/ipa-keyboard-icon-v9-256.png
+            artwork/ipa-keyboard-icon-v9-validation.txt
+          if-no-files-found: error
+      - name: Commit generated artifacts to this branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artwork/ipa-keyboard-icon-v9-outlined.svg artwork/ipa-keyboard-icon-v9-1024.png artwork/ipa-keyboard-icon-v9-512.png artwork/ipa-keyboard-icon-v9-256.png artwork/ipa-keyboard-icon-v9-validation.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Build verified IPA Keyboard v9 vector and PNG icons"
+            git push
+          fi

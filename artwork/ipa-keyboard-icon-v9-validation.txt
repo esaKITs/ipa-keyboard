@@ -1,0 +1,11 @@
+IPA consonants: 37 symbols, all mapped to expected place/manner row
+IPA vowels: 11 unrounded/rounded pairs + central schwa (23 symbols)
+Selected key: exactly one, symbol ʃ
+Vector outlines: 146 paths from 148 font glyphs
+No raster overlays, remote fonts, or live text in final SVG
+PNG render: 1024, 512, 256 px; nonempty RGBA images
+Color sanity: orange=66352, purple=343242, white=301723
+SVG SHA256: e66129097782e9dd692059da1690da1d5dc86af4d674e4ba207ec0a22be5f21f
+PNG 1024 SHA256: 4919f5e27d1cac4d4937e9361169378cc417e8431a6c980033ab7ed0bbfc43be
+PNG 512 SHA256: 58e86c80d51754f9dbf7c9d258ff4fc233a6934224c2153d361adf29025671e7
+PNG 256 SHA256: df20d5dd81cd209dbe50176089408225acb5098490292f732dd03e76e501daa4

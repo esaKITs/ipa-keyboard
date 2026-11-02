@@ -43,7 +43,7 @@ jp.041,（後部）歯茎音,(Post)alveolar,(پس) لثوی,(Pós-)alveolar,jp.0
 jp.042,硬口蓋歯茎音,Palatoalveolar,کامی‌لثوی,Palatoalveolar,jp.042,en_036,fa_030,ptbr_032,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.043,歯茎側面音,Alveolar lateral,لثوی کناری,Lateral alveolar,jp.043,en_037,fa_031,ptbr_033,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.044,歯音／歯茎音,Dental/alveolar,دندانی/لثوی,Alveolodental,jp.044,en_038,fa_032,ptbr_034,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.045,例：,Examples:,مثال‌ها,Exemplos:,jp.045,en_032,fa_036,ptbr_028,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.045,例: ,Examples:,مثال‌ها,Exemplos:,jp.045,en_032,fa_036,ptbr_028,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.046,歯茎摩擦音,sʼ Alveolar fricative,لثوی سایشی,Fricativa alveolar,jp.046,en_045,fa_037,ptbr_038,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.047,その他の記号,OTHER SYMBOLS,دیگر نشانه‌ها,OUTROS SÍMBOLOS,jp.047,en_005,fa_047,ptbr_048,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.048,無声両唇軟口蓋摩擦音,Voiceless labial-velar fricative,سایشی لبی-نرمکامی بی‌واک,Fricativa labiovelar não vozeada,jp.048,en_046,fa_048,ptbr_049,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
@@ -127,9 +127,9 @@ jp.125,低上昇,Low rising,بم خیزان,Ascendente baixo,jp.125,en_122,fa_11
 jp.126,上昇下降,Rising-falling,خیزان-افتان,Ascendente-descendente,jp.126,en_123,fa_120,ptbr_081,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.127,全体的上昇,Global rise,خیز کلی,Subida global,jp.127,en_124,fa_121,ptbr_083,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.128,全体的下降,Global fall,افت کلی,Descida global,jp.128,en_125,fa_122,ptbr_085,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.129,準拠:,Based on:,بر اساس:,Baseado em:,jp.129,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
+jp.129,準拠: ,Based on:,بر اساس:,Baseado em:,jp.129,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.130,IPA Chart 2026 日本語版,IPA Chart 2026 — Japanese version,جدول الفبای آوایی بین‌المللی ۲۰۲۶ — نسخهٔ ژاپنی,Quadro do IPA 2026 — versão japonesa,jp.130,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
-jp.131,IPAについて詳しく学ぶ:,Learn more about the IPA:,اطلاعات بیشتر دربارهٔ الفبای آوایی بین‌المللی:,Saiba mais sobre o IPA:,jp.131,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
+jp.131,IPAについて詳しく学ぶ: ,Learn more about the IPA:,اطلاعات بیشتر دربارهٔ الفبای آوایی بین‌المللی:,Saiba mais sobre o IPA:,jp.131,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.132,東京外国語大学 — IPA 国際音声字母,Tokyo University of Foreign Studies — International Phonetic Alphabet,دانشگاه مطالعات خارجی توکیو — الفبای آوایی بین‌المللی,Universidade de Estudos Estrangeiros de Tóquio — Alfabeto Fonético Internacional,jp.132,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.133,入力内容をすべて消去しますか？,Clear all input?,آیا همهٔ متن ورودی پاک شود؟,Apagar todo o texto digitado?,jp.133,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.134,キャンセル,Cancel,لغو,Cancelar,jp.134,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
@@ -148,7 +148,7 @@ jp.146,元に戻す,Undo,واگرد,Desfazer,jp.146,,,,HTML attribute,tool-UI-En
 jp.147,やり直す,Redo,انجام دوباره,Refazer,jp.147,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.148,1文字削除,Delete one character,حذف یک نویسه,Apagar um caractere,jp.148,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.149,補助記号の位置,Diacritic placement,جایگاه نشانهٔ کمکی,Posição dos diacríticos,jp.149,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
-jp.150,補助記号位置：自動,Diacritic placement: Auto,جایگاه نشانهٔ کمکی: خودکار,Posição dos diacríticos: automática,jp.150,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
+jp.150,補助記号位置: 自動,Diacritic placement: Auto,جایگاه نشانهٔ کمکی: خودکار,Posição dos diacríticos: automática,jp.150,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.151,次の補助記号だけ上,Place the next diacritic above,فقط نشانهٔ کمکی بعدی در بالا,Posicionar apenas o próximo diacrítico acima,jp.151,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.152,次の補助記号だけ下,Place the next diacritic below,فقط نشانهٔ کمکی بعدی در پایین,Posicionar apenas o próximo diacrítico abaixo,jp.152,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.153,設定,Settings,تنظیمات,Configurações,jp.153,,,,HTML attribute,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
@@ -167,6 +167,6 @@ jp.165,コピーする文字がありません。,There is no text to copy.,مت
 jp.166,コピーしました。,Copied.,کپی شد.,Copiado.,jp.166,,,,JavaScript message,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.167,コピーできませんでした。,Could not copy.,کپی انجام نشد.,Não foi possível copiar.,jp.167,,,,JavaScript message,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.168,この補助記号にはUnicode上の上下別コードポイントがないため、標準位置で入力しました。,"This diacritic has no separate Unicode code point for above/below placement, so it was inserted in its default position.",این نشانهٔ کمکی در یونیکد کد جداگانه‌ای برای جایگاه بالا و پایین ندارد؛ بنابراین در جایگاه پیش‌فرض درج شد.,"Este diacrítico não possui pontos de código Unicode distintos para as posições acima e abaixo; por isso, foi inserido na posição padrão.",jp.168,,,,JavaScript message,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
-jp.169,補助記号の位置：自動,Diacritic placement: Auto,جایگاه نشانهٔ کمکی: خودکار,Posição dos diacríticos: automática,jp.169,,,,JavaScript message,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
+jp.169,補助記号の位置: 自動,Diacritic placement: Auto,جایگاه نشانهٔ کمکی: خودکار,Posição dos diacríticos: automática,jp.169,,,,JavaScript message,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.170,次の補助記号だけ「{位置}」に入力します。,Place only the next diacritic {位置}.,فقط نشانهٔ کمکی بعدی را در جایگاه «{位置}» وارد می‌کند.,Inserir apenas o próximo diacrítico {位置}.,jp.170,,,,JavaScript message,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.171,{記号} を入力,Insert {記号},درج {記号},Inserir {記号},jp.171,,,,JavaScript message,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）

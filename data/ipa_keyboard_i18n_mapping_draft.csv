@@ -35,7 +35,7 @@ jp.033,側面摩擦音,Lateral fricative,سایشی کناری,Fricativa lateral
 jp.034,接近音,Approximant,تقریبی,Aproximante,jp.034,en_026,fa_020,ptbr_020,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.035,側面接近音,Lateral approximant,تقریبی کناری,Aproximante lateral,jp.035,en_027,fa_021,ptbr_021,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.036,枠内で記号が対になっている場合、右側の記号が有声音を、左側の記号が無声音を表す。網掛け部分は、不可能と判断された調音を表す。,"Symbols to the right in a cell are voiced, to the left are voiceless. Shaded areas denote articulations judged impossible.",نشانه‌های سمت راست در جدول واکدار و نشانه‌های سمت چپ بی‌واک هستند. خانه‌های رنگی تولیدهای ناممکن را نشان می‌دهند.,"Os símbolos à direita de uma célula são vozeados, à esquerda são não vozeados. Áreas sombreadas denotam articulações julgadas como impossíveis.",jp.036,en_028,fa_022,,HTML text,official-English-source;ptBR-translation;Persian-source-matched,未対応（推測による紐付けなし）
-jp.037,子音（非肺気流）,CONSONANTS (NON-PULMONIC),همخوان‌ها (غیرشششی),CONSOANTES (NÃO PULMONARES),jp.037,en_003,fa_023,ptbr_024,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.037,子音（非肺気流）,CONSONANTS (NON-PULMONIC),همخوان‌ها (غیرششی),CONSOANTES (NÃO PULMONARES),jp.037,en_003,fa_023,ptbr_024,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.038,吸着音,Clicks,نچ‌آواها,Cliques,jp.038,en_029,fa_024,ptbr_025,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.039,有声入破音,Voiced implosives,مکیده‌های واکدار,Implosivas vozeadas,jp.039,en_030,fa_025,ptbr_026,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.040,放出音,Ejectives,فوران‌ها,Ejetivas,jp.040,en_031,fa_026,ptbr_027,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
@@ -60,10 +60,10 @@ jp.058,補助記号,DIACRITICS,نشانه‌های زیروزبری,DIACRÍTICOS
 jp.059,無声,Voiceless,بی‌واک,Desvozeado,jp.059,en_066,fa_060,ptbr_088,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.060,息漏れ声,Breathy voiced,واک نفسی,Voz soprosa,jp.060,en_068,fa_074,ptbr_100,HTML text,official-English-source;official-ptBR-source;Persian-source-matched,日本語対応候補が複数（自動紐付けなし）
 jp.061,有声,Voiced,واکدار,Vozeado,jp.061,en_067,fa_061,ptbr_089,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.062,きしみ声,Creaky voiced,واک فشرده,Voz laringalizada,jp.062,en_069,fa_075,ptbr_101,HTML text,official-English-source;official-ptBR-source;Persian-source-matched,日本語対応候補が複数（自動紐付けなし）
+jp.062,きしみ声,Creaky voiced,واک بازداشته,Voz laringalizada,jp.062,en_069,fa_075,ptbr_101,HTML text,official-English-source;official-ptBR-source;Persian-source-matched,日本語対応候補が複数（自動紐付けなし）
 jp.063,舌尖音,Apical,نوک زبانی,Apical,jp.063,en_072,fa_076,ptbr_103,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.064,有気音,Aspirated,دمیده,Aspirado,jp.064,en_070,fa_064,ptbr_090,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.065,舌唇音,Linguolabial,زبانی-لبی,Linguolabial,jp.065,en_073,,ptbr_104,HTML text,official-English-source;official-ptBR-source;Persian-new-translation,未対応（推測による紐付けなし）
+jp.065,舌唇音,Linguolabial,زبانی لبی,Linguolabial,jp.065,en_073,,ptbr_104,HTML text,official-English-source;official-ptBR-source;Persian-new-translation,未対応（推測による紐付けなし）
 jp.066,舌端音,Laminal,تیغه‌ای,Laminar,jp.066,en_074,fa_077,ptbr_105,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.067,強い円唇化,More rounded,گردتر,Mais arredondado,jp.067,en_075,fa_065,ptbr_091,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.068,唇音化,Labialized,لبی‌شده,Labializado,jp.068,en_084,fa_078,ptbr_106,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）

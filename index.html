@@ -139,7 +139,7 @@ body{font-family:"Noto Sans JP Local","Noto Sans JP",sans-serif}
 
 
 /* The vowel selection is painted above the chart and below the popup. */
-#vowel-highlight{position:fixed;display:none;box-sizing:border-box;background:rgba(10,132,255,.18);border:1px solid #0a84ff;border-radius:4px;box-shadow:none;pointer-events:none;z-index:10000}
+#vowel-highlight{position:fixed;display:none;box-sizing:border-box;background:rgba(10,132,255,.18);border:1px solid #0a84ff;border-radius:4px;box-shadow:none;pointer-events:none;z-index:10000;outline:1px solid transparent}
 #vowels,#vowels *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #vowels .key.pressed,#vowels .key.click-flash,#vowels .key:active,#vowels .key:hover,#vowels .key:focus-visible{background:transparent;box-shadow:none}
 #vowels .key::before{content:none}
@@ -265,6 +265,8 @@ function showVowelHighlight(btn){
  var dpr=window.devicePixelRatio||1;
  function snap(n){return Math.round(n*dpr)/dpr;}
  var left=snap(r.left),top=snap(r.top),right=snap(r.right),bottom=snap(r.bottom);
+ // Keep the fixed overlay fully inside the key rectangle, including its border.
+ if(right<=left||bottom<=top)return;
  vowelHighlight.style.left=left+'px';
  vowelHighlight.style.top=top+'px';
  vowelHighlight.style.width=(right-left)+'px';

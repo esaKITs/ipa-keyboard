@@ -120,10 +120,10 @@ jp.118,超低,Extra low,بسیار بم,Muito baixo,jp.118,en_116,fa_113,ptbr_07
 jp.119,ダウンステップ,Downstep,کاهش پلکانی,Abaixamento em degrau,jp.119,en_117,fa_114,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.120,アップステップ,Upstep,افزایش پلکانی,Elevação em degrau,jp.120,en_118,fa_115,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.121,曲線,CONTOUR,ناهموار,CONTORNO,jp.121,en_110,fa_108,ptbr_071,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.122,上昇,Rising,بم خیزان,Ascendente,jp.122,en_119,fa_119,ptbr_077,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.122,上昇,Rising,خیزان,Ascendente,jp.122,en_119,fa_116,ptbr_077,HTML text,official-English-source;official-ptBR-source,ペルシア語公式チャートの声調記号と英語名称を照合して対応修正
 jp.123,下降,Falling,افتان,Descendente,jp.123,en_120,fa_117,ptbr_078,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.124,高上昇,High rising,خیزان,Ascendente alto,jp.124,en_121,fa_116,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.125,低上昇,Low rising,زیر خیزان,Ascendente baixo,jp.125,en_122,fa_118,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.124,高上昇,High rising,زیر خیزان,Ascendente alto,jp.124,en_121,fa_118,,HTML text,official-English-source;ptBR-translation,ペルシア語公式チャートの声調記号と英語名称を照合して対応修正
+jp.125,低上昇,Low rising,بم خیزان,Ascendente baixo,jp.125,en_122,fa_119,,HTML text,official-English-source;ptBR-translation,ペルシア語公式チャートの声調記号と英語名称を照合して対応修正
 jp.126,上昇下降,Rising-falling,خیزان-افتان,Ascendente-descendente,jp.126,en_123,fa_120,ptbr_081,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.127,全体的上昇,Global rise,خیز کلی,Subida global,jp.127,en_124,fa_121,ptbr_083,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.128,全体的下降,Global fall,افت کلی,Descida global,jp.128,en_125,fa_122,ptbr_085,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）

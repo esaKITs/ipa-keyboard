@@ -1,0 +1,47 @@
+name: Verify IPA fonts in Chromium and WebKit
+on:
+  push:
+    paths: [.github/workflows/verify-ipa-fonts.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test tools
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium webkit
+      - name: Check font loads, computed styles, and mobile layout
+        shell: bash
+        run: |
+          python3 -m http.server 8765 >/tmp/http.log 2>&1 &
+          cat >/tmp/check-fonts.cjs <<'JS'
+          const { chromium,webkit }=require(process.cwd()+'/node_modules/playwright');
+          (async()=>{
+            for(const [name,engine] of [['chromium',chromium],['webkit',webkit]]){
+              const browser=await engine.launch({headless:true});
+              for(const width of [390,768,1280]){
+                const page=await browser.newPage({viewport:{width,height:844},deviceScaleFactor:2});
+                const errors=[];
+                page.on('response',r=>{if(r.url().includes('/fonts/')&&r.status()!==200)errors.push(r.status()+' '+r.url())});
+                await page.goto('http://127.0.0.1:8765/weston-chart-preview.html');
+                await page.evaluate(()=>document.fonts.ready);
+                const result=await page.evaluate(()=>{
+                  const e=s=>getComputedStyle(document.querySelector(s)).fontFamily;
+                  return {version:document.querySelector('#appVersion').textContent,ipa:e('#chart td'),jp:e('#chart h2'),ipaLoaded:document.fonts.check('20px "Doulos SIL Local"'),jpLoaded:document.fonts.check('20px "Noto Sans JP Local"'),jpBoldLoaded:document.fonts.check('700 20px "Noto Sans JP Local"'),scale:document.querySelector('#chartScaleContent').style.transform};
+                });
+                console.log(name,width,JSON.stringify(result),JSON.stringify(errors));
+                if(errors.length||!result.ipaLoaded||!result.jpLoaded||!result.jpBoldLoaded||!result.ipa.includes('Doulos SIL Local')||!result.jp.includes('Noto Sans JP Local'))throw Error('Font verification failed '+name+' '+width);
+                await page.screenshot({path:'/tmp/ipa-'+name+'-'+width+'.png',fullPage:true});
+                await page.close();
+              }
+              await browser.close();
+            }
+          })().catch(e=>{console.error(e);process.exit(1)});
+          JS
+          node /tmp/check-fonts.cjs

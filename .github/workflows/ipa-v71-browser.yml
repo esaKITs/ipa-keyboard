@@ -2,6 +2,8 @@ name: IPA vowel highlight v71 browser verification
 on:
   push:
     branches: [fix/v71-vowel-highlight-validation]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 jobs:
   browser:

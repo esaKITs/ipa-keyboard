@@ -1,0 +1,86 @@
+name: Render IPA Keyboard icon v7
+on:
+  push:
+    branches:
+      - artwork/ipa-icon-svg-v7-20261103
+    paths:
+      - 'artwork/ipa-keyboard-icon-v7.svg'
+      - '.github/workflows/render-ipa-icon-v7.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SVG renderer and Python dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq librsvg2-bin fontconfig
+          python -m pip install --quiet fonttools brotli pillow
+      - name: Install repository IPA and Japanese fonts
+        run: |
+          mkdir -p ~/.local/share/fonts
+          python - <<'PY'
+          from fontTools.ttLib import TTFont
+          from pathlib import Path
+          for name in ("DoulosSIL-Regular","NotoSansJP-Bold","NotoSansJP-Regular"):
+              f=TTFont(f"fonts/{name}.woff2")
+              f.flavor=None
+              f.save(str(Path.home()/".local/share/fonts"/f"{name}.ttf"))
+          PY
+          fc-cache -f
+          fc-match 'Doulos SIL'
+      - name: Validate source, mappings and glyph coverage
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from xml.etree import ElementTree as ET
+          from fontTools.ttLib import TTFont
+          p=Path("artwork/ipa-keyboard-icon-v7.svg")
+          t=p.read_text()
+          root=ET.fromstring(t)
+          assert root.attrib.get("viewBox")=="0 0 1024 1024"
+          texts=[e.text or "" for e in root.iter() if e.tag.endswith("text")]
+          assert "/ʃɪp/" in texts
+          symbols=["p","b","t","d","c","ɟ","k","ɡ","ʔ","m","ɱ","n","ɲ","ŋ","ɸ","β","f","v","θ","ð","s","z","ʃ","ʒ","ç","ʝ","x","ɣ","h","ɦ","ʋ","ɹ","j","ɰ","l","ʎ","ʟ",
+                   "i","y","ɨ","ʉ","ɯ","u","e","ø","ɘ","ɵ","ɤ","o","ɛ","œ","ɜ","ɞ","ʌ","ɔ","a","ɶ","ɑ","ɒ","ə"]
+          missing=[x for x in symbols if x not in texts]
+          assert not missing,missing
+          font=TTFont(str(Path.home()/".local/share/fonts/DoulosSIL-Regular.ttf"))
+          cmap=set().union(*(set(t.cmap) for t in font["cmap"].tables))
+          missing_font=[x for x in symbols if ord(x) not in cmap]
+          assert not missing_font,missing_font
+          print(f"XML valid; {len(symbols)} IPA glyphs present and supported by Doulos SIL")
+          PY
+      - name: Render SVG to PNG
+        run: |
+          rsvg-convert -w 1024 -h 1024 artwork/ipa-keyboard-icon-v7.svg -o artwork/ipa-keyboard-icon-v7-1024.png
+          rsvg-convert -w 512 -h 512 artwork/ipa-keyboard-icon-v7.svg -o artwork/ipa-keyboard-icon-v7-512.png
+          rsvg-convert -w 256 -h 256 artwork/ipa-keyboard-icon-v7.svg -o artwork/ipa-keyboard-icon-v7-256.png
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          for n in (1024,512,256):
+              p=Path(f"artwork/ipa-keyboard-icon-v7-{n}.png")
+              im=Image.open(p).convert("RGBA")
+              assert im.size==(n,n)
+              assert im.getbbox()
+              assert len(im.getcolors(maxcolors=1000000) or [])>100
+              print(p, p.stat().st_size)
+          PY
+      - name: Upload rendered previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa-keyboard-v7-png
+          path: artwork/ipa-keyboard-icon-v7-*.png
+      - name: Commit verified previews to isolated artwork branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artwork/ipa-keyboard-icon-v7-1024.png artwork/ipa-keyboard-icon-v7-512.png artwork/ipa-keyboard-icon-v7-256.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Render and verify IPA Keyboard v7 PNG previews"
+            git push
+          fi

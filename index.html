@@ -142,7 +142,7 @@
 </div>
 <div class="settings-panel" id="settingsPanel" hidden>
 <div class="setting-row"><span class="setting-label">入力文字</span><span class="size-a small-a">A</span><input id="inputSizeSlider" class="size-slider" type="range" min="0" max="4" step="1" value="1" aria-label="入力文字サイズ"><span class="size-a large-a">A</span></div>
-<div class="setting-row"><span class="setting-label">チャート</span><span class="size-a small-a">A</span><input id="chartSizeSlider" class="size-slider" type="range" min="0" max="4" step="1" value="0" aria-label="チャート文字サイズ"><span class="size-a large-a">A</span></div>
+<div class="setting-row"><span class="setting-label">チャート</span><span class="size-a small-a">A</span><input id="chartSizeSlider" class="size-slider" type="range" min="0" max="8" step="1" value="0" aria-label="チャート文字サイズ"><span class="size-a large-a">A</span></div>
 <div class="setting-row compact-setting"><label><input id="warnToggle" type="checkbox" checked> 組合せ警告</label></div>
 <div class="info-links"><button type="button" class="info-link" id="fontInfoBtn">フォントについて</button><button type="button" class="info-link" id="offlineInfoBtn">オフラインで使う</button></div>
 
@@ -183,7 +183,7 @@ function statusMessage(msg){var st=byId('status');if(!st)return;st.textContent=m
 function remember(){savedStart=typeof out.selectionStart==='number'?out.selectionStart:out.value.length;savedEnd=typeof out.selectionEnd==='number'?out.selectionEnd:savedStart;}
 ['click','keyup','select','focus','touchend'].forEach(function(ev){out.addEventListener(ev,remember);});out.addEventListener('input',function(){remember();grow();snapshot();});
 function grow(){out.style.height='auto';out.style.height=Math.min(220,Math.max(64,out.scrollHeight))+'px';}
-var inputSizes=[36,60,100,180,300],chartSizes=[16,18,20,23,26];
+var inputSizes=[36,60,100,180,300],chartSizes=[16,18,20,23,26,30,34,40,48];
 var inputSizeIndex=1,chartSizeIndex=0;
 function applyInputSize(i){
  inputSizeIndex=Math.max(0,Math.min(inputSizes.length-1,Number(i)));

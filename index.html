@@ -494,7 +494,7 @@ document.querySelectorAll('#diac .dia-ex').forEach(function(ex){
    if(n.nodeValue!==value)n.nodeValue=value;
   }
   const wholeIPA={ "alveolar-fricative":{ja:"e̝（ɹ̝ = 有声歯茎摩擦音）",ja_osaka:"e̝（ɹ̝ = 有声歯茎摩擦音）",en:"e̝ (ɹ̝ = voiced alveolar fricative)",fa:"e̝ (ɹ̝ = سایشی لثوی واکدار)",pt_BR:"e̝ (ɹ̝ = fricativa alveolar vozeada)"}, "bilabial-approximant":{ja:"e̞（β̞ = 有声両唇接近音）",ja_osaka:"e̞（β̞ = 有声両唇接近音）",en:"e̞ (β̞ = voiced bilabial approximant)",fa:"e̞ (β̞ = تقریبی دولبی واکدار)",pt_BR:"e̞ (β̞ = aproximante bilabial vozeada)"} };
-  root.querySelectorAll("[data-ipa-whole]").forEach(el=>{const t=wholeIPA[el.dataset.ipaWhole];if(t)el.textContent=t[active]||t.ja;});
+  root.querySelectorAll("[data-ipa-whole]").forEach(el=>{const t=wholeIPA[el.dataset.ipaWhole];if(t){const value=t[active]||t.ja;if(el.textContent!==value)el.textContent=value;}});
   root.querySelectorAll("*").forEach(el=>{
    if(el===selector||el.closest("#languageSelect"))return;
    let saved=originalAttrs.get(el);if(!saved){saved={};originalAttrs.set(el,saved);}

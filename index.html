@@ -295,10 +295,13 @@ function makeExampleButton(value){
  return b;
 }
 Array.prototype.forEach.call(document.querySelectorAll('.dia-ex'),function(el){
- var raw=el.textContent.trim(),values=raw.split(/\\s{2,}/).filter(Boolean);
+ var raw=el.textContent.trim(),annotation='';
+ var at=raw.search(/[（(]/);if(at>=0){annotation=raw.slice(at);raw=raw.slice(0,at).trim();}
+ var values=raw.split(/\s+/).filter(Boolean);
  if(!values.length)return;
  el.textContent='';
  values.forEach(function(v,i){if(i)el.appendChild(document.createTextNode('  '));el.appendChild(makeExampleButton(v));});
+ if(annotation)el.appendChild(document.createTextNode(annotation));
 });
 Array.prototype.forEach.call(document.querySelectorAll('#supra .example'),function(el){
  var raw=el.textContent.trim();if(!raw)return;el.textContent='';el.appendChild(makeExampleButton(raw));

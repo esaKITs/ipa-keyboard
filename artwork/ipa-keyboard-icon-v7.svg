@@ -16,8 +16,9 @@
 <linearGradient id="bubble" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#f5e8ff"/></linearGradient>
 <linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ff6819"/><stop offset="1" stop-color="#e92500"/></linearGradient>
 <pattern id="asanoha" width="88" height="77" patternUnits="userSpaceOnUse"><g fill="none" stroke="#f6b4d5" stroke-width="1.4" opacity=".48"><path d="M0 0L44 0L88 0M0 77L44 77L88 77M0 0L44 38.5L0 77M88 0L44 38.5L88 77M44 0V77M0 38.5H88M0 0L88 77M88 0L0 77"/></g></pattern>
-<pattern id="waves" width="82" height="44" patternUnits="userSpaceOnUse"><g fill="none" stroke="#e5a42e" stroke-width="3" opacity=".8"><path d="M-41 44A41 41 0 0 1 41 44M-32 44A32 32 0 0 1 32 44M-23 44A23 23 0 0 1 23 44M0 0A41 41 0 0 1 82 0M9 0A32 32 0 0 1 73 0M18 0A23 23 0 0 1 64 0"/></g></pattern>
+<pattern id="waves" width="96" height="56" patternUnits="userSpaceOnUse"><g fill="none" stroke="#e5a42e" stroke-width="3" opacity=".65"><path d="M0 56A48 48 0 0 1 96 56M10 56A38 38 0 0 1 86 56M20 56A28 28 0 0 1 76 56M30 56A18 18 0 0 1 66 56"/></g></pattern>
 <filter id="shadow" x="-35%" y="-35%" width="180%" height="190%"><feGaussianBlur stdDeviation="16"/></filter>
+<filter id="keyShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="2" stdDeviation="1.2" flood-color="#82658f" flood-opacity=".6"/></filter>
 <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
 <clipPath id="bgclip"><rect x="28" y="28" width="968" height="968" rx="112"/></clipPath>
 </defs>
@@ -59,142 +60,142 @@
 <rect x="79" y="329" width="89" height="64" rx="6" fill="#ead9ec"/>
 <text x="123" y="368" font-size="14" text-anchor="middle" fill="#57365f" class="jp">破裂音</text>
 <rect x="171.00" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="175.05" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="175.05" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M178.05 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="188.55" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">p</text>
-<rect x="205.05" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="205.05" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M208.05 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="218.55" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">b</text>
 <rect x="236.10" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="301.20" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="366.30" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="370.35" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="370.35" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M373.35 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="383.85" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">t</text>
-<rect x="400.35" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="400.35" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M403.35 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="413.85" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">d</text>
 <rect x="431.40" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="496.50" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="500.55" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="500.55" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M503.55 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="514.05" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">c</text>
-<rect x="530.55" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="530.55" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M533.55 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="544.05" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɟ</text>
 <rect x="561.60" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="565.65" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="565.65" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M568.65 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="579.15" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">k</text>
-<rect x="595.65" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="595.65" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M598.65 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="609.15" y="370" font-size="22" text-anchor="middle" fill="#1b2a61" class="ipa">ɡ</text>
 <rect x="626.70" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="642.25" y="341" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="642.25" y="341" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M645.25 345h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="659.25" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʔ</text>
 <rect x="79" y="396" width="89" height="64" rx="6" fill="#f1e5f2"/>
 <text x="123" y="435" font-size="14" text-anchor="middle" fill="#57365f" class="jp">鼻音</text>
 <rect x="171.00" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="186.55" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="186.55" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M189.55 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="203.55" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">m</text>
 <rect x="236.10" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="251.65" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="251.65" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M254.65 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="268.65" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɱ</text>
 <rect x="301.20" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="366.30" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="381.85" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="381.85" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M384.85 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="398.85" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">n</text>
 <rect x="431.40" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="496.50" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="512.05" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="512.05" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M515.05 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="529.05" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɲ</text>
 <rect x="561.60" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="577.15" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="577.15" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M580.15 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="594.15" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ŋ</text>
 <rect x="626.70" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="79" y="463" width="89" height="64" rx="6" fill="#ead9ec"/>
 <text x="123" y="502" font-size="14" text-anchor="middle" fill="#57365f" class="jp">摩擦音</text>
 <rect x="171.00" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="175.05" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="175.05" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M178.05 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="188.55" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɸ</text>
-<rect x="205.05" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="205.05" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M208.05 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="218.55" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">β</text>
 <rect x="236.10" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="240.15" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="240.15" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M243.15 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="253.65" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">f</text>
-<rect x="270.15" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="270.15" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M273.15 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="283.65" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">v</text>
 <rect x="301.20" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="305.25" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="305.25" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M308.25 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="318.75" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">θ</text>
-<rect x="335.25" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="335.25" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M338.25 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="348.75" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ð</text>
 <rect x="366.30" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="370.35" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="370.35" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M373.35 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="383.85" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">s</text>
-<rect x="400.35" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="400.35" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M403.35 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="413.85" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">z</text>
 <rect x="431.40" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="435.45" y="475" width="27" height="42" rx="6" fill="url(#selected)" stroke="#1477bd" stroke-width="1.2"/>
+<rect x="435.45" y="475" width="27" height="42" rx="6" fill="url(#selected)" stroke="#1477bd" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M438.45 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="448.95" y="504" font-size="23" text-anchor="middle" fill="#071d58" class="ipa">ʃ</text>
-<rect x="465.45" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="465.45" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M468.45 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="478.95" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʒ</text>
 <rect x="496.50" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="500.55" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="500.55" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M503.55 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="514.05" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ç</text>
-<rect x="530.55" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="530.55" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M533.55 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="544.05" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʝ</text>
 <rect x="561.60" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="565.65" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="565.65" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M568.65 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="579.15" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">x</text>
-<rect x="595.65" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="595.65" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M598.65 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="609.15" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɣ</text>
 <rect x="626.70" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="630.75" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="630.75" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M633.75 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="644.25" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">h</text>
-<rect x="660.75" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="660.75" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M663.75 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="674.25" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɦ</text>
 <rect x="79" y="530" width="89" height="64" rx="6" fill="#f1e5f2"/>
 <text x="123" y="569" font-size="14" text-anchor="middle" fill="#57365f" class="jp">接近音</text>
 <rect x="171.00" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="236.10" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="251.65" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="251.65" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M254.65 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="268.65" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʋ</text>
 <rect x="301.20" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="366.30" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="381.85" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="381.85" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M384.85 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="398.85" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɹ</text>
 <rect x="431.40" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="496.50" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="512.05" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="512.05" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M515.05 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="529.05" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">j</text>
 <rect x="561.60" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="577.15" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="577.15" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M580.15 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="594.15" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɰ</text>
 <rect x="626.70" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
@@ -204,16 +205,16 @@
 <rect x="236.10" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="301.20" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="366.30" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="381.85" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="381.85" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M384.85 613h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="398.85" y="638" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">l</text>
 <rect x="431.40" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
 <rect x="496.50" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="512.05" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="512.05" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M515.05 613h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="529.05" y="638" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʎ</text>
 <rect x="561.60" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<rect x="577.15" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2"/>
+<rect x="577.15" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
 <path d="M580.15 613h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="594.15" y="638" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʟ</text>
 <rect x="626.70" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>

@@ -215,7 +215,7 @@
 <path d="M580.15 613h28" stroke="#fff" stroke-width="2" opacity=".9"/>
 <text x="594.15" y="638" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʟ</text>
 <rect x="626.70" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
-<text x="86" y="650" font-size="10.5" fill="#71567a" class="jp">代表的な子音記号（抜粋）</text>
+
 <text x="740" y="314" font-size="14" fill="#63456c" class="jp">前</text><text x="824" y="314" font-size="14" fill="#63456c" class="jp">中</text><text x="915" y="314" font-size="14" fill="#63456c" class="jp">後</text>
 <path d="M741 350L930 350L930 610L791 610Z" fill="#f7f4ff" stroke="#74618b" stroke-width="2.2"/>
 <path d="M757.54 436H930" stroke="#c8b9d5" stroke-width="1.6"/>

@@ -33,10 +33,10 @@ jobs:
                 await page.evaluate(()=>document.fonts.ready);
                 const result=await page.evaluate(()=>{
                   const e=s=>getComputedStyle(document.querySelector(s)).fontFamily;
-                  return {version:document.querySelector('#appVersion').textContent,ipa:e('#chart td'),jp:e('#chart h2'),ipaLoaded:document.fonts.check('20px "Doulos SIL Local"'),jpLoaded:document.fonts.check('20px "Noto Sans JP Local"'),jpBoldLoaded:document.fonts.check('700 20px "Noto Sans JP Local"'),scale:document.querySelector('#chartScaleContent').style.transform};
+                  return {version:document.querySelector('#appVersion').textContent,ipa:e('#chart td'),vowel:e('#vowelSymbols span'),embedded:e('#tiebarExample .ipa'),jp:e('#chart h2'),ipaLoaded:document.fonts.check('20px "Doulos SIL Local"'),jpLoaded:document.fonts.check('20px "Noto Sans JP Local"'),jpBoldLoaded:document.fonts.check('700 20px "Noto Sans JP Local"'),scale:document.querySelector('#chartScaleContent').style.transform};
                 });
                 console.log(name,width,JSON.stringify(result),JSON.stringify(errors));
-                if(errors.length||!result.ipaLoaded||!result.jpLoaded||!result.jpBoldLoaded||!result.ipa.includes('Doulos SIL Local')||!result.jp.includes('Noto Sans JP Local'))throw Error('Font verification failed '+name+' '+width);
+                if(errors.length||!result.ipaLoaded||!result.jpLoaded||!result.jpBoldLoaded||!result.ipa.includes('Doulos SIL Local')||!result.vowel.includes('Doulos SIL Local')||!result.embedded.includes('Doulos SIL Local')||!result.jp.includes('Noto Sans JP Local'))throw Error('Font verification failed '+name+' '+width);
                 await page.screenshot({path:'/tmp/ipa-'+name+'-'+width+'.png',fullPage:true});
                 await page.close();
               }

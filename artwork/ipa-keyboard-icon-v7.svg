@@ -28,6 +28,8 @@
 <rect x="40" y="40" width="944" height="943" rx="95" fill="none" stroke="#ffb947" stroke-width="3" opacity=".55"/>
 <g transform="matrix(.96 -.08 .08 .90 -12 100)">
 <rect x="43" y="199" width="938" height="507" rx="48" fill="#070e38" opacity=".55" transform="translate(13 20)" filter="url(#shadow)"/>
+<rect x="40" y="220" width="943" height="506" rx="48" fill="#130a3c" stroke="#ff8e38" stroke-width="7"/>
+<path d="M86 715H929" stroke="#3d83ff" stroke-width="12" stroke-linecap="round" opacity=".8"/>
 <rect x="43" y="199" width="938" height="507" rx="48" fill="#0a0d37" stroke="#00caff" stroke-width="16" opacity=".8" filter="url(#glow)"/>
 <rect x="43" y="199" width="938" height="507" rx="48" fill="#0a1239" stroke="#7bdcff" stroke-width="7"/>
 <rect x="58" y="216" width="908" height="473" rx="31" fill="url(#paper)" stroke="#a2b8e9" stroke-width="3"/>
@@ -47,7 +49,7 @@
 <rect x="366.30" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
 <text x="398.85" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">歯茎</text>
 <rect x="431.40" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
-<text x="463.95" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">後歯茎</text>
+<text x="463.95" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">後部歯茎</text>
 <rect x="496.50" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
 <text x="529.05" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">硬口蓋</text>
 <rect x="561.60" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
@@ -261,7 +263,7 @@
 <g transform="rotate(-5 525 173)"><rect x="269" y="103" width="505" height="137" rx="67" fill="#0d0828" opacity=".5" transform="translate(6 11)" filter="url(#shadow)"/><rect x="266" y="100" width="505" height="137" rx="67" fill="url(#bubble)" stroke="#dfc0ea" stroke-width="7"/><path d="M302 121H735" stroke="#fff" stroke-width="6" opacity=".85"/><text x="522" y="201" text-anchor="middle" font-size="89" fill="#0d255e" class="ipa">/ʃɪp/</text></g>
 <g transform="translate(825 99)"><path d="M0 31H18L38 12V78L18 59H0Z" fill="#fff" stroke="#7d90d8" stroke-width="3"/><path d="M50 24Q78 44 50 66M62 12Q106 44 62 78" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round"/></g>
 <g stroke="#ffc745" stroke-width="9" stroke-linecap="round"><path d="M786 70V39M819 78L838 50M842 103L871 93"/></g>
-<g opacity=".98"><path d="M50 867V923M66 849V941M82 859V932M98 874V918" stroke="#fff" stroke-width="9" stroke-linecap="round"/><text x="130" y="884" font-size="88" font-weight="900" letter-spacing="-4" fill="#fff6df" font-family="Arial,Helvetica,sans-serif">IPA Keyboard</text></g>
+<g opacity=".98"><path d="M50 867V923M66 849V941M82 859V932M98 874V918" stroke="#fff" stroke-width="9" stroke-linecap="round"/><text x="122" y="855" font-size="110" font-weight="900" letter-spacing="-5" fill="#fff6df" font-family="Arial,Helvetica,sans-serif">IPA Keyboard</text></g>
 <rect x="154" y="912" width="288" height="67" rx="33" fill="#9e1709" opacity=".5" transform="translate(3 6)"/><rect x="154" y="908" width="288" height="67" rx="33" fill="url(#red)" stroke="#ffc143" stroke-width="4"/>
 <text x="298" y="957" font-size="44" text-anchor="middle" fill="#fff" class="jp">日本語版</text>
 <text x="585" y="958" font-size="50" font-weight="800" fill="#fff5e4" font-family="Arial,Helvetica,sans-serif">esaKITs</text>

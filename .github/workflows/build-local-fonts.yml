@@ -73,8 +73,8 @@ jobs:
           #chart td,#chart .ipa,#chart .symbol,#chart .phonetic,#chart .vowel{font-family:'Doulos SIL Local',serif}
           #chart .ipa-text-arrow{font-family:'Doulos SIL Local',serif!important}
           """+s[end:]
-          assert s.count('esaKITs v0.2.4')==1
-          s=s.replace('esaKITs v0.2.4','esaKITs v0.2.5')
+          assert s.count('>esaKITs v0.2.4<')==1
+          s=s.replace('>esaKITs v0.2.4<','>esaKITs v0.2.5<')
           assert 'fonts.googleapis.com' not in s and 'sources.debian.org' not in s
           assert 'var BASE=1040' in s
           for f in Path('fonts').glob('*.woff2'):

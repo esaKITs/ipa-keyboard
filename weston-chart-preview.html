@@ -568,7 +568,7 @@ div#adsense {
 #fifthAnniversary.target #fifthAnniversaryLink { display:none; }
 #fifthAnniversary:target #fifthAnniversaryLink { display:none; }
 
-/* esaKITs v0.2.2 — single authoritative layout block.
+/* esaKITs v0.2.4 — single authoritative layout block.
    Fixed 1040px canvas; no grid/float overrides scattered across revisions. */
 html{background:#fff}
 body{margin:0;padding:16px;overflow-x:auto;background:#fff}
@@ -616,7 +616,13 @@ body{padding:8px!important;overflow-x:hidden!important}
 #chartScaleContent{position:absolute;top:0;left:0;width:1040px;transform-origin:top left}
 #chartScaleContent #chart{margin:0;width:1040px;min-width:1040px}
 #chartScaleContent .source-note,#chartScaleContent>details{width:1040px;max-width:1040px}
-</style></head><body><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.2.3</span></h1><div id="pulmonicConsonants">
+
+/* v0.2.4 — typography only; all dimensions and layout unchanged. */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+@font-face{font-family:'Doulos SIL Web';src:url('https://sources.debian.org/data/main/f/fonts-sil-doulos/6.200-1/web/DoulosSIL-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+#chart{font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif}
+#chart :is(.ipa,.symbol,.phonetic),#chart td:not(:has(a)),#chart .vowel{font-family:'Doulos SIL Web','Doulos SIL','Charis SIL',serif}
+</style></head><body><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title">国際音声記号 <span id="alphabetRevision">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span> <span id="appVersion" style="display:inline-block;vertical-align:middle;margin-left:12px;padding:3px 9px;border:1px solid #777;border-radius:4px;font:600 13px system-ui,sans-serif;white-space:nowrap">esaKITs v0.2.4</span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>
 		<table>
 			<!--<caption>記号が対になっている場合、右側は有声子音を表す。灰色の部分は調音が不可能と考えられる箇所を示す。</caption>-->

@@ -127,7 +127,13 @@
 .info-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.info-link{border:0;background:none;padding:2px 0;color:#245b8a;text-decoration:underline;font-size:11px;cursor:pointer}
 .info-dialog{max-width:min(520px,calc(100vw - 28px));border:1px solid #777;border-radius:8px;padding:18px 20px;background:#fff;color:#111;box-shadow:0 8px 28px rgba(0,0,0,.22);line-height:1.6}.info-dialog::backdrop{background:rgba(0,0,0,.28)}.info-dialog h3{margin:0 0 10px;font-size:17px}.info-dialog p{margin:7px 0;font-size:13px}.info-dialog a{color:#245b8a}.info-close{display:flex;justify-content:flex-end;margin-top:14px}.display-circle{opacity:.42}
 @font-face{font-family:"Doulos SIL Local";src:url("./fonts/DoulosSIL-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
-.ipa,.key,.output,.dia-ex,.example,.pop{font-family:"Doulos SIL Local","Doulos SIL","Times New Roman","DejaVu Serif",serif}
+@font-face{font-family:"Noto Sans JP Local";src:url("./fonts/NotoSansJP-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Noto Sans JP Local";src:url("./fonts/NotoSansJP-Bold.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+/* Japanese interface and chart labels: local Japanese font; IPA symbols: local SIL font. */
+body{font-family:"Noto Sans JP Local","Noto Sans JP",sans-serif}
+.ipa,.key,.output,.dia-ex,.example,.pop,.bracket-btn{font-family:"Doulos SIL Local","Doulos SIL",serif}
+.size-a,.brand-name{font-family:"Noto Sans JP Local","Noto Sans JP",sans-serif}
+
 </style></head><body><main class="app"><header class="app-header"><div class="ipa-standard">IPA Chart 2026 日本語版準拠</div><h1 class="title">IPA Keyboard</h1><div class="version-ja">日本語版</div></header><div class="toolbar"><textarea id="out" class="output ipa" aria-label="IPA入力欄" spellcheck="false" style="height: 97px;"></textarea><div class="controls main-controls">
 <button class="ctl bracket-btn" id="phonetic" title="角括弧を付ける" aria-label="角括弧を付ける">[ ]</button>
 <button class="ctl icon-btn" id="copy" title="コピー" aria-label="コピー"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="1.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-10A1.5 1.5 0 0 0 3 5.5v10A1.5 1.5 0 0 0 4.5 17H8"/></svg></button>

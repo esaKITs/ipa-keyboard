@@ -1,172 +1,172 @@
 ﻿tool_key,ja,en,fa,pt_BR,source_ja_id,source_en_id,source_fa_id,source_ptbr_id,source_ja_location,mapping_status,source_note
-jp.001,IPA Chart 2026 日本語版準拠,Based on the Japanese version of the IPA Chart 2026,,,jp.001,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.002,日本語版,Japanese version,,,jp.002,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.003,補助,Diacritic,,,jp.003,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.004,記号,Symbol,,,jp.004,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.005,自動,Auto,,,jp.005,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.006,上,Above,,,jp.006,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.007,下,Below,,,jp.007,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.008,日本語,Japanese,,,jp.008,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.009,大阪方言,Osaka dialect,,,jp.009,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.010,入力文字,Input text,,,jp.010,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.011,チャート内の文字,Chart text,,,jp.011,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.012,組合せ警告,Combination warnings,,,jp.012,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.013,フォントについて,About fonts,,,jp.013,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.014,オフラインで使う,Use offline,,,jp.014,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.015,国際音声記号,THE INTERNATIONAL PHONETIC ALPHABET,الفبای آوایی بین‌المللی,,jp.015,en_001,fa_001,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.016,子音（肺気流）,CONSONANTS (PULMONIC),همخوان‌ها (شششی),,jp.016,en_002,fa_002,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.017,両唇音,Bilabial,,,jp.017,en_009,,,HTML text,official-English-source,日本語対応候補が複数（自動紐付けなし）
-jp.018,唇歯音,Labiodental,لبی دندانی,,jp.018,en_010,fa_004,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.019,歯音,Dental,,,jp.019,en_011,,,HTML text,official-English-source,日本語対応候補が複数（自動紐付けなし）
-jp.020,歯茎音,Alveolar,لثوی,,jp.020,en_012,fa_006,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.021,後部歯茎音,Postalveolar,پس‌لثوی,,jp.021,en_013,fa_007,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.022,そり舌音,Retroflex,برگشتی,,jp.022,en_014,fa_008,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.023,硬口蓋音,Palatal,,,jp.023,en_015,,,HTML text,official-English-source,日本語対応候補が複数（自動紐付けなし）
-jp.024,軟口蓋音,Velar,,,jp.024,en_016,,,HTML text,official-English-source,日本語対応候補が複数（自動紐付けなし）
-jp.025,口蓋垂音,Uvular,,,jp.025,en_017,,,HTML text,official-English-source,日本語対応候補が複数（自動紐付けなし）
-jp.026,咽頭音,Pharyngeal,حلقی,,jp.026,en_018,fa_012,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.027,声門音,Glottal,چاکنایی,,jp.027,en_019,fa_013,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.028,破裂音,Plosive,انفجاری,,jp.028,en_020,fa_014,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.029,鼻音,Nasal,خیشومی,,jp.029,en_021,fa_015,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.030,ふるえ音,Trill,لرزشی,,jp.030,en_022,fa_016,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.031,はじき音または弾き音,Tap or Flap,زنشی,,jp.031,en_023,fa_017,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.032,摩擦音,Fricative,سایشی,,jp.032,en_024,fa_018,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.033,側面摩擦音,Lateral fricative,سایشی کناری,,jp.033,en_025,fa_019,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.034,接近音,Approximant,تقریبی,,jp.034,en_026,fa_020,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.035,側面接近音,Lateral approximant,تقریبی کناری,,jp.035,en_027,fa_021,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.036,枠内で記号が対になっている場合、右側の記号が有声音を、左側の記号が無声音を表す。網掛け部分は、不可能と判断された調音を表す。,"Symbols to the right in a cell are voiced, to the left are voiceless. Shaded areas denote articulations judged impossible.",,,jp.036,en_028,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.037,子音（非肺気流）,CONSONANTS (NON-PULMONIC),همخوان‌ها (غیرشششی),,jp.037,en_003,fa_023,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.038,吸着音,Clicks,نچ‌آواها,,jp.038,en_029,fa_024,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.039,有声入破音,Voiced implosives,مکیده‌های واکدار,,jp.039,en_030,fa_025,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.040,放出音,Ejectives,فوران‌ها,,jp.040,en_031,fa_026,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.041,（後部）歯茎音,(Post)alveolar,(پس) لثوی,,jp.041,en_035,fa_029,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.042,硬口蓋歯茎音,Palatoalveolar,کامی‌لثوی,,jp.042,en_036,fa_030,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.043,歯茎側面音,Alveolar lateral,لثوی کناری,,jp.043,en_037,fa_031,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.044,歯音／歯茎音,Dental/alveolar,دندانی/لثوی,,jp.044,en_038,fa_032,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.045,例：,Examples:,مثال‌ها,,jp.045,en_032,fa_036,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.046,歯茎摩擦音,sʼ Alveolar fricative,لثوی سایشی,,jp.046,en_045,fa_037,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.047,その他の記号,OTHER SYMBOLS,دیگر نشانه‌ها,,jp.047,en_005,fa_047,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.048,無声両唇軟口蓋摩擦音,Voiceless labial-velar fricative,سایشی لبی-نرمکامی بی‌واک,,jp.048,en_046,fa_048,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.049,歯茎硬口蓋摩擦音,Alveolo-palatal fricatives,سایشی‌های لثوی-کامی,,jp.049,en_052,fa_054,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.050,有声両唇軟口蓋接近音,Voiced labial-velar approximant,تقریبی لبی-نرمکامی واکدار,,jp.050,en_047,fa_049,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.051,有声歯茎側面弾き音,Voiced alveolar lateral flap,زنشی کناری لثوی واکدار,,jp.051,en_053,fa_055,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.052,有声両唇硬口蓋接近音,Voiced labial-palatal approximant,تقریبی لبی-کامی واکدار,,jp.052,en_048,fa_050,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.053,ʃ と x の同時調音,Simultaneous ʃ and x,همزمانی ʃ و x,,jp.053,en_054,fa_056,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.054,無声喉頭蓋摩擦音,Voiceless epiglottal fricative,سایشی برچاکنایی بی‌واک,,jp.054,en_049,fa_051,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.055,有声喉頭蓋摩擦音,Voiced epiglottal fricative,سایشی برچاکنایی واکدار,,jp.055,en_050,fa_052,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.056,喉頭蓋破裂音,Epiglottal plosive,انفجاری برچاکنایی,,jp.056,en_051,fa_053,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.057,破擦音と二重調音は、必要な場合連結記号でつないだ2つの記号で表すことができる。,Affricates and double articulations can be represented by two symbols joined by a tie bar if necessary.,,,jp.057,en_055,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.058,補助記号,DIACRITICS,نشانهٔ زیرنویسی,,jp.058,en_006,fa_059,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.059,無声,Voiceless,بی‌واک,,jp.059,en_066,fa_060,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.060,息漏れ声,Breathy voiced,,,jp.060,en_068,,,HTML text,official-English-source,日本語対応候補が複数（自動紐付けなし）
-jp.061,有声,Voiced,واکدار,,jp.061,en_067,fa_061,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.062,きしみ声,Creaky voiced,,,jp.062,en_069,,,HTML text,official-English-source,日本語対応候補が複数（自動紐付けなし）
-jp.063,舌尖音,Apical,نوک زبانی,,jp.063,en_072,fa_076,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.064,有気音,Aspirated,دمیده,,jp.064,en_070,fa_064,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.065,舌唇音,Linguolabial,,,jp.065,en_073,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.066,舌端音,Laminal,تیغه‌ای,,jp.066,en_074,fa_077,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.067,強い円唇化,More rounded,گردتر,,jp.067,en_075,fa_065,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.068,唇音化,Labialized,لبی‌شده,,jp.068,en_084,fa_078,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.069,鼻音化,Nasalized,خیشومی,,jp.069,en_089,fa_071,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.070,弱い円唇化,Less rounded,کمتر گرد,,jp.070,en_076,fa_066,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.071,硬口蓋化,Palatalized,کامی‌شده,,jp.071,en_085,fa_079,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.072,鼻音開放,Nasal release,رهش خیشومی,,jp.072,en_090,fa_090,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.073,前進,Advanced,پیش‌آمده,,jp.073,en_077,fa_067,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.074,軟口蓋化,Velarized,نرمکامی‌شده,,jp.074,en_086,fa_080,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.075,側面開放,Lateral release,رهش کناری,,jp.075,en_091,fa_089,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.076,後退,Retracted,پس‌رفته,,jp.076,en_078,fa_068,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.077,咽頭音化,Pharyngealized,حلقی‌شده,,jp.077,en_087,fa_081,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.078,無音開放,No audible release,,,jp.078,en_092,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.079,中舌化,Mid-centralized,مرکزی‌شده,,jp.079,en_080,fa_069,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.080,軟口蓋化または咽頭音化,Velarized or pharyngealized,نرمکامی‌شده یا حلقی‌شده,,jp.080,en_088,fa_082,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.081,中央化,Centralized,میانی-مرکزی,,jp.081,en_079,fa_070,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.082,上寄り,Raised,افراشته‌شده,,jp.082,en_093,fa_083,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.083,e̝（ɹ̝ = 有声歯茎摩擦音）,ɹ̝ = voiced alveolar fricative,,,jp.083,en_097,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.084,音節主音,Syllabic,هجایی,,jp.084,en_081,fa_087,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.085,下寄り,Lowered,افتاده‌شده,,jp.085,en_094,fa_084,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.086,e̞（β̞ = 有声両唇接近音）,β̞ = voiced bilabial approximant,,,jp.086,en_098,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.087,非音節主音,Non-syllabic,غیرهجایی,,jp.087,en_082,fa_088,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.088,舌根前進,Advanced Tongue Root,ریشه زبان پیش‌آمده,,jp.088,en_095,fa_085,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.089,R音性,Rhoticity,ر-گونگی,,jp.089,en_083,fa_073,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.090,舌根後退,Retracted Tongue Root,ریشه زبان پس‌رفته,,jp.090,en_096,fa_086,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.091,基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例,"Some diacritics may be placed above a symbol with a descender, e.g. ŋ̊",,,jp.091,en_099,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.092,母音,VOWELS,واکه‌ها,,jp.092,en_004,fa_038,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.093,前舌,Front,پیشین,,jp.093,en_058,fa_039,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.094,中舌,Central,مرکزی,,jp.094,en_059,fa_040,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.095,後舌,Back,پسین,,jp.095,en_060,fa_041,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.096,狭,Close,بسته,,jp.096,en_061,fa_042,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.097,半狭,Close-mid,نیم بسته,,jp.097,en_062,fa_043,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.098,半広,Open-mid,نیم باز,,jp.098,en_063,fa_044,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.099,広,Open,باز,,jp.099,en_064,fa_045,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.100,記号が対になっている場合、右側の記号が円唇母音を表す。,"Where symbols appear in pairs, the one to the right represents a rounded vowel.",,,jp.100,en_065,,,HTML text,official-English-source,未対応（推測による紐付けなし）
-jp.101,超分節的要素,SUPRASEGMENTALS,زبرزنجیری,,jp.101,en_007,fa_094,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.102,主強勢,Primary stress,تکیه نخستین,,jp.102,en_100,fa_095,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.103,副次強勢,Secondary stress,تکیه دومین,,jp.103,en_101,fa_096,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.104,長,Long,کشیده,,jp.104,en_102,fa_097,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.105,半長,Half-long,نیم‌کشیده,,jp.105,en_103,fa_098,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.106,超短,Extra-short,فوق کوتاه,,jp.106,en_104,fa_099,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.107,小さい（脚）境界,Minor (foot) group,گروه (پایه) کهین,,jp.107,en_105,fa_100,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.108,大きい（イントネーション）境界,Major (intonation) group,گروه (آهنگ) مهین,,jp.108,en_106,fa_101,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.109,音節境界,Syllable break,مرز هجا,,jp.109,en_107,fa_102,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.110,連結（無境界）,Linking (absence of a break),پیوند (نبود مرز),,jp.110,en_108,fa_103,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.111,声調と語アクセント,TONES AND WORD ACCENTS,نواخت و تکیه‌های واژگانی,,jp.111,en_008,fa_106,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.112,平板,LEVEL,هموار,,jp.112,en_109,fa_107,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.113,または,or,یا,,jp.113,en_111,fa_123,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.114,超高,Extra high,بسیار زیر,,jp.114,en_112,fa_109,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.115,高,High,زیر,,jp.115,en_113,fa_110,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.116,中,Mid,متوسط,,jp.116,en_114,fa_111,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.117,低,Low,بم,,jp.117,en_115,fa_112,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.118,超低,Extra low,بسیار بم,,jp.118,en_116,fa_113,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.119,ダウンステップ,Downstep,کاهش پلکانی,,jp.119,en_117,fa_114,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.120,アップステップ,Upstep,افزایش پلکانی,,jp.120,en_118,fa_115,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.121,曲線,CONTOUR,ناهموار,,jp.121,en_110,fa_108,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.122,上昇,Rising,بم خیزان,,jp.122,en_119,fa_119,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.123,下降,Falling,افتان,,jp.123,en_120,fa_117,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.124,高上昇,High rising,خیزان,,jp.124,en_121,fa_116,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.125,低上昇,Low rising,زیر خیزان,,jp.125,en_122,fa_118,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.126,上昇下降,Rising-falling,خیزان-افتان,,jp.126,en_123,fa_120,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.127,全体的上昇,Global rise,خیز کلی,,jp.127,en_124,fa_121,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.128,全体的下降,Global fall,افت کلی,,jp.128,en_125,fa_122,,HTML text,official-English-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.129,準拠:,Based on:,,,jp.129,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.130,IPA Chart 2026 日本語版,IPA Chart 2026 — Japanese version,,,jp.130,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.131,IPAについて詳しく学ぶ:,Learn more about the IPA:,,,jp.131,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.132,東京外国語大学 — IPA 国際音声字母,Tokyo University of Foreign Studies — International Phonetic Alphabet,,,jp.132,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.133,入力内容をすべて消去しますか？,Clear all input?,,,jp.133,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.134,キャンセル,Cancel,,,jp.134,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.135,全消去,Clear all,,,jp.135,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.136,IPA Keyboard は Doulos SIL を標準フォントとして使用します。Word等へ貼り付けた文字の字形や補助記号の位置は、貼り付け先で使用するフォントによって変わります。,IPA Keyboard uses Doulos SIL as its default font. The appearance of characters and the positioning of diacritics pasted into Word or other applications depend on the font used in the destination application.,,,jp.136,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.137,推奨無料フォント,Recommended free fonts,,,jp.137,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.138,Doulos SIL — セリフ体 ↗,Doulos SIL — Serif ↗,,,jp.138,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.139,Andika — サンセリフ体 ↗,Andika — Sans serif ↗,,,jp.139,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.140,閉じる,Close,,,jp.140,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.141,一度このページをオンラインで開くと、対応ブラウザでは本体データが保存され、その後は通信できない環境でも起動できます。,"After you open this page online once, supported browsers will cache the app data so you can launch it without an internet connection.",,,jp.141,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.142,端末の「ホーム画面に追加」やブックマークを利用すると、再度開きやすくなります。初回だけはオンラインで開いてください。,Use “Add to Home Screen” or bookmark this page for easier access. You must open it online the first time.,,,jp.142,,,,HTML text,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.143,IPA入力欄,IPA input field,,,jp.143,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.144,角括弧を付ける,Add square brackets,,,jp.144,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.145,コピー,Copy,,,jp.145,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.146,元に戻す,Undo,,,jp.146,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.147,やり直す,Redo,,,jp.147,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.148,1文字削除,Delete one character,,,jp.148,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.149,補助記号の位置,Diacritic placement,,,jp.149,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.150,補助記号位置：自動,Diacritic placement: Auto,,,jp.150,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.151,次の補助記号だけ上,Place the next diacritic above,,,jp.151,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.152,次の補助記号だけ下,Place the next diacritic below,,,jp.152,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.153,設定,Settings,,,jp.153,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.154,入力文字サイズ,Input text size,,,jp.154,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.155,チャート文字サイズ,Chart text size,,,jp.155,,,,HTML attribute,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.156,同じ補助記号の重複を確認してください。,Check for duplicate diacritics.,,,jp.156,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.157,母音に有声化記号が付いています。通常、母音は有声なので確認してください。,A voicing diacritic has been added to a vowel. Vowels are normally voiced; please check.,,,jp.157,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.158,有声子音に有声化記号が付いています。冗長な指定になっていないか確認してください。,A voicing diacritic has been added to a voiced consonant. Check whether this is redundant.,,,jp.158,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.159,無声子音に無声化記号が付いています。冗長な指定になっていないか確認してください。,A voicelessness diacritic has been added to a voiceless consonant. Check whether this is redundant.,,,jp.159,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.160,鼻音に鼻音化記号が付いています。冗長な指定になっていないか確認してください。,A nasalization diacritic has been added to a nasal consonant. Check whether this is redundant.,,,jp.160,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.161,母音に帯気記号が付いています。通常の用法か確認してください。,An aspiration diacritic has been added to a vowel. Check whether this usage is intended.,,,jp.161,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.162,母音に側面開放記号が付いています。通常の用法か確認してください。,A lateral release diacritic has been added to a vowel. Check whether this usage is intended.,,,jp.162,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.163,母音に無開放記号が付いています。通常の用法か確認してください。,A no-audible-release diacritic has been added to a vowel. Check whether this usage is intended.,,,jp.163,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.164,相反する補助記号が連続しています。同じ音への指定か確認してください。,Conflicting diacritics appear consecutively. Check whether they apply to the same sound.,,,jp.164,,,,JavaScript warning,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.165,コピーする文字がありません。,There is no text to copy.,,,jp.165,,,,JavaScript message,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.166,コピーしました。,Copied.,,,jp.166,,,,JavaScript message,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.167,コピーできませんでした。,Could not copy.,,,jp.167,,,,JavaScript message,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.168,この補助記号にはUnicode上の上下別コードポイントがないため、標準位置で入力しました。,"This diacritic has no separate Unicode code point for above/below placement, so it was inserted in its default position.",,,jp.168,,,,JavaScript message,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.169,補助記号の位置：自動,Diacritic placement: Auto,,,jp.169,,,,JavaScript message,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.170,次の補助記号だけ「{位置}」に入力します。,Place only the next diacritic {位置}.,,,jp.170,,,,JavaScript message,tool-UI-English-translation,未対応（推測による紐付けなし）
-jp.171,{記号} を入力,Insert {記号},,,jp.171,,,,JavaScript message,tool-UI-English-translation,未対応（推測による紐付けなし）
+jp.001,IPA Chart 2026 日本語版準拠,Based on the Japanese version of the IPA Chart 2026,,Baseado na versão japonesa do Quadro do IPA 2026,jp.001,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.002,日本語版,Japanese version,,Versão japonesa,jp.002,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.003,補助,Diacritic,,Diacrítico,jp.003,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.004,記号,Symbol,,Símbolo,jp.004,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.005,自動,Auto,,Automático,jp.005,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.006,上,Above,,Acima,jp.006,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.007,下,Below,,Abaixo,jp.007,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.008,日本語,Japanese,,Japonês,jp.008,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.009,大阪方言,Osaka dialect,,Dialeto de Osaka,jp.009,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.010,入力文字,Input text,,Texto digitado,jp.010,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.011,チャート内の文字,Chart text,,Texto do quadro,jp.011,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.012,組合せ警告,Combination warnings,,Avisos sobre combinações,jp.012,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.013,フォントについて,About fonts,,Sobre as fontes,jp.013,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.014,オフラインで使う,Use offline,,Usar off-line,jp.014,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.015,国際音声記号,THE INTERNATIONAL PHONETIC ALPHABET,الفبای آوایی بین‌المللی,O ALFABETO FONÉTICO INTERNACIONAL,jp.015,en_001,fa_001,ptbr_001,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.016,子音（肺気流）,CONSONANTS (PULMONIC),همخوان‌ها (شششی),CONSOANTES (PULMONARES),jp.016,en_002,fa_002,ptbr_002,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.017,両唇音,Bilabial,,Bilabial,jp.017,en_009,,ptbr_003,HTML text,official-English-source;official-ptBR-source,日本語対応候補が複数（自動紐付けなし）
+jp.018,唇歯音,Labiodental,لبی دندانی,Labiodental,jp.018,en_010,fa_004,ptbr_004,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.019,歯音,Dental,,Dental,jp.019,en_011,,ptbr_005,HTML text,official-English-source;official-ptBR-source,日本語対応候補が複数（自動紐付けなし）
+jp.020,歯茎音,Alveolar,لثوی,Alveolar,jp.020,en_012,fa_006,ptbr_006,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.021,後部歯茎音,Postalveolar,پس‌لثوی,Pós-alveolar,jp.021,en_013,fa_007,ptbr_007,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.022,そり舌音,Retroflex,برگشتی,Retroflexo,jp.022,en_014,fa_008,ptbr_008,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.023,硬口蓋音,Palatal,,Palatal,jp.023,en_015,,ptbr_009,HTML text,official-English-source;official-ptBR-source,日本語対応候補が複数（自動紐付けなし）
+jp.024,軟口蓋音,Velar,,Velar,jp.024,en_016,,ptbr_010,HTML text,official-English-source;official-ptBR-source,日本語対応候補が複数（自動紐付けなし）
+jp.025,口蓋垂音,Uvular,,Uvular,jp.025,en_017,,ptbr_011,HTML text,official-English-source;official-ptBR-source,日本語対応候補が複数（自動紐付けなし）
+jp.026,咽頭音,Pharyngeal,حلقی,Faringal,jp.026,en_018,fa_012,ptbr_012,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.027,声門音,Glottal,چاکنایی,Glotal,jp.027,en_019,fa_013,ptbr_013,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.028,破裂音,Plosive,انفجاری,Plosiva,jp.028,en_020,fa_014,ptbr_014,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.029,鼻音,Nasal,خیشومی,Nasal,jp.029,en_021,fa_015,ptbr_015,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.030,ふるえ音,Trill,لرزشی,Vibrante,jp.030,en_022,fa_016,ptbr_016,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.031,はじき音または弾き音,Tap or Flap,زنشی,Tap ou flap,jp.031,en_023,fa_017,ptbr_017,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.032,摩擦音,Fricative,سایشی,Fricativa,jp.032,en_024,fa_018,ptbr_018,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.033,側面摩擦音,Lateral fricative,سایشی کناری,Fricativa lateral,jp.033,en_025,fa_019,ptbr_019,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.034,接近音,Approximant,تقریبی,Aproximante,jp.034,en_026,fa_020,ptbr_020,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.035,側面接近音,Lateral approximant,تقریبی کناری,Aproximante lateral,jp.035,en_027,fa_021,ptbr_021,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.036,枠内で記号が対になっている場合、右側の記号が有声音を、左側の記号が無声音を表す。網掛け部分は、不可能と判断された調音を表す。,"Symbols to the right in a cell are voiced, to the left are voiceless. Shaded areas denote articulations judged impossible.",,"Os símbolos à direita de uma célula são vozeados, à esquerda são não vozeados. Áreas sombreadas denotam articulações julgadas como impossíveis.",jp.036,en_028,,,HTML text,official-English-source;ptBR-translation,未対応（推測による紐付けなし）
+jp.037,子音（非肺気流）,CONSONANTS (NON-PULMONIC),همخوان‌ها (غیرشششی),CONSOANTES (NÃO PULMONARES),jp.037,en_003,fa_023,ptbr_024,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.038,吸着音,Clicks,نچ‌آواها,Cliques,jp.038,en_029,fa_024,ptbr_025,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.039,有声入破音,Voiced implosives,مکیده‌های واکدار,Implosivas vozeadas,jp.039,en_030,fa_025,ptbr_026,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.040,放出音,Ejectives,فوران‌ها,Ejetivas,jp.040,en_031,fa_026,ptbr_027,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.041,（後部）歯茎音,(Post)alveolar,(پس) لثوی,(Pós-)alveolar,jp.041,en_035,fa_029,ptbr_031,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.042,硬口蓋歯茎音,Palatoalveolar,کامی‌لثوی,Palatoalveolar,jp.042,en_036,fa_030,ptbr_032,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.043,歯茎側面音,Alveolar lateral,لثوی کناری,Lateral alveolar,jp.043,en_037,fa_031,ptbr_033,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.044,歯音／歯茎音,Dental/alveolar,دندانی/لثوی,Alveolodental,jp.044,en_038,fa_032,ptbr_034,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.045,例：,Examples:,مثال‌ها,Exemplos:,jp.045,en_032,fa_036,ptbr_028,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.046,歯茎摩擦音,sʼ Alveolar fricative,لثوی سایشی,Fricativa alveolar,jp.046,en_045,fa_037,ptbr_038,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.047,その他の記号,OTHER SYMBOLS,دیگر نشانه‌ها,OUTROS SÍMBOLOS,jp.047,en_005,fa_047,ptbr_048,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.048,無声両唇軟口蓋摩擦音,Voiceless labial-velar fricative,سایشی لبی-نرمکامی بی‌واک,Fricativa labiovelar não vozeada,jp.048,en_046,fa_048,ptbr_049,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.049,歯茎硬口蓋摩擦音,Alveolo-palatal fricatives,سایشی‌های لثوی-کامی,Fricativas alveolopalatais,jp.049,en_052,fa_054,ptbr_050,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.050,有声両唇軟口蓋接近音,Voiced labial-velar approximant,تقریبی لبی-نرمکامی واکدار,Aproximante labiovelar vozeada,jp.050,en_047,fa_049,ptbr_051,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.051,有声歯茎側面弾き音,Voiced alveolar lateral flap,زنشی کناری لثوی واکدار,Flap alveololateral vozeado,jp.051,en_053,fa_055,ptbr_052,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.052,有声両唇硬口蓋接近音,Voiced labial-palatal approximant,تقریبی لبی-کامی واکدار,Aproximante labiopalatal vozeada,jp.052,en_048,fa_050,ptbr_053,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.053,ʃ と x の同時調音,Simultaneous ʃ and x,همزمانی ʃ و x,Simultâneo ʃ e x,jp.053,en_054,fa_056,ptbr_054,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.054,無声喉頭蓋摩擦音,Voiceless epiglottal fricative,سایشی برچاکنایی بی‌واک,Fricativa epiglotal não vozeada,jp.054,en_049,fa_051,ptbr_055,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.055,有声喉頭蓋摩擦音,Voiced epiglottal fricative,سایشی برچاکنایی واکدار,Fricativa epiglotal vozeada,jp.055,en_050,fa_052,ptbr_056,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.056,喉頭蓋破裂音,Epiglottal plosive,انفجاری برچاکنایی,Plosiva epiglotal,jp.056,en_051,fa_053,ptbr_057,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.057,破擦音と二重調音は、必要な場合連結記号でつないだ2つの記号で表すことができる。,Affricates and double articulations can be represented by two symbols joined by a tie bar if necessary.,,Africadas e articulações duplas podem ser representadas por dois símbolos unidos por uma ligatura se necessário.,jp.057,en_055,,ptbr_058,HTML text,official-English-source;official-ptBR-source,未対応（推測による紐付けなし）
+jp.058,補助記号,DIACRITICS,نشانهٔ زیرنویسی,DIACRÍTICOS,jp.058,en_006,fa_059,ptbr_087,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.059,無声,Voiceless,بی‌واک,Desvozeado,jp.059,en_066,fa_060,ptbr_088,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.060,息漏れ声,Breathy voiced,,Voz soprosa,jp.060,en_068,,ptbr_100,HTML text,official-English-source;official-ptBR-source,日本語対応候補が複数（自動紐付けなし）
+jp.061,有声,Voiced,واکدار,Vozeado,jp.061,en_067,fa_061,ptbr_089,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.062,きしみ声,Creaky voiced,,Voz laringalizada,jp.062,en_069,,ptbr_101,HTML text,official-English-source;official-ptBR-source,日本語対応候補が複数（自動紐付けなし）
+jp.063,舌尖音,Apical,نوک زبانی,Apical,jp.063,en_072,fa_076,ptbr_103,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.064,有気音,Aspirated,دمیده,Aspirado,jp.064,en_070,fa_064,ptbr_090,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.065,舌唇音,Linguolabial,,Linguolabial,jp.065,en_073,,ptbr_104,HTML text,official-English-source;official-ptBR-source,未対応（推測による紐付けなし）
+jp.066,舌端音,Laminal,تیغه‌ای,Laminar,jp.066,en_074,fa_077,ptbr_105,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.067,強い円唇化,More rounded,گردتر,Mais arredondado,jp.067,en_075,fa_065,ptbr_091,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.068,唇音化,Labialized,لبی‌شده,Labializado,jp.068,en_084,fa_078,ptbr_106,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.069,鼻音化,Nasalized,خیشومی,Nasalizado,jp.069,en_089,fa_071,ptbr_107,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.070,弱い円唇化,Less rounded,کمتر گرد,Menos arredondado,jp.070,en_076,fa_066,ptbr_092,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.071,硬口蓋化,Palatalized,کامی‌شده,Palatalizado,jp.071,en_085,fa_079,ptbr_108,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.072,鼻音開放,Nasal release,رهش خیشومی,Soltura nasal,jp.072,en_090,fa_090,ptbr_116,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.073,前進,Advanced,پیش‌آمده,Avançado,jp.073,en_077,fa_067,ptbr_093,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.074,軟口蓋化,Velarized,نرمکامی‌شده,Velarizado,jp.074,en_086,fa_080,ptbr_109,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.075,側面開放,Lateral release,رهش کناری,Soltura lateral,jp.075,en_091,fa_089,ptbr_117,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.076,後退,Retracted,پس‌رفته,Recuado,jp.076,en_078,fa_068,ptbr_094,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.077,咽頭音化,Pharyngealized,حلقی‌شده,Faringalizado,jp.077,en_087,fa_081,ptbr_110,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.078,無音開放,No audible release,,Não se ouve soltura,jp.078,en_092,,ptbr_118,HTML text,official-English-source;official-ptBR-source,未対応（推測による紐付けなし）
+jp.079,中舌化,Mid-centralized,مرکزی‌شده,Centralizado ao meio,jp.079,en_080,fa_069,ptbr_096,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.080,軟口蓋化または咽頭音化,Velarized or pharyngealized,نرمکامی‌شده یا حلقی‌شده,Velarizado ou faringalizado,jp.080,en_088,fa_082,ptbr_111,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.081,中央化,Centralized,میانی-مرکزی,Centralizado,jp.081,en_079,fa_070,ptbr_095,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.082,上寄り,Raised,افراشته‌شده,Alçado,jp.082,en_093,fa_083,ptbr_112,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.083,e̝（ɹ̝ = 有声歯茎摩擦音）,ɹ̝ = voiced alveolar fricative,,e̝ (ɹ̝ = fricativa alveolar vozeada),jp.083,en_097,,,HTML text,official-English-source;ptBR-translation,未対応（推測による紐付けなし）
+jp.084,音節主音,Syllabic,هجایی,Silábico,jp.084,en_081,fa_087,ptbr_097,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.085,下寄り,Lowered,افتاده‌شده,Abaixado,jp.085,en_094,fa_084,ptbr_113,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.086,e̞（β̞ = 有声両唇接近音）,β̞ = voiced bilabial approximant,,e̞ (β̞ = aproximante bilabial vozeada),jp.086,en_098,,,HTML text,official-English-source;ptBR-translation,未対応（推測による紐付けなし）
+jp.087,非音節主音,Non-syllabic,غیرهجایی,Assilábico,jp.087,en_082,fa_088,ptbr_098,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.088,舌根前進,Advanced Tongue Root,ریشه زبان پیش‌آمده,Raiz da língua avançada,jp.088,en_095,fa_085,ptbr_114,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.089,R音性,Rhoticity,ر-گونگی,Roticizado,jp.089,en_083,fa_073,ptbr_099,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.090,舌根後退,Retracted Tongue Root,ریشه زبان پس‌رفته,Raiz da língua retraída,jp.090,en_096,fa_086,ptbr_115,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.091,基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例,"Some diacritics may be placed above a symbol with a descender, e.g. ŋ̊",,"Alguns diacríticos podem ser colocados acima de um símbolo com uma descendente, e.g. ŋ̊",jp.091,en_099,,ptbr_119,HTML text,official-English-source;official-ptBR-source,未対応（推測による紐付けなし）
+jp.092,母音,VOWELS,واکه‌ها,VOGAIS,jp.092,en_004,fa_038,ptbr_039,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.093,前舌,Front,پیشین,Anterior,jp.093,en_058,fa_039,ptbr_040,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.094,中舌,Central,مرکزی,Central,jp.094,en_059,fa_040,ptbr_041,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.095,後舌,Back,پسین,Posterior,jp.095,en_060,fa_041,ptbr_042,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.096,狭,Close,بسته,Fechada,jp.096,en_061,fa_042,ptbr_043,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.097,半狭,Close-mid,نیم بسته,Semifechada,jp.097,en_062,fa_043,ptbr_044,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.098,半広,Open-mid,نیم باز,Semiaberta,jp.098,en_063,fa_044,ptbr_045,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.099,広,Open,باز,Aberta,jp.099,en_064,fa_045,ptbr_046,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.100,記号が対になっている場合、右側の記号が円唇母音を表す。,"Where symbols appear in pairs, the one to the right represents a rounded vowel.",,"Onde os símbolos aparecem aos pares, o da direita representa uma vogal arredondada.",jp.100,en_065,,ptbr_047,HTML text,official-English-source;official-ptBR-source,未対応（推測による紐付けなし）
+jp.101,超分節的要素,SUPRASEGMENTALS,زبرزنجیری,SUPRASSEGMENTAIS,jp.101,en_007,fa_094,ptbr_059,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.102,主強勢,Primary stress,تکیه نخستین,Acento primário,jp.102,en_100,fa_095,ptbr_060,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.103,副次強勢,Secondary stress,تکیه دومین,Acento secundário,jp.103,en_101,fa_096,ptbr_061,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.104,長,Long,کشیده,Longo,jp.104,en_102,fa_097,ptbr_062,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.105,半長,Half-long,نیم‌کشیده,Meio longo,jp.105,en_103,fa_098,ptbr_063,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.106,超短,Extra-short,فوق کوتاه,Muito curto,jp.106,en_104,fa_099,ptbr_064,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.107,小さい（脚）境界,Minor (foot) group,گروه (پایه) کهین,Agrupamento menor (pé),jp.107,en_105,fa_100,ptbr_065,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.108,大きい（イントネーション）境界,Major (intonation) group,گروه (آهنگ) مهین,Agrupamento maior (entoacional),jp.108,en_106,fa_101,ptbr_066,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.109,音節境界,Syllable break,مرز هجا,Quebra silábica,jp.109,en_107,fa_102,ptbr_067,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.110,連結（無境界）,Linking (absence of a break),پیوند (نبود مرز),Ligatura (ausência de quebra),jp.110,en_108,fa_103,ptbr_068,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.111,声調と語アクセント,TONES AND WORD ACCENTS,نواخت و تکیه‌های واژگانی,TOM E ACENTOS DE PALAVRA,jp.111,en_008,fa_106,ptbr_069,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.112,平板,LEVEL,هموار,NÍVEL,jp.112,en_109,fa_107,ptbr_070,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.113,または,or,یا,ou,jp.113,en_111,fa_123,ptbr_086,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.114,超高,Extra high,بسیار زیر,Muito alto,jp.114,en_112,fa_109,ptbr_072,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.115,高,High,زیر,Alto,jp.115,en_113,fa_110,ptbr_073,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.116,中,Mid,متوسط,Medial,jp.116,en_114,fa_111,ptbr_074,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.117,低,Low,بم,Baixo,jp.117,en_115,fa_112,ptbr_075,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.118,超低,Extra low,بسیار بم,Muito baixo,jp.118,en_116,fa_113,ptbr_076,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.119,ダウンステップ,Downstep,کاهش پلکانی,Abaixamento em degrau,jp.119,en_117,fa_114,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.120,アップステップ,Upstep,افزایش پلکانی,Elevação em degrau,jp.120,en_118,fa_115,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.121,曲線,CONTOUR,ناهموار,CONTORNO,jp.121,en_110,fa_108,ptbr_071,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.122,上昇,Rising,بم خیزان,Ascendente,jp.122,en_119,fa_119,ptbr_077,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.123,下降,Falling,افتان,Descendente,jp.123,en_120,fa_117,ptbr_078,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.124,高上昇,High rising,خیزان,Ascendente alto,jp.124,en_121,fa_116,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.125,低上昇,Low rising,زیر خیزان,Ascendente baixo,jp.125,en_122,fa_118,,HTML text,official-English-source;ptBR-translation,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.126,上昇下降,Rising-falling,خیزان-افتان,Ascendente-descendente,jp.126,en_123,fa_120,ptbr_081,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.127,全体的上昇,Global rise,خیز کلی,Subida global,jp.127,en_124,fa_121,ptbr_083,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.128,全体的下降,Global fall,افت کلی,Descida global,jp.128,en_125,fa_122,ptbr_085,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
+jp.129,準拠:,Based on:,,Baseado em:,jp.129,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.130,IPA Chart 2026 日本語版,IPA Chart 2026 — Japanese version,,Quadro do IPA 2026 — versão japonesa,jp.130,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.131,IPAについて詳しく学ぶ:,Learn more about the IPA:,,Saiba mais sobre o IPA:,jp.131,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.132,東京外国語大学 — IPA 国際音声字母,Tokyo University of Foreign Studies — International Phonetic Alphabet,,Universidade de Estudos Estrangeiros de Tóquio — Alfabeto Fonético Internacional,jp.132,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.133,入力内容をすべて消去しますか？,Clear all input?,,Apagar todo o texto digitado?,jp.133,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.134,キャンセル,Cancel,,Cancelar,jp.134,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.135,全消去,Clear all,,Apagar tudo,jp.135,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.136,IPA Keyboard は Doulos SIL を標準フォントとして使用します。Word等へ貼り付けた文字の字形や補助記号の位置は、貼り付け先で使用するフォントによって変わります。,IPA Keyboard uses Doulos SIL as its default font. The appearance of characters and the positioning of diacritics pasted into Word or other applications depend on the font used in the destination application.,,O IPA Keyboard usa Doulos SIL como fonte padrão. A aparência dos caracteres e a posição dos diacríticos colados no Word ou em outros aplicativos dependem da fonte usada no aplicativo de destino.,jp.136,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.137,推奨無料フォント,Recommended free fonts,,Fontes gratuitas recomendadas,jp.137,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.138,Doulos SIL — セリフ体 ↗,Doulos SIL — Serif ↗,,Doulos SIL — com serifa ↗,jp.138,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.139,Andika — サンセリフ体 ↗,Andika — Sans serif ↗,,Andika — sem serifa ↗,jp.139,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.140,閉じる,Close,,Fechar,jp.140,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.141,一度このページをオンラインで開くと、対応ブラウザでは本体データが保存され、その後は通信できない環境でも起動できます。,"After you open this page online once, supported browsers will cache the app data so you can launch it without an internet connection.",,"Depois de abrir esta página on-line uma vez, os navegadores compatíveis armazenam os dados do aplicativo, permitindo abri-lo posteriormente sem conexão com a internet.",jp.141,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.142,端末の「ホーム画面に追加」やブックマークを利用すると、再度開きやすくなります。初回だけはオンラインで開いてください。,Use “Add to Home Screen” or bookmark this page for easier access. You must open it online the first time.,,"Use a opção «Adicionar à Tela de Início» ou salve esta página nos favoritos para acessá-la com mais facilidade. Na primeira vez, é necessário abri-la on-line.",jp.142,,,,HTML text,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.143,IPA入力欄,IPA input field,,Campo de entrada IPA,jp.143,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.144,角括弧を付ける,Add square brackets,,Adicionar colchetes,jp.144,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.145,コピー,Copy,,Copiar,jp.145,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.146,元に戻す,Undo,,Desfazer,jp.146,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.147,やり直す,Redo,,Refazer,jp.147,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.148,1文字削除,Delete one character,,Apagar um caractere,jp.148,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.149,補助記号の位置,Diacritic placement,,Posição dos diacríticos,jp.149,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.150,補助記号位置：自動,Diacritic placement: Auto,,Posição dos diacríticos: automática,jp.150,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.151,次の補助記号だけ上,Place the next diacritic above,,Posicionar apenas o próximo diacrítico acima,jp.151,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.152,次の補助記号だけ下,Place the next diacritic below,,Posicionar apenas o próximo diacrítico abaixo,jp.152,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.153,設定,Settings,,Configurações,jp.153,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.154,入力文字サイズ,Input text size,,Tamanho do texto digitado,jp.154,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.155,チャート文字サイズ,Chart text size,,Tamanho do texto do quadro,jp.155,,,,HTML attribute,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.156,同じ補助記号の重複を確認してください。,Check for duplicate diacritics.,,Verifique se há diacríticos duplicados.,jp.156,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.157,母音に有声化記号が付いています。通常、母音は有声なので確認してください。,A voicing diacritic has been added to a vowel. Vowels are normally voiced; please check.,,Foi adicionado um diacrítico de vozeamento a uma vogal. As vogais normalmente são vozeadas; verifique.,jp.157,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.158,有声子音に有声化記号が付いています。冗長な指定になっていないか確認してください。,A voicing diacritic has been added to a voiced consonant. Check whether this is redundant.,,Foi adicionado um diacrítico de vozeamento a uma consoante vozeada. Verifique se a indicação é redundante.,jp.158,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.159,無声子音に無声化記号が付いています。冗長な指定になっていないか確認してください。,A voicelessness diacritic has been added to a voiceless consonant. Check whether this is redundant.,,Foi adicionado um diacrítico de desvozeamento a uma consoante não vozeada. Verifique se a indicação é redundante.,jp.159,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.160,鼻音に鼻音化記号が付いています。冗長な指定になっていないか確認してください。,A nasalization diacritic has been added to a nasal consonant. Check whether this is redundant.,,Foi adicionado um diacrítico de nasalização a uma consoante nasal. Verifique se a indicação é redundante.,jp.160,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.161,母音に帯気記号が付いています。通常の用法か確認してください。,An aspiration diacritic has been added to a vowel. Check whether this usage is intended.,,Foi adicionado um diacrítico de aspiração a uma vogal. Verifique se esse uso é intencional.,jp.161,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.162,母音に側面開放記号が付いています。通常の用法か確認してください。,A lateral release diacritic has been added to a vowel. Check whether this usage is intended.,,Foi adicionado um diacrítico de soltura lateral a uma vogal. Verifique se esse uso é intencional.,jp.162,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.163,母音に無開放記号が付いています。通常の用法か確認してください。,A no-audible-release diacritic has been added to a vowel. Check whether this usage is intended.,,Foi adicionado um diacrítico de ausência de soltura audível a uma vogal. Verifique se esse uso é intencional.,jp.163,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.164,相反する補助記号が連続しています。同じ音への指定か確認してください。,Conflicting diacritics appear consecutively. Check whether they apply to the same sound.,,Há diacríticos contraditórios em sequência. Verifique se se aplicam ao mesmo som.,jp.164,,,,JavaScript warning,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.165,コピーする文字がありません。,There is no text to copy.,,Não há texto para copiar.,jp.165,,,,JavaScript message,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.166,コピーしました。,Copied.,,Copiado.,jp.166,,,,JavaScript message,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.167,コピーできませんでした。,Could not copy.,,Não foi possível copiar.,jp.167,,,,JavaScript message,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.168,この補助記号にはUnicode上の上下別コードポイントがないため、標準位置で入力しました。,"This diacritic has no separate Unicode code point for above/below placement, so it was inserted in its default position.",,"Este diacrítico não possui pontos de código Unicode distintos para as posições acima e abaixo; por isso, foi inserido na posição padrão.",jp.168,,,,JavaScript message,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.169,補助記号の位置：自動,Diacritic placement: Auto,,Posição dos diacríticos: automática,jp.169,,,,JavaScript message,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.170,次の補助記号だけ「{位置}」に入力します。,Place only the next diacritic {位置}.,,Inserir apenas o próximo diacrítico {位置}.,jp.170,,,,JavaScript message,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）
+jp.171,{記号} を入力,Insert {記号},,Inserir {記号},jp.171,,,,JavaScript message,tool-UI-English-translation;ptBR-translation,未対応（推測による紐付けなし）

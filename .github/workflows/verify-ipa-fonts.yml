@@ -1,7 +1,7 @@
 name: Verify IPA fonts in Chromium and WebKit
 on:
   push:
-    paths: [.github/workflows/verify-ipa-fonts.yml]
+    paths: [.github/workflows/verify-ipa-fonts.yml, weston-chart-preview.html]
 permissions:
   contents: read
 jobs:

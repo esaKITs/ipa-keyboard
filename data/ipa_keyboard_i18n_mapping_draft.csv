@@ -1,4 +1,4 @@
-﻿tool_key,ja,ja_osaka,en,fa,pt_BR,source_ja_id,source_en_id,source_fa_id,source_ptbr_id,source_ja_location,mapping_status,source_note
+﻿﻿tool_key,ja,ja_osaka,en,fa,pt_BR,source_ja_id,source_en_id,source_fa_id,source_ptbr_id,source_ja_location,mapping_status,source_note
 jp.001,IPA Chart 2026 日本語版準拠,IPA Chart 2026 の日本語版に準拠,Based on the Japanese version of the IPA Chart 2026,بر پایهٔ نسخهٔ ژاپنی جدول الفبای آوایی بین‌المللی ۲۰۲۶,Baseado na versão japonesa do Quadro do IPA 2026,jp.001,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.002,日本語版,大阪方言版,Japanese version,نسخهٔ ژاپنی,Versão japonesa,jp.002,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
 jp.003,補助,補助,Diacritic,نشانهٔ کمکی,Diacrítico,jp.003,,,,HTML text,tool-UI-English-translation;ptBR-translation;Persian-new-translation,未対応（推測による紐付けなし）
@@ -81,10 +81,10 @@ jp.079,中舌化,中舌化,Mid-centralized,مرکزی‌شده,Centralizado ao m
 jp.080,軟口蓋化または咽頭音化,軟口蓋化または咽頭音化,Velarized or pharyngealized,نرمکامی‌شده یا حلقی‌شده,Velarizado ou faringalizado,jp.080,en_088,fa_082,ptbr_111,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.081,中央化,中央化,Centralized,میانی-مرکزی,Centralizado,jp.081,en_079,fa_070,ptbr_095,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.082,上寄り,上寄り,Raised,افراشته‌شده,Alçado,jp.082,en_093,fa_083,ptbr_112,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.083,e̝（ɹ̝ = 有声歯茎摩擦音）,e̝（ɹ̝ = 有声歯茎摩擦音）,e̝ (ɹ̝ = voiced alveolar fricative),e̝ (ɹ̝ = سایشی لثوی واکدار),e̝ (ɹ̝ = fricativa alveolar vozeada),jp.083,en_097,,,HTML text,official-English-source;official-Persian-source-image;official-ptBR-source-image,英語IDは正本抽出CSVで確認。ペルシア語・ブラジルポルトガル語はユーザー提供の正本画像で原文を直接確認（抽出ID未採番）
+jp.083,e̝（ɹ̝ = 有声歯茎摩擦音）,e̝（ɹ̝ = 有声歯茎摩擦音）,ɹ̝ = voiced alveolar fricative,ɹ̝ = سایشی لثوی واکدار,ɹ̝ = fricativa alveolar vozeada,jp.083,en_097,,,HTML text,official-English-source;official-Persian-source-image;official-ptBR-source-image,英語IDは正本抽出CSVで確認。ペルシア語・ブラジルポルトガル語はユーザー提供の正本画像で原文を直接確認（抽出ID未採番）
 jp.084,音節主音,音節主音,Syllabic,هجایی,Silábico,jp.084,en_081,fa_087,ptbr_097,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.085,下寄り,下寄り,Lowered,افتاده‌شده,Abaixado,jp.085,en_094,fa_084,ptbr_113,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
-jp.086,e̞（β̞ = 有声両唇接近音）,e̞（β̞ = 有声両唇接近音）,e̞ (β̞ = voiced bilabial approximant),e̞ (β̞ = تقریبی دولبی واکدار),e̞ (β̞ = aproximante bilabial vozeada),jp.086,en_098,,,HTML text,official-English-source;official-Persian-source-image;official-ptBR-source-image,英語IDは正本抽出CSVで確認。ペルシア語・ブラジルポルトガル語はユーザー提供の正本画像で原文を直接確認（抽出ID未採番）
+jp.086,e̞（β̞ = 有声両唇接近音）,e̞（β̞ = 有声両唇接近音）,β̞ = voiced bilabial approximant,β̞ = تقریبی دولبی واکدار,β̞ = aproximante bilabial vozeada,jp.086,en_098,,,HTML text,official-English-source;official-Persian-source-image;official-ptBR-source-image,英語IDは正本抽出CSVで確認。ペルシア語・ブラジルポルトガル語はユーザー提供の正本画像で原文を直接確認（抽出ID未採番）
 jp.087,非音節主音,非音節主音,Non-syllabic,غیرهجایی,Assilábico,jp.087,en_082,fa_088,ptbr_098,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.088,舌根前進,舌根前進,Advanced Tongue Root,ریشه زبان پیش‌آمده,Raiz da língua avançada,jp.088,en_095,fa_085,ptbr_114,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）
 jp.089,R音性,R音性,Rhoticity,ر-گونگی,Roticizado,jp.089,en_083,fa_073,ptbr_099,HTML text,official-English-source;official-ptBR-source,日本語文字列の完全一致（ペルシア語抽出資料の「日本語対応」欄）

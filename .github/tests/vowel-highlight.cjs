@@ -28,6 +28,7 @@ for(const [version,file] of versions){
   const held=await page.evaluate(()=>{const e=document.querySelector('#vowel-highlight');const r=e.getBoundingClientRect();return {display:getComputedStyle(e).display,width:r.width,height:r.height,border:getComputedStyle(e).borderBottomWidth}});
   assert.equal(held.display,'block',version+' '+sym+' highlight missing on hold');
   assert(held.width>0&&held.height>0,version+' '+sym+' invalid highlight rectangle');
+  if(version==='v71')assert.equal(held.border,'1px',version+' '+sym+' bottom border not defined');
   await page.screenshot({path:path.join(dir,version+'-'+encodeURIComponent(sym)+'-held.png')});
   await actual.dispatchEvent('touchend',{bubbles:true,cancelable:true});
   const released=await page.evaluate(()=>getComputedStyle(document.querySelector('#vowel-highlight')).display);
@@ -37,6 +38,14 @@ for(const [version,file] of versions){
   assert.equal(gone,'none',version+' '+sym+' highlight not cleared');
  }
  await page.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));
+ await page.evaluate(()=>{document.body.style.zoom='1.25'});
+ const zoomed=page.locator('#vowels .key[data-sym="ɞ"]');
+ await zoomed.scrollIntoViewIfNeeded();
+ await zoomed.dispatchEvent('touchstart',{bubbles:true,cancelable:true});
+ assert.equal(await page.locator('#vowel-highlight').evaluate(e=>getComputedStyle(e).display),'block',version+' zoom highlight');
+ await page.screenshot({path:path.join(dir,version+'-zoom-125.png')});
+ await zoomed.dispatchEvent('touchend',{bubbles:true,cancelable:true});
+ await page.waitForTimeout(450);
  await page.screenshot({path:path.join(dir,version+'-scroll.png'),fullPage:true});
  assert.deepEqual(errors,[],version+' JavaScript errors');
  console.log('PASS '+version+' all 28 vowels touch hold/release, 420ms, scrolling, JS errors');

@@ -1,0 +1,271 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="esaKITs IPA Keyboard 日本語版 アイコン。子音37記号、母音23記号のIPA抜粋。">
+<title>esaKITs IPA Keyboard — 日本語版</title><desc>Orange beveled frame, purple patterned background, diagonal three-dimensional keyboard. 37 consonant symbols and 23 vowel symbols are selected from the official IPA chart. All symbols are Unicode in this source; the production SVG converts glyphs to precise vector outlines. This is an excerpt, not the full IPA chart.</desc>
+<defs>
+<style><![CDATA[
+@font-face{font-family:ipa;src:url('https://raw.githubusercontent.com/esaKITs/ipa-keyboard/main/fonts/DoulosSIL-Regular.woff2') format('woff2')}
+@font-face{font-family:jp;src:url('https://raw.githubusercontent.com/esaKITs/ipa-keyboard/main/fonts/NotoSansJP-Bold.woff2') format('woff2');font-weight:700}
+.ipa{font-family:ipa,"Doulos SIL","Charis SIL","DejaVu Sans",serif}
+.jp{font-family:jp,"Noto Sans JP",sans-serif;font-weight:700}
+]]></style>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff5aa"/><stop offset=".17" stop-color="#ffba28"/><stop offset=".43" stop-color="#ff6b0a"/><stop offset=".74" stop-color="#ffb02b"/><stop offset="1" stop-color="#ed4c00"/></linearGradient>
+<linearGradient id="purple" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17001d"/><stop offset=".45" stop-color="#390046"/><stop offset=".75" stop-color="#240022"/><stop offset="1" stop-color="#4d0525"/></linearGradient>
+<linearGradient id="paper" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffefa"/><stop offset=".55" stop-color="#fff7ec"/><stop offset="1" stop-color="#e7dcf2"/></linearGradient>
+<linearGradient id="key" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#eee3f4"/></linearGradient>
+<linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00e9ff"/><stop offset=".55" stop-color="#1d77ff"/><stop offset="1" stop-color="#914fff"/></linearGradient>
+<linearGradient id="selected" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#55f3ff"/><stop offset="1" stop-color="#188bff"/></linearGradient>
+<linearGradient id="bubble" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#f5e8ff"/></linearGradient>
+<linearGradient id="red" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ff6819"/><stop offset="1" stop-color="#e92500"/></linearGradient>
+<pattern id="asanoha" width="88" height="77" patternUnits="userSpaceOnUse"><g fill="none" stroke="#f6b4d5" stroke-width="1.4" opacity=".48"><path d="M0 0L44 0L88 0M0 77L44 77L88 77M0 0L44 38.5L0 77M88 0L44 38.5L88 77M44 0V77M0 38.5H88M0 0L88 77M88 0L0 77"/></g></pattern>
+<pattern id="waves" width="96" height="56" patternUnits="userSpaceOnUse"><g fill="none" stroke="#e5a42e" stroke-width="3" opacity=".65"><path d="M0 56A48 48 0 0 1 96 56M10 56A38 38 0 0 1 86 56M20 56A28 28 0 0 1 76 56M30 56A18 18 0 0 1 66 56"/></g></pattern>
+<filter id="shadow" x="-35%" y="-35%" width="180%" height="190%"><feGaussianBlur stdDeviation="16"/></filter>
+<filter id="keyShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="2" stdDeviation="1.2" flood-color="#82658f" flood-opacity=".6"/></filter>
+<filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+<clipPath id="bgclip"><rect x="28" y="28" width="968" height="968" rx="112"/></clipPath>
+</defs>
+<rect x="17" y="20" width="990" height="992" rx="120" fill="#060014" opacity=".8" filter="url(#shadow)"/>
+<rect x="9" y="9" width="1006" height="1006" rx="120" fill="url(#gold)"/>
+<rect x="27" y="27" width="970" height="970" rx="105" fill="url(#purple)" stroke="#ffe8a3" stroke-width="4"/>
+<g clip-path="url(#bgclip)"><rect x="24" y="24" width="500" height="510" fill="url(#asanoha)"/><rect x="790" y="750" width="270" height="280" fill="url(#waves)" opacity=".72"/></g>
+<rect x="40" y="40" width="944" height="943" rx="95" fill="none" stroke="#ffb947" stroke-width="3" opacity=".55"/>
+<g transform="matrix(.96 -.08 .08 .90 -12 100)">
+<rect x="43" y="199" width="938" height="507" rx="48" fill="#070e38" opacity=".55" transform="translate(13 20)" filter="url(#shadow)"/>
+<rect x="40" y="220" width="943" height="506" rx="48" fill="#130a3c" stroke="#ff8e38" stroke-width="7"/>
+<path d="M86 715H929" stroke="#3d83ff" stroke-width="12" stroke-linecap="round" opacity=".8"/>
+<rect x="43" y="199" width="938" height="507" rx="48" fill="#0a0d37" stroke="#00caff" stroke-width="16" opacity=".8" filter="url(#glow)"/>
+<rect x="43" y="199" width="938" height="507" rx="48" fill="#0a1239" stroke="#7bdcff" stroke-width="7"/>
+<rect x="58" y="216" width="908" height="473" rx="31" fill="url(#paper)" stroke="#a2b8e9" stroke-width="3"/>
+<path d="M85 221H930" stroke="#fff" stroke-width="4" opacity=".85"/>
+<rect x="73" y="234" width="626" height="428" rx="15" fill="#fff9f7" stroke="#c6a8cb" stroke-width="1.5"/>
+<rect x="709" y="234" width="243" height="428" rx="15" fill="#fff9f7" stroke="#c6a8cb" stroke-width="1.5"/>
+<rect x="76" y="236" width="620" height="43" rx="14" fill="#5b285f"/><rect x="711" y="236" width="239" height="43" rx="14" fill="#5b285f"/>
+<text x="91" y="264" font-size="21" fill="#fff" class="jp">子音（抜粋）</text>
+<text x="726" y="264" font-size="21" fill="#fff" class="jp">母音（抜粋）</text>
+<rect x="79" y="288" width="92" height="38" rx="6" fill="#e6d5e7"/>
+<rect x="171.00" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="203.55" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">両唇</text>
+<rect x="236.10" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="268.65" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">唇歯</text>
+<rect x="301.20" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="333.75" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">歯</text>
+<rect x="366.30" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="398.85" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">歯茎</text>
+<rect x="431.40" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="463.95" y="312" font-size="11" text-anchor="middle" fill="#4b3158" class="jp">後部歯茎</text>
+<rect x="496.50" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="529.05" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">硬口蓋</text>
+<rect x="561.60" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="594.15" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">軟口蓋</text>
+<rect x="626.70" y="288" width="63.10" height="38" rx="5" fill="#efe2f1"/>
+<text x="659.25" y="312" font-size="13" text-anchor="middle" fill="#4b3158" class="jp">声門</text>
+<rect x="79" y="329" width="89" height="64" rx="6" fill="#ead9ec"/>
+<text x="123" y="368" font-size="14" text-anchor="middle" fill="#57365f" class="jp">破裂音</text>
+<rect x="171.00" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="175.05" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M178.05 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="188.55" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">p</text>
+<rect x="205.05" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M208.05 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="218.55" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">b</text>
+<rect x="236.10" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="301.20" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="366.30" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="370.35" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M373.35 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="383.85" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">t</text>
+<rect x="400.35" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M403.35 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="413.85" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">d</text>
+<rect x="431.40" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="496.50" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="500.55" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M503.55 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="514.05" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">c</text>
+<rect x="530.55" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M533.55 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="544.05" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɟ</text>
+<rect x="561.60" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="565.65" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M568.65 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="579.15" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">k</text>
+<rect x="595.65" y="341" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M598.65 345h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="609.15" y="370" font-size="22" text-anchor="middle" fill="#1b2a61" class="ipa">ɡ</text>
+<rect x="626.70" y="329" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="642.25" y="341" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M645.25 345h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="659.25" y="370" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʔ</text>
+<rect x="79" y="396" width="89" height="64" rx="6" fill="#f1e5f2"/>
+<text x="123" y="435" font-size="14" text-anchor="middle" fill="#57365f" class="jp">鼻音</text>
+<rect x="171.00" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="186.55" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M189.55 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="203.55" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">m</text>
+<rect x="236.10" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="251.65" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M254.65 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="268.65" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɱ</text>
+<rect x="301.20" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="366.30" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="381.85" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M384.85 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="398.85" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">n</text>
+<rect x="431.40" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="496.50" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="512.05" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M515.05 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="529.05" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɲ</text>
+<rect x="561.60" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="577.15" y="408" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M580.15 412h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="594.15" y="437" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ŋ</text>
+<rect x="626.70" y="396" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="79" y="463" width="89" height="64" rx="6" fill="#ead9ec"/>
+<text x="123" y="502" font-size="14" text-anchor="middle" fill="#57365f" class="jp">摩擦音</text>
+<rect x="171.00" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="175.05" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M178.05 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="188.55" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɸ</text>
+<rect x="205.05" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M208.05 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="218.55" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">β</text>
+<rect x="236.10" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="240.15" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M243.15 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="253.65" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">f</text>
+<rect x="270.15" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M273.15 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="283.65" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">v</text>
+<rect x="301.20" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="305.25" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M308.25 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="318.75" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">θ</text>
+<rect x="335.25" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M338.25 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="348.75" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ð</text>
+<rect x="366.30" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="370.35" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M373.35 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="383.85" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">s</text>
+<rect x="400.35" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M403.35 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="413.85" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">z</text>
+<rect x="431.40" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="435.45" y="475" width="27" height="42" rx="6" fill="url(#selected)" stroke="#1477bd" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M438.45 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="448.95" y="504" font-size="23" text-anchor="middle" fill="#071d58" class="ipa">ʃ</text>
+<rect x="465.45" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M468.45 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="478.95" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʒ</text>
+<rect x="496.50" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="500.55" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M503.55 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="514.05" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ç</text>
+<rect x="530.55" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M533.55 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="544.05" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʝ</text>
+<rect x="561.60" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="565.65" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M568.65 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="579.15" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">x</text>
+<rect x="595.65" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M598.65 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="609.15" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɣ</text>
+<rect x="626.70" y="463" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="630.75" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M633.75 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="644.25" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">h</text>
+<rect x="660.75" y="475" width="27" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M663.75 479h21" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="674.25" y="504" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɦ</text>
+<rect x="79" y="530" width="89" height="64" rx="6" fill="#f1e5f2"/>
+<text x="123" y="569" font-size="14" text-anchor="middle" fill="#57365f" class="jp">接近音</text>
+<rect x="171.00" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="236.10" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="251.65" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M254.65 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="268.65" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʋ</text>
+<rect x="301.20" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="366.30" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="381.85" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M384.85 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="398.85" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɹ</text>
+<rect x="431.40" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="496.50" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="512.05" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M515.05 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="529.05" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">j</text>
+<rect x="561.60" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="577.15" y="542" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M580.15 546h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="594.15" y="571" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ɰ</text>
+<rect x="626.70" y="530" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="79" y="597" width="89" height="64" rx="6" fill="#ead9ec"/>
+<text x="123" y="636" font-size="12" text-anchor="middle" fill="#57365f" class="jp">側面接近音</text>
+<rect x="171.00" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="236.10" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="301.20" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="366.30" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="381.85" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M384.85 613h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="398.85" y="638" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">l</text>
+<rect x="431.40" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="496.50" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="512.05" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M515.05 613h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="529.05" y="638" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʎ</text>
+<rect x="561.60" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+<rect x="577.15" y="609" width="34" height="42" rx="6" fill="url(#key)" stroke="#c8b4d2" stroke-width="1.2" filter="url(#keyShadow)"/>
+<path d="M580.15 613h28" stroke="#fff" stroke-width="2" opacity=".9"/>
+<text x="594.15" y="638" font-size="23" text-anchor="middle" fill="#1b2a61" class="ipa">ʟ</text>
+<rect x="626.70" y="597" width="63.10" height="64" rx="6" fill="#f9f1f7" stroke="#decce6" stroke-width="1"/>
+
+<text x="740" y="314" font-size="14" fill="#63456c" class="jp">前</text><text x="824" y="314" font-size="14" fill="#63456c" class="jp">中</text><text x="915" y="314" font-size="14" fill="#63456c" class="jp">後</text>
+<path d="M741 350L930 350L930 610L791 610Z" fill="#f7f4ff" stroke="#74618b" stroke-width="2.2"/>
+<path d="M757.54 436H930" stroke="#c8b9d5" stroke-width="1.6"/>
+<path d="M774.27 523H930" stroke="#c8b9d5" stroke-width="1.6"/>
+<path d="M835 350L861 610" stroke="#d3c5dd" stroke-dasharray="4 4" stroke-width="1.2"/>
+<rect x="720" y="336" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="732" y="356.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">i</text>
+<text x="752" y="356.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">y</text>
+<rect x="813" y="336" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="825" y="356.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɨ</text>
+<text x="845" y="356.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ʉ</text>
+<rect x="905" y="336" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="917" y="356.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɯ</text>
+<text x="937" y="356.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">u</text>
+<rect x="737" y="422" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="749" y="442.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">e</text>
+<text x="769" y="442.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ø</text>
+<rect x="822" y="422" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="834" y="442.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɘ</text>
+<text x="854" y="442.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɵ</text>
+<rect x="905" y="422" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="917" y="442.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɤ</text>
+<text x="937" y="442.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">o</text>
+<rect x="753" y="509" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="765" y="529.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɛ</text>
+<text x="785" y="529.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">œ</text>
+<rect x="830" y="509" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="842" y="529.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɜ</text>
+<text x="862" y="529.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɞ</text>
+<rect x="905" y="509" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="917" y="529.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ʌ</text>
+<text x="937" y="529.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɔ</text>
+<rect x="769" y="596" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="781" y="616.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">a</text>
+<text x="801" y="616.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɶ</text>
+<rect x="905" y="596" width="44" height="28" rx="10" fill="#ffffff" stroke="#d9c8e8" stroke-width="1"/>
+<text x="917" y="616.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɑ</text>
+<text x="937" y="616.5" font-size="17.5" text-anchor="middle" fill="#1b2963" class="ipa">ɒ</text>
+<rect x="830" y="471" width="26" height="26" rx="9" fill="#fff" stroke="#d9c8e8"/>
+<text x="843" y="491" font-size="20" text-anchor="middle" fill="#1b2963" class="ipa">ə</text>
+<text x="730" y="645" font-size="11.5" fill="#71567a" class="jp">左：非円唇　右：円唇</text>
+</g>
+<g transform="rotate(-5 525 173)"><rect x="269" y="103" width="505" height="137" rx="67" fill="#0d0828" opacity=".5" transform="translate(6 11)" filter="url(#shadow)"/><rect x="266" y="100" width="505" height="137" rx="67" fill="url(#bubble)" stroke="#dfc0ea" stroke-width="7"/><path d="M302 121H735" stroke="#fff" stroke-width="6" opacity=".85"/><text x="522" y="201" text-anchor="middle" font-size="89" fill="#0d255e" class="ipa">/ʃɪp/</text></g>
+<g transform="translate(825 99)"><path d="M0 31H18L38 12V78L18 59H0Z" fill="#fff" stroke="#7d90d8" stroke-width="3"/><path d="M50 24Q78 44 50 66M62 12Q106 44 62 78" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+<g stroke="#ffc745" stroke-width="9" stroke-linecap="round"><path d="M786 70V39M819 78L838 50M842 103L871 93"/></g>
+<g opacity=".98"><path d="M50 867V923M66 849V941M82 859V932M98 874V918" stroke="#fff" stroke-width="9" stroke-linecap="round"/><text x="122" y="855" font-size="110" font-weight="900" letter-spacing="-5" fill="#fff6df" font-family="Arial,Helvetica,sans-serif">IPA Keyboard</text></g>
+<rect x="154" y="912" width="288" height="67" rx="33" fill="#9e1709" opacity=".5" transform="translate(3 6)"/><rect x="154" y="908" width="288" height="67" rx="33" fill="url(#red)" stroke="#ffc143" stroke-width="4"/>
+<text x="298" y="957" font-size="44" text-anchor="middle" fill="#fff" class="jp">日本語版</text>
+<text x="585" y="958" font-size="50" font-weight="800" fill="#fff5e4" font-family="Arial,Helvetica,sans-serif">esaKITs</text>
+</svg>

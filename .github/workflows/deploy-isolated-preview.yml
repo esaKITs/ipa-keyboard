@@ -1,0 +1,54 @@
+name: Deploy isolated multilingual preview (keep published main unchanged)
+on:
+  push:
+    branches: [fix/ipa-multilingual-recovery]
+    paths:
+      - index.html
+      - preview/index.html
+      - data/ipa_keyboard_i18n_mapping_draft.csv
+      - .github/workflows/deploy-isolated-preview.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  preview:
+    environment:
+      name: ipa-preview
+      url: ${{ steps.deployment.outputs.page_url }}preview/
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public main without modifying it
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: published-main
+      - name: Checkout isolated work branch
+        uses: actions/checkout@v4
+        with:
+          ref: fix/ipa-multilingual-recovery
+          path: work-branch
+      - name: Build publication with unchanged public root and isolated preview
+        shell: bash
+        run: |
+          mkdir -p site
+          cp -a published-main/. site/
+          rm -rf site/.git site/.github
+          mkdir -p site/preview
+          cp work-branch/preview/index.html site/preview/index.html
+          cmp published-main/index.html site/index.html
+          if cmp -s work-branch/index.html site/index.html; then
+            echo "Unexpectedly replaced public root"; exit 1
+          fi
+          test -s site/preview/index.html
+          echo "Main root preserved byte for byte; preview replaced only"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+      - id: deployment
+        uses: actions/deploy-pages@v4

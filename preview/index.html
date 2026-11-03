@@ -472,10 +472,15 @@ document.querySelectorAll('#diac .dia-ex').forEach(function(ex){
   const key=raw.trim();if(!key)return raw;
   const row=bySource.get(key);
   if(row&&row[langs[active]])return raw.replace(key,row[langs[active]]);
-  let result=raw;
-  for(const [source,r] of bySource){
-   if(source.length<4||!r[langs[active]]||source===key)continue;
-   if(result.includes(source))result=result.split(source).join(r[langs[active]]);
+  // One-pass longest-source matching prevents retranslating translated fragments.
+  const candidates=[...bySource.entries()].filter(([source,r])=>
+   source.length>=4&&source!==key&&r[langs[active]]&&raw.includes(source));
+  candidates.sort((a,b)=>b[0].length-a[0].length);
+  let result="";
+  for(let i=0;i<raw.length;){
+   const match=candidates.find(([source])=>raw.startsWith(source,i));
+   if(match){result+=match[1][langs[active]];i+=match[0].length;}
+   else{result+=raw[i];i++;}
   }
   return result;
  }

@@ -18,7 +18,7 @@ concurrency:
 jobs:
   preview:
     environment:
-      name: github-pages
+      name: ipa-preview
       url: ${{ steps.deployment.outputs.page_url }}preview/
     runs-on: ubuntu-latest
     steps:

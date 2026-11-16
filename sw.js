@@ -13,7 +13,8 @@ self.addEventListener('activate',event=>event.waitUntil((async()=>{
  // Reload only this app's open windows after that worker has been replaced.
  if(old.length){
   const clients=await self.clients.matchAll({type:'window',includeUncontrolled:true});
-  await Promise.all(clients.filter(client=>client.url.startsWith(self.registration.scope)).map(client=>client.navigate(client.url).catch(()=>null)));
+  // Navigation waits for activation; do not make activation wait for navigation.
+  for(const client of clients.filter(client=>client.url.startsWith(self.registration.scope)))client.navigate(client.url).catch(()=>null);
  }
 })()));
 self.addEventListener('fetch',event=>{

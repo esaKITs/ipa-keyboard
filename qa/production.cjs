@@ -26,7 +26,7 @@ async function ready(p){await p.locator('#out').waitFor();const f=await(await p.
    await(await caches.open('unrelated-app-cache')).put(app+'other-app-marker',new Response('keep'));
   },app);
   await p.goto(app);await p.locator('#legacy').waitFor();await p.evaluate(async()=>{await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'});});
-  await p.locator('#out').waitFor({timeout:30000});await ready(p);
+  try{await p.locator('#out').waitFor({timeout:30000});}catch(error){console.log('UPGRADE DEBUG',await p.evaluate(async()=>({url:location.href,body:document.body.innerText,controller:navigator.serviceWorker.controller?.scriptURL,registrations:(await navigator.serviceWorker.getRegistrations()).map(r=>({active:r.active?.state,waiting:r.waiting?.state,installing:r.installing?.state})),caches:await caches.keys()})));await p.screenshot({path:`qa-production/${name}-upgrade-failure.png`});throw error;}await ready(p);
   await p.waitForFunction(async()=>!(await caches.keys()).includes('ipa-keyboard-v4'));
   assert(await p.evaluate(async()=>(await caches.keys()).includes('unrelated-app-cache')),'other apps keep their caches');
   await context.setOffline(true);await p.reload();const f=await ready(p);assert.equal(await p.title(),'IPA Keyboard v83.20 | esaKITs');await p.locator('#languageSelect').selectOption('en');await f.locator('#pulmonicConsonants [data-v83-sym="p"]').first().click();assert.equal(await p.locator('#out').inputValue(),'p');

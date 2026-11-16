@@ -1,6 +1,6 @@
 'use strict';
 const PREFIX='esakits-ipa-keyboard-';
-const CACHE=PREFIX+'v83.22';
+const CACHE=PREFIX+'v83.23';
 const LEGACY='ipa-keyboard-v4';
 const CORE=['./','./index.html','./chart.html','./i18n.js','./translations.csv','./fonts/DoulosSIL-Regular.woff2','./fonts/NotoSansJP-Regular.woff2','./fonts/NotoSansJP-Bold.woff2','./fonts/OFL-DoulosSIL.txt','./fonts/OFL-NotoSansJP.txt'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));

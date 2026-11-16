@@ -7,8 +7,13 @@ const app=process.env.APP_URL||'http://127.0.0.1:8765/ipa-keyboard/';fs.mkdirSyn
   const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();await f.waitForFunction(()=>typeof esaSetLocale==='function');await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);
   for(const locale of['ja','en','pt-BR','fa','ja-osaka','ja']){
    await p.locator('#languageSelect').selectOption(locale);
-   const box=await p.locator('.app-header').evaluate(e=>{const r=e.getBoundingClientRect(),items=[...e.children].map(x=>x.getBoundingClientRect());return{height:r.height,inside:items.every(x=>x.left>=r.left&&x.right<=r.right),row:items.every(x=>Math.abs(x.top+x.height/2-(r.top+r.height/2))<1),overlap:items.some((x,i)=>items.slice(i+1).some(y=>x.right>y.left+.5)),frameGap:document.getElementById('v83ChartFrame').getBoundingClientRect().top-r.bottom};});
-   assert(box.height<=54&&box.inside&&box.row&&!box.overlap&&box.frameGap<=1,'one compact header row: '+locale+' '+JSON.stringify(box));
+   const box=await p.locator('.app-header').evaluate(e=>{const r=e.getBoundingClientRect(),items=[...e.children].map(x=>x.getBoundingClientRect());return{height:r.height,inside:items.every(x=>x.left>=r.left&&x.right<=r.right),row:items.every(x=>Math.abs(x.top+x.height/2-(r.top+r.height/2))<1),overlap:items.some((x,i)=>items.slice(i+1).some(y=>Math.min(x.right,y.right)>Math.max(x.left,y.left)+.5&&Math.min(x.bottom,y.bottom)>Math.max(x.top,y.top)+.5)),twoRows:items[2].top>=Math.max(items[0].bottom,items[1].bottom,items[3].bottom),frameGap:document.getElementById('v83ChartFrame').getBoundingClientRect().top-r.bottom};});
+   const twoRows=locale==='pt-BR'&&width<=480;assert(box.height<=(twoRows?90:54)&&box.inside&&(twoRows?box.twoRows:box.row)&&!box.overlap&&box.frameGap<=1,'compact header with complete language name: '+locale+' '+JSON.stringify(box));
+   if(locale==='pt-BR'){
+    assert.equal(await p.locator('#languageSelect option:checked').textContent(),'Português brasileiro');
+    const fits=await p.locator('#languageSelect').evaluate(e=>{const c=document.createElement('canvas').getContext('2d');c.font=getComputedStyle(e).font;return c.measureText(e.selectedOptions[0].textContent).width+32<=e.clientWidth;});assert(fits,'full Brazilian Portuguese label fits the closed select');
+    await p.screenshot({path:`qa-production/${process.env.PUBLIC_CHECK?'public':'staged'}-${name}-${width}-portugues-brasileiro.png`});
+   }
    assert.equal(await p.locator('.language-caption').textContent(),'Language');assert.equal(await p.locator('.language-caption').getAttribute('for'),'languageSelect');assert((await p.locator('.language-caption').evaluate(e=>parseFloat(getComputedStyle(e).fontSize)))<=10,'small fixed Language label');
    const expected=await p.evaluate(lang=>esaI18n.t('⛶ 拡大表示',lang,'chart').replace(/^⛶\s*/,''),locale);assert.equal(await p.locator('#chartZoomToggle').getAttribute('aria-label'),expected);
   }
@@ -19,7 +24,7 @@ const app=process.env.APP_URL||'http://127.0.0.1:8765/ipa-keyboard/';fs.mkdirSyn
   await p.locator('#chartZoomToggle').click();await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');assert.equal(await p.locator('#chartZoomToggle').getAttribute('aria-expanded'),'true');await f.locator('#zoomPlus').click();assert.equal(await f.locator('#zoomRange').inputValue(),'125');await f.locator('#zoomClose').click();await p.waitForFunction(()=>document.querySelector('#chartZoomToggle').getAttribute('aria-expanded')==='false');
   await p.locator('#chartZoomToggle').focus();await p.keyboard.press('Enter');await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');await f.locator('#zoomClose').click();assert.equal(await f.locator('.v83-ipa-key').count(),235);
   await p.locator('#contrastToggle').click();await p.screenshot({path:`qa-production/${process.env.PUBLIC_CHECK?'public':'staged'}-${name}-${width}-compact-header-dark.png`,fullPage:true});assert.deepEqual(errors,[]);await p.close();
-  console.log(`PASS HEADER ${name} ${width}: one row in five languages, icon click and keyboard, readable labels, source metadata retained, tight chart heading, both themes`);
+  console.log(`PASS HEADER ${name} ${width}: full Português brasileiro label with two mobile rows, other languages in one row, icon click and keyboard, readable labels, source metadata retained, tight chart heading, both themes`);
  }
  await b.close();
 }})().catch(e=>{console.error(e);process.exit(1)});

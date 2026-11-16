@@ -1,7 +1,7 @@
-name: Verify and publish IPA Keyboard production v83.28
+name: Verify and publish IPA Keyboard production v83.29
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.28]
+    branches: [main, release/ipa-keyboard-v83.29]
     paths: ['index.html', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.28'
+    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.29'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

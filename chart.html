@@ -1,0 +1,2241 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IPA Chart — esaKITs 日本語版 v0.2.98</title><style>@font-face{font-family:'Noto Sans JP Local';src:url('./fonts/NotoSansJP-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Noto Sans JP Local';src:url('./fonts/NotoSansJP-Bold.woff2') format('woff2');font-style:normal;font-weight:700;font-display:swap}
+@font-face{font-family:'Doulos SIL Local';src:url('./fonts/DoulosSIL-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+/**
+ * MIT License
+ *
+ * Copyright (c) 2004-2006 Weston Ruter
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
+/*div,table,td,th{
+	outline:red solid 1px;
+}*/
+
+a#keyboardLink {
+	position:fixed;
+	top:0px;
+	right:0px;
+	text-decoration:none;
+	padding:3px;
+	border:solid 1px black;
+	background-color:White;
+	color:Black;
+	z-index:200;
+}
+#loadFontBtn {
+	float:right;
+	font-size:9pt;
+}
+a#keyboardLink:hover {
+	color:Black;
+	background-color:Yellow;
+}
+
+#chartIntro {
+	display:none;
+}
+
+body {
+	font-family:"Charis SIL", "Doulos SIL", Gentium, "Arial Unicode MS","Lucida Sans Unicode", Arial, Serif;
+}
+
+
+h1#title {
+	text-align:center;
+	font-size:18pt;
+	margin-bottom:2px;
+}
+h1#title #updateDate 
+{
+	color:Red;
+}
+
+th {
+	font-weight:normal;
+	text-align:left;
+}
+
+h2 {
+	font-size:13pt;
+	margin-bottom:3px;
+}
+
+td  {
+	font-size:20pt;	
+}
+
+#alphabetRevision {
+	font-size:smaller;
+}
+
+span.ipa  {
+	font-size:20pt;
+}
+
+table  {
+	border-collapse:collapse;
+	padding:0px;
+	empty-cells:show;
+	border-spacing:0px;
+}
+
+/* Pulmonic Consonant Table *******************************/
+#pulmonicConsonants  {
+	margin-bottom:1em;
+}
+#pulmonicConsonants h2 {
+	margin-top:5px;
+}
+#pulmonicConsonants table{
+	width:100%;
+}
+#pulmonicConsonants table caption {
+	caption-side:bottom;
+}
+#pulmonicConsonants table, 
+#pulmonicConsonants td, 
+#pulmonicConsonants th {
+	border:solid 1px #777;
+	vertical-align:middle;
+}
+/* NOTE: only Gecko supports this, so not used
+#pulmonicConsonants table  {
+	caption-side:bottom;
+	border-style:solid;
+}
+*/
+/* replacement for caption */
+#pulmonicConsonants p {
+	margin-top:.25em;
+	text-align:center;
+}
+
+
+#pulmonicConsonants th {
+	font-size:8pt;
+	padding:2px;
+	text-align:center;
+}
+
+#pulmonicConsonants th.place {
+	width:8%;
+}
+#pulmonicConsonants th.manner {
+	text-align:left;
+	padding:0px 3px 0px 3px;
+	width:8%; /* for MSIE 6 */
+}
+#pulmonicConsonants td  {
+	font-size:20pt;
+	text-align:center;
+	padding:0px;
+}
+
+#pulmonicConsonants td .voiceless, #vowels td.unrounded{
+	float:left;
+	width:49.5%; /* Note: not 50% due to bug in MSIE 6 */
+	padding:0; /*2px 0px 2px 0px;*/
+}
+#pulmonicConsonants td .voiced,  #vowels td.rounded{
+	float:right;
+	width:49.5%; /* Note: not 50% due to bug in MSIE 6 */
+	padding:0; /*2px 0px 2px 0px;*/
+}
+
+#pulmonicConsonants .impossible  {
+	background-color:#AAAAAA;
+	color:Black;
+}
+#pulmonicConsonants span.impossible  {
+	border-left:solid 1px #777;
+	width:48%;
+}
+
+/* Non-Pulmonic Consonant Table ***************************/
+#nonPulmonicConsonants  {
+	clear:left;
+	float:left;
+	width:47%;
+	margin-bottom:2em;
+}
+
+div#nonPulmonicConsonants table {
+	border:solid 1px #777;
+	width:100%;
+}
+div#nonPulmonicConsonants table colgroup {
+	border-left:solid 1px #777;
+	border-right:solid 1px #777;
+}
+div#nonPulmonicConsonants thead th {
+	border-top:solid 1px #777;
+	border-bottom:solid 1px #777;
+}
+#nonPulmonicConsonants th {
+	padding:.4em;
+	border-right:solid 1px #777;  /* for MSIE 6 */
+}
+#nonPulmonicConsonants td {
+	padding:.4em;
+	border-left:solid 1px #777;  /* for MSIE 6 */
+}
+#nonPulmonicConsonants tbody td,
+#nonPulmonicConsonants tbody th  {
+	padding:1px .75ex 1px .75ex;
+}
+#nonPulmonicConsonants thead th {
+	font-size:11pt;
+	text-align:center;
+}
+
+#nonPulmonicConsonants tbody th {
+	text-align:left;
+	font-size:10pt;
+}
+#nonPulmonicConsonants tbody td {
+	font-size:20pt;
+	text-align:center;
+}
+
+/* Vowel Quadrilateral ************************************/
+#vowels  {
+	float:right;
+	width:45%;
+	margin-bottom:2em;
+}
+
+/*#closeVowels span,
+#close-midVowels span,
+#middleVowels span,
+#open-midVowels span,
+#openLaxVowels span,
+#openVowels span  {
+	padding-left:1ex;
+	padding-right:1ex;
+}
+
+#vowels embed  {
+	width:100%;
+	font-size:20pt;
+	height:9em;
+}*/
+
+div#vowelQuadrilateral  {
+	/*
+	background-image:url(https://westonruter.github.io/ipa-chart/vowelBackground.png);
+	background-position:right top;
+	background-repeat:no-repeat;
+	*/
+	position:relative;
+	font-size:1em;
+	width:100%;
+	height:310px;
+}
+div#vowelQuadrilateral span {
+	position:absolute;
+	z-index:100;
+}
+
+img#vowelBackground {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+div#vowelSymbols span, #Vowels td{
+	font-size:20pt;
+	padding:0 5px;
+}
+div#vowelLabels {}
+
+#vowels p.caption {
+	margin-top:.25em;
+	margin-left:25%;
+}
+
+
+
+/* Other Symbols **************************************/
+div#otherSymbols  {
+	clear:left;
+	float:left;
+	width:60%;
+	margin-bottom:2em;
+}
+div#otherSymbols table{
+}
+div#otherSymbols table th {
+	text-align:left;
+	font-size:10pt;
+	width:50%; /* for MSIE 6 */
+}
+
+div#otherSymbols table td {
+	padding-left:1ex;
+	padding-right:1ex;
+	white-space:nowrap;
+}
+div#otherSymbols table td {
+	font-size:20pt;
+}
+div#otherSymbols table td.firstOfTwoExamples{
+	padding-right:0;
+}
+div#otherSymbols table td.secondOfTwoExamples{
+	padding-left:.25em
+}
+
+th#tiebar {
+	vertical-align:middle;
+}
+
+th#tiebar p {
+
+}
+th#tiebar span#tiebarExample { /* TO CHANGE */
+	float:right;
+	margin-top:.75em;
+	margin-left:1.5ex;
+}
+
+/* Suprasegmentals ****************************/
+div#suprasegmentals  {
+	float:right;
+	margin-bottom:2em;
+}
+
+div#suprasegmentals th  {
+	text-align:left;
+	font-weight:normal;
+	white-space:nowrap;
+	font-size:10pt;
+}
+div#suprasegmentals td {
+	white-space:pre;
+	font-size:20pt;
+	padding:0px .5ex 0px .5ex;
+}
+div#suprasegmentals td.symbol {
+	text-align:center;
+}
+div#suprasegmentals td.example {
+	text-align:left;
+}
+div#suprasegmentals td#stressExample  {
+	text-align:right;
+}
+
+
+/* diacritics *********************************/
+div#diacritics  {
+	width:70%;
+	clear:left;
+	float:left;
+	margin-bottom:1em;
+}
+div#diacritics table {
+	border:solid 1px #777;
+}
+div#diacritics table colgroup {
+	border-left:solid 1px #777;
+	border-right:solid 1px #777;
+}
+
+div#diacritics p  {
+	margin:3px;
+	text-align:left;
+}
+div#diacritics td, div#diacritics th {
+	border-top:solid 1px #777;
+	border-bottom:solid 1px #777;
+}
+div#diacritics td.rightExample { /* for MSIE 6 */
+	border-right:solid 1px #777;
+}
+div#diacritics td  {
+	padding:3px .5ex 3px .5ex;
+	text-align:center;
+	white-space:pre;
+	font-size:20pt;
+}
+div#diacritics td.leftExample {
+	padding-right:.2ex;
+}
+div#diacritics td.rightExample {
+	padding-left:.2ex;
+}
+
+div#diacritics th {
+	font-size:10pt;
+	padding:3px;
+}
+div#diacritics td.wideCell  {
+	text-align:left;
+	padding-left:.5ex;
+}
+
+div#diacritics th.wideCell  {
+	padding:2px 0px 2px .5ex;
+}
+
+/*
+div#diacritics td.wideCell {
+	border-right:none;
+	background-color:blue;
+}
+div#diacritics td.wideCell + th {
+	border-left:none;
+	background-color:Red;
+}*/
+
+/* Tones and Word Accents ********************************/
+
+
+div#tonesAndWordAccents  {
+	clear:right;
+	float:right;
+	margin-bottom:1em;
+}
+div#tonesAndWordAccents h2  {
+	text-align:center;
+	white-space:nowrap;
+}
+div#tonesAndWordAccents td, div#tonesAndWordAccents th  {
+	
+}
+
+div#tonesAndWordAccents td  {
+	font-size:20pt;
+	text-align:center;
+}
+
+div#tonesAndWordAccents thead th {
+	text-align:center;
+	font-weight:bold;
+	padding:3px;
+}
+div#tonesAndWordAccents tbody th {
+	padding:0px 2ex 0px 2ex;
+	text-align:left;
+	font-size:10pt;	
+}
+div#tonesAndWordAccents tbody th.or {
+	padding:0px 2px 0px 2px;
+	font-size:8pt;
+	vertical-align:middle;
+}
+
+/*
+div#tonesAndWordAccents tbody th#notSupported p {
+	padding:1ex;
+	border:dotted 1px #BBBBBB;
+	text-align:center;
+	background-color:#EEEEEE;
+	color:Black;
+	font-style:italic;	
+}
+
+
+#unsupportedContourToneDiacritics 
+{
+}
+*/
+
+/* footer *************************************/
+div#footer  {
+	font-family:"Arial Unicode MS", "Lucida Sans Unicode", Arial, Helvetica, Sans-Serif;
+	clear:both;
+}
+div#footer p {
+	margin-top:0;
+	margin-bottom:.5em;
+}
+
+a#shirtLink  {
+	float:left;
+	margin-right:8px;
+	margin-bottom:5px;
+}
+a#shirtLink img  {
+	border-color:Black;
+	border-width:1px;
+	height:125px;
+}
+a#shirtLink img#shirtFront  {
+	margin-right:5px;
+}
+#paypalLinkImage  {
+	margin-left:5px;
+	margin-right:5px;
+}
+#paypalLinkSpan
+{
+	color:Red;
+	background-color:White;
+	font-size:15pt;
+	margin-right:20px;
+	text-decoration:blink;
+}
+
+hr {
+	clear:both;
+}
+#copyright  {
+	clear:both;
+	font-size:9pt;
+	text-align:center;
+	margin-top:1em;
+}
+#footerBoilerplate  {
+	clear:both;
+}
+#buttonLinks  {
+	float:right; 
+	clear:both;
+}
+#buttonLinks img  {
+	height:31px;
+	width:88px;
+	border:none;
+}
+#buttonLinks img,
+#buttonLinks input 
+{
+	vertical-align:middle;
+}
+
+div#adsense {
+	text-align:center;
+	margin:5px 0 5px 0;
+	padding:5px;
+	clear:both;
+	background-color:#EEEEEE;
+	color:Black;
+}
+
+
+/*** Anniversary ******/
+
+#fifthAnniversaryLink {
+	position:fixed;
+	top:0px;
+	left:0px;
+	margin:0;
+	padding:3px;
+	border:solid 1px green;
+	text-decoration:none;
+	color:black;
+	background-color:lime;
+	font-size:10pt;
+}
+#fifthAnniversaryLink:hover {
+	background-color:yellow;
+	color:green;
+}
+
+#fifthAnniversary p {
+	display:none;
+	padding:0.5em;
+	border:solid 2px lime;
+	font-size:10pt;
+	max-width:600px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#fifthAnniversary p a {
+	color:green;
+}
+#fifthAnniversary p a:hover {
+	color:red;
+}
+#fifthAnniversary.target p { display:block; }
+#fifthAnniversary:target p { display:block; }
+#fifthAnniversary.target #fifthAnniversaryLink { display:none; }
+#fifthAnniversary:target #fifthAnniversaryLink { display:none; }
+
+/* esaKITs v0.2.4 — single authoritative layout block.
+   Fixed 1040px canvas; no grid/float overrides scattered across revisions. */
+html{background:#fff}
+body{margin:0;padding:16px;overflow-x:auto;background:#fff}
+#chart{display:grid;grid-template-columns:minmax(0,50fr) minmax(0,50fr);grid-template-rows:auto auto auto;column-gap:0;row-gap:0;width:1040px;min-width:1040px;margin:0 auto;box-sizing:border-box;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}
+#chart,#chart *{box-sizing:border-box}
+#chart>h1#title{grid-column:1 / 3;grid-row:1;text-align:center;font-size:20px;margin:0 0 16px}
+#chart #alphabetRevision{font-size:11px;font-weight:400}
+#chart #appVersion{font-size:11px!important}
+#chart>#pulmonicConsonants{grid-column:1 / 3;grid-row:2;width:82%;justify-self:center;margin:0 0 24px;float:none;clear:none}
+#chart>#pulmonicConsonants table{width:100%}
+#chart>.ipa-pdf-left{grid-column:1;grid-row:3;display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:0 24px 0 0;min-width:0}
+#chart>.ipa-pdf-right{grid-column:2;grid-row:3;display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:0 0 0 12px;min-width:0}
+#chart>.ipa-pdf-left>div,#chart>.ipa-pdf-right>div{float:none;clear:none;position:relative;width:100%;min-width:0;margin:0}
+#chart>.ipa-pdf-left>#nonPulmonicConsonants{width:78%}
+#chart>.ipa-pdf-left>#otherSymbols{width:100%}
+#chart>.ipa-pdf-left>#diacritics{width:100%}
+#chart>.ipa-pdf-right>#vowels{width:100%}
+#chart>.ipa-pdf-right>#suprasegmentals{width:100%}
+#chart>.ipa-pdf-right>#tonesAndWordAccents{width:100%}
+#chart h1,#chart h2,#chart th{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}
+#chart h2{font-size:15px;margin:0 0 5px}
+#chart th{font-size:11px}
+#chart td{font-family:"Doulos SIL","Charis SIL","DejaVu Sans",sans-serif}
+#chart span.ipa{font-family:"Doulos SIL","Charis SIL","DejaVu Sans",sans-serif}
+#chart #pulmonicConsonants th{font-size:11px;letter-spacing:-.2px}
+#chart #pulmonicConsonants td{font-size:20pt}
+#chart #vowelQuadrilateral{width:100%;height:270px;position:relative;overflow:visible}
+#chart #vowelBackground{width:100%;height:100%}
+#chart #suprasegmentals table,#chart #tonesAndWordAccents table,#chart #otherSymbols table,#chart #diacritics table{width:100%;max-width:100%}
+#chart #diacritics>p{font-size:11px;line-height:1.35;margin:7px 0 0}
+#chart #diacritics td{font-size:12px}
+#chart #diacritics span.ipa{font-size:18pt}
+#chart #pulmonicConsonants>p,#chart #vowels>p{font-size:11px;line-height:1.35;margin:4px 0}
+#chart #nonPulmonicConsonants th,#chart #diacritics th,#chart #otherSymbols th,#chart #suprasegmentals th,#chart #tonesAndWordAccents th{font-size:11px}
+#chart #suprasegmentals td,#chart #tonesAndWordAccents td{font-size:12px}
+#chart #suprasegmentals th{white-space:normal}
+.ipa-text-arrow{font-family:"DejaVu Sans","Noto Sans Symbols 2","Noto Sans Symbols",Arial,sans-serif!important;font-variant-emoji:text;font-size:20pt;line-height:1;white-space:nowrap}
+#chart #tonesAndWordAccents .ipa-text-arrow{display:inline-block;min-width:1.25em;text-align:center}
+.source-note,body>details{display:block;width:1040px;max-width:1040px;margin:7px auto;font:10px/1.35 system-ui,sans-serif;color:#555}
+
+/* v0.2.1: Fit the entire fixed-layout chart as one page on narrow screens. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{padding:8px!important;overflow-x:hidden!important}
+#chartScaleShell{position:relative;margin:0 auto;width:1040px;max-width:calc(100vw - 16px)}
+#chartScaleContent{position:absolute;top:0;left:0;width:1040px;transform-origin:top left}
+#chartScaleContent #chart{margin:0;width:1040px;min-width:1040px}
+#chartScaleContent .source-note,#chartScaleContent>details{width:1040px;max-width:1040px}
+
+/* v0.2.60 — local fonts only; chart layout, sizes, and scaling unchanged. */
+#chart{font-family:'Noto Sans JP Local',sans-serif}
+#chart h1,#chart h2,#chart th{font-family:'Noto Sans JP Local',sans-serif}
+#chart td{font-family:'Doulos SIL Local',serif}
+#chart :is(.ipa,.symbol,.phonetic,.vowel){font-family:'Doulos SIL Local',serif}
+#chart td:has(> .japanese){font-family:'Noto Sans JP Local',sans-serif}
+#chart .ipa-text-arrow{font-family:'Doulos SIL Local',serif!important}
+#chart #appVersion{font-family:'Noto Sans JP Local',sans-serif!important}
+#chartScaleContent .source-note,#chartScaleContent>details{font-family:'Noto Sans JP Local',sans-serif}
+/* IPA glyphs inside vowel diagrams and mixed-language headings must not inherit Japanese fonts. */
+#chart #vowelSymbols span{font-family:'Doulos SIL Local',serif}
+#chart th .ipa,#chart #tiebarExample .ipa{font-family:'Doulos SIL Local',serif}
+#chart #diacritics th .ipa,#chart #otherSymbols th .ipa{font-family:'Doulos SIL Local',serif}
+
+/* v0.2.60 vowel-only redesign: measured trapezoid 250:123:190 at 1040px canvas */
+#chart #vowelQuadrilateral{width:520px;height:340px;max-width:100%;overflow:visible;position:relative}
+#chart .vowel-chart-svg{display:block;width:100%;height:auto;overflow:visible}
+#chart .vowel-chart-svg .vowel-axis-labels{font-family:'Noto Sans JP Local',sans-serif;font-size:15px;fill:#29323a}
+#chart .vowel-chart-svg .vowel-glyph{font-family:'Doulos SIL Local',serif;font-size:23px;fill:#101820;paint-order:stroke fill;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round}
+#chart #vowels p.caption{margin-left:0;font-size:11px;line-height:1.4}
+
+/* v0.2.60: official chart nodes and vowel symbols flank each black dot */
+#chart .vowel-chart-svg .vowel-symbols text{font-family:'Doulos SIL Local',serif;font-size:24px;fill:#101820;text-anchor:middle;dominant-baseline:central;paint-order:stroke fill;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+#chart .vowel-chart-svg .vowel-dots circle{stroke:#fff;stroke-width:.45px}
+/* v0.2.60: three anatomical horizontal positions (front/central/back) and explanatory note fixed beneath the quadrilateral. */
+#chart .vowel-chart-svg .vowel-note{font-family:'Noto Sans JP Local',sans-serif;font-size:11px;fill:#222}
+/* v0.2.60: one slanted internal divider, two horizontal internal dividers: 2 columns × 3 bands. */
+#chart .vowel-chart-svg .vowel-axis-labels{font-family:'Noto Sans JP Local',sans-serif;font-size:15px;fill:#29323a}
+/* v0.2.60: top label centers anchored directly above the three structural upper endpoints (165, 290, 415). */
+
+/* v0.2.60: prominent version at far left of chart title. */
+#chart>h1#title{display:flex;align-items:center;gap:24px;text-align:left;margin-bottom:16px;line-height:1.15}
+#chart h1 #appVersion{font-family:'Noto Sans JP Local',sans-serif!important;font-size:32px!important;font-weight:700;letter-spacing:-.02em;white-space:nowrap;flex:none}
+#chart h1 .chart-title-main{flex:1;min-width:0;text-align:center;font-size:20px}
+/* Glyph ink is optically centred on the y coordinate of its corresponding black reference dot. */
+#chart .vowel-chart-svg .vowel-symbols text{dominant-baseline:central}
+/* v0.2.60: move only close vowel glyphs i y ɨ ʉ ɯ u upwards 3 SVG units; guide lines and nodes unchanged. */
+/* v0.2.60: segment horizontal guides between IPA symbols instead of drawing continuously under glyphs; node geometry unchanged. */
+/* v0.2.60: halve line strokes (1.2 -> 0.6 SVG px) after source screenshot line/glyph ratio comparison. Glyphs, nodes, axes, line geometry unchanged. */
+/* v0.2.60: seven independent horizontal line lengths measured against official screenshot, normalised using reference black-dot distances; six overlong spans shortened, top-left span left unchanged. */
+/* v0.2.60: 22 paired IPA glyphs 2 SVG units closer to their reference dots; glyph size 24 -> 25.5; selectively trim still-long horizontal strokes by 2-3 units at ends. */
+#chart .vowel-chart-svg .vowel-symbols text{font-size:25.5px}
+/* v0.2.60: shift only near-open front vowel æ left 36 SVG units to the official side of the front slant. */
+
+/* v0.2.60 — optional document-style viewer with scroll-synchronised minimap */
+.chart-tool-row #chartZoomOpen{font:600 15px/1.3 'Noto Sans JP Local',sans-serif;white-space:nowrap;padding:9px 13px;border:1px solid #66798b;border-radius:6px;background:#f7faff;color:#213950;cursor:pointer;flex:none}
+.chart-tool-row #chartZoomOpen:focus-visible,.zoom-toolbar button:focus-visible,.zoom-minimap:focus-visible{outline:3px solid #2379ba;outline-offset:2px}
+.zoom-dialog[hidden]{display:none!important}
+.zoom-dialog{position:fixed;inset:0;z-index:9999;background:rgba(13,23,33,.76);display:flex;flex-direction:column;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);font-family:'Noto Sans JP Local',sans-serif}
+.zoom-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-height:56px;padding:8px 12px;background:#fff;border-bottom:1px solid #ccd2d9;color:#1b2835}
+.zoom-toolbar button{padding:7px 12px;background:#f6f8fa;border:1px solid #a5b0bb;border-radius:5px;color:#1b2835;font-size:15px;cursor:pointer}
+.zoom-toolbar input[type=range]{width:120px;max-width:29vw;accent-color:#2277aa}
+.zoom-toolbar .zoom-label{font-size:15px;font-weight:700;min-width:52px;text-align:right}
+.zoom-toolbar .zoom-title{font-size:16px;font-weight:700;margin-right:auto}
+.zoom-viewport{position:relative;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;background:#e9edf1;touch-action:none}
+.zoom-stage{position:relative;margin:0;overflow:visible;background:#fff}
+.zoom-stage>#chart{position:absolute;left:0;top:0;transform-origin:top left;max-width:none!important}
+.zoom-minimap{position:absolute;z-index:4;right:12px;top:72px;width:178px;height:156px;background:rgba(255,255,255,.96);color:#26323c;border:1px solid #8796a5;border-radius:6px;box-shadow:0 2px 12px #0003;touch-action:none;user-select:none;cursor:crosshair}
+.zoom-minimap[hidden]{display:none!important}
+.zoom-minimap .map-title{position:absolute;left:5px;top:3px;font-size:11px;font-weight:700}
+.zoom-minimap .map-canvas{position:absolute;inset:21px 6px 7px 6px;background:#fff;border:1px solid #a7b4bf}
+.zoom-minimap .map-region{position:absolute;border:1px solid #bbc5d0;background:#edf3f8;font-size:7px;text-align:center;overflow:hidden}
+.zoom-minimap .map-window{position:absolute;z-index:2;border:2px solid #dc623e;background:rgba(237,129,60,.19);pointer-events:none;box-sizing:border-box}
+.zoom-toolbar .zoom-close{font-weight:700}
+@media(max-width:580px){.zoom-toolbar{gap:4px;padding:6px}.zoom-toolbar .zoom-title{display:none}.zoom-toolbar button{padding:8px}.zoom-minimap{width:140px;height:124px;right:5px;top:66px}.zoom-minimap .map-title{font-size:9px}.zoom-minimap .map-canvas{inset:17px 4px 4px}.zoom-minimap .map-region{font-size:5px}}
+/* v0.2.60: keep zoom launcher at readable native size on phones, outside responsive chart scaling. */
+.chart-tool-row{width:1040px;max-width:calc(100vw - 16px);margin:0 auto 6px;text-align:right}
+
+/* v0.2.60: relative anchor layout and dynamic type-size controls */
+.chart-tool-row{display:flex;align-items:center;justify-content:flex-end;gap:12px}
+#chart .vowel-chart-svg .vowel-dynamic-glyph{font-family:'Doulos SIL Local',serif;font-size:32px;fill:#101820;stroke:none;paint-order:normal;dominant-baseline:alphabetic;text-anchor:middle}
+
+/* v0.2.60: pulmonary consonant table only; reference full chart width = 100%. */
+#chart>#pulmonicConsonants{width:100%}
+#chart #pulmonicConsonants>h2{font-size:17px}
+#chart #pulmonicConsonants thead th,
+#chart #pulmonicConsonants tbody th{font-size:13px}
+#chart #pulmonicConsonants td{font-size:32px}
+
+/* v0.2.60: tighten vertical whitespace in non-vowel tables only.
+   Keep all glyph font sizes, horizontal spacing and vowel SVG unchanged. */
+#chart :is(#pulmonicConsonants,#nonPulmonicConsonants,#otherSymbols,#suprasegmentals,#diacritics,#tonesAndWordAccents) :is(td,th){line-height:1.08;height:auto;min-height:0}
+#chart #pulmonicConsonants :is(td,th){padding-top:0;padding-bottom:0}
+/* Pulmonic only: add glyph-bottom breathing room without creating a white gap below gray impossible spans. */
+#chart #pulmonicConsonants tbody td > span{padding-bottom:3px}
+/* Pulmonic place-of-articulation header: restore breathing room independently of body rows. */
+#chart #pulmonicConsonants thead th{padding-top:6px;padding-bottom:6px}
+#chart #nonPulmonicConsonants :is(td,th){padding-top:0;padding-bottom:0}
+/* v0.2.98: restore clearance around the five click symbols and their labels only. */
+#chart #nonPulmonicConsonants tbody tr > :nth-child(-n+2){padding-top:3px;padding-bottom:6px;line-height:1.15;vertical-align:middle}
+/* v0.2.98: extra ink clearance for the tall lateral click glyph only. */
+#chart #nonPulmonicConsonants tbody tr:last-child > td:first-child{padding-bottom:10px}
+#chart #otherSymbols :is(td,th){padding-top:0;padding-bottom:0}
+#chart #suprasegmentals :is(td,th){padding-top:0;padding-bottom:0}
+/* v0.2.98: suprasegmentals match 27% of the 1040px IPA chart; keep Japanese labels readable. */
+#chart>.ipa-pdf-right>#suprasegmentals{width:305px;align-self:flex-end}
+#chart #suprasegmentals tbody td.symbol{font-size:24px}
+#chart #suprasegmentals tbody td.example,#chart #suprasegmentals tbody td#stressExample{font-size:18px}
+/* v0.2.98: reproduce the official vowel-relative suprasegmental three-column arrangement. */
+#chart #suprasegmentals table{table-layout:fixed;width:305px}
+#chart #suprasegmentals tbody td.symbol{font-size:22px;text-align:center}
+#chart #suprasegmentals tbody td.example{font-size:22px;text-align:left}
+#chart #suprasegmentals tbody td#stressExample{font-size:22px;text-align:left;white-space:nowrap}
+#chart #suprasegmentals tbody th{font-size:11px;text-align:left;white-space:normal}
+#chart #suprasegmentals tbody td,#chart #suprasegmentals tbody th{vertical-align:middle}
+/* v0.2.98: compensate Doulos lower modifier and undertie ink bounds. */
+#chart #suprasegmentals tbody tr:nth-child(2) td.symbol{position:relative;top:-7px}
+#chart #suprasegmentals tbody tr:last-child td.symbol{position:relative;top:-8px}
+#chart #suprasegmentals tbody tr:last-child td{padding-bottom:8px}
+
+
+#chart #diacritics :is(td,th){padding-top:1px;padding-bottom:1px}
+/* v0.2.98: diacritics occupy 68% of the 1040px official chart; IPA signs match 32px consonants. */
+#chart>.ipa-pdf-left>#diacritics{width:707px;align-self:flex-start}
+#chart #diacritics table{width:100%;max-width:100%}
+#chart #diacritics tbody td{font-size:32px}
+#chart #diacritics tbody .ipa{font-size:32px}
+/* v0.2.98: align wide diacritics with tone table beneath suprasegmentals, avoiding overlap. */
+#chart>.ipa-pdf-left>#diacritics{margin-top:0}
+#chart>.ipa-pdf-right>#tonesAndWordAccents{width:305px;align-self:flex-end}
+#chart #tonesAndWordAccents table{table-layout:fixed}
+#chart #tonesAndWordAccents tbody th{overflow-wrap:anywhere;padding-left:1px;padding-right:1px}
+
+
+#chart #tonesAndWordAccents :is(td,th){padding-top:0;padding-bottom:0}
+/* v0.2.98: restore IPA tone glyphs to chart-scale typography; labels remain unchanged. */
+#chart #tonesAndWordAccents tbody td{font-size:26px}
+#chart #tonesAndWordAccents tbody .ipa-text-arrow{font-size:26px}
+/* v0.2.98: align suprasegmental and tone symbols to actual 25.5px vowel glyphs; narrow tone block without changing labels. */
+#chart #suprasegmentals tbody td.symbol,#chart #suprasegmentals tbody td.example{font-size:25.5px}
+#chart>.ipa-pdf-right>#tonesAndWordAccents{width:410px;align-self:flex-start}
+#chart #tonesAndWordAccents table{width:100%;max-width:100%}
+#chart #tonesAndWordAccents tbody td,#chart #tonesAndWordAccents tbody .ipa-text-arrow{font-size:25.5px}
+#chart #tonesAndWordAccents tbody th{padding-left:3px;padding-right:3px}
+
+
+#chart :is(#pulmonicConsonants,#nonPulmonicConsonants,#otherSymbols,#suprasegmentals,#diacritics,#tonesAndWordAccents) :is(td,th) :is(span,p){line-height:inherit}
+/* v0.2.98: final cascade after earlier local rules; actual vowel symbols use inline 32px. */
+#chart #suprasegmentals tbody td.symbol,#chart #suprasegmentals tbody td.example{font-size:32px}
+#chart #tonesAndWordAccents tbody td,#chart #tonesAndWordAccents tbody .ipa-text-arrow{font-size:32px}
+
+
+/* v0.2.98 final positioning: no panel overlap; keep diacritics 68% of chart. */
+#chart>.ipa-pdf-right>#tonesAndWordAccents{width:305px;align-self:flex-end}
+#chart #tonesAndWordAccents table{width:100%;max-width:100%;table-layout:fixed}
+#chart #tonesAndWordAccents tbody th{overflow-wrap:anywhere;padding-left:1px;padding-right:1px}
+
+/* v0.2.98: provide actual ink clearance for 32px combining diacritic examples. */
+#chart #diacritics tbody :is(td,th){padding-top:2px;padding-bottom:4px;line-height:1.12;vertical-align:middle}
+/* v0.2.98: keep combining diacritics and examples visible while eliminating excess vertical air. */
+#chart #diacritics tbody .ipa{line-height:1.12}
+/* v0.2.98: preserve the original alveolar cell alignment inside the three-column merged region. */
+#chart #pulmonicConsonants tbody td[colspan="3"]>.alveolar-slot{display:flow-root;width:33.333333%;margin-inline:auto}
+/* v0.2.98: keep the diacritics note and its example on one line. */
+#chart .ipa-pdf-left>.diacritics-note{font-size:11px;line-height:1.35;white-space:nowrap;margin:-12px 0 0}
+#chart .ipa-pdf-left>.diacritics-note>.ipa{font-size:18px;white-space:nowrap}
+/* v0.2.98: scale the syllable boundary example to match the stress example. */
+#chart #suprasegmentals tbody td#syllableExample{font-size:22px}
+/* v0.2.98: increase only non-pulmonic header row vertical breathing room. */
+#chart #nonPulmonicConsonants thead th{padding-top:5px;padding-bottom:5px;line-height:1.2}
+/* v0.2.98: non-pulmonic consonants = 49% of 1040px pulmonary table. */
+#chart>.ipa-pdf-left>#nonPulmonicConsonants{width:510px;max-width:none;align-self:flex-start}
+</style>
+<style id="v83-symbol-feedback">
+/* Interaction-only layer: the original chart geometry and measured SVG coordinates stay untouched. */
+.v83-ipa-key{cursor:pointer!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.v83-ipa-key:focus-visible{outline:2px solid #9879d3!important;outline-offset:1px}
+/* Vowel SVG is not a browser text-selection target: prevent Safari's blue focus/selection rectangle.
+   Keyboard navigation retains the visible lavender focus indicator. */
+#vowelQuadrilateral,#vowelQuadrilateral *,.v83-ipa-key,.v83-ipa-key *{
+ -webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;
+ -webkit-tap-highlight-color:transparent!important;
+}
+#vowelQuadrilateral .v83-ipa-key:focus:not(:focus-visible){
+ outline:none!important;box-shadow:none!important;
+}
+#vowelQuadrilateral .v83-ipa-key::selection,#vowelQuadrilateral .v83-ipa-key *::selection{background:transparent!important}
+
+:root{--feedback-rgb:166,128,222;--feedback-strength:.6}
+html[data-inverse="true"]{--feedback-rgb:255,190,128;background:#000}
+html[data-inverse="true"] body{background:#000}
+html[data-inverse="true"] #chartScaleShell,html[data-inverse="true"] .chart-tool-row,html[data-inverse="true"] #chartZoomDialog,html[data-inverse="true"] .v831-symbol-popup{filter:invert(1) hue-rotate(180deg)}
+.v83-purple-flash{position:fixed;z-index:2147483647;pointer-events:none;box-sizing:border-box;background:rgba(var(--feedback-rgb),.18);border:0;border-radius:50%;display:none}
+/* A lower undertie glyph extends into the preceding row in the source design.
+   Keep original ink and positions, but place the '.' own cell above the
+   subsequent row for accurate hit testing within the cell. */
+#chart #suprasegmentals tbody tr:nth-child(8) td.symbol{position:relative;z-index:5}
+#chart #suprasegmentals tbody tr:nth-child(9) td.symbol{position:relative;z-index:4}
+.v831-symbol-popup{position:fixed;z-index:2147483647;display:none;align-items:center;justify-content:center;min-width:58px;height:62px;padding:0 12px;background:#fff;color:#111;border:1px solid #777;border-radius:12px;box-shadow:0 6px 18px #0003;font:40px/1 "Doulos SIL Local","Doulos SIL","Times New Roman",serif;pointer-events:none;transform:translate(-50%,-100%);white-space:nowrap}.v831-symbol-popup.show{display:flex}
+</style><script src="i18n.js"></script></head><body><div class="chart-tool-row"><button type="button" id="chartZoomOpen" aria-haspopup="dialog" aria-controls="chartZoomDialog" data-i18n-key="⛶ 拡大表示">⛶ 拡大表示</button></div><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title"><span id="appVersion" aria-label="バージョン0.2.98">0.2.98</span><span class="chart-title-main">国際音声記号 <span id="alphabetRevision" data-i18n-key="（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span></span></h1><div id="pulmonicConsonants">
+		<h2>子音（肺気流）</h2>
+		<table>
+			<!--<caption>記号が対になっている場合、右側は有声子音を表す。灰色の部分は調音が不可能と考えられる箇所を示す。</caption>-->
+			<colgroup width="0*" />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<colgroup />
+			<thead>
+			<tr>
+				<th></th>
+				<th class="place">両唇音</th>
+				<th class="place">唇歯音</th>
+				<th class="place">歯音</th>
+				<th class="place">歯茎音</th>
+				<th class="place">後部歯茎音</th>
+				<th class="place">そり舌音</th>
+				<th class="place">硬口蓋音</th>
+				<th class="place">&nbsp;軟口蓋音&nbsp;</th> <!-- Note: spaces to prevent MSIE from wrapping some symbols -->
+				<th class="place">口蓋垂音</th>
+				<th class="place">咽頭音</th>
+				<th class="place">声門音</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<th class="manner">破裂音</th>
+				<td>
+					<span title="U+0070: LATIN SMALL LETTER P" class='voiceless'>p</span>
+					<span title="U+0062: LATIN SMALL LETTER B" class='voiced'>b</span>
+				</td>
+				<td></td>
+				<td colspan="3"><span class="alveolar-slot">
+					<span title="U+0074: LATIN SMALL LETTER T" class='voiceless'>t</span>
+					<span title="U+0064: LATIN SMALL LETTER D" class='voiced'>d</span>
+				</span></td>
+				<td>
+					<span title="U+0288: LATIN SMALL LETTER T WITH RETROFLEX HOOK" class='voiceless'>ʈ</span>
+					<span title="U+0256: LATIN SMALL LETTER D WITH TAIL" class='voiced'>ɖ</span>
+				</td>
+				<td>
+					<span title="U+0063: LATIN SMALL LETTER C" class='voiceless'>c</span>
+					<span title="U+025F: LATIN SMALL LETTER DOTLESS J WITH STROKE" class='voiced'>ɟ</span>
+				</td>
+				<td>
+					<span title="U+006B: LATIN SMALL LETTER K" class='voiceless'>k</span>
+					<span title="U+0261: LATIN SMALL LETTER SCRIPT G" class='voiced'>ɡ</span>
+				</td>
+				<td>
+					<span title="U+0071: LATIN SMALL LETTER Q" class='voiceless'>q</span>
+					<span title="U+0262: LATIN LETTER SMALL CAPITAL G" class='voiced'>ɢ</span>
+				</td>
+				<td>
+					<span class='voiceless'></span>
+					<span class='voiced impossible'>&nbsp;</span>
+				</td>
+				<td>
+					<span title="U+0294: LATIN LETTER GLOTTAL STOP" class='voiceless'>ʔ</span>
+					<span class='voiced impossible'>&nbsp;</span>
+				</td>
+			</tr>
+			<tr>
+				<th class="manner">鼻音</th>
+				<td>
+					<span title="U+006D: LATIN SMALL LETTER M" class='voiced'>m</span>
+				</td>
+				<td>
+					<span title="U+0271: LATIN SMALL LETTER M WITH HOOK" class='voiced'>ɱ</span>
+				</td>
+				<td colspan="3"><span class="alveolar-slot">
+					<span title="U+006E: LATIN SMALL LETTER N" class='voiced'>n</span>
+				</span></td>
+				<td>
+					<span title="U+0273: LATIN SMALL LETTER N WITH RETROFLEX HOOK" class='voiced'>ɳ</span>
+				</td>
+				<td>
+					<span title="U+0272: LATIN SMALL LETTER N WITH LEFT HOOK" class='voiced'>ɲ</span>
+				</td>
+				<td>
+					<span title="U+014B: LATIN SMALL LETTER ENG" class='voiced'>ŋ</span>
+				</td>
+				<td>
+					<span title="U+0274: LATIN LETTER SMALL CAPITAL N" class='voiced'>ɴ</span>
+				</td>
+				<td class="impossible"></td>
+				<td class="impossible"></td>
+			</tr>
+			<tr>
+				<th class="manner">ふるえ音</th>
+				<td>
+					<span title="U+0299: LATIN LETTER SMALL CAPITAL B" class='voiced'>ʙ</span>
+				</td>
+				<td></td>
+				<td colspan="3"><span class="alveolar-slot">
+					<span title="U+0072: LATIN SMALL LETTER R" class='voiced'>r</span>
+				</span></td>
+				<td></td>
+				<td></td>
+				<td class="impossible"></td>
+				<td>
+					<span title="U+0280: LATIN LETTER SMALL CAPITAL R" class='voiced'>ʀ</span>
+				</td>
+				<td></td>
+				<td class="impossible"></td>
+			</tr>
+			<tr>
+				<th class="manner" data-i18n-key="はじき音または弾き音">たたき音/<br>はじき音</th>
+				<td></td>
+				<td>
+					<span title="U+2C71: LATIN SMALL LETTER V WITH RIGHT HOOK" class='voiced'>&#x2C71;</span>
+				</td>
+				<td colspan="3"><span class="alveolar-slot">
+					<span title="U+027E: LATIN SMALL LETTER R WITH FISHHOOK" class='voiced'>ɾ</span>
+				</span></td>
+				<td>
+					<span title="U+027D: LATIN SMALL LETTER R WITH TAIL" class='voiced'>ɽ</span>
+				</td>
+				<td></td>
+				<td class="impossible"></td>
+				<td></td>
+				<td></td>
+				<td class="impossible"></td>
+			</tr>
+			<tr>
+				<th class="manner">摩擦音</th>
+				<td>
+					<span title="U+0278: LATIN SMALL LETTER PHI" class='voiceless'>ɸ</span>
+					<span title="U+03B2: GREEK SMALL LETTER BETA" class='voiced'>β</span>
+				</td>
+				<td>
+					<span title="U+0066: LATIN SMALL LETTER F" class='voiceless'>f</span>
+					<span title="U+0076: LATIN SMALL LETTER V" class='voiced'>v</span>
+				</td>
+				<td>
+					<span title="U+03B8: GREEK SMALL LETTER THETA" class='voiceless'>θ</span>
+					<span title="U+00F0: LATIN SMALL LETTER ETH" class='voiced'>ð</span>
+				</td>
+				<td>
+					<span title="U+0073: LATIN SMALL LETTER S" class='voiceless'>s</span>
+					<span title="U+007A: LATIN SMALL LETTER Z" class='voiced'>z</span>
+				</td>
+				<td>
+					<span title="U+0283: LATIN SMALL LETTER ESH" class='voiceless'>ʃ</span>
+					<span title="U+0292: LATIN SMALL LETTER EZH" class='voiced'>ʒ</span>
+				</td>
+				<td>
+					<span title="U+0282: LATIN SMALL LETTER S WITH HOOK" class='voiceless'>ʂ</span>
+					<span title="U+0290: LATIN SMALL LETTER Z WITH RETROFLEX HOOK" class='voiced'>ʐ</span>
+				</td>
+				<td>
+					<span title="U+00E7: LATIN SMALL LETTER C WITH CEDILLA" class='voiceless'>ç</span>
+					<span title="U+029D: LATIN SMALL LETTER J WITH CROSSED-TAIL" class='voiced'>ʝ</span>
+				</td>
+				<td>
+					<span title="U+0078: LATIN SMALL LETTER X" class='voiceless'>x</span>
+					<span title="U+0263: LATIN SMALL LETTER GAMMA" class='voiced'>ɣ</span>
+				</td>
+				<td>
+					<span title="U+03C7: GREEK SMALL LETTER CHI" class='voiceless'>χ</span>
+					<span title="U+0281: LATIN LETTER SMALL CAPITAL INVERTED R" class='voiced'>ʁ</span>
+				</td>
+				<td>
+					<span title="U+0127: LATIN SMALL LETTER H WITH STROKE" class='voiceless'>ħ</span>
+					<span title="U+0295: LATIN LETTER PHARYNGEAL VOICED FRICATIVE" class='voiced'>ʕ</span>
+				</td>
+				<td>
+					<span title="U+0068: LATIN SMALL LETTER H" class='voiceless'>h</span>
+					<span title="U+0266: LATIN SMALL LETTER H WITH HOOK" class='voiced'>ɦ</span>
+				</td>
+			</tr>
+			<tr>
+				<th class="manner">側面摩擦音</th>
+				<td class="impossible"></td>
+				<td class="impossible"></td>
+				<td colspan="3"><span class="alveolar-slot">
+					<span title="U+026C: LATIN SMALL LETTER L WITH BELT" class='voiceless'>ɬ</span>
+					<span title="U+026E: LATIN SMALL LETTER LEZH" class='voiced'>ɮ</span>
+				</span></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="impossible"></td>
+				<td class="impossible"></td>
+			</tr>
+			<tr>
+				<th class="manner">接近音</th>
+				<td></td>
+				<td>
+					<span title="U+028B: LATIN SMALL LETTER V WITH HOOK" class='voiced'>ʋ</span>
+				</td>
+				<td colspan="3"><span class="alveolar-slot">
+					<span title="U+0279: LATIN SMALL LETTER TURNED R" class='voiced'>ɹ</span>
+				</span></td>
+				<td>
+					<span title="U+027B: LATIN SMALL LETTER TURNED R WITH HOOK" class='voiced'>ɻ</span>
+				</td>
+				<td>
+					<span title="U+006A: LATIN SMALL LETTER J" class='voiced'>j</span>
+				</td>
+				<td>
+					<span title="U+0270: LATIN SMALL LETTER TURNED M WITH LONG LEG" class='voiced'>ɰ</span>
+				</td>
+				<td></td>
+				<td></td>
+				<td class="impossible"></td>				
+			</tr>
+			<tr>
+				<th class="manner">側面接近音</th>
+				<td class="impossible"></td>
+				<td class="impossible"></td>
+				<td colspan="3"><span class="alveolar-slot">
+					<span title="U+006C: LATIN SMALL LETTER L" class='voiced'>l</span>
+				</span></td>
+				<td>
+					<span title="U+026D: LATIN SMALL LETTER L WITH RETROFLEX HOOK" class='voiced'>ɭ</span>
+				</td>
+				<td>
+					<span title="U+028E: LATIN SMALL LETTER TURNED Y" class='voiced'>ʎ</span>
+				</td>
+				<td>
+					<span title="U+029F: LATIN LETTER SMALL CAPITAL L" class='voiced'>ʟ</span>
+				</td>
+				<td></td>
+				<td class="impossible"></td>
+				<td class="impossible"></td>
+			</tr>
+			</tbody>
+		</table>
+		<p>枠内で記号が対になっている場合、右側の記号が有声音を、左側の記号が無声音を表す。網掛け部分は、不可能と判断された調音を表す。</p>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		<div class="ipa-pdf-left"><div id="nonPulmonicConsonants">
+		<h2>子音（非肺気流）</h2>
+		<table>
+			<colgroup span="2" />
+			<colgroup span="2" />
+			<colgroup span="2" />
+			<thead>
+				<tr>
+					<th colspan="2">吸着音</th>
+					<th colspan="2">有声入破音</th>
+					<th colspan="2">放出音</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td title="U+0298: LATIN LETTER BILABIAL CLICK">ʘ</td>
+					<th>両唇音</th>
+					<td title="U+0253: LATIN SMALL LETTER B WITH HOOK">ɓ</td>
+					<th>両唇音</th>
+					<!--<td title="U+2019: RIGHT SINGLE QUOTATION MARK">’</td>-->
+					<td title="U+02BC: MODIFIER LETTER APOSTROPHE">&#x02BC;</td><!-- thanks Dan McCloy: http://students.washington.edu/drmccloy/ -->
+					<th data-i18n-key="例: ">例：</th>
+				</tr>
+				<tr>
+					<td title="U+01C0: LATIN LETTER DENTAL CLICK">ǀ</td>
+					<th>歯音</th>
+					<td title="U+0257: LATIN SMALL LETTER D WITH HOOK">ɗ</td>
+					<th>歯音／歯茎音</th>
+					<td>p&#x02BC;<!--’--></td>
+					<th>両唇音</th>
+				</tr>
+				<tr>
+					<td title="U+01C3: LATIN LETTER RETROFLEX CLICK">ǃ</td>
+					<th>（後部）歯茎音</th>
+					<td title="U+0284: LATIN SMALL LETTER DOTLESS J WITH STROKE AND HOOK">ʄ</td>
+					<th>硬口蓋音</th>
+					<td>t&#x02BC;<!--’--></td>
+					<th>歯音／歯茎音</th>
+				</tr>
+				<tr>
+					<td title="U+01C2: LATIN LETTER ALVEOLAR CLICK">ǂ</td>
+					<th>硬口蓋歯茎音</th>
+					<td title="U+0260: LATIN SMALL LETTER G WITH HOOK">ɠ</td>
+					<th>軟口蓋音</th>
+					<td>k&#x02BC;<!--’--></td>
+					<th>軟口蓋音</th>
+				</tr>
+				<tr>
+					<td title="U+01C1: LATIN LETTER LATERAL CLICK">ǁ</td>
+					<th>歯茎側面音</th>
+					<td title="U+029B: LATIN LETTER SMALL CAPITAL G WITH HOOK">ʛ</td>
+					<th>口蓋垂音</th>
+					<td>s&#x02BC;<!--’--></td>
+					<th>歯茎摩擦音</th>
+				</tr>
+			</tbody>
+		</table>
+		</div><div id="otherSymbols">
+		<h2>その他の記号</h2>
+		<table>
+			<colgroup>
+				<col width="0*" />
+				<col width="1*" />
+			</colgroup>
+			<colgroup>
+				<col width="0*" />
+				<col width="1*" />
+			</colgroup>
+			<tbody>
+			<tr>
+				<td title="U+028D: LATIN SMALL LETTER TURNED W">ʍ</td>
+				<th>無声両唇軟口蓋摩擦音</th>
+				<td title="U+0255: LATIN SMALL LETTER C WITH CURL" class="firstOfTwoExamples">ɕ</td>
+				<td title="U+0291: LATIN SMALL LETTER Z WITH CURL" class="secondOfTwoExamples">ʑ</td>
+				<th>歯茎硬口蓋摩擦音</th>
+			</tr>
+			<tr>
+				<td title="U+0077: LATIN SMALL LETTER W">w</td>
+				<th>有声両唇軟口蓋接近音</th>
+				<td title="U+027A: LATIN SMALL LETTER TURNED R WITH LONG LEG" colspan="2">ɺ</td>
+				<th>有声歯茎側面弾き音</th>
+			</tr>
+			<tr>
+				<td title="U+0265: LATIN SMALL LETTER TURNED H">ɥ</td>
+				<th>有声両唇硬口蓋接近音</th>
+				<td title="U+0267: LATIN SMALL LETTER HENG WITH HOOK" colspan="2">ɧ</td>
+				<th data-i18n-template="同時調音 {ʃ} および {x}">同時調音 <span data-i18n-token="{ʃ}" title="U+0283: LATIN SMALL LETTER ESH" class="ipa">ʃ</span> および <span data-i18n-token="{x}" title="U+0078: LATIN SMALL LETTER X" class="ipa">x</span></th>
+			</tr>
+			<tr>
+				<td title="U+029C: LATIN LETTER SMALL CAPITAL H">ʜ</td>
+				<th>無声喉頭蓋摩擦音</th>
+				
+<!--				<th rowspan="3" colspan="2">
+					<span id="tiebarExample" class="ipa"> kp&#x0361; ts&#x0361; </span>
+					<p id="tiebarNote">破擦音や二重調音は、必要に応じて2つの記号を結合弧でつないで表すことができる。 <em>注：下側の結合弧の表示はフォントや環境によって異なる。</em></p>
+				</th>
+				<td>k&#x0361;p</td>
+				<td>ts&#x0361;</td>
+-->
+
+				<th rowspan="3" colspan="3" id='tiebar'>
+					<span id="tiebarExample">
+						<span class='ipa'>k&#x0361;p</span>&nbsp;&nbsp;&nbsp;<span class='ipa'>t&#x035C;s</span><br />
+						<span class='ipa' title="U+0361: COMBINING DOUBLE INVERTED BREVE">&#x25CC;&#x0361;&#x25CC;</span>&nbsp;&nbsp;&nbsp;<span class='ipa' title="U+035C: COMBINING DOUBLE BREVE BELOW">&#x25CC;&#x035C;&#x25CC;</span>
+					</span>
+					<p data-i18n-key="破擦音と二重調音は、必要な場合連結記号でつないだ2つの記号で表すことができる。">破擦音や二重調音は、必要に応じて2つの記号を結合弧でつないで表すことができる。 <!--<em>注：下側の結合弧の表示はフォントや環境によって異なる。</em>--></p>
+				</th>
+
+			</tr>
+			<tr>
+				<td title="U+02A2: LATIN LETTER REVERSED GLOTTAL STOP WITH STROKE">ʢ</td>
+				<th>有声喉頭蓋摩擦音</th>
+			</tr>
+			<tr>
+				<td title="U+02A1: LATIN LETTER GLOTTAL STOP WITH STROKE">ʡ</td>
+				<th>喉頭蓋破裂音</th>
+			</tr>
+			</tbody>
+		</table>
+		</div><div id="diacritics">
+			<h2>補助記号</h2>
+			
+			<table>
+				<colgroup span="4">
+					<col width="0*" />
+					<col />
+					<col width="0*" />
+					<col width="0*" />
+				</colgroup>
+				<colgroup span="4">
+					<col width="0*" />
+					<col />
+					<col width="0*" />
+					<col width="0*" />
+				</colgroup>
+				<colgroup span="4">
+					<col width="0*" />
+					<col />
+					<col width="0*" />
+					<col width="0*" />
+				</colgroup>
+				<tbody>
+					<tr>
+						<td title="U+0325: COMBINING RING BELOW">&#x25CC;&#x325;</td>
+						<th>無声</th>
+						<td class="leftExample">n̥</td>
+						<td class="rightExample">d̥</td>
+						
+						<td title="U+0324: COMBINING DIAERESIS BELOW">&#x25CC;&#x324;</td>
+						<th>息漏れ声</th>
+						<td class="leftExample">b̤</td>
+						<td class="rightExample">a̤</td>
+						
+						<td title="U+032A: COMBINING BRIDGE BELOW">&#x25CC;&#x32A;</td>
+						<th>歯音</th>
+						<td class="leftExample">t̪</td>
+						<td class="rightExample">d̪</td>
+					</tr>
+					<tr>
+						<td title="U+032C: COMBINING CARON BELOW">&#x25CC;&#x32C;</td>
+						<th>有声</th>
+						<td class="leftExample">s̬</td>
+						<td class="rightExample">t̬</td>
+						
+						<td title="U+0330: COMBINING TILDE BELOW">&#x25CC;&#x330;</td>
+						<th>きしみ声</th>
+						<td class="leftExample">b̰</td>
+						<td class="rightExample">a̰</td>
+						
+						<td title="U+033A: COMBINING INVERTED BRIDGE BELOW">&#x25CC;&#x33A;</td>
+						<th>舌尖音</th>
+						<td class="leftExample">t̺</td>
+						<td class="rightExample">d̺</td>
+					</tr>
+					<tr>
+						<td title="U+02B0: MODIFIER LETTER SMALL H">ʰ</td>
+						<th>有気音</th>
+						<td class="leftExample">tʰ</td>
+						<td class="rightExample">dʰ</td>
+						
+						<td title="U+033C: COMBINING SEAGULL BELOW">&#x25CC;&#x33C;</td>
+						<th>舌唇音</th>
+						<td class="leftExample">t̼</td>
+						<td class="rightExample">d̼</td>
+						
+						<td title="U+033B: COMBINING SQUARE BELOW">&#x25CC;&#x33B;</td>
+						<th>舌端音</th>
+						<td class="leftExample">t̻</td>
+						<td class="rightExample">d̻</td>
+					</tr>
+					<tr>
+						<td title="U+0339: COMBINING RIGHT HALF RING BELOW">&#x25CC;&#x339;</td>
+						<th>強い円唇化</th>
+						<td class="leftExample">ɔ̹</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+02B7: MODIFIER LETTER SMALL W">ʷ</td>
+						<th>唇音化</th>
+						<td class="leftExample">tʷ</td>
+						<td class="rightExample">dʷ</td>
+						
+						<td title="U+0303: COMBINING TILDE">&#x25CC;&#x303;</td>
+						<th colspan="2">鼻音化</th>
+						<td class="rightExample">ẽ</td>
+					</tr>
+					<tr>
+						<td title="U+031C: COMBINING LEFT HALF RING BELOW">&#x25CC;&#x31C;</td>
+						<th>弱い円唇化</th>
+						<td class="leftExample">ɔ̜</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+02B2: MODIFIER LETTER SMALL J">ʲ</td>
+						<th data-i18n-key="硬口蓋化">硬口蓋音化</th>
+						<td class="leftExample">tʲ</td>
+						<td class="rightExample">dʲ</td>
+						
+						<td title="U+207F: SUPERSCRIPT LATIN SMALL LETTER N">ⁿ</td>
+						<th colspan="2">鼻音開放</th>
+						<td class="rightExample">dⁿ</td>
+					</tr>
+					<tr>
+						<td title="U+031F: COMBINING PLUS SIGN BELOW">&#x25CC;&#x31F;</td>
+						<th>前進</th>
+						<td class="leftExample">u̟</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+02E0: MODIFIER LETTER SMALL GAMMA">ˠ</td>
+						<th data-i18n-key="軟口蓋化">軟口蓋音化</th>
+						<td class="leftExample">tˠ</td>
+						<td class="rightExample">dˠ</td>
+						
+						<td title="U+02E1: MODIFIER LETTER SMALL L">ˡ</td>
+						<th colspan="2">側面開放</th>
+						<td class="rightExample">dˡ</td>
+					</tr>
+					<tr>
+						<td title="U+0320: COMBINING MINUS SIGN BELOW">&#x25CC;&#x320;</td>
+						<th>後退</th>
+						<td class="leftExample">e̠</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+02E4: MODIFIER LETTER SMALL REVERSED GLOTTAL STOP">ˤ</td>
+						<th>咽頭音化</th>
+						<td class="leftExample">tˤ</td>
+						<td class="rightExample">dˤ</td>
+						
+						<td title="U+031A: COMBINING LEFT ANGLE ABOVE">&#x25CC;&#x31A;</td>
+						<th colspan="2">無音開放</th>
+						<td class="rightExample">d̚</td>
+					</tr>
+					<tr>
+						<td title="U+0308: COMBINING DIAERESIS">&#x25CC;&#x308;</td>
+						<th>中舌化</th>
+						<td class="leftExample">ë</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+0334: COMBINING TILDE OVERLAY">&#x25CC;&#x334;<!--~--></td>
+						<th colspan="2" data-i18n-key="軟口蓋化または咽頭音化">軟口蓋音化または咽頭音化</th>
+						<td title="U+026B: LATIN SMALL LETTER L WITH MIDDLE TILDE" class="wideCell" colspan="5">ɫ</td>
+						<!--<th colspan="4"></th>-->
+					</tr>
+					<tr>
+						<td title="U+033D: COMBINING X ABOVE">&#x25CC;&#x33D;</td>
+						<th>中央化</th>
+						<td class="leftExample">e̽</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+031D: COMBINING UP TACK BELOW">&#x25CC;&#x31D;</td>
+						<th>上寄り</th>
+						<td class="leftExample">e̝</td>
+						<th colspan="5" class="wideCell">(<span class="ipa">ɹ̝</span> <span data-i18n-key="= 有声歯茎摩擦音）">＝有声歯茎摩擦音）</span></th>
+					</tr>
+					<tr>
+						<td title="U+0329: COMBINING VERTICAL LINE BELOW">&#x25CC;&#x329;</td>
+						<th>音節主音</th>
+						<td class="leftExample">n̩</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+031E: COMBINING DOWN TACK BELOW">&#x25CC;&#x31E;</td>
+						<th>下寄り</th>
+						<td class="leftExample">e̞</td>
+						<th colspan="5" class="wideCell">(<span class="ipa">β̞</span> <span data-i18n-key="= 有声両唇接近音）">＝有声両唇接近音）</span></th>
+					</tr>
+					<tr>
+						<td title="U+032F: COMBINING INVERTED BREVE BELOW">&#x25CC;&#x32F;</td>
+						<th>非音節主音</th>
+						<td class="leftExample">e̯</td>
+						<td class="rightExample"></td>
+						
+						<td title="U+0318: COMBINING LEFT TACK BELOW">&#x25CC;&#x318;</td>
+						<th colspan="2">舌根前進</th>
+						<td class="wideCell" colspan="5">e̘</td>
+						<!--<th colspan="4"></th>-->
+					</tr>
+					<tr>
+						<td title="U+02DE: MODIFIER LETTER RHOTIC HOOK">◌˞</td>
+						<th>R音性</th>
+						<!--<td class="leftExample">ə˞</td>-->
+						<td class="leftExample" title="U+025A: LATIN SMALL LETTER SCHWA WITH HOOK">&#x025A;</td>
+						<td class="rightExample">a˞</td>
+						
+						<td title="U+0319: COMBINING RIGHT TACK BELOW">&#x25CC;&#x319;</td>
+						<th colspan="2">舌根後退</th>
+						<td class="wideCell" colspan="5">e̙</td>
+						<!--<th colspan="4"></th>-->
+					</tr>
+				</tbody>
+			</table>
+		</div><p class="diacritics-note" id="diacriticsNote" data-i18n-template="基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例：{ŋ̊}">基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例： <span data-i18n-token="{ŋ̊}" class="ipa">ŋ̊</span></p></div><div class="ipa-pdf-right"><div id="vowels">
+		<h2>母音</h2>
+		<div id="vowelQuadrilateral" aria-label="IPA正本PDFのベクター座標を正規化した母音四辺形">
+<svg class="vowel-chart-svg" viewBox="0 -24 520 340" role="img" aria-label="母音四辺形：正本準拠28記号・11黒点・7ラベル">
+<defs><mask id="vowelTextCutout" maskUnits="userSpaceOnUse" x="0" y="-24" width="520" height="340"><rect x="0" y="-24" width="520" height="340" fill="white"/><g id="vowelCutouts" fill="black"></g></mask></defs>
+<!-- IPA Japanese official PDF: both diagonals connect the black dot centers and must remain continuous. -->
+<g class="vowel-diagonals" stroke="#555" stroke-width="0.508" fill="none">
+<path class="official-vowel-rule front-vowel-diagonal" d="M143.153 26.843 L300.698 260.539"/>
+<path class="official-vowel-rule" data-official-drawing="40" d="M296.833 26.833 L375.183 260.539"/>
+</g>
+<g class="vowel-lines" stroke="#555" stroke-width="0.508" fill="none">
+<path class="official-vowel-rule" data-official-drawing="36" d="M437.837 103.833 L335.843 103.833 M309.443 103.833 L207.866 103.833"/>
+<path class="official-vowel-rule" data-official-drawing="37" d="M437.837 26.839 L310.000 26.839 M283.600 26.839 L155.960 26.839"/>
+<path class="official-vowel-rule" data-official-drawing="38" d="M312.430 260.540 L437.838 260.540"/>
+<path class="official-vowel-rule" data-official-drawing="39" d="M437.837 180.754 L361.649 180.754 M335.249 180.754 L259.720 180.754"/>
+
+<path class="official-vowel-rule" data-official-drawing="98" d="M450.652 260.540 L450.652 26.844"/>
+</g><g class="vowel-dots" fill="#111"><circle cx="143.150" cy="26.840" r="3.471"/><circle cx="296.836" cy="26.840" r="3.471"/><circle cx="450.650" cy="26.840" r="3.471"/><circle cx="195.055" cy="103.831" r="3.471"/><circle cx="322.643" cy="103.831" r="3.471"/><circle cx="450.650" cy="103.831" r="3.471"/><circle cx="246.910" cy="180.756" r="3.471"/><circle cx="348.449" cy="180.756" r="3.471"/><circle cx="450.650" cy="180.756" r="3.471"/><circle cx="299.620" cy="260.540" r="3.471"/><circle cx="450.650" cy="260.540" r="3.471"/></g>
+<g class="vowel-axis-labels"><text class="vowel-measured-label" data-pdf-x="381.1021" data-pdf-y="276.8947" x="164.686" y="25.051" text-anchor="middle">前舌</text><text class="vowel-measured-label" data-pdf-x="459.3165" data-pdf-y="276.8955" x="293.812" y="25.052" text-anchor="middle">中舌</text><text class="vowel-measured-label" data-pdf-x="535.7559" data-pdf-y="276.8993" x="420.008" y="25.059" text-anchor="middle">後舌</text><text class="vowel-measured-label" data-pdf-x="331.2576" data-pdf-y="290.4355" x="82.396" y="47.434" text-anchor="middle">狭</text><text class="vowel-measured-label" data-pdf-x="335.5294" data-pdf-y="328.5465" x="89.449" y="110.432" text-anchor="middle">半狭</text><text class="vowel-measured-label" data-pdf-x="335.504" data-pdf-y="366.2317" x="89.407" y="172.727" text-anchor="middle">半広</text><text class="vowel-measured-label" data-pdf-x="331.2369" data-pdf-y="405.5812" x="82.362" y="237.773" text-anchor="middle">広</text></g>
+<g class="vowel-symbols"><text class="vowel-dynamic-glyph" data-idx="0" data-pdf-x="374.8367" data-pdf-y="289.4276" text-anchor="middle" x="154.342" y="45.768">i</text><text class="vowel-dynamic-glyph" data-idx="1" data-pdf-x="391.2305" data-pdf-y="289.4276" text-anchor="middle" x="181.407" y="45.768">y</text><text class="vowel-dynamic-glyph" data-idx="2" data-pdf-x="450.2642" data-pdf-y="289.4276" text-anchor="middle" x="278.867" y="45.768">ɨ</text><text class="vowel-dynamic-glyph" data-idx="3" data-pdf-x="466.4764" data-pdf-y="289.3956" text-anchor="middle" x="305.632" y="45.715">ʉ</text><text class="vowel-dynamic-glyph" data-idx="4" data-pdf-x="522.9789" data-pdf-y="289.3795" text-anchor="middle" x="398.914" y="45.689">ɯ</text><text class="vowel-dynamic-glyph" data-idx="5" data-pdf-x="541.7064" data-pdf-y="289.4276" text-anchor="middle" x="429.831" y="45.768">u</text><text class="vowel-dynamic-glyph" data-idx="6" data-pdf-x="409.0286" data-pdf-y="307.1938" text-anchor="middle" x="210.790" y="75.136">ɪ</text><text class="vowel-dynamic-glyph" data-idx="7" data-pdf-x="420.4669" data-pdf-y="307.2258" text-anchor="middle" x="229.674" y="75.189">ʏ</text><text class="vowel-dynamic-glyph" data-idx="8" data-pdf-x="506.7827" data-pdf-y="307.2258" text-anchor="middle" x="372.175" y="75.189">ʊ</text><text class="vowel-dynamic-glyph" data-idx="9" data-pdf-x="398.6958" data-pdf-y="327.1066" text-anchor="middle" x="193.732" y="108.052">e</text><text class="vowel-dynamic-glyph" data-idx="10" data-pdf-x="416.3979" data-pdf-y="327.0907" text-anchor="middle" x="222.956" y="108.026">ø</text><text class="vowel-dynamic-glyph" data-idx="11" data-pdf-x="461.8053" data-pdf-y="327.0163" text-anchor="middle" x="297.921" y="107.903">ɘ</text><text class="vowel-dynamic-glyph" data-idx="12" data-pdf-x="479.1322" data-pdf-y="327.0746" text-anchor="middle" x="326.526" y="107.999">ɵ</text><text class="vowel-dynamic-glyph" data-idx="13" data-pdf-x="524.1084" data-pdf-y="327.0906" text-anchor="middle" x="400.778" y="108.026">ɤ</text><text class="vowel-dynamic-glyph" data-idx="14" data-pdf-x="541.578" data-pdf-y="327.1066" text-anchor="middle" x="429.619" y="108.052">o</text><text class="vowel-dynamic-glyph" data-idx="15" data-pdf-x="476.273" data-pdf-y="345.514" text-anchor="middle" x="321.806" y="138.480">ə</text><text class="vowel-dynamic-glyph" data-idx="16" data-pdf-x="423.687" data-pdf-y="364.802" text-anchor="middle" x="234.990" y="170.364">ɛ</text><text class="vowel-dynamic-glyph" data-idx="17" data-pdf-x="443.055" data-pdf-y="364.834" text-anchor="middle" x="266.965" y="170.417">œ</text><text class="vowel-dynamic-glyph" data-idx="18" data-pdf-x="475.095" data-pdf-y="364.818" text-anchor="middle" x="319.861" y="170.390">ɜ</text><text class="vowel-dynamic-glyph" data-idx="19" data-pdf-x="491.49" data-pdf-y="364.856" text-anchor="middle" x="346.928" y="170.453">ɞ</text><text class="vowel-dynamic-glyph" data-idx="20" data-pdf-x="525.222" data-pdf-y="364.818" text-anchor="middle" x="402.617" y="170.390">ʌ</text><text class="vowel-dynamic-glyph" data-idx="21" data-pdf-x="541.37" data-pdf-y="364.834" text-anchor="middle" x="429.276" y="170.417">ɔ</text><text class="vowel-dynamic-glyph" data-idx="22" data-pdf-x="435.6939" data-pdf-y="387.1656" text-anchor="middle" x="254.813" y="207.331">æ</text><text class="vowel-dynamic-glyph" data-idx="23" data-pdf-x="489.209" data-pdf-y="383.561" text-anchor="middle" x="343.162" y="201.373">ɐ</text><text class="vowel-dynamic-glyph" data-idx="24" data-pdf-x="449.688" data-pdf-y="404.147" text-anchor="middle" x="277.916" y="235.402">a</text><text class="vowel-dynamic-glyph" data-idx="25" data-pdf-x="469.32" data-pdf-y="404.115" text-anchor="middle" x="310.327" y="235.349">ɶ</text><text class="vowel-dynamic-glyph" data-idx="26" data-pdf-x="524.229" data-pdf-y="404.131" text-anchor="middle" x="400.978" y="235.375">ɑ</text><text class="vowel-dynamic-glyph" data-idx="27" data-pdf-x="541.947" data-pdf-y="404.115" text-anchor="middle" x="430.229" y="235.349">ɒ</text></g>
+<text class="vowel-note" x="500" y="290" text-anchor="end"><tspan x="500" y="290">記号が対になっている場合、</tspan><tspan x="500" y="303">右側の記号が円唇母音を表す。</tspan></text>
+</svg></div>
+		</div><div id="suprasegmentals">
+		<h2>超分節的要素</h2>
+		<table>
+			<col style="width:56px" />
+			<col style="width:104px" />
+			<col style="width:145px" />
+			<tbody>
+				<tr>
+					<td title="U+02C8: MODIFIER LETTER VERTICAL LINE" class="symbol">ˈ</td>
+					<th>主強勢</th>
+					<td id="stressExample">ˌfoʊnəˈtɪʃən</td>
+				</tr>
+				<tr>
+					<td title="U+02CC: MODIFIER LETTER LOW VERTICAL LINE" class="symbol">ˌ</td>
+					<th colspan="2">副次強勢</th>
+				</tr>
+				<tr>
+					<td title="U+02D0: MODIFIER LETTER TRIANGULAR COLON" class="symbol">ː</td>
+					<th>長</th>
+					<td class="example">eː</td>
+				</tr>
+				<tr>
+					<td title="U+02D1: MODIFIER LETTER HALF TRIANGULAR COLON" class="symbol">ˑ</td>
+					<th>半長</th>
+					<td class="example">eˑ</td>
+				</tr>
+				<tr>
+					<td title="U+0306: COMBINING BREVE" class="symbol">&#x25CC;&#x306;</td>
+					<th>超短</th>
+					<td class="example">ĕ</td>
+				</tr>
+				<tr>
+					<td title="U+007C: VERTICAL LINE" class="symbol">|</td>
+					<th colspan="2">小さい（脚）境界</th>
+				</tr>
+				<tr>
+					<td title="U+2016: DOUBLE VERTICAL LINE" class="symbol">‖</td>
+					<th colspan="2">大きい（イントネーション）境界</th>
+				</tr>
+				<tr>
+					<td title="U+002E: FULL STOP" class="symbol">.</td>
+					<th>音節境界</th>
+					<td class="example" id="syllableExample">ɹi.ækt</td>
+				</tr>
+				<tr>
+					<td title="U+203F: UNDERTIE" class="symbol">◌‿◌</td>
+					<th colspan="2">連結（無境界）</th>
+				</tr>
+			</tbody>
+		</table>
+		</div><div id="tonesAndWordAccents">
+		<h2>声調と語アクセント</h2>
+		<table>
+			<colgroup span="4">
+				<col />
+				<col width="0*" />
+				<col />
+				<col />
+			</colgroup>
+			<colgroup span="3" width="0*" />
+			<thead>
+				<tr>
+					<th colspan="4">平板</th>
+					<th colspan="4">曲線</th>
+				</tr>
+			</thead>
+			<tbody>
+<!--
+Though Doulos SIL supports the diacritics for contour-tones, it is Unicode 4.1 unofficial (the codes are in the PUA). It is going to be in Unicode 5.0:
+
+1. U+030C COMBINING CARON
+2. U+0302 COMBINING CIRCUMFLEX ACCENT
+3. U+1DC4 COMBINING MACRON-ACUTE
+4. U+1DC5 COMBINING GRAVE-MACRON
+5. U+1DC8 COMBINING GRAVE-ACUTE-GRAVE
+
+    * U+1DC4 COMBINING MACRON-ACUTE
+    * U+1DC5 COMBINING GRAVE-MACRON
+    * U+1DC6 COMBINING MACRON-GRAVE
+    * U+1DC7 COMBINING ACUTE-MACRON
+    * U+1DC8 COMBINING GRAVE-ACUTE-GRAVE
+    * U+1DC9 COMBINING ACUTE-GRAVE-ACUTE
+
+You might want to include these as a precursor to the upcoming new standard.
+
+Update this chart to correspond to: http://upload.wikimedia.org/wikipedia/en/1/15/IPA_chart_2005.png
+-->
+				<tr>
+					<td title="U+030B: COMBINING DOUBLE ACUTE ACCENT">◌̋</td>
+					<th class="or">または</th>
+					<td title="U+02E5: MODIFIER LETTER EXTRA-HIGH TONE BAR">&#x02E5;</td>
+					<th>超高</th>
+					
+					<td title="U+030C: COMBINING CARON">◌̌</td>
+					<th class="or">または</th>
+					<td title="U+02E9 MODIFIER LETTER EXTRA-LOW TONE BAR, U+02E5 MODIFIER LETTER EXTRA-HIGH TONE BAR">&#x02E9;&#x02E5;</td>
+					<th>上昇</th>
+				</tr>
+				<tr>
+					<td title="U+0301: COMBINING ACUTE ACCENT">◌́</td>
+					<th class="or"></th>
+					<td title="U+02E6 MODIFIER LETTER HIGH TONE BAR" >&#x02E6;</td>
+					<th>高</th>
+					
+					<td title="U+0302: COMBINING CIRCUMFLEX ACCENT">◌̂</td>
+					<th class="or"></th>
+					<td title="U+02E5 MODIFIER LETTER EXTRA-HIGH TONE BAR, U+02E9 MODIFIER LETTER EXTRA-LOW TONE BAR">&#x02E5;&#x02E9;</td>
+					<th>下降</th>
+				</tr>
+				<tr>
+					<td title="U+0304: COMBINING MACRON">◌̄</td>
+					<th class="or"></th>
+					<td title="U+02E7: MODIFIER LETTER MID TONE BAR">&#x02E7;</td>
+					<th>中</th>
+					
+					<td title="U+1DC4: COMBINING MACRON-ACUTE">◌&#x1DC4;</td>
+					<th class="or"></th>
+					<td title="U+02E6 MODIFIER LETTER HIGH TONE BAR, U+02E5 MODIFIER LETTER EXTRA-HIGH TONE BAR">&#x02E6;&#x02E5;</td>
+					<th>高上昇</th>
+				</tr>
+				<tr>
+					<td title="U+0300: COMBINING GRAVE ACCENT">◌̀</td>
+					<th class="or"></th>
+					<td title="U+02E8: MODIFIER LETTER LOW TONE BAR">&#x02E8;</td>
+					<th>低</th>
+					
+					<td title="U+1DC5: COMBINING GRAVE-MACRON">◌&#x1DC5;</td>
+					<th class="or"></th>
+					<td title="U+02E9 MODIFIER LETTER EXTRA-LOW TONE BAR, U+02E8 MODIFIER LETTER LOW TONE BAR">&#x02E9;&#x02E8;</td>
+					<th>低上昇</th>
+				</tr>
+				<tr>
+					<td title="U+030F: COMBINING DOUBLE GRAVE ACCENT">◌̏</td>
+					<th class="or"></th>
+					<td title="U+02E9: MODIFIER LETTER EXTRA-LOW TONE BAR">&#x02E9;</td>
+					<th>超低</th>
+
+					<td title="U+1DC8: COMBINING GRAVE-ACUTE-GRAVE">◌&#x1DC8;</td>
+					<th class="or"></th>
+					<td title="U+02E7 MODIFIER LETTER MID TONE BAR, U+02E6 MODIFIER LETTER HIGH TONE BAR, U+02E7 MODIFIER LETTER MID TONE BAR">&#x02E7;&#x02E6;&#x02E7;</td>
+					<th>上昇下降</th>
+				</tr>
+				<!-- Note: there are more tone contour letters than displayed on the official chart -->
+				<tr>
+					<td title="U+2193: DOWNWARDS ARROW">↓</td>
+					<th colspan="3">ダウンステップ</th>
+					
+					<td title="U+2197: NORTH EAST ARROW"><span class="ipa-text-arrow">↗&#xFE0E;</span></td>
+					<th colspan="3">全体的上昇</th>
+				</tr>
+				<tr>
+					<td title="U+2191: UPWARDS ARROW">↑</td>
+					<th colspan="3">アップステップ</th>
+					
+					<td title="U+2198: SOUTH EAST ARROW"><span class="ipa-text-arrow">↘&#xFE0E;</span></td>
+					<th colspan="3">全体的下降</th>
+				</tr>
+			</tbody>
+		</table>
+		<!--<p>Note: these last four are not tech</p>-->
+		</div></div></div><p class="source-note" data-i18n-key="制作・編集：江崎哲也（山梨大学／esaKITs） / Tetsuya Esaki (University of Yamanashi)。© 2026 T. Esaki (esaKITs)。">制作・編集：江崎哲也（山梨大学／esaKITs） / Tetsuya Esaki (University of Yamanashi)。© 2026 T. Esaki (esaKITs)。</p><p class="source-note" data-i18n-key="本チャートは、Weston Ruter氏がMIT Licenseのもとで公開したIPA Chartの配置を基に制作しました。その先駆的な取り組みと、成果を広く公開されたことに深く感謝いたします。">本チャートは、Weston Ruter氏がMIT Licenseのもとで公開したIPA Chartの配置を基に制作しました。その先駆的な取り組みと、成果を広く公開されたことに深く感謝いたします。</p><p class="source-note" data-i18n-template="日本語表記は、国際音声学会（IPA）の公式日本語版（Japanese version 2020、© 2026 International Phonetic Association）を参照しました。資料：{資料リンク}（IPA Chart revised to 2015/2005）。">日本語表記は、国際音声学会（IPA）の公式日本語版（Japanese version 2020、© 2026 International Phonetic Association）を参照しました。資料：<a data-i18n-token="{資料リンク}" data-i18n-key="国際音声学会公式PDF" href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf" target="_blank" rel="noopener">国際音声学会公式PDF</a>（IPA Chart revised to 2015/2005）。</p><p class="source-note" data-i18n-key="母音四辺形は、IPA公式PDFからベクター座標を抽出し、輪郭線・交点・各母音記号の位置関係を計測したうえで再構成しました。">母音四辺形は、IPA公式PDFからベクター座標を抽出し、輪郭線・交点・各母音記号の位置関係を計測したうえで再構成しました。</p><details><summary>MIT License and attribution</summary><pre style="white-space:pre-wrap">MIT License
+
+Copyright (c) 2004-2006 Weston Ruter
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre></details></div></div><script>
+(function(){
+  "use strict";
+  var shell=document.getElementById("chartScaleShell");
+  var content=document.getElementById("chartScaleContent");
+  var BASE=1040,zoom=1,pan=0,pinch=null,swipe=null;
+  shell.style.touchAction='pan-y';shell.style.overflow='hidden';
+  function scale(){return Math.min(1,Math.max(1,document.documentElement.clientWidth-16)/BASE)*zoom;}
+  function local(t){var r=shell.getBoundingClientRect();return{x:t.clientX-r.left,y:t.clientY-r.top};}
+  function fitChart(){
+    if(document.getElementById('chartZoomDialog')?.hidden===false)return;
+    var available=Math.max(1,document.documentElement.clientWidth-16);
+    var s=scale();pan=Math.max(0,Math.min(Math.max(0,BASE*s-available),pan));
+    content.style.transform="translateX("+(-pan)+"px) scale("+s+")";
+    shell.style.width=Math.min(BASE*s,available)+"px";
+    shell.style.height=(content.scrollHeight*s)+"px";
+    shell.dataset.zoom=String(zoom);document.getElementById('chart').dataset.feedbackScale=String(zoom);
+    window.dispatchEvent(new Event('esa-inline-chart-layout'));
+  }
+  function begin(t){
+    var a=local(t[0]),b=local(t[1]);pinch={distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),zoom:zoom,x:(pan+(a.x+b.x)/2)/scale(),y:(a.y+b.y)/2/scale()};
+    document.documentElement.dataset.chartGesture='pinch';document.dispatchEvent(new Event('esa-chart-gesture-start'));
+  }
+  shell.addEventListener('touchstart',function(e){
+    if(e.touches.length>=2){e.preventDefault();swipe=null;begin(e.touches);}
+    else if(e.touches.length===1){var p=local(e.touches[0]);swipe={x:p.x,y:p.y,pan:pan,moved:false};}
+  },{passive:false,capture:true});
+  shell.addEventListener('touchmove',function(e){
+    if(e.touches.length>=2){
+      e.preventDefault();if(!pinch)begin(e.touches);var a=local(e.touches[0]),b=local(e.touches[1]),oldY=shell.getBoundingClientRect().top+(a.y+b.y)/2;
+      zoom=Math.max(1,Math.min(4,pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/pinch.distance));
+      pan=pinch.x*scale()-(a.x+b.x)/2;fitChart();
+      // Keep the touched chart point under the fingers while the page grows vertically.
+      if(parent!==window){var host=frameElement.getBoundingClientRect();parent.scrollBy(0,(shell.getBoundingClientRect().top+pinch.y*scale()-oldY)*host.height/frameElement.clientHeight);}
+    }else if(e.touches.length===1&&swipe&&zoom>1){
+      var p=local(e.touches[0]),dx=p.x-swipe.x,dy=p.y-swipe.y;
+      if(!swipe.moved&&Math.abs(dx)>6&&Math.abs(dx)>Math.abs(dy)){swipe.moved=true;document.documentElement.dataset.chartGesture='pan';document.dispatchEvent(new Event('esa-chart-gesture-start'));}
+      if(swipe.moved){e.preventDefault();pan=swipe.pan-dx;fitChart();}
+    }
+  },{passive:false,capture:true});
+  function end(e){if(!e.touches.length){pinch=null;swipe=null;delete document.documentElement.dataset.chartGesture;}else if(e.touches.length===1){pinch=null;var p=local(e.touches[0]);swipe={x:p.x,y:p.y,pan:pan,moved:false};}}
+  shell.addEventListener('touchend',end,{passive:true});shell.addEventListener('touchcancel',end,{passive:true});
+  shell.addEventListener('gesturestart',function(e){e.preventDefault();},{passive:false});
+  shell.addEventListener('gesturechange',function(e){e.preventDefault();},{passive:false});
+  window.addEventListener("resize",fitChart,{passive:true});
+  window.addEventListener("orientationchange",fitChart,{passive:true});
+  if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fitChart);}
+  fitChart();
+})();
+</script><div id="chartZoomDialog" class="zoom-dialog" role="dialog" aria-modal="true" aria-label="IPAチャート拡大表示" hidden>
+ <div class="zoom-toolbar">
+ <span class="zoom-title" data-i18n-key="国際音声記号 — 拡大表示">国際音声記号 — 拡大表示</span>
+ <button type="button" id="zoomMinus" aria-label="縮小">−</button>
+ <input type="range" id="zoomRange" min="100" max="300" step="1" value="100" aria-label="拡大倍率">
+ <button type="button" id="zoomPlus" aria-label="拡大">＋</button>
+ <span class="zoom-label" id="zoomPercent">100%</span>
+ <button type="button" id="zoomMapToggle" aria-pressed="true">全体図を隠す</button>
+ <button type="button" id="zoomClose" class="zoom-close" data-i18n-key="閉じる ✕">閉じる ✕</button>
+ </div>
+ <div id="zoomViewport" class="zoom-viewport" tabindex="0" aria-label="拡大したIPAチャート。スクロールして移動できます"><div id="zoomStage" class="zoom-stage"></div></div>
+ <div class="zoom-minimap" id="zoomMinimap" role="group" aria-label="チャート全体図。ドラッグで表示位置を移動">
+ <div class="map-title" data-i18n-key="IPA全体図">IPA全体図</div>
+ <div class="map-canvas" id="zoomMapCanvas"><div id="zoomMapWindow" class="map-window"></div></div>
+ </div>
+</div><script>
+/* v0.2.60 — chart viewer; move the single real chart rather than cloning element IDs */
+(function(){
+"use strict";
+const chart=document.getElementById("chart"), originalParent=chart.parentNode, originalNext=chart.nextSibling;
+const openBtn=document.getElementById("chartZoomOpen"), dialog=document.getElementById("chartZoomDialog");
+const viewport=document.getElementById("zoomViewport"), stage=document.getElementById("zoomStage");
+const map=document.getElementById("zoomMinimap"), mapCanvas=document.getElementById("zoomMapCanvas"), mapWindow=document.getElementById("zoomMapWindow");
+const range=document.getElementById("zoomRange"), percent=document.getElementById("zoomPercent");
+const mapToggle=document.getElementById("zoomMapToggle");
+const BASE=1040;
+let active=false, zoom=1, baseScale=1, lastFocus=null, drag=false;
+const parts=[
+ ["pulmonicConsonants","肺気流子音"],["nonPulmonicConsonants","非肺気流"],["vowels","母音"],
+ ["otherSymbols","その他"],["suprasegmentals","超分節"],["diacritics","補助記号"],
+ ["tonesAndWordAccents","声調"]
+];
+function clamp(n,a,b){return Math.min(b,Math.max(a,n));}
+function scale(){return baseScale*zoom;}
+function setZoom(z,keepCenter=true){
+ if(!active)return;
+ const old=scale(), centerX=(viewport.scrollLeft+viewport.clientWidth/2)/old, centerY=(viewport.scrollTop+viewport.clientHeight/2)/old;
+ zoom=clamp(z,1,3);chart.dataset.feedbackScale=String(zoom);range.value=String(Math.round(zoom*100));percent.textContent=Math.round(zoom*100)+"%";
+ const next=scale(),height=chart.offsetHeight;
+ stage.style.width=(BASE*next)+"px";stage.style.height=(height*next)+"px";
+ chart.style.transform="scale("+next+")";
+ if(keepCenter){viewport.scrollLeft=centerX*next-viewport.clientWidth/2;viewport.scrollTop=centerY*next-viewport.clientHeight/2;}
+ renderMinimap();
+}
+function drawMap(){
+ mapCanvas.querySelectorAll(".map-region").forEach(el=>el.remove());
+ const chartH=Math.max(1,chart.offsetHeight), chartRect=chart.getBoundingClientRect();
+ // offsetTop/Left reflects layout geometry; transform scale is ignored by offset dimensions.
+ for(const [id,label] of parts){
+  const el=chart.querySelector("#"+id); if(!el)continue;
+  const item=document.createElement("div");item.className="map-region";item.textContent=window.esaI18n.t(document.querySelector("#"+id+" h2")?.dataset.i18nKey||({pulmonicConsonants:"子音（肺気流）",nonPulmonicConsonants:"子音（非肺気流）",vowels:"母音",otherSymbols:"その他の記号",suprasegmentals:"超分節的要素",diacritics:"補助記号",tonesAndWordAccents:"声調と語アクセント"}[id]),window.esaChartLocale||"ja","chart");
+  item.style.left=(100*el.offsetLeft/BASE)+"%";
+  item.style.top=(100*el.offsetTop/chartH)+"%";
+  item.style.width=(100*el.offsetWidth/BASE)+"%";
+  item.style.height=(100*el.offsetHeight/chartH)+"%";
+  mapCanvas.insertBefore(item,mapWindow);
+ }
+}
+function renderMinimap(){
+ if(!active)return;
+ const sc=scale(),cw=BASE*sc,ch=Math.max(1,chart.offsetHeight*sc);
+ const x=clamp(viewport.scrollLeft/cw,0,1),y=clamp(viewport.scrollTop/ch,0,1);
+ mapWindow.style.left=(100*x)+"%";mapWindow.style.top=(100*y)+"%";
+ mapWindow.style.width=(100*Math.min(1,viewport.clientWidth/cw))+"%";
+ mapWindow.style.height=(100*Math.min(1,viewport.clientHeight/ch))+"%";
+}
+function moveFromMap(e){
+ const rect=mapCanvas.getBoundingClientRect();
+ const x=clamp((e.clientX-rect.left)/rect.width,0,1);
+ const y=clamp((e.clientY-rect.top)/rect.height,0,1);
+ viewport.scrollLeft=x*stage.offsetWidth-viewport.clientWidth/2;
+ viewport.scrollTop=y*stage.offsetHeight-viewport.clientHeight/2;
+ renderMinimap();
+}
+
+let layoutPending=0,layoutSignature='',pinch=null,pinchPan=null;
+function notifyZoom(open){if(parent!==window)parent.postMessage({kind:'esa-chart-zoom',open},location.origin);}
+function queueViewerLayout(){
+ if(!active||layoutPending)return;
+ layoutPending=requestAnimationFrame(()=>{
+  layoutPending=0;if(!active)return;
+  const width=viewport.clientWidth,height=viewport.clientHeight;if(width<=0||height<=0)return;
+  const signature=width+'x'+height;if(signature===layoutSignature)return;layoutSignature=signature;
+  const old=scale(),cx=(viewport.scrollLeft+width/2)/Math.max(.001,old),cy=(viewport.scrollTop+height/2)/Math.max(.001,old);
+  baseScale=Math.min(1,Math.max(1,width-12)/BASE);
+  setZoom(zoom,false);
+  viewport.scrollLeft=cx*scale()-width/2;viewport.scrollTop=cy*scale()-height/2;
+  drawMap();renderMinimap();dialog.dataset.ready='true';
+ });
+}
+function openViewer(){
+ if(active)return;active=true;lastFocus=document.activeElement;layoutSignature='';
+ try{
+  dialog.hidden=false;dialog.dataset.ready='false';document.body.style.overflow='hidden';
+  stage.appendChild(chart);chart.style.margin='0';chart.style.width=BASE+'px';chart.style.minWidth=BASE+'px';
+  zoom=clamp(parent!==window?(parent.visualViewport?.scale||1):1,1,3);baseScale=Math.min(1,Math.max(1,viewport.clientWidth-12)/BASE);
+  setZoom(zoom,false);viewport.scrollLeft=0;viewport.scrollTop=0;
+  drawMap();renderMinimap();notifyZoom(true);queueViewerLayout();
+  document.getElementById('zoomClose').focus({preventScroll:true});
+ }catch(e){closeViewer();throw e;}
+}
+function closeViewer(){
+ if(!active)return;active=false;pinch=null;pinchPan=null;delete document.documentElement.dataset.chartGesture;
+ if(layoutPending)cancelAnimationFrame(layoutPending);layoutPending=0;layoutSignature='';
+ dialog.hidden=true;dialog.dataset.ready='false';
+ chart.style.removeProperty('transform');chart.style.removeProperty('margin');chart.style.removeProperty('width');chart.style.removeProperty('min-width');
+ if(originalNext)originalParent.insertBefore(chart,originalNext);else originalParent.appendChild(chart);
+ document.body.style.overflow='';window.dispatchEvent(new Event('resize'));notifyZoom(false);
+ (lastFocus||openBtn).focus({preventScroll:true});
+}
+function point(t){const r=viewport.getBoundingClientRect();return{x:t.clientX-r.left,y:t.clientY-r.top};}
+function beginPinch(touches){
+ const a=point(touches[0]),b=point(touches[1]),mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+ pinch={distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),zoom,chartX:(viewport.scrollLeft+mx)/scale(),chartY:(viewport.scrollTop+my)/scale()};
+ document.documentElement.dataset.chartGesture='pinch';
+ document.dispatchEvent(new Event('esa-chart-gesture-start'));
+}
+viewport.addEventListener('touchstart',e=>{
+ if(!active)return;
+ if(e.touches.length>=2){e.preventDefault();pinchPan=null;beginPinch(e.touches);}
+ else if(e.touches.length===1){const p=point(e.touches[0]);pinchPan={x:p.x,y:p.y,startX:p.x,startY:p.y,moved:false};}
+}, {passive:false,capture:true});
+viewport.addEventListener('touchmove',e=>{
+ if(!active)return;
+ if(e.touches.length>=2){
+  e.preventDefault();if(!pinch)beginPinch(e.touches);
+  const a=point(e.touches[0]),b=point(e.touches[1]),mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+  setZoom(pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/pinch.distance,false);
+  viewport.scrollLeft=pinch.chartX*scale()-mx;viewport.scrollTop=pinch.chartY*scale()-my;renderMinimap();
+ }else if(e.touches.length===1&&pinchPan){
+  const p=point(e.touches[0]);
+  if(!pinchPan.moved&&Math.hypot(p.x-pinchPan.startX,p.y-pinchPan.startY)>6){
+   pinchPan.moved=true;document.documentElement.dataset.chartGesture='pan';document.dispatchEvent(new Event('esa-chart-gesture-start'));
+  }
+  if(pinchPan.moved){e.preventDefault();viewport.scrollLeft+=pinchPan.x-p.x;viewport.scrollTop+=pinchPan.y-p.y;renderMinimap();}
+  pinchPan.x=p.x;pinchPan.y=p.y;
+ }
+},{passive:false,capture:true});
+function endPinch(e){if(!e.touches.length){pinch=null;pinchPan=null;delete document.documentElement.dataset.chartGesture;}else if(e.touches.length===1){pinch=null;const p=point(e.touches[0]);pinchPan={x:p.x,y:p.y,startX:p.x,startY:p.y,moved:true};}}
+viewport.addEventListener('touchend',endPinch,{passive:true});viewport.addEventListener('touchcancel',endPinch,{passive:true});
+window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===parent&&e.data?.kind==='esa-chart-zoom-layout')queueViewerLayout();});
+openBtn.addEventListener("click",openViewer);
+document.getElementById("zoomClose").addEventListener("click",closeViewer);
+document.getElementById("zoomMinus").addEventListener("click",()=>setZoom(zoom-.25));
+document.getElementById("zoomPlus").addEventListener("click",()=>setZoom(zoom+.25));
+range.addEventListener("input",()=>setZoom(Number(range.value)/100));
+window.addEventListener("esa-chart-locale-change",()=>{mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale,"chart");if(active){drawMap();renderMinimap();}});
+mapToggle.addEventListener("click",()=>{map.hidden=!map.hidden;mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale||"ja","chart");mapToggle.setAttribute("aria-pressed",String(!map.hidden));});
+viewport.addEventListener("scroll",renderMinimap,{passive:true});
+mapCanvas.addEventListener("pointerdown",e=>{drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});
+mapCanvas.addEventListener("pointermove",e=>{if(drag)moveFromMap(e);});
+mapCanvas.addEventListener("pointerup",()=>{drag=false;});
+mapCanvas.addEventListener("pointercancel",()=>{drag=false;});
+document.addEventListener("keydown",e=>{
+ if(!active)return;
+ if(e.key==="Escape"){e.preventDefault();closeViewer();}
+ // Keep keyboard focus within dialog (the underlying chart is not reachable).
+ if(e.key==="Tab"){
+  const focusable=[...dialog.querySelectorAll('button:not([disabled]),input:not([disabled]),[tabindex="0"]')].filter(el=>!el.closest("[hidden]"));
+  const first=focusable[0],last=focusable[focusable.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+ }
+});
+window.addEventListener("resize",queueViewerLayout,{passive:true});
+})();
+</script>
+
+<script>
+/* v0.2.60: reference positions extracted from official IPA Kiel Japanese PDF;
+   381.2925,290.7778 is upper front dot; width151.4302pt -> 250 SVG units,
+   height114.941pt ->190 SVG units. Codepoints map to Doulos SIL.
+   Text positions use PDF bbox centers and recenter actual new-font bboxes. */
+(function(){
+"use strict";
+const svg=document.querySelector("#vowelQuadrilateral svg");
+const letters=[...svg.querySelectorAll(".vowel-dynamic-glyph")];
+const labelEls=[...svg.querySelectorAll(".vowel-measured-label")];
+const layer=svg.querySelector("#vowelCutouts");
+const NS="http://www.w3.org/2000/svg";
+let scheduled=false,fontReady=false;
+const pdfToSvgX=x=>260+1.23*(165+(x-381.2925)*(250/151.4302)-260);
+const pdfToSvgY=y=>140+1.23*(48+(y-290.7778)*(190/114.941)-140);
+function bbox(el){try{return el.getBBox();}catch(_){return {x:0,y:0,width:0,height:0};}}
+function recenter(el,x,y){
+  el.removeAttribute("dy");el.setAttribute("x",x.toFixed(3));el.setAttribute("y",y.toFixed(3));
+  const b=bbox(el);if(!b.width||!b.height)return;
+  el.setAttribute("dx","0");
+  el.setAttribute("dy",(y-(b.y+b.height/2)).toFixed(3));
+}
+function render(){
+ scheduled=false;
+ if(!fontReady)return;
+ const font=32;
+ for(const el of letters){
+  el.style.fontSize=font+"px";
+  el.style.dominantBaseline="alphabetic";
+  const x=pdfToSvgX(Number(el.dataset.pdfX)),y=pdfToSvgY(Number(el.dataset.pdfY));
+  recenter(el,x,y);
+ }
+ for(const el of labelEls){
+  const x=pdfToSvgX(Number(el.dataset.pdfX)),y=pdfToSvgY(Number(el.dataset.pdfY));
+  recenter(el,x,y);
+ }
+ // v0.2.60: top 3 labels only. Retain their measured horizontal anchors;
+ // place their visible bottom at least 6 SVG units above the nearest
+ // top-row glyph, and at least 6 units above the quadrilateral top edge.
+ // Use rendered bounding boxes after the fonts and glyph centres are final.
+ const requiredGap=6;
+ for(let i=0;i<3;i++){
+  const label=labelEls[i];
+  const b=bbox(label);
+  const leftGlyph=bbox(letters[2*i]),rightGlyph=bbox(letters[2*i+1]);
+  if(!b.height||!leftGlyph.height||!rightGlyph.height)continue;
+  const nearestTop=Math.min(pdfToSvgY(290.7778),leftGlyph.y,rightGlyph.y);
+  const maxBottom=nearestTop-requiredGap;
+  const overflow=(b.y+b.height)-maxBottom;
+  if(overflow>0){
+   const previousDy=Number(label.getAttribute("dy")||0);
+   label.setAttribute("dy",(previousDy-overflow).toFixed(3));
+  }
+ }
+
+ // All geometry below is shared by all 28 letters and all 7 rules.
+ // The empirical spacing is the median of the 24 measured, visible
+ // circle-cut endpoints in the official IPA Japanese PDF (16.02 pt).
+ const officialGapEm=0.18362361123367055;
+ const EPS=1e-10;
+ if(!window.__ipaBaseRulePaths)window.__ipaBaseRulePaths=
+   [...svg.querySelectorAll('path.official-vowel-rule')].map(path=>({path,base:path.getAttribute('d'),id:path.dataset.officialDrawing||'front'}));
+ const cache=window.__ipaSilhouettes||(window.__ipaSilhouettes=new Map());
+ function hull(points){
+   points.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+   const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+   const lower=[],upper=[];
+   for(const p of points){while(lower.length>1&&cross(lower.at(-2),lower.at(-1),p)<=0)lower.pop();lower.push(p);}
+   for(let i=points.length-1;i>=0;i--){const p=points[i];while(upper.length>1&&cross(upper.at(-2),upper.at(-1),p)<=0)upper.pop();upper.push(p);}
+   return lower.slice(0,-1).concat(upper.slice(0,-1));
+ }
+ function silhouette(el,size){
+   const ch=el.textContent,key=ch+'|'+size;
+   if(cache.has(key))return cache.get(key);
+   const scale=8,extent=Math.ceil(size*3+24),canvas=document.createElement('canvas');
+   canvas.width=canvas.height=extent*scale;
+   const ctx=canvas.getContext('2d',{willReadFrequently:true});
+   ctx.scale(scale,scale);ctx.font=size+'px "Doulos SIL Local"';
+   ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText(ch,extent/2,extent/2);
+   const data=ctx.getImageData(0,0,canvas.width,canvas.height).data,points=[];
+   for(let y=0;y<canvas.height;y++){
+     let lo=-1,hi=-1;
+     for(let x=0;x<canvas.width;x++)if(data[(y*canvas.width+x)*4+3]>=16){if(lo<0)lo=x;hi=x;}
+     if(lo>=0){
+       // Cover pixel cells, not only their centres; include antialias edges.
+       for(const yy of [y/scale,(y+1)/scale])for(const xx of [lo/scale,(hi+1)/scale])points.push([xx-extent/2,yy-extent/2]);
+     }
+   }
+   if(points.length<3)throw Error('Missing rendered glyph '+ch);
+   const poly=hull(points);cache.set(key,poly);return poly;
+ }
+ function convexClip(a,b,poly,pad=0){
+   const vx=b[0]-a[0],vy=b[1]-a[1];let lo=-Infinity,hi=Infinity;
+   for(let k=0;k<poly.length;k++){
+     const p=poly[k],q=poly[(k+1)%poly.length],ex=q[0]-p[0],ey=q[1]-p[1];
+     const c=ex*(a[1]-p[1])-ey*(a[0]-p[0]),s=ex*vy-ey*vx,r=pad*Math.hypot(ex,ey);
+     if(Math.abs(s)<EPS){if(c< -r)return null;continue;}
+     const t=(-r-c)/s;if(s>0)lo=Math.max(lo,t);else hi=Math.min(hi,t);
+     if(lo>hi)return null;
+   }
+   return [lo,hi];
+ }
+ function distance(p,poly){
+   let inside=true,best=Infinity;
+   for(let i=0;i<poly.length;i++){
+     const a=poly[i],b=poly[(i+1)%poly.length],dx=b[0]-a[0],dy=b[1]-a[1];
+     if(dx*(p[1]-a[1])-dy*(p[0]-a[0])< -EPS)inside=false;
+     const t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy)));
+     best=Math.min(best,Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy));
+   }
+   return inside?0:best;
+ }
+ function cut(a,b,poly,pad){
+   // A nearby letter must not create a hole in a rule that never crosses
+   // its outer envelope. This also preserves the continuous right axis.
+   const core=convexClip(a,b,poly);if(!core)return null;
+   const outer=convexClip(a,b,poly,pad);if(!outer)return null;
+   let lo=Math.max(0,outer[0]),hi=Math.min(1,outer[1]);if(lo>=hi)return null;
+   const pivot=Math.max(lo,Math.min(hi,(core[0]+core[1])/2));
+   const at=t=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+   if(distance(at(pivot),poly)>pad)return null;
+   // Euclidean rounded offset, rather than an acute miter that overcuts.
+   if(distance(at(lo),poly)>pad){let x=lo,y=pivot;for(let k=0;k<40;k++){const m=(x+y)/2;if(distance(at(m),poly)>pad)x=m;else y=m;}lo=y;}
+   if(distance(at(hi),poly)>pad){let x=pivot,y=hi;for(let k=0;k<40;k++){const m=(x+y)/2;if(distance(at(m),poly)>pad)y=m;else x=m;}hi=x;}
+   return [lo,hi];
+ }
+ const glyphs=letters.map(el=>{
+   const size=parseFloat(getComputedStyle(el).fontSize);
+   if(getComputedStyle(el).dominantBaseline!=='alphabetic')throw Error('Baseline mismatch');
+   const x=+el.getAttribute('x')+(+el.getAttribute('dx')||0),y=+el.getAttribute('y')+(+el.getAttribute('dy')||0);
+   return {char:el.textContent,polygon:silhouette(el,size).map(p=>[x+p[0],y+p[1]])};
+ });
+ const rules=[];
+ for(const {path,base,id} of window.__ipaBaseRulePaths){
+   const coords=[...base.matchAll(/[ML]\s*([-\d.]+)\s+([-\d.]+)/g)].map(m=>[+m[1],+m[2]]),out=[],segments=[];
+   const stroke=parseFloat(getComputedStyle(path).strokeWidth),clearance=font*officialGapEm,pad=clearance+stroke/2;
+   for(let j=0;j<coords.length;j+=2){
+     const a=coords[j],b=coords[j+1];
+     const intervals=glyphs.map(g=>{const v=cut(a,b,g.polygon,pad);return v&&{lo:v[0],hi:v[1],char:g.char};}).filter(Boolean).sort((u,v)=>u.lo-v.lo);
+     const merged=[];for(const v of intervals){const last=merged.at(-1);if(last&&v.lo<=last.hi+EPS)last.hi=Math.max(last.hi,v.hi);else merged.push({lo:v.lo,hi:v.hi});}
+     const point=t=>(a[0]+(b[0]-a[0])*t).toFixed(5)+' '+(a[1]+(b[1]-a[1])*t).toFixed(5);
+     const emit=(lo,hi)=>{if(hi-lo>EPS)out.push('M'+point(lo)+' L'+point(hi));};let cursor=0;
+     for(const v of merged){emit(cursor,v.lo);cursor=v.hi;}emit(cursor,1);
+     segments.push({base:[a,b],cuts:intervals});
+   }
+   path.setAttribute('d',out.join(' '));rules.push({id,source:base,visible:path.getAttribute('d'),segments,stroke});
+ }
+ window.__ipaLineAudit={fontSize:font,officialGapEm,clearance:font*officialGapEm,glyphs,rules,baseline:'alphabetic',sampleScale:8};
+ window.dispatchEvent(new Event("resize"));
+}
+function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(render);}
+Promise.all([document.fonts.load('32px "Doulos SIL Local"',letters.map(el=>el.textContent).join("")),document.fonts.ready]).then(()=>{fontReady=true;schedule();});
+window.addEventListener("load",schedule,{once:true});schedule();
+window.addEventListener('esa-vowel-labels-change',schedule);
+})();
+</script>
+<script id="v83-integration">
+(function(){
+'use strict';
+const BASE_SELECTOR=[
+ '#pulmonicConsonants tbody td span.voiceless','#pulmonicConsonants tbody td span.voiced',
+ '#pulmonicConsonants tbody td span[title^="U+"]',
+ '#nonPulmonicConsonants tbody td[title^="U+"]',
+ '#otherSymbols tbody td[title^="U+"]','#otherSymbols tbody th span[title^="U+"]',
+ '#diacritics tbody td[title^="U+"]',
+ '#suprasegmentals tbody td.symbol',
+ '#tonesAndWordAccents tbody td[title^="U+"]',
+ '#vowelQuadrilateral .vowel-dynamic-glyph',
+ '#diacritics tbody td.leftExample','#diacritics tbody td.rightExample',
+ '#suprasegmentals tbody td.example','#suprasegmentals tbody td#stressExample','#suprasegmentals tbody td#syllableExample'
+].join(',');
+const EXTRA_SELECTOR='#nonPulmonicConsonants tbody td,#otherSymbols #tiebarExample > .ipa,#diacritics td.wideCell,#diacritics th.wideCell .ipa,.diacritics-note .ipa';
+const previousTargets=new Set(document.querySelectorAll(BASE_SELECTOR));
+const SELECTOR=BASE_SELECTOR+','+EXTRA_SELECTOR;
+const flash=document.createElement('div');flash.className='v83-purple-flash';flash.setAttribute('aria-hidden','true');document.body.appendChild(flash);
+/* v83.9: one shared glow and selection dot for every IPA key. */
+let glowReleasePending=false, glowReleaseTimer=null, symbolGlowAnimation=null;
+const selectedDot=document.createElement('div');
+selectedDot.id='v839SelectedSymbolDot';
+selectedDot.setAttribute('aria-hidden','true');
+selectedDot.style.cssText='position:fixed;display:none;z-index:2147483645;width:13px;height:13px;border-radius:50%;background:rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.75));border:0;box-shadow:none;pointer-events:none;opacity:0;transition:opacity 260ms ease-out';
+document.body.appendChild(selectedDot);
+let selectedSymbol=null, heldSymbol=null, suppressSymbolClick=null,gestureSuppressed=false;
+function feedbackScale(el){return Math.max(1,Math.min(4,Number(el?.closest('#chart')?.dataset.feedbackScale)||1));}
+function repositionSelectedDot(){
+ if(heldSymbol||glowReleasePending||!selectedSymbol||!document.contains(selectedSymbol)){selectedDot.style.opacity='0';selectedDot.style.display='none';return;}
+ const rect=selectedSymbol.getBoundingClientRect();
+ if(rect.width<=0||rect.height<=0||rect.bottom<0||rect.top>innerHeight||rect.right<0||rect.left>innerWidth){selectedDot.style.display='none';return;}
+ const diameter=13*feedbackScale(selectedSymbol);
+ selectedDot.style.width=diameter+'px';selectedDot.style.height=diameter+'px';
+ selectedDot.style.left=(rect.left+rect.width/2-diameter/2)+'px';
+ selectedDot.style.top=(rect.top+rect.height/2-diameter/2)+'px';
+ selectedDot.style.display='block';
+ if(!symbolGlowAnimation||symbolGlowAnimation.playState==='finished')selectedDot.style.opacity='1';
+}
+function selectSymbol(el){
+ selectedSymbol=el&&el.matches('.v83-ipa-key')?el:null;
+ repositionSelectedDot();
+}
+window.__v839DotState=()=>({visible:getComputedStyle(selectedDot).display!=='none',diameter:selectedDot.getBoundingClientRect().width,background:getComputedStyle(selectedDot).backgroundColor,tag:selectedSymbol?.dataset.v83Sym||null});
+window.addEventListener('resize',repositionSelectedDot);
+window.addEventListener('scroll',repositionSelectedDot,true);
+// Zoom transforms change screen coordinates without resizing the glyph itself.
+new MutationObserver(()=>requestAnimationFrame(repositionSelectedDot)).observe(document.getElementById('chartScaleContent'),{attributes:true,attributeFilter:['style']});
+new MutationObserver(()=>requestAnimationFrame(repositionSelectedDot)).observe(document.getElementById('chart'),{attributes:true,attributeFilter:['style','data-feedback-scale']});
+
+const popup=document.createElement('div');popup.className='v831-symbol-popup';popup.id='v831SymbolPopup';popup.setAttribute('aria-hidden','true');document.body.appendChild(popup);
+let popupActive=null;
+function showSymbolPopup(el){
+ if(!el)return;
+ const rect=el.getBoundingClientRect(),sym=el.dataset.v83Sym;
+ if(!sym||!rect.width||!rect.height)return;
+ popup.textContent=sym;
+ popup.classList.add('show');
+ // Measure the real bubble, then anchor its lower edge 7px above the glyph.
+ // Coordinates stay in this frame's viewport, including after chart zoom/scroll.
+ const bubble=popup.getBoundingClientRect(),vv=window.visualViewport;
+ let obstacle=null;
+ let left=vv?.offsetLeft||0,top=vv?.offsetTop||0;
+ let right=left+(vv?.width||innerWidth),bottom=top+(vv?.height||innerHeight);
+ // In the embedded view, exclude the host toolbar and the offscreen frame area.
+ try{
+  const host=window.frameElement;
+  if(host){
+   const fr=host.getBoundingClientRect(),pv=parent.visualViewport;
+   left=Math.max(left,(pv?.offsetLeft||0)-fr.left);
+   right=Math.min(right,(pv?.offsetLeft||0)+(pv?.width||parent.innerWidth)-fr.left);
+   top=Math.max(top,(pv?.offsetTop||0)-fr.top);
+   bottom=Math.min(bottom,(pv?.offsetTop||0)+(pv?.height||parent.innerHeight)-fr.top);
+   const panel=parent.document.getElementById('floatingEditor');
+   if(panel){const pr=panel.getBoundingClientRect();obstacle={left:pr.left-fr.left,right:pr.right-fr.left,top:pr.top-fr.top,bottom:pr.bottom-fr.top};}
+  }
+ }catch(e){}
+ const half=bubble.width/2,pad=4,gap=7;
+ const x=Math.max(left+half+pad,Math.min(right-half-pad,rect.left+rect.width/2));
+ let y=rect.top-gap;
+ if(y-bubble.height<top+pad)y=rect.bottom+gap+bubble.height;
+ y=Math.max(top+pad+bubble.height,Math.min(bottom-pad,y));
+ if(obstacle&&x+half>obstacle.left&&x-half<obstacle.right&&y>obstacle.top&&y-bubble.height<obstacle.bottom){
+  const below=rect.bottom+gap+bubble.height;
+  if(below<=bottom-pad&&(below<=obstacle.top||below-bubble.height>=obstacle.bottom))y=below;
+ }
+ popup.style.left=x+'px';popup.style.top=y+'px';
+ popupActive=el;
+}
+function hideSymbolPopup(){popup.classList.remove('show');popupActive=null;}
+window.__v831PopupState=()=>({show:popup.classList.contains('show'),text:popup.textContent,active:!!popupActive});
+
+let flashTimer;
+function clean(raw){return raw.trim().replaceAll('◌','').replaceAll('\uFE0E','').replace(/\s+/g,'');}
+function symbolOf(el){
+ const raw=el.textContent;
+ if(el.classList.contains('leftExample')||el.classList.contains('rightExample')||el.classList.contains('example')||el.id==='stressExample'||el.id==='syllableExample')return raw.trim();
+ return clean(raw);
+}
+const all=new Set();
+document.querySelectorAll(SELECTOR).forEach(el=>{
+ // A complete table cell is not a hitbox: use a tightly-fitted glyph span.
+ let hit=el;
+ if(el.tagName.toLowerCase()==='td'||el.tagName.toLowerCase()==='th'){
+  hit=document.createElement('span');hit.className='v83-glyph-span';
+  hit.style.cssText='display:inline-block;line-height:inherit;vertical-align:baseline;white-space:nowrap';
+  while(el.firstChild)hit.appendChild(el.firstChild);
+  el.appendChild(hit);
+ }
+ const symbol=symbolOf(hit);
+ if(!symbol||symbol.length>24||/[ぁ-龯]/u.test(symbol))return;
+ if(all.has(hit))return;all.add(hit);
+ hit.classList.add('v83-ipa-key');
+ hit.setAttribute('role','button');hit.setAttribute('tabindex','0');
+ hit.setAttribute('aria-label',symbol+' を入力');
+ hit.dataset.v83Sym=symbol;
+ if(!previousTargets.has(el))hit.dataset.v8310Added='true';
+});
+function hitFrom(target){return target instanceof Element?target.closest('.v83-ipa-key'):null;}
+function flashHit(el){
+ const a=el.getBoundingClientRect();
+ if(!a.width||!a.height)return;
+ // All symbols: 26px feathered feedback grows from 13px and eases back to a persistent dot.
+ // A soft radial gradient marks the selected sound without a rectangular border.
+ {
+  const diameter=26*feedbackScale(el);
+  const centerX=a.left+a.width/2,centerY=a.top+a.height/2;
+  const x=centerX-diameter/2,y=centerY-diameter/2;
+  const paint='background:radial-gradient(circle closest-side,rgba(var(--feedback-rgb),var(--feedback-strength)) 0%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.91)) 25%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.75)) 50%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.48)) 75%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.21)) 91%,rgba(var(--feedback-rgb),0) 100%);border:0;box-shadow:none;';
+  clearTimeout(flashTimer);
+  clearTimeout(glowReleaseTimer);glowReleasePending=false;
+  if(symbolGlowAnimation){symbolGlowAnimation.cancel();symbolGlowAnimation=null;}
+  flash.style.cssText='position:fixed;z-index:2147483647;pointer-events:none;display:block;box-sizing:border-box;border-radius:50%;width:'+diameter+'px;height:'+diameter+'px;left:'+x+'px;top:'+y+'px;transform:scale(1);opacity:1;'+paint;
+  // One feathered circle expands smoothly from the 13px centre to a 26px glow.
+  symbolGlowAnimation=flash.animate([{transform:'scale(.5)',opacity:.35},{transform:'scale(1)',opacity:1}],{duration:220,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+  return;
+ }
+}
+
+function activate(el,e){
+ if(!el||document.documentElement.dataset.chartGesture)return;
+ e?.preventDefault();
+ const sym=el.dataset.v83Sym;if(!sym)return;
+ selectSymbol(el);
+ if(window.parent&&typeof window.parent.esaChartInsert==='function'){
+   window.parent.esaChartInsert(sym);
+   if(e?.type==='keydown')el.focus({preventScroll:true});
+ }
+}
+document.addEventListener('click',e=>{
+ if(gestureSuppressed){e.preventDefault();return;}
+ const el=hitFrom(e.target);
+ if(el&&el===suppressSymbolClick&&e.detail!==0){e.preventDefault();suppressSymbolClick=null;return;}
+ activate(el,e);
+},true);
+document.addEventListener('keydown',e=>{suppressSymbolClick=null;const el=hitFrom(e.target);if(el&&(e.key==='Enter'||e.key===' '))activate(el,e);},true);
+document.addEventListener('pointerdown',e=>{if(document.documentElement.dataset.chartGesture)return;gestureSuppressed=false;suppressSymbolClick=null;const el=hitFrom(e.target);if(el){
+ // Keep the editor caret and suppress native touch selection for every symbol.
+ e.preventDefault();heldSymbol=el;selectedDot.style.opacity='0';selectedDot.style.display='none';
+ flashHit(el);showSymbolPopup(el);
+}},true);
+function releaseSymbol(){if(heldSymbol){
+ selectedSymbol=heldSymbol;heldSymbol=null;
+ // Animate the current visual state instead of snapping between two sizes.
+ const fromTransform=getComputedStyle(flash).transform,fromOpacity=getComputedStyle(flash).opacity;
+ if(symbolGlowAnimation)symbolGlowAnimation.cancel();
+ symbolGlowAnimation=flash.animate([{transform:fromTransform,opacity:fromOpacity},{transform:'scale(.5)',opacity:0}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'});
+ glowReleasePending=false;clearTimeout(glowReleaseTimer);
+ selectedDot.style.opacity='0';repositionSelectedDot();
+ requestAnimationFrame(()=>{if(!heldSymbol&&selectedSymbol)selectedDot.style.opacity='1';});
+ glowReleaseTimer=setTimeout(()=>{flash.style.display='none';if(symbolGlowAnimation){symbolGlowAnimation.cancel();symbolGlowAnimation=null;}},310);
+}}
+document.addEventListener('pointerup',e=>{
+ if(gestureSuppressed||document.documentElement.dataset.chartGesture){hideSymbolPopup();return;}
+ const active=hitFrom(e.target),touchSymbol=e.pointerType==='touch'?heldSymbol:null;
+ releaseSymbol();hideSymbolPopup();
+ // WebKit can suppress its compatibility click after the native selection is cancelled.
+ // Commit a symbol touch on release and consume any later compatibility click once.
+ if(touchSymbol&&active===touchSymbol){activate(touchSymbol,e);suppressSymbolClick=touchSymbol;}
+ if(active){
+  const selection=window.getSelection?.();if(selection&&selection.rangeCount)selection.removeAllRanges();
+  // iPhone Safari sometimes persists a selected SVG-text focus rectangle after touchend.
+  if(document.activeElement===active)active.blur();
+ }
+},true);
+document.addEventListener('esa-chart-gesture-start',()=>{
+ gestureSuppressed=true;heldSymbol=null;clearTimeout(glowReleaseTimer);
+ if(symbolGlowAnimation){symbolGlowAnimation.cancel();symbolGlowAnimation=null;}
+ flash.style.display='none';hideSymbolPopup();repositionSelectedDot();
+});
+document.addEventListener('pointercancel',()=>{releaseSymbol();hideSymbolPopup();},true);
+window.addEventListener('blur',()=>{releaseSymbol();hideSymbolPopup();});
+document.addEventListener('scroll',hideSymbolPopup,true);
+window.addEventListener('resize',hideSymbolPopup);
+window.visualViewport?.addEventListener('resize',hideSymbolPopup);
+window.visualViewport?.addEventListener('scroll',hideSymbolPopup);
+document.addEventListener('keydown',e=>{const el=hitFrom(e.target);if(el&&(e.key==='Enter'||e.key===' ')){heldSymbol=el;selectedDot.style.opacity='0';selectedDot.style.display='none';flashHit(el);showSymbolPopup(el);}},true);
+document.addEventListener('keyup',e=>{if(e.key==='Enter'||e.key===' '){releaseSymbol();hideSymbolPopup();}},true);
+window.__v83HitStats=()=>({all:all.size,bySection:Object.fromEntries(['pulmonicConsonants','nonPulmonicConsonants','vowels','otherSymbols','diacritics','suprasegmentals','tonesAndWordAccents','diacriticsNote'].map(id=>[id,document.getElementById(id)?.querySelectorAll('.v83-ipa-key').length||0]))});
+// All visible translations share the same CSV catalog as the input panel.
+window.esaI18n.ready.then(function(){
+const dictionary=window.esaI18n.rows('chart');
+const langs={ja:'ja',en:'en','pt-BR':'pt_BR',fa:'fa','ja-osaka':'ja_osaka'};
+const mapping=new Map(dictionary.map(r=>[r.ja.trim(),r]));
+const vowelLabels=[...document.querySelectorAll('#vowelQuadrilateral .vowel-measured-label')].map(el=>({el,key:el.textContent}));
+const vowelNote=document.querySelector('#vowelQuadrilateral .vowel-note');
+const vowelNoteKey=vowelNote.textContent;
+const originalNoteLines=[...vowelNote.querySelectorAll('tspan')].map(el=>el.textContent);
+function translateVowelSVG(){
+ for(const {el,key}of vowelLabels){el.textContent=translate(key);el.setAttribute('direction',locale==='fa'?'rtl':'ltr');}
+ const value=translate(vowelNoteKey),rtl=locale==='fa';
+ let lines;
+ if(value===vowelNoteKey)lines=originalNoteLines;
+ else{
+  const words=value.split(/\s+/);let split=1,best=Infinity;
+  for(let i=1;i<words.length;i++){const delta=Math.abs(words.slice(0,i).join(' ').length-words.slice(i).join(' ').length);if(delta<best){best=delta;split=i;}}
+  lines=words.length>1?[words.slice(0,split).join(' '),words.slice(split).join(' ')]:[value];
+ }
+ vowelNote.setAttribute('direction',rtl?'rtl':'ltr');vowelNote.setAttribute('text-anchor',rtl?'start':'end');vowelNote.setAttribute('aria-label',value);
+ vowelNote.replaceChildren(...lines.map((text,i)=>{const t=document.createElementNS('http://www.w3.org/2000/svg','tspan');t.setAttribute('x','500');t.setAttribute('y',String(290+i*13));t.textContent=text+(value!==vowelNoteKey&&i<lines.length-1?' ':'');return t;}));
+ window.dispatchEvent(new Event('esa-vowel-labels-change'));
+}
+const original=new WeakMap(),originalAttrs=new WeakMap();
+let locale='ja',applying=false;
+function translate(raw){
+ const key=raw.trim();if(!key)return raw;
+ const lang=langs[locale]||'ja';
+ const full=mapping.get(key);
+ if(full&&full[lang])return raw.replace(key,full[lang]);
+ return raw;
+}
+
+const bindings=[...document.querySelectorAll('[data-i18n-key],[data-i18n-template]')].map(el=>({el,key:el.dataset.i18nKey||el.dataset.i18nTemplate,template:el.hasAttribute('data-i18n-template'),nodes:[...el.childNodes],tokens:new Map([...el.querySelectorAll('[data-i18n-token]')].map(n=>[n.dataset.i18nToken,n]))}));
+function translateBindings(){
+ for(const b of bindings){
+  const value=translate(b.key);
+  if(value===b.key){if(b.el.childNodes.length!==b.nodes.length||b.nodes.some((n,i)=>b.el.childNodes[i]!==n))b.el.replaceChildren(...b.nodes);}
+  else if(b.template){
+   const nodes=value.split(/(\{[^{}]+\})/g).filter(Boolean).map(part=>b.tokens.get(part)||document.createTextNode(part));
+   b.el.replaceChildren(...nodes);
+  }else if(b.el.textContent!==value)b.el.textContent=value;
+ }
+}
+function applyLocale(){
+ if(applying)return;applying=true;
+ try{
+  document.documentElement.lang=locale==='ja-osaka'?'ja':locale;
+  const root=document.getElementById('chart');
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  while(walker.nextNode()){
+   const node=walker.currentNode;
+   if(node.parentElement?.closest('.v83-ipa-key, svg, .source-note, details, a, [data-i18n-key], [data-i18n-template]'))continue;
+   if(!original.has(node))original.set(node,node.nodeValue);
+   const raw=original.get(node),val=translate(raw);
+   if(node.nodeValue!==val)node.nodeValue=val;
+  }
+  // Prefix labels for the controls are also translated from the existing dictionary.
+  root.querySelectorAll('h2,th,p').forEach(el=>{
+   if(el.closest('.v83-ipa-key'))return;
+   if(!originalAttrs.has(el))originalAttrs.set(el,el.getAttribute('title'));
+  });
+  translateBindings();
+  translateVowelSVG();
+  window.esaChartLocale=locale;window.dispatchEvent(new Event("esa-chart-locale-change"));
+ }finally{applying=false;}
+ height();
+}
+window.esaSetLocale=function(v){locale=langs[v]?v:'ja';applyLocale();};
+const oldResize=new ResizeObserver(()=>height());
+oldResize.observe(document.getElementById('chartScaleContent'));
+function height(){
+ if(document.getElementById('chartZoomDialog')?.hidden===false)return;
+ const content=document.getElementById('chartScaleContent');
+ const box=content.getBoundingClientRect();
+ const bottom=Math.max(box.bottom,document.querySelector('#chartScaleContent > details')?.getBoundingClientRect().bottom||0);
+ try{parent.postMessage({kind:'esa-chart-height',height:Math.max(700,Math.ceil(bottom+12))},location.origin);}catch(e){}
+}
+window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===parent&&e.data?.kind==='esa-request-height')height();});
+const zoomOpen=document.getElementById('chartZoomOpen'),zoomClose=document.getElementById('zoomClose');
+
+
+
+window.addEventListener('load',()=>{window.esaSetLocale(parent.document.getElementById('languageSelect')?.value||'ja');height();});
+window.addEventListener('resize',height);
+window.addEventListener('esa-inline-chart-layout',height);
+document.querySelectorAll('#chartScaleContent > details').forEach(d=>d.addEventListener('toggle',height));
+window.esaSetLocale(parent!==window?(parent.document.getElementById('languageSelect')?.value||'ja'):'ja');
+height();
+});
+})();
+</script></body>
+</html>
+

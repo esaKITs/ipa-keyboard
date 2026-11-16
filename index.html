@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>76 IPA Keyboard | esaKITs</title>
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>IPA Keyboard v83.20 | esaKITs</title><link rel="canonical" href="https://esakits.github.io/ipa-keyboard/">
 <style>
 :root{--ink:#111;--line:#222;--shade:#d7d7d7;--ui:#f3f3f1;--focus:#0a84ff}*{box-sizing:border-box}body{margin:0;background:var(--ui);color:var(--ink);font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif}.app{max-width:1500px;margin:auto;padding:10px}.toolbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:rgba(243,243,241,.97);padding:6px 0 9px;border-bottom:1px solid #aaa}.output{width:100%;min-height:64px;max-height:420px;resize:none;border:1.5px solid #333;border-radius:4px;background:#fff;padding:8px 10px;font:60px/1.25 "Doulos SIL Local","Doulos SIL","Times New Roman","DejaVu Serif",serif}.controls{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.ctl{min-height:36px;border:1px solid #888;background:#fff;border-radius:4px;padding:5px 9px;cursor:pointer}.viewport{margin-top:10px}.sheet-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}.sheet{position:relative;width:1160px;min-width:1160px;background:#fff;border:1.5px solid var(--line);padding:14px 14px 10px}.app-header{position:relative;text-align:center;background:var(--ui);padding:10px 42px 8px}.brand{text-align:center;margin:0 0 10px}.build-number{font:700 1.45em/1 -apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;display:inline-block;margin-right:.22em;vertical-align:-.04em}.brand-name{font:700 22px/1.15 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}.brand-full{font-size:10px;letter-spacing:.04em;margin-top:2px}.version-ja{font-size:12px;margin-top:3px}.title{text-align:center;font:700 24px/1.2 Georgia,"Times New Roman",serif;margin:0 0 8px}.section-title{font:700 14px/1.1 Georgia,"Times New Roman",serif;margin:8px 0 4px}.ipa{font-family:"Doulos SIL Local","Doulos SIL","Times New Roman","DejaVu Serif",serif}.key{font:22px/1 "Doulos SIL Local","Doulos SIL","Times New Roman","DejaVu Serif",serif;border:0;background:transparent;min-width:25px;min-height:29px;padding:1px 3px;cursor:pointer;border-radius:3px;color:#111}.key:hover,.key:focus-visible{background:rgba(170,135,255,.09);outline:1px solid #A780FF}.key.pressed,.key.click-flash{background:rgba(170,135,255,.32);box-shadow:inset 0 0 0 1px #A780FF}.cons{width:100%;border-collapse:collapse;table-layout:fixed}.cons th,.cons td{border:1px solid var(--line);padding:0;text-align:center;vertical-align:middle;height:36px}.cons thead th{height:29px;font-size:10px;font-weight:500}.cons .row{width:104px;text-align:left;padding-left:4px;font-size:10.5px;font-weight:500}.pair{display:grid;grid-template-columns:1fr 1fr;align-items:center}.pair .key:first-child{border-radius:0}.blocked{display:block;width:100%;height:100%!important;min-height:36px;background:var(--shade)}.ipa-standard{position:absolute;top:8px;right:8px;font-size:9px;color:#666;letter-spacing:.02em;white-space:nowrap}.cons-note{text-align:center;font-size:10px;margin:4px 0 0}.middle{display:grid;grid-template-columns:560px 540px;gap:30px;margin-top:22px;align-items:start}.np{width:100%;border-collapse:collapse;table-layout:fixed}.np th,.np td{border:1px solid var(--line);vertical-align:top;padding:5px 7px;font-size:10px}.np th{font-size:11px;font-weight:500;text-align:center}.np-line{display:flex;align-items:center;gap:5px;min-height:29px}.np-line .key{font-size:22px}.other-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.other-item{display:grid;grid-template-columns:minmax(70px,max-content) minmax(0,1fr);column-gap:8px;align-items:center;min-height:30px;font-size:10px}.other-item .symbols{gap:2px;white-space:nowrap}.other-item .symbols{display:flex}.tie-note{font-size:10px;line-height:1.35;margin-top:6px}.diac{width:100%;border-collapse:collapse;table-layout:fixed}.diac td{border:1px solid var(--line);height:31px;padding:1px 4px;vertical-align:middle;font-size:9.5px;overflow:hidden}.dia-item{display:grid;grid-template-columns:28px minmax(0,1fr) 92px;align-items:center;gap:2px;min-width:0}.dia-item .key{font-size:19px}.dia-item.tight-ex{grid-template-columns:28px max-content minmax(0,1fr);column-gap:8px}.dia-item.tight-ex .dia-ex{text-align:left;margin-left:2px}.dia-ex{background:transparent!important;outline:none!important;font:17px/1.1 "Doulos SIL Local","Doulos SIL","Times New Roman","DejaVu Serif",serif;text-align:right;white-space:nowrap;cursor:pointer;border-radius:3px;padding:3px 4px}.dia-ex,.dia-ex .example-key,#supra .example,#supra .example-key{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.dia-ex .example-key{display:inline-block;cursor:pointer;border-radius:3px;padding:5px 6px;min-height:28px;touch-action:manipulation}
 .dia-ex,.dia-ex *,#supra .example,#supra .example-key{-webkit-tap-highlight-color:transparent!important}
@@ -78,7 +78,7 @@
 }
 
 .dia-control{display:inline-flex;align-items:center;gap:3px;flex:0 0 auto}
-.dia-label{display:inline-block;width:20px;font-size:9px;line-height:1.15;text-align:center;white-space:nowrap;color:#444}
+.dia-label{display:none!important;width:20px;font-size:9px;line-height:1.15;text-align:center;white-space:nowrap;color:#444}
 @media(max-width:700px){
  .dia-control{gap:2px}
  .dia-label{width:18px;font-size:8px}
@@ -214,21 +214,229 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .is-persian .sheet .footer{font-size:12px;line-height:1.5;}
 .is-persian .app-header .ipa-standard{font-size:12px;}
 .is-persian .ctl{font-size:15px;}
-</style></head><body><main class="app"><header class="app-header"><div class="ipa-standard">IPA Chart 2026 日本語版準拠</div><h1 class="title"><span>IPA Keyboard</span></h1><select class="version-ja language-select" id="languageSelect" aria-label="言語選択"><option value="ja" selected>日本語</option><option value="en">English</option><option value="pt-BR">Português brasileiro</option><option value="fa" lang="fa" dir="rtl">فارسی</option><option value="ja-osaka">大阪方言</option></select></header><div class="toolbar"><textarea id="out" class="output ipa" aria-label="IPA入力欄" spellcheck="false" style="height: 97px;"></textarea><div class="controls main-controls">
+
+/* v82: preserve the chart's fixed 560px column; no viewport-based reflow.
+   Each of the three IPA-table cells is ~187px, not a 560px mobile card. */
+.diac-scroll {width:100%;max-width:100%;overflow:visible}
+.diac-scroll .diac {width:100%;min-width:0;table-layout:fixed;border-collapse:collapse}
+.diac-scroll .diac td {box-sizing:border-box;vertical-align:middle;overflow:visible;padding:3px}
+.diac-scroll .dia-item,
+.diac-scroll .dia-item.tight-ex {
+  display:grid;grid-template-columns:28px minmax(0,1fr) 55px;
+  column-gap:3px;align-items:center;min-width:0;min-height:40px;height:auto;
+}
+.diac-scroll .dia-item > .key {
+  grid-column:1;grid-row:1;width:28px;min-width:0;max-width:28px;margin:0;
+}
+.diac-scroll .dia-item > span:not(.dia-ex) {
+  grid-column:2;grid-row:1;min-width:0;white-space:normal;
+  word-break:normal;overflow-wrap:break-word;line-height:1.3;
+}
+.diac-scroll .dia-item > .dia-ex,
+.diac-scroll .dia-item.tight-ex > .dia-ex {
+  grid-column:3;grid-row:1;width:auto;min-width:0;max-width:100%;
+  margin:0;white-space:normal;word-break:normal;overflow-wrap:normal;
+  text-align:left;line-height:1.3;
+}
+/* The two-column-spanning IPA entries have room for full example text. */
+.diac-scroll td[colspan="2"] .dia-item,
+.diac-scroll td[colspan="2"] .dia-item.tight-ex {
+  grid-template-columns:28px minmax(80px,105px) minmax(0,1fr);
+  column-gap:5px;
+}
+/* v82.2: compact vertical spacing; retain existing three-column geometry. */
+.diac-scroll .diac td {padding:1px 3px;height:auto;min-height:0}
+.diac-scroll .dia-item,
+.diac-scroll .dia-item.tight-ex {min-height:42px;row-gap:0}
+.diac-scroll .dia-item > span:not(.dia-ex) {line-height:1.18}
+.diac-scroll .dia-item > .dia-ex {line-height:1.08;padding-top:0;padding-bottom:0}
+/* Rhoticity has two short examples: keep them on one line instead of doubling row height. */
+.diac-scroll .dia-item:has(> .key[data-sym="˞"]) {
+  grid-template-columns:28px minmax(0,1fr) 72px;
+}
+.diac-scroll .dia-item:has(> .key[data-sym="˞"]) > .dia-ex {
+  white-space:nowrap;font-size:16px;
+}
+/* v82.4: 2-column-wide Raised cell; keep the entire row on one line of grid.
+   The combined cell is ~373px, so give the IPA example its natural width. */
+.diac-scroll td[colspan="2"] .dia-item,
+.diac-scroll td[colspan="2"] .dia-item.tight-ex {
+ grid-template-columns:28px minmax(70px,95px) minmax(0,1fr);
+ column-gap:4px;row-gap:0;
+}
+.diac-scroll .dia-item:has(> .key[data-sym="̝"]) {
+ grid-template-rows:auto;
+ min-height:40px;
+}
+.diac-scroll .dia-item:has(> .key[data-sym="̝"]) > .key {grid-column:1;grid-row:1}
+.diac-scroll .dia-item:has(> .key[data-sym="̝"]) > span:not(.dia-ex) {grid-column:2;grid-row:1}
+.diac-scroll .dia-item:has(> .key[data-sym="̝"]) > .dia-ex {
+ grid-column:3;grid-row:1;width:auto;max-width:100%;
+ font-size:15px;line-height:1.12;white-space:normal;
+ overflow-wrap:break-word;
+}
+/* v82.5: final fixed geometry for the primary three-column diacritics table.
+   Three *table* columns stay equal; each ordinary cell uses the same inner grid.
+   IPA example slots are 36px, regardless of glyph or active highlight. */
+.diac-scroll .diac td {padding:1px 3px;vertical-align:middle}
+.diac-scroll .dia-item,
+.diac-scroll .dia-item.tight-ex {
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr) 76px;
+  column-gap:3px;row-gap:0;align-items:center;
+  min-height:40px;height:auto;
+}
+.diac-scroll .dia-item > .key {
+  grid-column:1;grid-row:1;
+  width:30px;min-width:30px;max-width:30px;
+  min-height:36px;margin:0;padding:0;
+}
+.diac-scroll .dia-item > span:not(.dia-ex) {
+  grid-column:2;grid-row:1;min-width:0;
+  line-height:1.22;overflow-wrap:normal;word-break:normal;
+}
+.diac-scroll .dia-item > .dia-ex {
+  grid-column:3;grid-row:1;
+  display:grid;grid-template-columns:36px 36px;
+  justify-content:start;align-items:center;column-gap:2px;
+  width:76px;min-width:76px;max-width:76px;
+  padding:0;margin:0;line-height:1.1;text-align:left;
+  white-space:normal;overflow:visible;
+}
+.diac-scroll .dia-ex .example-key {
+  box-sizing:border-box;display:flex;
+  width:36px;min-width:36px;max-width:36px;
+  height:34px;min-height:34px;max-height:34px;
+  padding:0;margin:0;justify-content:center;align-items:center;
+  border-radius:4px;white-space:nowrap;text-align:center;
+  line-height:1;
+}
+/* Merged cells have two cell widths: preserve one row and allow long explanatory text.
+   Individual tappable IPA tokens remain fixed-size; descriptive prose may wrap. */
+.diac-scroll td[colspan="2"] .dia-item,
+.diac-scroll td[colspan="2"] .dia-item.tight-ex {
+  grid-template-columns:30px 95px minmax(0,1fr);
+  column-gap:5px;
+}
+.diac-scroll td[colspan="2"] .dia-item > .dia-ex {
+  display:flex;flex-wrap:wrap;gap:2px;
+  width:100%;min-width:0;max-width:100%;
+  align-content:center;align-items:center;
+  white-space:normal;overflow-wrap:normal;word-break:normal;
+}
+.diac-scroll td[colspan="2"] .dia-ex .example-key {flex:0 0 36px}
+.diac-scroll .dia-item:has(> .key[data-sym="˞"]) {
+  grid-template-columns:30px minmax(0,1fr) 76px;
+}
+.diac-scroll .dia-item:has(> .key[data-sym="˞"]) > .dia-ex {
+  display:grid;grid-template-columns:36px 36px;gap:2px;
+  width:76px;min-width:76px;max-width:76px;
+}
+.is-persian .diac-scroll .dia-item {direction:ltr}
+.is-persian .diac-scroll .dia-item > span:not(.dia-ex) {direction:rtl;text-align:right}
+
+/* v83 integration: retain the v82.5 keyboard engine and translation state; display official v0.2.98 chart only. */
+.sheet-scroll{display:none!important}
+.v83-integrated{width:100%;max-width:1080px;margin:12px auto 0;background:#fff}
+.v83-chartframe{border:0;display:block;width:100%;height:1220px;background:white}
+.v83-chartframe.zoom-fullscreen{position:fixed!important;left:var(--zoom-view-left,0px)!important;top:var(--zoom-view-top,0px)!important;right:auto!important;bottom:auto!important;width:var(--zoom-view-width,100vw)!important;height:var(--zoom-view-height,100dvh)!important;transform-origin:0 0;transform:scale(var(--zoom-view-compensation,1));z-index:2147483646!important;margin:0!important;border:0!important}
+.v83-label{font:12px/1.5 system-ui,sans-serif;color:#444;padding:4px 0 8px;text-align:center}
+
+/* v83.20: draggable editor remains available above both chart viewing modes. */
+.toolbar#floatingEditor{position:fixed;z-index:2147483647;left:8px;top:110px;width:min(480px,calc(100vw - 16px));padding:8px;border:1px solid #aaa;border-radius:12px;background:#fafaf9;box-shadow:0 6px 24px #0003;max-height:calc(var(--panel-vh,100dvh) - 16px);overflow:auto;box-sizing:border-box}
+#floatingEditor .output{display:block;min-height:58px;max-height:min(180px,calc(var(--panel-vh,100dvh)*.35));resize:none}
+.input-panel-grip{display:flex;align-items:center;gap:8px;margin:-4px -2px 6px;direction:ltr}
+#inputPanelDrag{display:flex;align-items:center;gap:8px;flex:1;min-height:34px;border:0;background:transparent;color:#555;font:12px system-ui,sans-serif;text-align:left;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}
+#inputPanelDrag:active{cursor:grabbing}
+#inputPanelDrag:focus-visible,#inputPanelReset:focus-visible,#contrastToggle:focus-visible{outline:2px solid #9879d3;outline-offset:1px}
+#inputPanelReset,#contrastToggle{width:34px;height:34px;border:0;border-radius:6px;background:#eee;color:#555;font-size:21px;cursor:pointer}
+#floatingEditor.input-panel-compact .main-controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+#floatingEditor.input-panel-compact .main-controls>.ctl{width:100%;min-width:0}
+#floatingEditor.input-panel-compact .dia-control{grid-column:span 3;min-width:0;display:flex}
+#floatingEditor.input-panel-compact .dia-quick{flex:1;min-width:0}
+#floatingEditor.input-panel-compact .dia-quick button{flex:1;min-width:28px}
+#floatingEditor.input-panel-compact .clear-separator{display:none}
+#floatingEditor.input-panel-compact #status{grid-column:1/-1}
+#floatingEditor.input-panel-compact #status:empty{display:none}
+#floatingEditor .main-controls{flex-wrap:wrap}
+#floatingEditor .settings-panel{position:static;width:100%;margin:8px 0 0;color:#222}
+#floatingEditor .settings-panel::before{display:none}
+body.input-panel-dragging,body.input-panel-dragging *{cursor:grabbing!important}
+
+
+/* Invert each surface, preserving the viewport containing block for the movable panel. */
+html[data-inverse="true"]{color-scheme:dark;background:#141414}
+html[data-inverse="true"] body,html[data-inverse="true"] .app-header{background:#141414;color:#eee}
+html[data-inverse="true"] .language-select{background:#252525;color:#eee;border-color:#777}
+html[data-inverse="true"] .ipa-standard,html[data-inverse="true"] .v83-label,html[data-inverse="true"] .esakits-bottom{color:#ccc}
+html[data-inverse="true"] .v83-integrated{background:#000}
+html[data-inverse="true"] #floatingEditor,html[data-inverse="true"] #v83ChartFrame,html[data-inverse="true"] .info-dialog,html[data-inverse="true"] .confirm-dialog,html[data-inverse="true"] #toast,html[data-inverse="true"] #pop{filter:invert(1) hue-rotate(180deg);color-scheme:light}
+#contrastToggle[aria-pressed="true"]{background:#d4c2ee}
+html[data-inverse="true"] #v83ChartFrame{filter:none}
+
+/* v83.20: editor geometry and typography have their own responsive profile. */
+.toolbar#floatingEditor{--editor-button:32px;--editor-icon:18px;padding:7px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+#floatingEditor *,#floatingEditor button,#floatingEditor textarea{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+#floatingEditor #inputPanelTitle{white-space:nowrap}
+#floatingEditor.input-panel-phone{--editor-button:28px;--editor-icon:16px;padding:6px}
+#floatingEditor .output{min-height:44px;max-height:min(160px,calc(var(--panel-vh,100dvh)*.3));padding:5px 7px;line-height:1.35;border-width:1px}
+#floatingEditor.input-panel-phone .output{min-height:36px;max-height:min(120px,calc(var(--panel-vh,100dvh)*.25));padding:4px 6px}
+#floatingEditor .input-panel-grip{gap:5px;margin:-2px -1px 4px}
+#floatingEditor #inputPanelDrag{min-height:24px;padding:0 3px;font-size:11px;gap:5px;min-width:0}
+#floatingEditor #contrastToggle,#floatingEditor #inputPanelReset{width:26px;height:26px;min-height:0;font-size:18px;padding:0;flex:0 0 26px}
+#floatingEditor.input-panel-phone #inputPanelDrag{min-height:22px;font-size:10px}
+#floatingEditor.input-panel-phone #contrastToggle,#floatingEditor.input-panel-phone #inputPanelReset{width:24px;height:24px;flex-basis:24px;font-size:17px}
+#floatingEditor .main-controls{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:3px;margin-top:4px}
+#floatingEditor .main-controls>.ctl{width:var(--editor-button)!important;min-width:var(--editor-button)!important;height:var(--editor-button);min-height:var(--editor-button);flex:0 0 var(--editor-button)!important;padding:3px!important}
+#floatingEditor .main-controls .bracket-btn{font-size:16px!important;letter-spacing:-.5px}
+#floatingEditor .main-controls .icon-btn svg{width:var(--editor-icon);height:var(--editor-icon)}
+#floatingEditor .dia-control{gap:2px;flex:0 0 auto}
+#floatingEditor .dia-label{width:16px;font-size:8px}
+#floatingEditor.input-panel-phone .dia-label{width:14px;font-size:7.5px}
+#floatingEditor .dia-quick{height:var(--editor-button);flex:0 0 auto}
+#floatingEditor .dia-quick button{min-width:26px;padding:0 2px;font-size:10px;line-height:1.1}
+#floatingEditor.input-panel-phone .dia-quick button{min-width:22px;font-size:9px}
+#floatingEditor .clear-separator{display:none}
+#floatingEditor #status:empty{display:none}
+#floatingEditor.input-panel-compact .main-controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+#floatingEditor.input-panel-compact .main-controls>.ctl{width:var(--editor-button)!important;justify-self:center}
+#floatingEditor.input-panel-compact .dia-control{grid-column:span 3;width:100%;min-width:0}
+#floatingEditor.input-panel-compact .dia-quick{flex:1}
+#floatingEditor.input-panel-compact .dia-quick button{flex:1;min-width:22px}
+#floatingEditor .setting-row[hidden]{display:none!important}
+#floatingEditor .setting-row{grid-template-columns:64px 10px minmax(0,1fr) 18px;gap:4px}
+#floatingEditor .setting-label{font-size:11px}
+#floatingEditor .panel-size-note{font:10px/1.4 system-ui,sans-serif;margin:4px 0 6px;color:#666}
+
+#floatingEditor .glow-setting-row{grid-template-columns:64px 10px minmax(0,1fr) 34px}#glowStrengthValue{font:11px system-ui,sans-serif;text-align:right;white-space:nowrap}
+#floatingEditor .placement-icon{width:16px;height:16px;display:block;margin:auto;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+/* Equal toolbar cells keep the spacing consistent at both panel widths. */
+#floatingEditor .main-controls{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;justify-content:start}
+#floatingEditor .main-controls>.ctl,#floatingEditor.input-panel-compact .main-controls>.ctl{width:100%!important;min-width:0!important;justify-self:stretch}
+#floatingEditor .dia-control{grid-column:span 3;width:100%;min-width:0}
+#floatingEditor .dia-quick{flex:1;min-width:0}
+#floatingEditor .dia-quick button{flex:1;min-width:0}
+#floatingEditor.input-panel-compact .main-controls{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+#floatingEditor.input-panel-compact .dia-quick button{min-width:0}
+#floatingEditor #status{grid-column:1/-1}
+</style><script src="i18n.js"></script></head><body><main class="app"><header class="app-header"><div class="ipa-standard">IPA Chart 2026 日本語版準拠</div><h1 class="title"><span>IPA Keyboard</span></h1><select class="version-ja language-select" id="languageSelect" aria-label="言語選択"><option value="ja" selected>日本語</option><option value="en">English</option><option value="pt-BR">Português brasileiro</option><option value="fa" lang="fa" dir="rtl">فارسی</option><option value="ja-osaka">大阪方言</option></select></header><div class="toolbar" id="floatingEditor" role="region" aria-label="移動できるIPA入力パネル"><div class="input-panel-grip"><button type="button" id="inputPanelDrag" aria-label="入力パネルを移動。矢印キーでも移動できます"><span aria-hidden="true">⠿</span><span id="inputPanelTitle">IPA入力</span></button><button type="button" id="contrastToggle" title="白黒反転" aria-label="白黒反転" aria-pressed="false">◐</button><button type="button" id="inputPanelReset" title="入力パネルの位置を戻す" aria-label="入力パネルの位置を戻す">↺</button></div><textarea id="out" rows="1" class="output ipa" aria-label="IPA入力欄" spellcheck="false" style="height: 97px;"></textarea><div class="controls main-controls">
 <button class="ctl bracket-btn" id="phonetic" title="角括弧を付ける" aria-label="角括弧を付ける">[ ]</button>
 <button class="ctl icon-btn" id="copy" title="コピー" aria-label="コピー"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="1.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-10A1.5 1.5 0 0 0 3 5.5v10A1.5 1.5 0 0 0 4.5 17H8"/></svg></button>
 <button class="ctl icon-btn" id="undo" title="元に戻す" aria-label="元に戻す"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5"/><path d="M5 12h8a6 6 0 0 1 6 6"/></svg></button>
 <button class="ctl icon-btn" id="redo" title="やり直す" aria-label="やり直す"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 7 5 5-5 5"/><path d="M19 12h-8a6 6 0 0 0-6 6"/></svg></button>
 <button class="ctl icon-btn" id="back" title="1文字削除" aria-label="1文字削除"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-6-6 6-6Z"/><path d="m13 9 4 6m0-6-4 6"/></svg></button>
-<span class="dia-control"><span class="dia-label" aria-hidden="true">補助<br>記号</span><span class="dia-quick" id="diaPosition" aria-label="補助記号の位置"><button type="button" data-pos="auto" class="active" title="補助記号位置：自動">自動</button><button type="button" data-pos="above" title="次の補助記号だけ上">上</button><button type="button" data-pos="below" title="次の補助記号だけ下">下</button></span></span>
-<button class="ctl icon-btn settings-btn" id="settingsToggle" title="設定" aria-label="設定" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19 13.5v-3l-2.2-.7a7.7 7.7 0 0 0-.7-1.6l1.1-2-2.1-2.1-2 1.1a7.7 7.7 0 0 0-1.6-.7L10.5 2h-3l-.7 2.2a7.7 7.7 0 0 0-1.6.7l-2-1.1-2.1 2.1 1.1 2a7.7 7.7 0 0 0-.7 1.6L0 10.5v3l2.2.7c.2.6.4 1.1.7 1.6l-1.1 2 2.1 2.1 2-1.1c.5.3 1 .5 1.6.7l.7 2.2h3l.7-2.2c.6-.2 1.1-.4 1.6-.7l2 1.1 2.1-2.1-1.1-2c.3-.5.5-1 .7-1.6L19 13.5Z" transform="translate(2.5 0) scale(.8 1)"/></svg></button>
+<span class="dia-control"><span class="dia-label" aria-hidden="true">補助<br>記号</span><span class="dia-quick" id="diaPosition" aria-label="補助記号の位置"><button type="button" data-pos="auto" aria-pressed="true" class="active" title="補助記号位置：自動">自動</button><button type="button" data-pos="above" title="次の補助記号だけ上" aria-label="次の補助記号だけ上" aria-pressed="false"><svg class="placement-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="4.4" stroke-dasharray="1.3 1.5" opacity=".65"/><path d="M7 2h6" stroke-width="2"/></svg></button><button type="button" data-pos="below" title="次の補助記号だけ下" aria-label="次の補助記号だけ下" aria-pressed="false"><svg class="placement-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><circle cx="10" cy="10" r="4.4" stroke-dasharray="1.3 1.5" opacity=".65"/><path d="M7 18h6" stroke-width="2"/></svg></button></span></span>
+<button class="ctl icon-btn settings-btn" id="settingsToggle" title="設定" aria-label="設定" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="M19 13.5v-3l-2.2-.7a7.7 7.7 0 0 0-.7-1.6l1.1-2-2.1-2.1-2 1.1a7.7 7.7 0 0 0-1.6-.7L10.5 2h-3l-.7 2.2a7.7 7.7 0 0 0-1.6.7l-2-1.1-2.1 2.1 1.1 2a7.7 7.7 0 0 0-.7 1.6L0 10.5v3l2.2.7c.2.6.4 1.1.7 1.6l-1.1 2 2.1 2.1 2-1.1c.5.3 1 .5 1.6.7l.7 2.2h3l.7-2.2c.6-.2 1.1-.4 1.6-.7l2 1.1 2.1-2.1-1.1-2c.3-.5.5-1 .7-1.6L19 13.5Z" transform="translate(4.4 0) scale(.8 1)"/></svg></button>
 <span class="clear-separator" aria-hidden="true"></span>
 <button class="ctl icon-btn danger-btn" id="clear" title="全消去" aria-label="全消去"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M7 7l1 13h8l1-13"/><path d="M10 10v7m4-7v7"/></svg></button>
 <span id="status" aria-live="polite" style="font-size:12px;align-self:center"></span>
 </div>
 <div class="settings-panel" id="settingsPanel" hidden>
-<div class="setting-row"><span class="setting-label">入力文字</span><span class="size-a small-a">A</span><input id="inputSizeSlider" class="size-slider" type="range" min="0" max="4" step="1" value="1" aria-label="入力文字サイズ"><span class="size-a large-a">A</span></div>
-<div class="setting-row"><span class="setting-label">チャート内の文字</span><span class="size-a small-a">A</span><input id="chartSizeSlider" class="size-slider" type="range" min="0" max="8" step="1" value="3" aria-label="チャート文字サイズ"><span class="size-a large-a">A</span></div>
+<div class="setting-row"><span class="setting-label">入力文字</span><span class="size-a small-a">A</span><input id="inputSizeSlider" class="size-slider" type="range" min="0" max="7" step="1" value="2" aria-label="入力文字サイズ"><span class="size-a large-a">A</span></div>
+<div class="setting-row"><span class="setting-label">パネルの幅</span><span class="size-a small-a">−</span><input id="panelWidthSlider" class="size-slider" type="range" min="240" max="640" step="10" value="320" aria-label="入力パネルの幅"><span class="size-a large-a">＋</span></div>
+<div class="setting-row glow-setting-row"><span class="setting-label">光の濃さ</span><span class="size-a small-a">−</span><input id="glowStrengthSlider" class="size-slider" type="range" min="0" max="100" step="5" value="60" aria-label="光の濃さ"><output id="glowStrengthValue" for="glowStrengthSlider">60%</output></div>
+<p class="panel-size-note">チャートの拡大はチャート側で変更できます。</p>
+<div class="setting-row" hidden><span class="setting-label">チャート内の文字</span><span class="size-a small-a">A</span><input id="chartSizeSlider" class="size-slider" type="range" min="0" max="8" step="1" value="3" aria-label="チャート文字サイズ"><span class="size-a large-a">A</span></div>
 <div class="setting-row compact-setting"><label><input id="warnToggle" type="checkbox" checked> 組合せ警告</label></div>
 <div class="info-links"><button type="button" class="info-link" id="fontInfoBtn">フォントについて</button><button type="button" class="info-link" id="offlineInfoBtn">オフラインで使う</button></div>
 
@@ -236,10 +444,10 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <h2 class="section-title">子音（肺気流）</h2><table class="cons"><thead><tr><th class="row"></th><th>両唇音</th><th>唇歯音</th><th>歯音</th><th>歯茎音</th><th>後部歯茎音</th><th>そり舌音</th><th>硬口蓋音</th><th>軟口蓋音</th><th>口蓋垂音</th><th>咽頭音</th><th>声門音</th></tr></thead><tbody id="pulm"><tr><th class="row">破裂音</th><td><div class="pair"><button type="button" class="key ipa" data-sym="p" aria-label="p を入力">p</button><button type="button" class="key ipa" data-sym="b" aria-label="b を入力">b</button></div></td><td></td><td colspan="3" class="alveolar-merged"><div class="alveolar-position"><div class="pair"><button type="button" class="key ipa" data-sym="t" aria-label="t を入力">t</button><button type="button" class="key ipa" data-sym="d" aria-label="d を入力">d</button></div></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="ʈ" aria-label="ʈ を入力">ʈ</button><button type="button" class="key ipa" data-sym="ɖ" aria-label="ɖ を入力">ɖ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="c" aria-label="c を入力">c</button><button type="button" class="key ipa" data-sym="ɟ" aria-label="ɟ を入力">ɟ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="k" aria-label="k を入力">k</button><button type="button" class="key ipa" data-sym="ɡ" aria-label="ɡ を入力">ɡ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="q" aria-label="q を入力">q</button><button type="button" class="key ipa" data-sym="ɢ" aria-label="ɢ を入力">ɢ</button></div></td><td><div class="pair"><span></span><span class="blocked" style="height: 36px;"></span></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="ʔ" aria-label="ʔ を入力">ʔ</button><span class="blocked" style="height: 36px;"></span></div></td></tr><tr><th class="row">鼻音</th><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="m" aria-label="m を入力">m</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɱ" aria-label="ɱ を入力">ɱ</button></div></td><td colspan="3" class="alveolar-merged"><div class="alveolar-position"><div class="pair"><span></span><button type="button" class="key ipa" data-sym="n" aria-label="n を入力">n</button></div></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɳ" aria-label="ɳ を入力">ɳ</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɲ" aria-label="ɲ を入力">ɲ</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ŋ" aria-label="ŋ を入力">ŋ</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɴ" aria-label="ɴ を入力">ɴ</button></div></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td></tr><tr><th class="row">ふるえ音</th><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ʙ" aria-label="ʙ を入力">ʙ</button></div></td><td></td><td colspan="3" class="alveolar-merged"><div class="alveolar-position"><div class="pair"><span></span><button type="button" class="key ipa" data-sym="r" aria-label="r を入力">r</button></div></div></td><td></td><td></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ʀ" aria-label="ʀ を入力">ʀ</button></div></td><td></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td></tr><tr><th class="row">はじき音または弾き音</th><td></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ⱱ" aria-label="ⱱ を入力">ⱱ</button></div></td><td colspan="3" class="alveolar-merged"><div class="alveolar-position"><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɾ" aria-label="ɾ を入力">ɾ</button></div></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɽ" aria-label="ɽ を入力">ɽ</button></div></td><td></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td></td><td></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td></tr><tr><th class="row">摩擦音</th><td><div class="pair"><button type="button" class="key ipa" data-sym="ɸ" aria-label="ɸ を入力">ɸ</button><button type="button" class="key ipa" data-sym="β" aria-label="β を入力">β</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="f" aria-label="f を入力">f</button><button type="button" class="key ipa" data-sym="v" aria-label="v を入力">v</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="θ" aria-label="θ を入力">θ</button><button type="button" class="key ipa" data-sym="ð" aria-label="ð を入力">ð</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="s" aria-label="s を入力">s</button><button type="button" class="key ipa" data-sym="z" aria-label="z を入力">z</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="ʃ" aria-label="ʃ を入力">ʃ</button><button type="button" class="key ipa" data-sym="ʒ" aria-label="ʒ を入力">ʒ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="ʂ" aria-label="ʂ を入力">ʂ</button><button type="button" class="key ipa" data-sym="ʐ" aria-label="ʐ を入力">ʐ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="ç" aria-label="ç を入力">ç</button><button type="button" class="key ipa" data-sym="ʝ" aria-label="ʝ を入力">ʝ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="x" aria-label="x を入力">x</button><button type="button" class="key ipa" data-sym="ɣ" aria-label="ɣ を入力">ɣ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="χ" aria-label="χ を入力">χ</button><button type="button" class="key ipa" data-sym="ʁ" aria-label="ʁ を入力">ʁ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="ħ" aria-label="ħ を入力">ħ</button><button type="button" class="key ipa" data-sym="ʕ" aria-label="ʕ を入力">ʕ</button></div></td><td><div class="pair"><button type="button" class="key ipa" data-sym="h" aria-label="h を入力">h</button><button type="button" class="key ipa" data-sym="ɦ" aria-label="ɦ を入力">ɦ</button></div></td></tr><tr><th class="row">側面摩擦音</th><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td colspan="3" class="alveolar-merged"><div class="alveolar-position"><div class="pair"><button type="button" class="key ipa" data-sym="ɬ" aria-label="ɬ を入力">ɬ</button><button type="button" class="key ipa" data-sym="ɮ" aria-label="ɮ を入力">ɮ</button></div></div></td><td></td><td></td><td></td><td></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td></tr><tr><th class="row">接近音</th><td></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ʋ" aria-label="ʋ を入力">ʋ</button></div></td><td colspan="3" class="alveolar-merged"><div class="alveolar-position"><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɹ" aria-label="ɹ を入力">ɹ</button></div></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɻ" aria-label="ɻ を入力">ɻ</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="j" aria-label="j を入力">j</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɰ" aria-label="ɰ を入力">ɰ</button></div></td><td></td><td></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td></tr><tr><th class="row">側面接近音</th><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td colspan="3" class="alveolar-merged"><div class="alveolar-position"><div class="pair"><span></span><button type="button" class="key ipa" data-sym="l" aria-label="l を入力">l</button></div></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ɭ" aria-label="ɭ を入力">ɭ</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ʎ" aria-label="ʎ を入力">ʎ</button></div></td><td><div class="pair"><span></span><button type="button" class="key ipa" data-sym="ʟ" aria-label="ʟ を入力">ʟ</button></div></td><td></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td><td><div class="pair"><span class="blocked" style="height: 36px;"></span><span class="blocked" style="height: 36px;"></span></div></td></tr></tbody></table><p class="cons-note">枠内で記号が対になっている場合、右側の記号が有声音を、左側の記号が無声音を表す。網掛け部分は、不可能と判断された調音を表す。</p>
 <div class="middle"><div><h2 class="section-title">子音（非肺気流）</h2><table class="np"><thead><tr><th>吸着音</th><th>有声入破音</th><th>放出音</th></tr></thead><tbody><tr><td id="clicks"><div class="np-line"><button type="button" class="key ipa" data-sym="ʘ" aria-label="ʘ を入力">ʘ</button><span>両唇音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ǀ" aria-label="ǀ を入力">ǀ</button><span>歯音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ǃ" aria-label="ǃ を入力">ǃ</button><span>（後部）歯茎音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ǂ" aria-label="ǂ を入力">ǂ</button><span>硬口蓋歯茎音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ǁ" aria-label="ǁ を入力">ǁ</button><span>歯茎側面音</span></div></td><td id="impl"><div class="np-line"><button type="button" class="key ipa" data-sym="ɓ" aria-label="ɓ を入力">ɓ</button><span>両唇音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ɗ" aria-label="ɗ を入力">ɗ</button><span>歯音／歯茎音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ʄ" aria-label="ʄ を入力">ʄ</button><span>硬口蓋音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ɠ" aria-label="ɠ を入力">ɠ</button><span>軟口蓋音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="ʛ" aria-label="ʛ を入力">ʛ</button><span>口蓋垂音</span></div></td><td id="eject"><div class="np-line"><button type="button" class="key ipa" data-sym="ʼ" aria-label="ʼ を入力">ʼ</button><span>例：</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="pʼ" aria-label="pʼ を入力">pʼ</button><span>両唇音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="tʼ" aria-label="tʼ を入力">tʼ</button><span>歯音／歯茎音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="kʼ" aria-label="kʼ を入力">kʼ</button><span>軟口蓋音</span></div><div class="np-line"><button type="button" class="key ipa" data-sym="sʼ" aria-label="sʼ を入力">sʼ</button><span>歯茎摩擦音</span></div></td></tr></tbody></table>
 <h2 class="section-title" style="margin-top:22px">その他の記号</h2><div class="other-grid" id="other"><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ʍ" aria-label="ʍ を入力">ʍ</button></div><span>無声両唇軟口蓋摩擦音</span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ɕ" aria-label="ɕ を入力">ɕ</button><button type="button" class="key ipa" data-sym="ʑ" aria-label="ʑ を入力">ʑ</button></div><span>歯茎硬口蓋摩擦音</span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="w" aria-label="w を入力">w</button></div><span>有声両唇軟口蓋接近音</span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ɺ" aria-label="ɺ を入力">ɺ</button></div><span>有声歯茎側面弾き音</span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ɥ" aria-label="ɥ を入力">ɥ</button></div><span>有声両唇硬口蓋接近音</span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ɧ" aria-label="ɧ を入力">ɧ</button></div><span>ʃ と x の同時調音</span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ʜ" aria-label="ʜ を入力">ʜ</button></div><span>無声喉頭蓋摩擦音</span></div><div class="other-item"><div class="symbols"></div><span></span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ʢ" aria-label="ʢ を入力">ʢ</button></div><span>有声喉頭蓋摩擦音</span></div><div class="other-item"><div class="symbols"></div><span></span></div><div class="other-item"><div class="symbols"><button type="button" class="key ipa" data-sym="ʡ" aria-label="ʡ を入力">ʡ</button></div><span>喉頭蓋破裂音</span></div></div><div class="tie-note">破擦音と二重調音は、必要な場合連結記号でつないだ2つの記号で表すことができる。 <button class="key ipa" data-sym="t͡s">t͡s</button> <button class="key ipa" data-sym="k͡p">k͡p</button></div>
-<h2 class="section-title" style="margin-top:22px">補助記号</h2><table class="diac" id="diac"><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̥" aria-label="̥ を入力">̥</button><span>無声</span><span class="dia-ex">n̥  d̥</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̤" aria-label="̤ を入力">̤</button><span>息漏れ声</span><span class="dia-ex">b̤  a̤</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̪" aria-label="̪ を入力">̪</button><span>歯音</span><span class="dia-ex">t̪  d̪</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̬" aria-label="̬ を入力">̬</button><span>有声</span><span class="dia-ex">s̬  t̬</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̰" aria-label="̰ を入力">̰</button><span>きしみ声</span><span class="dia-ex">b̰  a̰</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̺" aria-label="̺ を入力">̺</button><span>舌尖音</span><span class="dia-ex">t̺  d̺</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ʰ" aria-label="ʰ を入力">ʰ</button><span>有気音</span><span class="dia-ex">tʰ  dʰ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̼" aria-label="̼ を入力">̼</button><span>舌唇音</span><span class="dia-ex">t̼  d̼</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̻" aria-label="̻ を入力">̻</button><span>舌端音</span><span class="dia-ex">t̻  d̻</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̹" aria-label="̹ を入力">̹</button><span>強い円唇化</span><span class="dia-ex">ɔ̹</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ʷ" aria-label="ʷ を入力">ʷ</button><span>唇音化</span><span class="dia-ex">tʷ  dʷ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̃" aria-label="̃ を入力">̃</button><span>鼻音化</span><span class="dia-ex">ẽ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̜" aria-label="̜ を入力">̜</button><span>弱い円唇化</span><span class="dia-ex">ɔ̜</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ʲ" aria-label="ʲ を入力">ʲ</button><span>硬口蓋化</span><span class="dia-ex">tʲ  dʲ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ⁿ" aria-label="ⁿ を入力">ⁿ</button><span>鼻音開放</span><span class="dia-ex">dⁿ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̟" aria-label="̟ を入力">̟</button><span>前進</span><span class="dia-ex">u̟</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ˠ" aria-label="ˠ を入力">ˠ</button><span>軟口蓋化</span><span class="dia-ex">tˠ  dˠ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ˡ" aria-label="ˡ を入力">ˡ</button><span>側面開放</span><span class="dia-ex">dˡ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̠" aria-label="̠ を入力">̠</button><span>後退</span><span class="dia-ex">e̠</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ˤ" aria-label="ˤ を入力">ˤ</button><span>咽頭音化</span><span class="dia-ex">tˤ  dˤ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̚" aria-label="̚ を入力">̚</button><span>無音開放</span><span class="dia-ex">d̚</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̈" aria-label="̈ を入力">̈</button><span>中舌化</span><span class="dia-ex">ë</span></div></td><td colspan="2"><div class="dia-item"><button type="button" class="key ipa" data-sym="̴" aria-label="̴ を入力">̴</button><span>軟口蓋化または咽頭音化</span><span class="dia-ex">ɫ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̽" aria-label="̽ を入力">̽</button><span>中央化</span><span class="dia-ex">e̽</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̝" aria-label="̝ を入力">̝</button><span>上寄り</span><span class="dia-ex">e̝（ɹ̝ = 有声歯茎摩擦音）</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̩" aria-label="̩ を入力">̩</button><span>音節主音</span><span class="dia-ex">n̩</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̞" aria-label="̞ を入力">̞</button><span>下寄り</span><span class="dia-ex">e̞（β̞ = 有声両唇接近音）</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̯" aria-label="̯ を入力">̯</button><span>非音節主音</span><span class="dia-ex">e̯</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̘" aria-label="̘ を入力">̘</button><span>舌根前進</span><span class="dia-ex">e̘</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="˞" aria-label="˞ を入力">˞</button><span>R音性</span><span class="dia-ex">ə˞  a˞</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̙" aria-label="̙ を入力">̙</button><span>舌根後退</span><span class="dia-ex">e̙</span></div></td></tr></table><div class="dia-note">基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例 <button class="key ipa" data-sym="ŋ̊">ŋ̊</button></div></div>
+<h2 class="section-title" style="margin-top:22px">補助記号</h2><div class="diac-scroll"><table class="diac" id="diac"><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̥" aria-label="̥ を入力">̥</button><span>無声</span><span class="dia-ex">n̥  d̥</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̤" aria-label="̤ を入力">̤</button><span>息漏れ声</span><span class="dia-ex">b̤  a̤</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̪" aria-label="̪ を入力">̪</button><span>歯音</span><span class="dia-ex">t̪  d̪</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̬" aria-label="̬ を入力">̬</button><span>有声</span><span class="dia-ex">s̬  t̬</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̰" aria-label="̰ を入力">̰</button><span>きしみ声</span><span class="dia-ex">b̰  a̰</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̺" aria-label="̺ を入力">̺</button><span>舌尖音</span><span class="dia-ex">t̺  d̺</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ʰ" aria-label="ʰ を入力">ʰ</button><span>有気音</span><span class="dia-ex">tʰ  dʰ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̼" aria-label="̼ を入力">̼</button><span>舌唇音</span><span class="dia-ex">t̼  d̼</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̻" aria-label="̻ を入力">̻</button><span>舌端音</span><span class="dia-ex">t̻  d̻</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̹" aria-label="̹ を入力">̹</button><span>強い円唇化</span><span class="dia-ex">ɔ̹</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ʷ" aria-label="ʷ を入力">ʷ</button><span>唇音化</span><span class="dia-ex">tʷ  dʷ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̃" aria-label="̃ を入力">̃</button><span>鼻音化</span><span class="dia-ex">ẽ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̜" aria-label="̜ を入力">̜</button><span>弱い円唇化</span><span class="dia-ex">ɔ̜</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ʲ" aria-label="ʲ を入力">ʲ</button><span>硬口蓋化</span><span class="dia-ex">tʲ  dʲ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ⁿ" aria-label="ⁿ を入力">ⁿ</button><span>鼻音開放</span><span class="dia-ex">dⁿ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̟" aria-label="̟ を入力">̟</button><span>前進</span><span class="dia-ex">u̟</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ˠ" aria-label="ˠ を入力">ˠ</button><span>軟口蓋化</span><span class="dia-ex">tˠ  dˠ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ˡ" aria-label="ˡ を入力">ˡ</button><span>側面開放</span><span class="dia-ex">dˡ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̠" aria-label="̠ を入力">̠</button><span>後退</span><span class="dia-ex">e̠</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="ˤ" aria-label="ˤ を入力">ˤ</button><span>咽頭音化</span><span class="dia-ex">tˤ  dˤ</span></div></td><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̚" aria-label="̚ を入力">̚</button><span>無音開放</span><span class="dia-ex">d̚</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̈" aria-label="̈ を入力">̈</button><span>中舌化</span><span class="dia-ex">ë</span></div></td><td colspan="2"><div class="dia-item"><button type="button" class="key ipa" data-sym="̴" aria-label="̴ を入力">̴</button><span>軟口蓋化または咽頭音化</span><span class="dia-ex">ɫ</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̽" aria-label="̽ を入力">̽</button><span>中央化</span><span class="dia-ex">e̽</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̝" aria-label="̝ を入力">̝</button><span>上寄り</span><span class="dia-ex">e̝（ɹ̝ = 有声歯茎摩擦音）</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̩" aria-label="̩ を入力">̩</button><span>音節主音</span><span class="dia-ex">n̩</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̞" aria-label="̞ を入力">̞</button><span>下寄り</span><span class="dia-ex">e̞（β̞ = 有声両唇接近音）</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="̯" aria-label="̯ を入力">̯</button><span>非音節主音</span><span class="dia-ex">e̯</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̘" aria-label="̘ を入力">̘</button><span>舌根前進</span><span class="dia-ex">e̘</span></div></td></tr><tr><td colspan="1"><div class="dia-item"><button type="button" class="key ipa" data-sym="˞" aria-label="˞ を入力">˞</button><span>R音性</span><span class="dia-ex">ə˞  a˞</span></div></td><td colspan="2"><div class="dia-item tight-ex"><button type="button" class="key ipa" data-sym="̙" aria-label="̙ を入力">̙</button><span>舌根後退</span><span class="dia-ex">e̙</span></div></td></tr></table></div><div class="dia-note">基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例 <button class="key ipa" data-sym="ŋ̊">ŋ̊</button></div></div>
 <div><h2 class="section-title">母音</h2><div class="vowels" id="vowels"><svg viewBox="0 0 500 300" preserveAspectRatio="none" aria-hidden="true"><line x1="115" y1="45" x2="435" y2="45"></line><line x1="115" y1="45" x2="230" y2="255"></line><line x1="275" y1="45" x2="333" y2="255"></line><line x1="435" y1="45" x2="435" y2="255"></line><line x1="153" y1="115" x2="435" y2="115"></line><line x1="192" y1="185" x2="435" y2="185"></line><line x1="230" y1="255" x2="435" y2="255"></line></svg><span class="vlabel" style="left:105px;top:8px">前舌</span><span class="vlabel" style="left:263px;top:8px">中舌</span><span class="vlabel" style="left:422px;top:8px">後舌</span><span class="vlabel" style="left:25px;top:39px">狭</span><span class="vlabel" style="left:8px;top:109px">半狭</span><span class="vlabel" style="left:8px;top:179px">半広</span><span class="vlabel" style="left:25px;top:249px">広</span><div class="vpair" style="left: 115px; top: 45px;"><button type="button" class="key ipa" data-sym="i" aria-label="i を入力">i</button><button type="button" class="key ipa" data-sym="y" aria-label="y を入力">y</button></div><div class="vpair" style="left: 275px; top: 45px;"><button type="button" class="key ipa" data-sym="ɨ" aria-label="ɨ を入力">ɨ</button><button type="button" class="key ipa" data-sym="ʉ" aria-label="ʉ を入力">ʉ</button></div><div class="vpair" style="left: 435px; top: 45px;"><button type="button" class="key ipa" data-sym="ɯ" aria-label="ɯ を入力">ɯ</button><button type="button" class="key ipa" data-sym="u" aria-label="u を入力">u</button></div><div class="vpair" style="left: 177px; top: 80px;"><button type="button" class="key ipa" data-sym="ɪ" aria-label="ɪ を入力">ɪ</button><button type="button" class="key ipa" data-sym="ʏ" aria-label="ʏ を入力">ʏ</button></div><div class="vpair" style="left: 385px; top: 80px;"><button type="button" class="key ipa" data-sym="ʊ" aria-label="ʊ を入力">ʊ</button></div><div class="vpair" style="left: 153px; top: 115px;"><button type="button" class="key ipa" data-sym="e" aria-label="e を入力">e</button><button type="button" class="key ipa" data-sym="ø" aria-label="ø を入力">ø</button></div><div class="vpair" style="left: 294px; top: 115px;"><button type="button" class="key ipa" data-sym="ɘ" aria-label="ɘ を入力">ɘ</button><button type="button" class="key ipa" data-sym="ɵ" aria-label="ɵ を入力">ɵ</button></div><div class="vpair" style="left: 435px; top: 115px;"><button type="button" class="key ipa" data-sym="ɤ" aria-label="ɤ を入力">ɤ</button><button type="button" class="key ipa" data-sym="o" aria-label="o を入力">o</button></div><div class="vpair" style="left: 305px; top: 150px;"><button type="button" class="key ipa" data-sym="ə" aria-label="ə を入力">ə</button></div><div class="vpair" style="left: 192px; top: 185px;"><button type="button" class="key ipa" data-sym="ɛ" aria-label="ɛ を入力">ɛ</button><button type="button" class="key ipa" data-sym="œ" aria-label="œ を入力">œ</button></div><div class="vpair" style="left: 314px; top: 185px;"><button type="button" class="key ipa" data-sym="ɜ" aria-label="ɜ を入力">ɜ</button><button type="button" class="key ipa" data-sym="ɞ" aria-label="ɞ を入力">ɞ</button></div><div class="vpair" style="left: 435px; top: 185px;"><button type="button" class="key ipa" data-sym="ʌ" aria-label="ʌ を入力">ʌ</button><button type="button" class="key ipa" data-sym="ɔ" aria-label="ɔ を入力">ɔ</button></div><div class="vpair" style="left: 211px; top: 220px;"><button type="button" class="key ipa" data-sym="æ" aria-label="æ を入力">æ</button></div><div class="vpair" style="left: 324px; top: 220px;"><button type="button" class="key ipa" data-sym="ɐ" aria-label="ɐ を入力">ɐ</button></div><div class="vpair" style="left: 230px; top: 255px;"><button type="button" class="key ipa" data-sym="a" aria-label="a を入力">a</button><button type="button" class="key ipa" data-sym="ɶ" aria-label="ɶ を入力">ɶ</button></div><div class="vpair" style="left: 435px; top: 255px;"><button type="button" class="key ipa" data-sym="ɑ" aria-label="ɑ を入力">ɑ</button><button type="button" class="key ipa" data-sym="ɒ" aria-label="ɒ を入力">ɒ</button></div></div><div class="vnote">記号が対になっている場合、右側の記号が円唇母音を表す。</div>
 <h2 class="section-title" style="margin-top:22px">超分節的要素</h2><div class="supra" id="supra"><div class="item"><button type="button" class="key ipa" data-sym="ˈ" aria-label="ˈ を入力">ˈ</button><span>主強勢</span><span class="example">ˌfoʊnəˈtɪʃən</span></div><div class="item"><button type="button" class="key ipa" data-sym="ˌ" aria-label="ˌ を入力">ˌ</button><span>副次強勢</span><span class="example"></span></div><div class="item"><button type="button" class="key ipa" data-sym="ː" aria-label="ː を入力">ː</button><span>長</span><span class="example">eː</span></div><div class="item"><button type="button" class="key ipa" data-sym="ˑ" aria-label="ˑ を入力">ˑ</button><span>半長</span><span class="example">eˑ</span></div><div class="item"><button type="button" class="key ipa" data-sym="̆" aria-label="̆ を入力">̆</button><span>超短</span><span class="example">ĕ</span></div><div class="item"><button type="button" class="key ipa" data-sym="|" aria-label="| を入力">|</button><span>小さい（脚）境界</span><span class="example"></span></div><div class="item"><button type="button" class="key ipa" data-sym="‖" aria-label="‖ を入力">‖</button><span>大きい（イントネーション）境界</span><span class="example"></span></div><div class="item"><button type="button" class="key ipa" data-sym="." aria-label=". を入力">.</button><span>音節境界</span><span class="example">ɹi.ækt</span></div><div class="item"><button type="button" class="key ipa" data-sym="‿" aria-label="‿ を入力">‿</button><span>連結（無境界）</span><span class="example"></span></div></div><h2 class="section-title" style="margin-top:20px">声調と語アクセント</h2><div class="tones"><div><div class="tone-head">平板</div><div id="level"><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="̋" aria-label="̋ を入力">̋</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˥" aria-label="˥ を入力">˥</button></div><span>超高</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="́" aria-label="́ を入力">́</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˦" aria-label="˦ を入力">˦</button></div><span>高</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="̄" aria-label="̄ を入力">̄</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˧" aria-label="˧ を入力">˧</button></div><span>中</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="̀" aria-label="̀ を入力">̀</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˨" aria-label="˨ を入力">˨</button></div><span>低</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="̏" aria-label="̏ を入力">̏</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˩" aria-label="˩ を入力">˩</button></div><span>超低</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="ꜜ" aria-label="ꜜ を入力">ꜜ</button></div><span>ダウンステップ</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="ꜛ" aria-label="ꜛ を入力">ꜛ</button></div><span>アップステップ</span></div></div></div><div><div class="tone-head">曲線</div><div id="contour"><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="̌" aria-label="̌ を入力">̌</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˩˥" aria-label="˩˥ を入力">˩˥</button></div><span>上昇</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="̂" aria-label="̂ を入力">̂</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˥˩" aria-label="˥˩ を入力">˥˩</button></div><span>下降</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="᷄" aria-label="᷄ を入力">᷄</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˧˥" aria-label="˧˥ を入力">˧˥</button></div><span>高上昇</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="᷅" aria-label="᷅ を入力">᷅</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˩˧" aria-label="˩˧ を入力">˩˧</button></div><span>低上昇</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="᷈" aria-label="᷈ を入力">᷈</button><span style="font-size: 9px;"> または </span><button type="button" class="key ipa" data-sym="˧˦˨" aria-label="˧˦˨ を入力">˧˦˨</button></div><span>上昇下降</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="↗" aria-label="↗ を入力">↗</button></div><span>全体的上昇</span></div><div class="tone-row"><div class="tone-syms"><button type="button" class="key ipa" data-sym="↘" aria-label="↘ を入力">↘</button></div><span>全体的下降</span></div></div></div></div></div></div>
-<footer class="footer"><div><strong>準拠: </strong>International Phonetic Association「<a href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf" target="_blank" rel="noopener">IPA Chart 2026 日本語版</a>」</div><div style="margin-top:5px"><strong>IPAについて詳しく学ぶ: </strong> <a href="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_TI/IPA_charts_TI.html" target="_blank" rel="noopener">International Phonetic Association — Interactive IPA Chart</a>　<a href="https://www.coelang.tufs.ac.jp/ipa/" target="_blank" rel="noopener">東京外国語大学 — IPA 国際音声字母</a></div><div style="margin-top:5px">IPA Chart material: Copyright © 2026 International Phonetic Association. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</div></footer></article></div><div class="esakits-bottom"><div class="brand-name">esaKITs</div><div class="brand-full">Enhanced Smart AI Kits</div><div class="esakits-copyright">© 2026 Tetsuya Esaki</div></div></div><dialog id="clearDialog" class="confirm-dialog" aria-labelledby="clearDialogTitle"><form method="dialog"><div id="clearDialogTitle" class="confirm-title">入力内容をすべて消去しますか？</div><div class="confirm-actions"><button value="cancel" class="ctl">キャンセル</button><button value="clear" class="ctl confirm-clear">全消去</button></div></form></dialog><dialog id="fontInfoDialog" class="info-dialog"><h3>フォントについて</h3><p>IPA Keyboard は Doulos SIL を標準フォントとして使用します。Word等へ貼り付けた文字の字形や補助記号の位置は、貼り付け先で使用するフォントによって変わります。</p><p><strong>推奨無料フォント</strong><br><a href="https://software.sil.org/doulos/download/" target="_blank" rel="noopener">Doulos SIL — セリフ体 ↗</a><br><a href="https://software.sil.org/andika/download/" target="_blank" rel="noopener">Andika — サンセリフ体 ↗</a></p><div class="info-close"><button type="button" class="ctl" data-close-dialog>閉じる</button></div></dialog>
+<footer class="footer"><div><strong>準拠: </strong>International Phonetic Association「<a href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf" target="_blank" rel="noopener">IPA Chart 2026 日本語版</a>」</div><div style="margin-top:5px"><strong>IPAについて詳しく学ぶ: </strong> <a href="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_TI/IPA_charts_TI.html" target="_blank" rel="noopener">International Phonetic Association — Interactive IPA Chart</a>　<a href="https://www.coelang.tufs.ac.jp/ipa/" target="_blank" rel="noopener">東京外国語大学 — IPA 国際音声字母</a></div><div style="margin-top:5px">IPA Chart material: Copyright © 2026 International Phonetic Association. Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</div></footer></article></div><section class="v83-integrated" aria-label="統合IPAチャートv0.2.98"><p class="v83-label">IPA Keyboard v83.20</p><iframe class="v83-chartframe" id="v83ChartFrame" src="./chart.html" title="IPAチャート v0.2.98 入力操作" loading="eager"></iframe></section><div class="esakits-bottom"><div class="brand-name">esaKITs</div><div class="brand-full">Enhanced Smart AI Kits</div><div class="esakits-copyright">© 2026 Tetsuya Esaki</div></div></div><dialog id="clearDialog" class="confirm-dialog" aria-labelledby="clearDialogTitle"><form method="dialog"><div id="clearDialogTitle" class="confirm-title">入力内容をすべて消去しますか？</div><div class="confirm-actions"><button value="cancel" class="ctl">キャンセル</button><button value="clear" class="ctl confirm-clear">全消去</button></div></form></dialog><dialog id="fontInfoDialog" class="info-dialog"><h3>フォントについて</h3><p>IPA Keyboard は Doulos SIL を標準フォントとして使用します。Word等へ貼り付けた文字の字形や補助記号の位置は、貼り付け先で使用するフォントによって変わります。</p><p><strong>推奨無料フォント</strong><br><a href="https://software.sil.org/doulos/download/" target="_blank" rel="noopener">Doulos SIL — セリフ体 ↗</a><br><a href="https://software.sil.org/andika/download/" target="_blank" rel="noopener">Andika — サンセリフ体 ↗</a></p><div class="info-close"><button type="button" class="ctl" data-close-dialog>閉じる</button></div></dialog>
 <dialog id="offlineInfoDialog" class="info-dialog"><h3>オフラインで使う</h3><p>一度このページをオンラインで開くと、対応ブラウザでは本体データが保存され、その後は通信できない環境でも起動できます。</p><p>端末の「ホーム画面に追加」やブックマークを利用すると、再度開きやすくなります。初回だけはオンラインで開いてください。</p><div class="info-close"><button type="button" class="ctl" data-close-dialog>閉じる</button></div></dialog>
 <div id="toast" class="toast" role="status" aria-live="polite"></div><div id="pop" class="pop"></div></main>
 
@@ -259,7 +467,7 @@ function isDiacritic(sym){return diaSyms.has(sym);}
 function setDiaPosition(pos){
  diaPosition=pos;
  Array.prototype.forEach.call(byId('diaPosition').querySelectorAll('button[data-pos]'),function(x){
-   x.classList.toggle('active',x.getAttribute('data-pos')===pos);
+   x.classList.toggle('active',x.getAttribute('data-pos')===pos);x.setAttribute('aria-pressed',String(x.getAttribute('data-pos')===pos));
  });
 }
 function resetDiaPositionAfterUse(sym){
@@ -269,8 +477,12 @@ function resolvedDiacritic(sym){if(diaPosition==='auto')return sym;var m=diaPosi
 function statusMessage(msg){var st=byId('status');if(!st)return;st.textContent=msg;clearTimeout(st._timer);st._timer=setTimeout(function(){if(st.textContent===msg)st.textContent='';},2400);}
 function remember(){savedStart=typeof out.selectionStart==='number'?out.selectionStart:out.value.length;savedEnd=typeof out.selectionEnd==='number'?out.selectionEnd:savedStart;}
 ['click','keyup','select','focus','touchend'].forEach(function(ev){out.addEventListener(ev,remember);});out.addEventListener('input',function(){remember();grow();snapshot();});
-function grow(){out.style.height='auto';out.style.height=Math.min(220,Math.max(64,out.scrollHeight))+'px';}
-var inputSizes=[36,60,100,180,300],chartSizes=[22,24,26,28,30,34,38,44,50];
+function grow(){
+ out.style.height='auto';
+ var phone=matchMedia('(max-width:700px)').matches,s=getComputedStyle(out),border=parseFloat(s.borderTopWidth)+parseFloat(s.borderBottomWidth);
+ out.style.height=Math.min(phone?120:160,Math.max(phone?36:44,out.scrollHeight+border))+'px';
+}
+var inputSizes=[16,18,22,26,32,40,48,60],chartSizes=[22,24,26,28,30,34,38,44,50];
 var inputSizeIndex=1,chartSizeIndex=3;
 function applyInputSize(i){
  inputSizeIndex=Math.max(0,Math.min(inputSizes.length-1,Number(i)));
@@ -282,9 +494,18 @@ function applyChartSize(i){
  if(sheet)sheet.style.setProperty('--chart-scale',String(chartSizes[chartSizeIndex]/16));
 }
 var inputSizeSlider=byId('inputSizeSlider'),chartSizeSlider=byId('chartSizeSlider');
-inputSizeSlider.addEventListener('input',function(){applyInputSize(this.value);});
+var inputDevice=matchMedia('(max-width:700px)');
+function inputProfile(){return inputDevice.matches?'phone':'desktop';}
+function loadInputProfile(){
+ var size=inputDevice.matches?22:32;
+ try{var v=Number(localStorage.getItem('esakits.ipa.input-font.'+inputProfile()+'.v1'));if(inputSizes.includes(v))size=v;}catch(e){}
+ inputSizeSlider.value=String(inputSizes.indexOf(size));applyInputSize(inputSizeSlider.value);
+ document.getElementById('floatingEditor').classList.toggle('input-panel-phone',inputDevice.matches);
+ window.dispatchEvent(new Event('esa-panel-layout'));
+}
+inputSizeSlider.addEventListener('input',function(){applyInputSize(this.value);try{localStorage.setItem('esakits.ipa.input-font.'+inputProfile()+'.v1',String(inputSizes[inputSizeIndex]));}catch(e){}});
 chartSizeSlider.addEventListener('input',function(){applyChartSize(this.value);});
-applyInputSize(inputSizeSlider.value);applyChartSize(chartSizeSlider.value);
+loadInputProfile();inputDevice.addEventListener('change',loadInputProfile);applyChartSize(chartSizeSlider.value);
 var settingsToggle=byId('settingsToggle'),settingsPanel=byId('settingsPanel');
 settingsToggle.addEventListener('click',function(){
  var opening=settingsPanel.hidden;
@@ -316,7 +537,9 @@ function insertText(s,btn){
  /* Chart input must not focus the textarea: focusing summons the iPhone keyboard. */
  out.setRangeText(s,a,b,'end');
  savedStart=savedEnd=a+s.length;
+ out.setSelectionRange(savedStart,savedEnd);
  snapshot();grow();
+ if(savedEnd===out.value.length)out.scrollTop=out.scrollHeight;
  resetDiaPositionAfterUse(originalSym);
  if(btn&&!isVowelKey(btn)){btn.classList.add('click-flash');setTimeout(function(){btn.classList.remove('click-flash');},420);}
 }
@@ -362,7 +585,7 @@ function bindSymbolKey(btn){
 Array.prototype.forEach.call(document.querySelectorAll('.key[data-sym]'),bindSymbolKey);
 function byId(id){return document.getElementById(id);}function fallbackCopy(){var a=savedStart,b=savedEnd;out.select();var ok=false;try{ok=document.execCommand('copy');}catch(e){}out.setSelectionRange(a,b);savedStart=a;savedEnd=b;return ok;}
 byId('copy').addEventListener('click',function(){var t=out.value;if(!t){showToast('コピーする文字がありません。','info');return;}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){showToast('コピーしました。','info');}).catch(function(){showToast(fallbackCopy()?'コピーしました。':'コピーできませんでした。','info');});}else showToast(fallbackCopy()?'コピーしました。':'コピーできませんでした。','info');});
-byId('undo').addEventListener('click',function(){if(undo.length>1){redo.push(undo.pop());setValue(undo[undo.length-1]);}});byId('redo').addEventListener('click',function(){if(redo.length){var v=redo.pop();undo.push(v);setValue(v);}});
+byId('undo').addEventListener('click',function(){if(undo.length>1){redo.push(undo.pop());setValue(undo[undo.length-1]);savedStart=savedEnd=out.value.length;out.setSelectionRange(savedStart,savedEnd);}});byId('redo').addEventListener('click',function(){if(redo.length){var v=redo.pop();undo.push(v);setValue(v);savedStart=savedEnd=out.value.length;out.setSelectionRange(savedStart,savedEnd);}});
 byId('back').addEventListener('click',function(){var a=Math.min(savedStart,out.value.length),b=Math.min(savedEnd,out.value.length);if(a!==b)out.setRangeText('',a,b,'end');else if(a>0){var arr=Array.from(out.value.slice(0,a));var rm=arr.pop()||'';out.setRangeText('',a-rm.length,a,'end');a-=rm.length;}savedStart=savedEnd=a;snapshot();grow();});
 var clearDialog=byId('clearDialog');
 byId('clear').addEventListener('click',function(){
@@ -379,8 +602,8 @@ byId('warnToggle').addEventListener('change',function(){if(!this.checked){clearT
 byId('diaPosition').addEventListener('click',function(e){
  var b=e.target.closest?e.target.closest('button[data-pos]'):null;if(!b)return;
  var pos=b.getAttribute('data-pos');setDiaPosition(pos);
- if(pos==='auto')statusMessage('補助記号の位置：自動');
- else statusMessage('次の補助記号だけ「'+b.textContent+'」に入力します。');
+ var key=pos==='auto'?'補助記号の位置: 自動':(pos==='above'?'次の補助記号だけ上':'次の補助記号だけ下');
+ statusMessage(window.esaI18n.t(key,byId('languageSelect').value));
 });
 function wrap(l,r){
  var a=Math.min(savedStart,out.value.length),b=Math.min(savedEnd,out.value.length),sel=out.value.slice(a,b);
@@ -438,6 +661,12 @@ byId('offlineInfoBtn').addEventListener('click',function(){openInfo('offlineInfo
 Array.prototype.forEach.call(document.querySelectorAll('[data-close-dialog]'),function(b){b.addEventListener('click',function(){var d=b.closest('dialog');if(d)d.close();});});
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js').catch(function(){});});}
 grow();remember();
+window.esaChartSelection=function(){return {start:savedStart,end:savedEnd};};
+window.esaChartInsert=function(sym){
+ if(typeof sym!=='string'||sym.length<1||sym.length>24)return false;
+ insertText(sym,null);
+ return true;
+};
 })();
 
 /* Diacritic examples are direct-input controls: clicking an example inserts that exact example. */
@@ -462,8 +691,8 @@ document.querySelectorAll('#diac .dia-ex').forEach(function(ex){
 });
 </script>
 <script id="ipa-i18n-runtime">
-(function(){
- const rows=[{"ja":"IPA Chart 2026 日本語版準拠","ja_osaka":"IPA Chart 2026 の日本語版に準拠","en":"Based on the Japanese version of the IPA Chart 2026","fa":"بر پایهٔ نسخهٔ ژاپنی جدول الفبای آوایی بین‌المللی ۲۰۲۶","pt_BR":"Baseado na versão japonesa do Quadro do IPA 2026"},{"ja":"日本語版","ja_osaka":"大阪方言版","en":"Japanese version","fa":"نسخهٔ ژاپنی","pt_BR":"Versão japonesa"},{"ja":"補助","ja_osaka":"補助","en":"Diacritic","fa":"نشانهٔ کمکی","pt_BR":"Diacrítico"},{"ja":"記号","ja_osaka":"記号","en":"Symbol","fa":"نماد","pt_BR":"Símbolo"},{"ja":"自動","ja_osaka":"自動","en":"Auto","fa":"خودکار","pt_BR":"Auto"},{"ja":"上","ja_osaka":"上","en":"Above","fa":"بالا","pt_BR":"Acima"},{"ja":"下","ja_osaka":"下","en":"Below","fa":"پایین","pt_BR":"Abaixo"},{"ja":"日本語","ja_osaka":"日本語","en":"Japanese","fa":"ژاپنی","pt_BR":"Japonês"},{"ja":"大阪方言","ja_osaka":"大阪方言","en":"Osaka dialect","fa":"گویش اوساکا","pt_BR":"Dialeto de Osaka"},{"ja":"入力文字","ja_osaka":"入力文字","en":"Input text","fa":"متن ورودی","pt_BR":"Texto digitado"},{"ja":"チャート内の文字","ja_osaka":"チャートの文字","en":"Chart text","fa":"متن جدول","pt_BR":"Texto do quadro"},{"ja":"組合せ警告","ja_osaka":"組合せの注意","en":"Combination warnings","fa":"هشدارهای ترکیب نشانه‌ها","pt_BR":"Avisos sobre combinações"},{"ja":"フォントについて","ja_osaka":"フォントのこと","en":"About fonts","fa":"دربارهٔ قلم‌ها","pt_BR":"Sobre as fontes"},{"ja":"オフラインで使う","ja_osaka":"オフラインで使う","en":"Use offline","fa":"استفادهٔ آفلاین","pt_BR":"Usar off-line"},{"ja":"国際音声記号","ja_osaka":"国際音声記号","en":"THE INTERNATIONAL PHONETIC ALPHABET","fa":"الفبای آوایی بین‌المللی","pt_BR":"O ALFABETO FONÉTICO INTERNACIONAL"},{"ja":"子音（肺気流）","ja_osaka":"子音（肺気流）","en":"CONSONANTS (PULMONIC)","fa":"همخوان‌ها (ششی)","pt_BR":"CONSOANTES (PULMONARES)"},{"ja":"両唇音","ja_osaka":"両唇音","en":"Bilabial","fa":"دولبی","pt_BR":"Bilabial"},{"ja":"唇歯音","ja_osaka":"唇歯音","en":"Labiodental","fa":"لبی دندانی","pt_BR":"Labiodental"},{"ja":"歯音","ja_osaka":"歯音","en":"Dental","fa":"دندانی","pt_BR":"Dental"},{"ja":"歯茎音","ja_osaka":"歯茎音","en":"Alveolar","fa":"لثوی","pt_BR":"Alveolar"},{"ja":"後部歯茎音","ja_osaka":"後部歯茎音","en":"Postalveolar","fa":"پس‌لثوی","pt_BR":"Pós-alveolar"},{"ja":"そり舌音","ja_osaka":"そり舌音","en":"Retroflex","fa":"برگشتی","pt_BR":"Retroflexo"},{"ja":"硬口蓋音","ja_osaka":"硬口蓋音","en":"Palatal","fa":"کامی","pt_BR":"Palatal"},{"ja":"軟口蓋音","ja_osaka":"軟口蓋音","en":"Velar","fa":"نرمکامی","pt_BR":"Velar"},{"ja":"口蓋垂音","ja_osaka":"口蓋垂音","en":"Uvular","fa":"ملازی","pt_BR":"Uvular"},{"ja":"咽頭音","ja_osaka":"咽頭音","en":"Pharyngeal","fa":"حلقی","pt_BR":"Faringal"},{"ja":"声門音","ja_osaka":"声門音","en":"Glottal","fa":"چاکنایی","pt_BR":"Glotal"},{"ja":"破裂音","ja_osaka":"破裂音","en":"Plosive","fa":"انفجاری","pt_BR":"Plosiva"},{"ja":"鼻音","ja_osaka":"鼻音","en":"Nasal","fa":"خیشومی","pt_BR":"Nasal"},{"ja":"ふるえ音","ja_osaka":"ふるえ音","en":"Trill","fa":"لرزشی","pt_BR":"Vibrante"},{"ja":"はじき音または弾き音","ja_osaka":"はじき音または弾き音","en":"Tap or Flap","fa":"زنشی","pt_BR":"Tap ou flap"},{"ja":"摩擦音","ja_osaka":"摩擦音","en":"Fricative","fa":"سایشی","pt_BR":"Fricativa"},{"ja":"側面摩擦音","ja_osaka":"側面摩擦音","en":"Lateral fricative","fa":"سایشی کناری","pt_BR":"Fricativa lateral"},{"ja":"接近音","ja_osaka":"接近音","en":"Approximant","fa":"تقریبی","pt_BR":"Aproximante"},{"ja":"側面接近音","ja_osaka":"側面接近音","en":"Lateral approximant","fa":"تقریبی کناری","pt_BR":"Aproximante lateral"},{"ja":"枠内で記号が対になっている場合、右側の記号が有声音を、左側の記号が無声音を表す。網掛け部分は、不可能と判断された調音を表す。","ja_osaka":"枠内で記号が対になっている場合、右側の記号が有声音を、左側の記号が無声音を表す。網掛け部分は、不可能と判断された調音を表す。","en":"Symbols to the right in a cell are voiced, to the left are voiceless. Shaded areas denote articulations judged impossible.","fa":"نشانه‌های سمت راست در جدول واکدار و نشانه‌های سمت چپ بی‌واک هستند. خانه‌های رنگی تولیدهای ناممکن را نشان می‌دهند.","pt_BR":"Os símbolos à direita de uma célula são vozeados, à esquerda são não vozeados. Áreas sombreadas denotam articulações julgadas como impossíveis."},{"ja":"子音（非肺気流）","ja_osaka":"子音（非肺気流）","en":"CONSONANTS (NON-PULMONIC)","fa":"همخوان‌ها (غیرششی)","pt_BR":"CONSOANTES (NÃO PULMONARES)"},{"ja":"吸着音","ja_osaka":"吸着音","en":"Clicks","fa":"نچ‌آواها","pt_BR":"Cliques"},{"ja":"有声入破音","ja_osaka":"有声入破音","en":"Voiced implosives","fa":"مکیده‌های واکدار","pt_BR":"Implosivas vozeadas"},{"ja":"放出音","ja_osaka":"放出音","en":"Ejectives","fa":"فوران‌ها","pt_BR":"Ejetivas"},{"ja":"（後部）歯茎音","ja_osaka":"（後部）歯茎音","en":"(Post)alveolar","fa":"(پس) لثوی","pt_BR":"(Pós-)alveolar"},{"ja":"硬口蓋歯茎音","ja_osaka":"硬口蓋歯茎音","en":"Palatoalveolar","fa":"کامی‌لثوی","pt_BR":"Palatoalveolar"},{"ja":"歯茎側面音","ja_osaka":"歯茎側面音","en":"Alveolar lateral","fa":"لثوی کناری","pt_BR":"Lateral alveolar"},{"ja":"歯音／歯茎音","ja_osaka":"歯音／歯茎音","en":"Dental/alveolar","fa":"دندانی/لثوی","pt_BR":"Alveolodental"},{"ja":"例: ","ja_osaka":"例: ","en":"Examples:","fa":"مثال‌ها","pt_BR":"Exemplos:"},{"ja":"歯茎摩擦音","ja_osaka":"歯茎摩擦音","en":"sʼ Alveolar fricative","fa":"لثوی سایشی","pt_BR":"Fricativa alveolar"},{"ja":"その他の記号","ja_osaka":"その他の記号","en":"OTHER SYMBOLS","fa":"دیگر نشانه‌ها","pt_BR":"OUTROS SÍMBOLOS"},{"ja":"無声両唇軟口蓋摩擦音","ja_osaka":"無声両唇軟口蓋摩擦音","en":"Voiceless labial-velar fricative","fa":"سایشی لبی-نرمکامی بی‌واک","pt_BR":"Fricativa labiovelar não vozeada"},{"ja":"歯茎硬口蓋摩擦音","ja_osaka":"歯茎硬口蓋摩擦音","en":"Alveolo-palatal fricatives","fa":"سایشی‌های لثوی-کامی","pt_BR":"Fricativas alveolopalatais"},{"ja":"有声両唇軟口蓋接近音","ja_osaka":"有声両唇軟口蓋接近音","en":"Voiced labial-velar approximant","fa":"تقریبی لبی-نرمکامی واکدار","pt_BR":"Aproximante labiovelar vozeada"},{"ja":"有声歯茎側面弾き音","ja_osaka":"有声歯茎側面弾き音","en":"Voiced alveolar lateral flap","fa":"زنشی کناری لثوی واکدار","pt_BR":"Flap alveololateral vozeado"},{"ja":"有声両唇硬口蓋接近音","ja_osaka":"有声両唇硬口蓋接近音","en":"Voiced labial-palatal approximant","fa":"تقریبی لبی-کامی واکدار","pt_BR":"Aproximante labiopalatal vozeada"},{"ja":"ʃ と x の同時調音","ja_osaka":"ʃ と x の同時調音","en":"Simultaneous ʃ and x","fa":"همزمانی ʃ و x","pt_BR":"Simultâneo ʃ e x"},{"ja":"無声喉頭蓋摩擦音","ja_osaka":"無声喉頭蓋摩擦音","en":"Voiceless epiglottal fricative","fa":"سایشی برچاکنایی بی‌واک","pt_BR":"Fricativa epiglotal não vozeada"},{"ja":"有声喉頭蓋摩擦音","ja_osaka":"有声喉頭蓋摩擦音","en":"Voiced epiglottal fricative","fa":"سایشی برچاکنایی واکدار","pt_BR":"Fricativa epiglotal vozeada"},{"ja":"喉頭蓋破裂音","ja_osaka":"喉頭蓋破裂音","en":"Epiglottal plosive","fa":"انفجاری برچاکنایی","pt_BR":"Plosiva epiglotal"},{"ja":"破擦音と二重調音は、必要な場合連結記号でつないだ2つの記号で表すことができる。","ja_osaka":"破擦音と二重調音は、必要な場合連結記号でつないだ2つの記号で表すことができる。","en":"Affricates and double articulations can be represented by two symbols joined by a tie bar if necessary.","fa":"انسایشی‌ها و تولیدهای دوگانه در صورت نیاز با دو نشانه که با کمان به هم پیوسته باشند نشان داده می‌شوند.","pt_BR":"Africadas e articulações duplas podem ser representadas por dois símbolos unidos por uma ligatura se necessário."},{"ja":"補助記号","ja_osaka":"補助記号","en":"DIACRITICS","fa":"نشانه‌های زیروزبری","pt_BR":"DIACRÍTICOS"},{"ja":"無声","ja_osaka":"無声","en":"Voiceless","fa":"بی‌واک","pt_BR":"Desvozeado"},{"ja":"息漏れ声","ja_osaka":"息漏れ声","en":"Breathy voiced","fa":"واک نفسی","pt_BR":"Voz soprosa"},{"ja":"有声","ja_osaka":"有声","en":"Voiced","fa":"واکدار","pt_BR":"Vozeado"},{"ja":"きしみ声","ja_osaka":"きしみ声","en":"Creaky voiced","fa":"واک بازداشته","pt_BR":"Voz laringalizada"},{"ja":"舌尖音","ja_osaka":"舌尖音","en":"Apical","fa":"نوک زبانی","pt_BR":"Apical"},{"ja":"有気音","ja_osaka":"有気音","en":"Aspirated","fa":"دمیده","pt_BR":"Aspirado"},{"ja":"舌唇音","ja_osaka":"舌唇音","en":"Linguolabial","fa":"زبانی لبی","pt_BR":"Linguolabial"},{"ja":"舌端音","ja_osaka":"舌端音","en":"Laminal","fa":"تیغه‌ای","pt_BR":"Laminar"},{"ja":"強い円唇化","ja_osaka":"強い円唇化","en":"More rounded","fa":"گردتر","pt_BR":"Mais arredondado"},{"ja":"唇音化","ja_osaka":"唇音化","en":"Labialized","fa":"لبی‌شده","pt_BR":"Labializado"},{"ja":"鼻音化","ja_osaka":"鼻音化","en":"Nasalized","fa":"خیشومی","pt_BR":"Nasalizado"},{"ja":"弱い円唇化","ja_osaka":"弱い円唇化","en":"Less rounded","fa":"کمتر گرد","pt_BR":"Menos arredondado"},{"ja":"硬口蓋化","ja_osaka":"硬口蓋化","en":"Palatalized","fa":"کامی‌شده","pt_BR":"Palatalizado"},{"ja":"鼻音開放","ja_osaka":"鼻音開放","en":"Nasal release","fa":"رهش خیشومی","pt_BR":"Soltura nasal"},{"ja":"前進","ja_osaka":"前進","en":"Advanced","fa":"پیش‌آمده","pt_BR":"Avançado"},{"ja":"軟口蓋化","ja_osaka":"軟口蓋化","en":"Velarized","fa":"نرمکامی‌شده","pt_BR":"Velarizado"},{"ja":"側面開放","ja_osaka":"側面開放","en":"Lateral release","fa":"رهش کناری","pt_BR":"Soltura lateral"},{"ja":"後退","ja_osaka":"後退","en":"Retracted","fa":"پس‌رفته","pt_BR":"Recuado"},{"ja":"咽頭音化","ja_osaka":"咽頭音化","en":"Pharyngealized","fa":"حلقی‌شده","pt_BR":"Faringalizado"},{"ja":"無音開放","ja_osaka":"無音開放","en":"No audible release","fa":"رهش نامحسوس","pt_BR":"Não se ouve soltura"},{"ja":"中舌化","ja_osaka":"中舌化","en":"Mid-centralized","fa":"مرکزی‌شده","pt_BR":"Centralizado ao meio"},{"ja":"軟口蓋化または咽頭音化","ja_osaka":"軟口蓋化または咽頭音化","en":"Velarized or pharyngealized","fa":"نرمکامی‌شده یا حلقی‌شده","pt_BR":"Velarizado ou faringalizado"},{"ja":"中央化","ja_osaka":"中央化","en":"Centralized","fa":"میانی-مرکزی","pt_BR":"Centralizado"},{"ja":"上寄り","ja_osaka":"上寄り","en":"Raised","fa":"افراشته‌شده","pt_BR":"Alçado"},{"ja":"e̝（ɹ̝ = 有声歯茎摩擦音）","ja_osaka":"e̝（ɹ̝ = 有声歯茎摩擦音）","en":"ɹ̝ = voiced alveolar fricative","fa":"e̝ (ɹ̝ = سایشی لثوی واکدار)","pt_BR":"e̝ (ɹ̝ = fricativa alveolar vozeada)"},{"ja":"音節主音","ja_osaka":"音節主音","en":"Syllabic","fa":"هجایی","pt_BR":"Silábico"},{"ja":"下寄り","ja_osaka":"下寄り","en":"Lowered","fa":"افتاده‌شده","pt_BR":"Abaixado"},{"ja":"e̞（β̞ = 有声両唇接近音）","ja_osaka":"e̞（β̞ = 有声両唇接近音）","en":"β̞ = voiced bilabial approximant","fa":"e̞ (β̞ = تقریبی دولبی واکدار)","pt_BR":"e̞ (β̞ = aproximante bilabial vozeada)"},{"ja":"非音節主音","ja_osaka":"非音節主音","en":"Non-syllabic","fa":"غیرهجایی","pt_BR":"Assilábico"},{"ja":"舌根前進","ja_osaka":"舌根前進","en":"Advanced Tongue Root","fa":"ریشه زبان پیش‌آمده","pt_BR":"Raiz da língua avançada"},{"ja":"R音性","ja_osaka":"R音性","en":"Rhoticity","fa":"ر-گونگی","pt_BR":"Roticizado"},{"ja":"舌根後退","ja_osaka":"舌根後退","en":"Retracted Tongue Root","fa":"ریشه زبان پس‌رفته","pt_BR":"Raiz da língua retraída"},{"ja":"基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例","ja_osaka":"基線の下まで伸びる記号の場合は、補助記号を上に付けてもよい。例","en":"Some diacritics may be placed above a symbol with a descender, e.g. ŋ̊","fa":"بعضی از نشانه های زیر زیرنویسی ممکن است بالای بعضی از نشانه‌ها قرار بگیرند، مانند:","pt_BR":"Alguns diacríticos podem ser colocados acima de um símbolo com uma descendente, e.g. ŋ̊"},{"ja":"母音","ja_osaka":"母音","en":"VOWELS","fa":"واکه‌ها","pt_BR":"VOGAIS"},{"ja":"前舌","ja_osaka":"前舌","en":"Front","fa":"پیشین","pt_BR":"Anterior"},{"ja":"中舌","ja_osaka":"中舌","en":"Central","fa":"مرکزی","pt_BR":"Central"},{"ja":"後舌","ja_osaka":"後舌","en":"Back","fa":"پسین","pt_BR":"Posterior"},{"ja":"狭","ja_osaka":"狭","en":"Close","fa":"بسته","pt_BR":"Fechada"},{"ja":"半狭","ja_osaka":"半狭","en":"Close-mid","fa":"نیم بسته","pt_BR":"Semifechada"},{"ja":"半広","ja_osaka":"半広","en":"Open-mid","fa":"نیم باز","pt_BR":"Semiaberta"},{"ja":"広","ja_osaka":"広","en":"Open","fa":"باز","pt_BR":"Aberta"},{"ja":"記号が対になっている場合、右側の記号が円唇母音を表す。","ja_osaka":"記号が対になっている場合、右側の記号が円唇母音を表す。","en":"Where symbols appear in pairs, the one to the right represents a rounded vowel.","fa":"آنجا که نشانه‌ها جفت هستند، نشانه‌ی سمت راست یک واکه گرد است.","pt_BR":"Onde os símbolos aparecem aos pares, o da direita representa uma vogal arredondada."},{"ja":"超分節的要素","ja_osaka":"超分節的要素","en":"SUPRASEGMENTALS","fa":"زبرزنجیری","pt_BR":"SUPRASSEGMENTAIS"},{"ja":"主強勢","ja_osaka":"主強勢","en":"Primary stress","fa":"تکیه نخستین","pt_BR":"Acento primário"},{"ja":"副次強勢","ja_osaka":"副次強勢","en":"Secondary stress","fa":"تکیه دومین","pt_BR":"Acento secundário"},{"ja":"長","ja_osaka":"長","en":"Long","fa":"کشیده","pt_BR":"Longo"},{"ja":"半長","ja_osaka":"半長","en":"Half-long","fa":"نیم‌کشیده","pt_BR":"Meio longo"},{"ja":"超短","ja_osaka":"超短","en":"Extra-short","fa":"فوق کوتاه","pt_BR":"Muito curto"},{"ja":"小さい（脚）境界","ja_osaka":"小さい（脚）境界","en":"Minor (foot) group","fa":"گروه (پایه) کهین","pt_BR":"Agrupamento menor (pé)"},{"ja":"大きい（イントネーション）境界","ja_osaka":"大きい（イントネーション）境界","en":"Major (intonation) group","fa":"گروه (آهنگ) مهین","pt_BR":"Agrupamento maior (entoacional)"},{"ja":"音節境界","ja_osaka":"音節境界","en":"Syllable break","fa":"مرز هجا","pt_BR":"Quebra silábica"},{"ja":"連結（無境界）","ja_osaka":"連結（無境界）","en":"Linking (absence of a break)","fa":"پیوند (نبود مرز)","pt_BR":"Ligatura (ausência de quebra)"},{"ja":"声調と語アクセント","ja_osaka":"声調と語アクセント","en":"TONES AND WORD ACCENTS","fa":"نواخت و تکیه‌های واژگانی","pt_BR":"TOM E ACENTOS DE PALAVRA"},{"ja":"平板","ja_osaka":"平板","en":"LEVEL","fa":"هموار","pt_BR":"NÍVEL"},{"ja":"または","ja_osaka":"または","en":"or","fa":"یا","pt_BR":"ou"},{"ja":"超高","ja_osaka":"超高","en":"Extra high","fa":"بسیار زیر","pt_BR":"Muito alto"},{"ja":"高","ja_osaka":"高","en":"High","fa":"زیر","pt_BR":"Alto"},{"ja":"中","ja_osaka":"中","en":"Mid","fa":"متوسط","pt_BR":"Medial"},{"ja":"低","ja_osaka":"低","en":"Low","fa":"بم","pt_BR":"Baixo"},{"ja":"超低","ja_osaka":"超低","en":"Extra low","fa":"بسیار بم","pt_BR":"Muito baixo"},{"ja":"ダウンステップ","ja_osaka":"ダウンステップ","en":"Downstep","fa":"کاهش پلکانی","pt_BR":"Abaixamento em degrau"},{"ja":"アップステップ","ja_osaka":"アップステップ","en":"Upstep","fa":"افزایش پلکانی","pt_BR":"Elevação em degrau"},{"ja":"曲線","ja_osaka":"曲線","en":"CONTOUR","fa":"ناهموار","pt_BR":"CONTORNO"},{"ja":"上昇","ja_osaka":"上昇","en":"Rising","fa":"خیزان","pt_BR":"Ascendente"},{"ja":"下降","ja_osaka":"下降","en":"Falling","fa":"افتان","pt_BR":"Descendente"},{"ja":"高上昇","ja_osaka":"高上昇","en":"High rising","fa":"زیر خیزان","pt_BR":"Ascendente alto"},{"ja":"低上昇","ja_osaka":"低上昇","en":"Low rising","fa":"بم خیزان","pt_BR":"Ascendente baixo"},{"ja":"上昇下降","ja_osaka":"上昇下降","en":"Rising-falling","fa":"خیزان-افتان","pt_BR":"Ascendente-descendente"},{"ja":"全体的上昇","ja_osaka":"全体的上昇","en":"Global rise","fa":"خیز کلی","pt_BR":"Subida global"},{"ja":"全体的下降","ja_osaka":"全体的下降","en":"Global fall","fa":"افت کلی","pt_BR":"Descida global"},{"ja":"準拠: ","ja_osaka":"準拠: ","en":"Based on:","fa":"بر اساس:","pt_BR":"Baseado em:"},{"ja":"IPA Chart 2026 日本語版","ja_osaka":"IPA Chart 2026 日本語版","en":"IPA Chart 2026 — Japanese version","fa":"جدول الفبای آوایی بین‌المللی ۲۰۲۶ — نسخهٔ ژاپنی","pt_BR":"Quadro do IPA 2026 — versão japonesa"},{"ja":"IPAについて詳しく学ぶ: ","ja_osaka":"IPAについてもっと知る: ","en":"Learn more about the IPA:","fa":"اطلاعات بیشتر دربارهٔ الفبای آوایی بین‌المللی:","pt_BR":"Saiba mais sobre o IPA:"},{"ja":"東京外国語大学 — IPA 国際音声字母","ja_osaka":"東京外国語大学 — IPA 国際音声字母","en":"Tokyo University of Foreign Studies — International Phonetic Alphabet","fa":"دانشگاه مطالعات خارجی توکیو — الفبای آوایی بین‌المللی","pt_BR":"Universidade de Estudos Estrangeiros de Tóquio — Alfabeto Fonético Internacional"},{"ja":"入力内容をすべて消去しますか？","ja_osaka":"入力したもん、全部消してええ？","en":"Clear all input?","fa":"آیا همهٔ متن ورودی پاک شود؟","pt_BR":"Apagar todo o texto digitado?"},{"ja":"キャンセル","ja_osaka":"やめとく","en":"Cancel","fa":"لغو","pt_BR":"Cancelar"},{"ja":"全消去","ja_osaka":"全部消す","en":"Clear all","fa":"پاک کردن همه","pt_BR":"Apagar tudo"},{"ja":"IPA Keyboard は Doulos SIL を標準フォントとして使用します。Word等へ貼り付けた文字の字形や補助記号の位置は、貼り付け先で使用するフォントによって変わります。","ja_osaka":"IPA Keyboard は Doulos SIL を標準フォントとして使用します。Word等へ貼り付けた文字の字形や補助記号の位置は、貼り付け先で使用するフォントによって変わります。","en":"IPA Keyboard uses Doulos SIL as its default font. The appearance of characters and the positioning of diacritics pasted into Word or other applications depend on the font used in the destination application.","fa":"IPA Keyboard از قلم Doulos SIL به‌عنوان قلم پیش‌فرض استفاده می‌کند. شکل نویسه‌ها و جایگاه نشانه‌های کمکی پس از جای‌گذاری در Word یا برنامه‌های دیگر، به قلم مورد استفاده در برنامهٔ مقصد بستگی دارد.","pt_BR":"O IPA Keyboard usa Doulos SIL como fonte padrão. A aparência dos caracteres e a posição dos diacríticos colados no Word ou em outros aplicativos dependem da fonte usada no aplicativo de destino."},{"ja":"推奨無料フォント","ja_osaka":"推奨無料フォント","en":"Recommended free fonts","fa":"قلم‌های رایگان پیشنهادی","pt_BR":"Fontes gratuitas recomendadas"},{"ja":"Doulos SIL — セリフ体 ↗","ja_osaka":"Doulos SIL — セリフ体 ↗","en":"Doulos SIL — Serif ↗","fa":"Doulos SIL — سریف ↗","pt_BR":"Doulos SIL — com serifa ↗"},{"ja":"Andika — サンセリフ体 ↗","ja_osaka":"Andika — サンセリフ体 ↗","en":"Andika — Sans serif ↗","fa":"Andika — بدون سریف ↗","pt_BR":"Andika — sem serifa ↗"},{"ja":"閉じる","ja_osaka":"閉じる","en":"Close","fa":"بستن","pt_BR":"Fechar"},{"ja":"一度このページをオンラインで開くと、対応ブラウザでは本体データが保存され、その後は通信できない環境でも起動できます。","ja_osaka":"一度このページをオンラインで開くと、対応ブラウザでは本体データが保存され、その後は通信できない環境でも起動できます。","en":"After you open this page online once, supported browsers will cache the app data so you can launch it without an internet connection.","fa":"پس از یک بار باز کردن این صفحه به‌صورت آنلاین، مرورگرهای سازگار داده‌های برنامه را ذخیره می‌کنند تا بتوانید بعداً بدون اتصال به اینترنت آن را باز کنید.","pt_BR":"Depois de abrir esta página on-line uma vez, os navegadores compatíveis armazenam os dados do aplicativo, permitindo abri-lo posteriormente sem conexão com a internet."},{"ja":"端末の「ホーム画面に追加」やブックマークを利用すると、再度開きやすくなります。初回だけはオンラインで開いてください。","ja_osaka":"端末の「ホーム画面に追加」やブックマークを利用すると、再度開きやすくなります。初回だけはオンラインで開いてください。","en":"Use “Add to Home Screen” or bookmark this page for easier access. You must open it online the first time.","fa":"برای دسترسی آسان‌تر، این صفحه را به صفحهٔ اصلی دستگاه اضافه کنید یا نشانک بگذارید. بار اول باید آن را به‌صورت آنلاین باز کنید.","pt_BR":"Use a opção «Adicionar à Tela de Início» ou salve esta página nos favoritos para acessá-la com mais facilidade. Na primeira vez, é necessário abri-la on-line."},{"ja":"IPA入力欄","ja_osaka":"IPA入力欄","en":"IPA input field","fa":"کادر ورود IPA","pt_BR":"Campo de entrada IPA"},{"ja":"角括弧を付ける","ja_osaka":"角括弧を付ける","en":"Add square brackets","fa":"افزودن کروشه","pt_BR":"Adicionar colchetes"},{"ja":"コピー","ja_osaka":"コピー","en":"Copy","fa":"کپی","pt_BR":"Copiar"},{"ja":"元に戻す","ja_osaka":"元に戻す","en":"Undo","fa":"واگرد","pt_BR":"Desfazer"},{"ja":"やり直す","ja_osaka":"やり直す","en":"Redo","fa":"انجام دوباره","pt_BR":"Refazer"},{"ja":"1文字削除","ja_osaka":"1文字消す","en":"Delete one character","fa":"حذف یک نویسه","pt_BR":"Apagar um caractere"},{"ja":"補助記号の位置","ja_osaka":"補助記号の位置","en":"Diacritic placement","fa":"جایگاه نشانهٔ کمکی","pt_BR":"Posição dos diacríticos"},{"ja":"補助記号位置: 自動","ja_osaka":"補助記号位置: 自動","en":"Diacritic placement: Auto","fa":"جایگاه نشانهٔ کمکی: خودکار","pt_BR":"Posição dos diacríticos: automática"},{"ja":"次の補助記号だけ上","ja_osaka":"次の補助記号だけ上","en":"Place the next diacritic above","fa":"فقط نشانهٔ کمکی بعدی در بالا","pt_BR":"Posicionar apenas o próximo diacrítico acima"},{"ja":"次の補助記号だけ下","ja_osaka":"次の補助記号だけ下","en":"Place the next diacritic below","fa":"فقط نشانهٔ کمکی بعدی در پایین","pt_BR":"Posicionar apenas o próximo diacrítico abaixo"},{"ja":"設定","ja_osaka":"設定","en":"Settings","fa":"تنظیمات","pt_BR":"Configurações"},{"ja":"入力文字サイズ","ja_osaka":"入力文字の大きさ","en":"Input text size","fa":"اندازهٔ متن ورودی","pt_BR":"Tamanho do texto digitado"},{"ja":"チャート文字サイズ","ja_osaka":"チャートの文字の大きさ","en":"Chart text size","fa":"اندازهٔ متن جدول","pt_BR":"Tamanho do texto do quadro"},{"ja":"同じ補助記号の重複を確認してください。","ja_osaka":"同じ補助記号が重なってへんか、確認してな🐙","en":"Check for duplicate diacritics.","fa":"نشانه‌های کمکی تکراری را بررسی کنید.","pt_BR":"Verifique se há diacríticos duplicados."},{"ja":"母音に有声化記号が付いています。通常、母音は有声なので確認してください。","ja_osaka":"母音に有声化記号が付いてるで。普通、母音は有声やから、確認してな🐙","en":"A voicing diacritic has been added to a vowel. Vowels are normally voiced; please check.","fa":"نشانهٔ واکداری به یک واکه افزوده شده است. واکه‌ها معمولاً واکدارند؛ لطفاً بررسی کنید.","pt_BR":"Foi adicionado um diacrítico de vozeamento a uma vogal. As vogais normalmente são vozeadas; verifique."},{"ja":"有声子音に有声化記号が付いています。冗長な指定になっていないか確認してください。","ja_osaka":"有声子音に有声化記号が付いてるで。余計な指定になってへんか、確認してな🐙","en":"A voicing diacritic has been added to a voiced consonant. Check whether this is redundant.","fa":"نشانهٔ واکداری به یک همخوان واکدار افزوده شده است. بررسی کنید که این مشخصه زائد نباشد.","pt_BR":"Foi adicionado um diacrítico de vozeamento a uma consoante vozeada. Verifique se a indicação é redundante."},{"ja":"無声子音に無声化記号が付いています。冗長な指定になっていないか確認してください。","ja_osaka":"無声子音に無声化記号が付いてるで。余計な指定になってへんか、確認してな🐙","en":"A voicelessness diacritic has been added to a voiceless consonant. Check whether this is redundant.","fa":"نشانهٔ بی‌واکی به یک همخوان بی‌واک افزوده شده است. بررسی کنید که این مشخصه زائد نباشد.","pt_BR":"Foi adicionado um diacrítico de desvozeamento a uma consoante não vozeada. Verifique se a indicação é redundante."},{"ja":"鼻音に鼻音化記号が付いています。冗長な指定になっていないか確認してください。","ja_osaka":"鼻音に鼻音化記号が付いてるで。余計な指定になってへんか、確認してな🐙","en":"A nasalization diacritic has been added to a nasal consonant. Check whether this is redundant.","fa":"نشانهٔ خیشومی‌شدگی به یک همخوان خیشومی افزوده شده است. بررسی کنید که این مشخصه زائد نباشد.","pt_BR":"Foi adicionado um diacrítico de nasalização a uma consoante nasal. Verifique se a indicação é redundante."},{"ja":"母音に帯気記号が付いています。通常の用法か確認してください。","ja_osaka":"母音に帯気記号が付いてるで。普通の使い方かどうか、確認してな🐙","en":"An aspiration diacritic has been added to a vowel. Check whether this usage is intended.","fa":"نشانهٔ دمیدگی به یک واکه افزوده شده است. کاربرد آن را بررسی کنید.","pt_BR":"Foi adicionado um diacrítico de aspiração a uma vogal. Verifique se esse uso é intencional."},{"ja":"母音に側面開放記号が付いています。通常の用法か確認してください。","ja_osaka":"母音に側面開放記号が付いてるで。普通の使い方かどうか、確認してな🐙","en":"A lateral release diacritic has been added to a vowel. Check whether this usage is intended.","fa":"نشانهٔ رهش کناری به یک واکه افزوده شده است. کاربرد آن را بررسی کنید.","pt_BR":"Foi adicionado um diacrítico de soltura lateral a uma vogal. Verifique se esse uso é intencional."},{"ja":"母音に無開放記号が付いています。通常の用法か確認してください。","ja_osaka":"母音に無開放記号が付いてるで。普通の使い方かどうか、確認してな🐙","en":"A no-audible-release diacritic has been added to a vowel. Check whether this usage is intended.","fa":"نشانهٔ نبود رهش شنیداری به یک واکه افزوده شده است. کاربرد آن را بررسی کنید.","pt_BR":"Foi adicionado um diacrítico de ausência de soltura audível a uma vogal. Verifique se esse uso é intencional."},{"ja":"相反する補助記号が連続しています。同じ音への指定か確認してください。","ja_osaka":"反対の意味の補助記号が続いてるで。同じ音に付けてへんか、確認してな🐙","en":"Conflicting diacritics appear consecutively. Check whether they apply to the same sound.","fa":"نشانه‌های کمکی متضاد پشت سر هم آمده‌اند. بررسی کنید که آیا به یک آوا مربوط‌اند.","pt_BR":"Há diacríticos contraditórios em sequência. Verifique se se aplicam ao mesmo som."},{"ja":"コピーする文字がありません。","ja_osaka":"コピーする文字があらへんで","en":"There is no text to copy.","fa":"متنی برای کپی وجود ندارد.","pt_BR":"Não há texto para copiar."},{"ja":"コピーしました。","ja_osaka":"コピーしたで！","en":"Copied.","fa":"کپی شد.","pt_BR":"Copiado."},{"ja":"コピーできませんでした。","ja_osaka":"コピーできへんかったわ","en":"Could not copy.","fa":"کپی انجام نشد.","pt_BR":"Não foi possível copiar."},{"ja":"この補助記号にはUnicode上の上下別コードポイントがないため、標準位置で入力しました。","ja_osaka":"この補助記号にはUnicode上の上下別コードポイントがないため、標準位置で入力しました。","en":"This diacritic has no separate Unicode code point for above/below placement, so it was inserted in its default position.","fa":"این نشانهٔ کمکی در یونیکد کد جداگانه‌ای برای جایگاه بالا و پایین ندارد؛ بنابراین در جایگاه پیش‌فرض درج شد.","pt_BR":"Este diacrítico não possui pontos de código Unicode distintos para as posições acima e abaixo; por isso, foi inserido na posição padrão."},{"ja":"補助記号の位置: 自動","ja_osaka":"補助記号の位置: 自動","en":"Diacritic placement: Auto","fa":"جایگاه نشانهٔ کمکی: خودکار","pt_BR":"Posição dos diacríticos: automática"},{"ja":"次の補助記号だけ「{位置}」に入力します。","ja_osaka":"次の補助記号だけ「{位置}」に入れるで。","en":"Place only the next diacritic {位置}.","fa":"فقط نشانهٔ کمکی بعدی را در جایگاه «{位置}» وارد می‌کند.","pt_BR":"Inserir apenas o próximo diacrítico {位置}."},{"ja":"{記号} を入力","ja_osaka":"{記号} を入力","en":"Insert {記号}","fa":"درج {記号}","pt_BR":"Inserir {記号}"}];
+window.esaI18n.ready.then(function(){
+ const rows=window.esaI18n.rows('ui');
  const langs={ja:"ja",en:"en","pt-BR":"pt_BR",fa:"fa","ja-osaka":"ja_osaka"};
  const selector=document.getElementById("languageSelect");if(!selector)return;
  const bySource=new Map(rows.filter(r=>r.ja).map(r=>[r.ja.trim(),r]));
@@ -472,23 +701,29 @@ document.querySelectorAll('#diac .dia-ex').forEach(function(ex){
   const key=raw.trim();if(!key)return raw;
   const row=bySource.get(key);
   if(row&&row[langs[active]])return raw.replace(key,row[langs[active]]);
-  let result=raw;
-  for(const [source,r] of bySource){
-   if(source.length<4||!r[langs[active]]||source===key)continue;
-   if(result.includes(source))result=result.split(source).join(r[langs[active]]);
+  // Translate only original source spans. Never retranslate inserted translations.
+  const entries=[...bySource].filter(([source,r])=>source.length>=4&&r[langs[active]]&&source!==key)
+    .sort((a,b)=>b[0].length-a[0].length);
+  let result="",pos=0;
+  while(pos<raw.length){
+   const match=entries.find(([source])=>raw.startsWith(source,pos));
+   if(match){result+=match[1][langs[active]];pos+=match[0].length;}
+   else{result+=raw[pos];pos++;}
   }
   return result;
  }
  function apply(){
-  active=langs[selector.value]?selector.value:"ja";
+  active=window.esaI18n.failed?"ja":(langs[selector.value]?selector.value:"ja");
+  if(window.esaI18n.failed){selector.value="ja";selector.disabled=true;}
   document.documentElement.lang=active==="ja-osaka"?"ja":active;
+  const caption=document.querySelector(".v83-label");const captionValue='IPA Keyboard v83.20';if(caption.textContent!==captionValue)caption.textContent=captionValue;
   document.documentElement.dir="ltr";
   document.documentElement.classList.toggle("is-persian",active==="fa");
   const root=document.querySelector("main.app")||document.body;
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   while(walker.nextNode()){
    const n=walker.currentNode;
-   if(n.parentElement&&n.parentElement.closest("#languageSelect"))continue;
+   if(n.parentElement&&n.parentElement.closest("#languageSelect,.v83-label"))continue;
    if(!originalText.has(n))originalText.set(n,n.nodeValue);
    const raw=originalText.get(n),value=translateText(raw);
    if(n.nodeValue!==value)n.nodeValue=value;
@@ -497,6 +732,8 @@ document.querySelectorAll('#diac .dia-ex').forEach(function(ex){
    if(el===selector||el.closest("#languageSelect"))return;
    let saved=originalAttrs.get(el);if(!saved){saved={};originalAttrs.set(el,saved);}
    ["title","aria-label","placeholder","alt"].forEach(a=>{
+    // These labels have one owner: the panel controllers using the shared catalog.
+    if(['floatingEditor','inputPanelDrag','inputPanelReset','contrastToggle'].includes(el.id)&&['title','aria-label'].includes(a))return;
     if(!Object.prototype.hasOwnProperty.call(saved,a))saved[a]=el.getAttribute(a);
     if(saved[a]!==null){const value=translateText(saved[a]);if(el.getAttribute(a)!==value)el.setAttribute(a,value);}
    });
@@ -507,6 +744,146 @@ document.querySelectorAll('#diac .dia-ex').forEach(function(ex){
  const observer=new MutationObserver(()=>{if(active!=="ja")apply();});
  observer.observe(root,{subtree:true,childList:true,characterData:true});
  apply();
+});
+</script>
+<script id="v83-frame-controller">
+(function(){
+'use strict';
+const frame=document.getElementById('v83ChartFrame'),picker=document.getElementById('languageSelect');
+let expanded=false,layoutFrame=0,priorOverflow='',priorScroll=null,lastLayout='';
+function setLocale(){if(frame.contentWindow&&typeof frame.contentWindow.esaSetLocale==='function')frame.contentWindow.esaSetLocale(picker.value);}
+function viewportLayout(){
+ layoutFrame=0;if(!expanded)return;
+ const v=window.visualViewport,s=Math.max(.1,v?.scale||1),x=v?.offsetLeft||0,y=v?.offsetTop||0,w=(v?.width||innerWidth)*s,h=(v?.height||innerHeight)*s;
+ const signature=[x,y,w,h,s].map(n=>Math.round(n*1000)/1000).join(',');
+ if(signature===lastLayout)return;lastLayout=signature;
+ for(const [k,value]of Object.entries({'--zoom-view-left':x+'px','--zoom-view-top':y+'px','--zoom-view-width':w+'px','--zoom-view-height':h+'px','--zoom-view-compensation':String(1/s)}))frame.style.setProperty(k,value);
+ frame.contentWindow?.postMessage({kind:'esa-chart-zoom-layout'},location.origin);
+}
+function queueLayout(){if(expanded&&!layoutFrame)layoutFrame=requestAnimationFrame(viewportLayout);}
+picker.addEventListener('change',setLocale);frame.addEventListener('load',setLocale);
+window.addEventListener('resize',queueLayout);visualViewport?.addEventListener('resize',queueLayout);visualViewport?.addEventListener('scroll',queueLayout);
+window.addEventListener('message',e=>{
+ if(e.source!==frame.contentWindow||e.origin!==location.origin||!e.data?.kind)return;
+ if(e.data.kind==='esa-chart-height'&&!expanded){
+  const h=Number(e.data.height);if(Number.isFinite(h)&&h>400&&h<10000){const value=Math.ceil(h+4)+'px';if(frame.style.height!==value)frame.style.height=value;}
+ }
+ if(e.data.kind==='esa-chart-zoom'){
+  const next=!!e.data.open;if(next===expanded){if(next)queueLayout();return;}
+  if(next){priorOverflow=document.body.style.overflow;priorScroll={x:scrollX,y:scrollY};}
+  expanded=next;frame.classList.toggle('zoom-fullscreen',expanded);lastLayout='';
+  if(expanded){document.body.style.overflow='hidden';viewportLayout();}
+  else{
+   if(layoutFrame)cancelAnimationFrame(layoutFrame);layoutFrame=0;
+   document.body.style.overflow=priorOverflow;
+   if(priorScroll)window.scrollTo(priorScroll.x,priorScroll.y);
+   setLocale();frame.contentWindow?.postMessage({kind:'esa-request-height'},location.origin);
+  }
+ }
+});
+})();
+</script>
+<script id="v8310-floating-editor">
+(function(){
+'use strict';
+const panel=document.getElementById('floatingEditor'),handle=document.getElementById('inputPanelDrag'),reset=document.getElementById('inputPanelReset');
+const key='esakits.ipa.floating-editor.v1';
+const widthSlider=document.getElementById('panelWidthSlider');
+function panelProfile(){return matchMedia('(max-width:700px)').matches?'phone':'desktop';}
+function preferredWidth(){var n=panelProfile()==='phone'?320:440;try{const v=Number(localStorage.getItem('esakits.ipa.panel-width.'+panelProfile()+'.v1'));if(v>=240&&v<=640)n=v;}catch(e){}return n;}
+let position=null,drag=null,placeFrame=0;
+try{const p=JSON.parse(localStorage.getItem(key));if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))position={x:Math.max(0,Math.min(1,p.x)),y:Math.max(0,Math.min(1,p.y))};}catch(e){}
+function bounds(){
+ const v=window.visualViewport,s=Math.max(.1,v?.scale||1),pad=8/s;
+ return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad,w:Math.max(0,(v?.width||innerWidth)-2*pad),h:Math.max(0,(v?.height||innerHeight)-2*pad)};
+}
+function place(){
+ placeFrame=0;const b=bounds();
+ panel.style.transformOrigin='0 0';panel.style.transform='scale('+(1/b.scale)+')';
+ panel.style.setProperty('--panel-vh',(b.h*b.scale+16)+'px');
+ const phone=panelProfile()==='phone';
+ const maxWidth=Math.max(240,Math.floor((innerWidth-16)/10)*10);
+ widthSlider.max=String(Math.min(640,maxWidth));widthSlider.value=String(Math.min(preferredWidth(),Number(widthSlider.max)));
+ const width=Math.min(b.w*b.scale,Number(widthSlider.value));panel.style.width=width+'px';
+ panel.classList.toggle('input-panel-phone',phone);panel.classList.toggle('input-panel-compact',width<316);
+ const r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);
+ const x=position?b.x+position.x*dx:b.x+((innerWidth>700)?dx:0);
+ const y=position?b.y+position.y*dy:b.y+((innerWidth>700)?Math.min(102/b.scale,dy):dy);
+ panel.style.left=x+'px';panel.style.top=y+'px';
+}
+function queuePlace(){if(!placeFrame&&!drag)placeFrame=requestAnimationFrame(place);}
+function move(x,y,save=false){
+ const b=bounds(),r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);
+ const nx=Math.max(b.x,Math.min(b.x+dx,x)),ny=Math.max(b.y,Math.min(b.y+dy,y));
+ position={x:dx?(nx-b.x)/dx:0,y:dy?(ny-b.y)/dy:0};
+ panel.style.left=nx+'px';panel.style.top=ny+'px';
+ if(save)try{localStorage.setItem(key,JSON.stringify(position));}catch(e){}
+}
+handle.addEventListener('pointerdown',e=>{
+ if(e.button!==0)return;e.preventDefault();
+ const r=panel.getBoundingClientRect();drag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left,top:r.top};
+ handle.setPointerCapture(e.pointerId);document.body.classList.add('input-panel-dragging');
+});
+handle.addEventListener('pointermove',e=>{if(drag&&e.pointerId===drag.id)move(drag.left+e.clientX-drag.x,drag.top+e.clientY-drag.y);});
+function end(e){
+ if(!drag||e.pointerId!==drag.id)return;
+ drag=null;document.body.classList.remove('input-panel-dragging');
+ const r=panel.getBoundingClientRect();move(r.left,r.top,true);
+}
+handle.addEventListener('pointerup',end);handle.addEventListener('pointercancel',end);handle.addEventListener('lostpointercapture',end);
+function home(){position=null;try{localStorage.removeItem(key);}catch(e){}place();}
+reset.addEventListener('click',home);
+handle.addEventListener('keydown',e=>{
+ if(e.key==='Home'){e.preventDefault();home();return;}
+ const shifts={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]},d=shifts[e.key];if(!d)return;
+ e.preventDefault();const r=panel.getBoundingClientRect(),step=(e.shiftKey?40:10)/bounds().scale;move(r.left+d[0]*step,r.top+d[1]*step,true);
+});
+function labels(){
+ const lang=document.getElementById('languageSelect').value;
+ const t=['IPA入力','入力パネルを移動。矢印キーでも移動できます','入力パネルの位置を戻す'].map(key=>window.esaI18n.t(key,lang,'panel'));
+ document.getElementById('inputPanelTitle').textContent=t[0];handle.setAttribute('aria-label',t[1]);reset.setAttribute('aria-label',t[2]);reset.title=t[2];panel.setAttribute('aria-label',t[0]);
+}
+document.getElementById('languageSelect').addEventListener('change',()=>{labels();requestAnimationFrame(place);});
+widthSlider.addEventListener('input',()=>{try{localStorage.setItem('esakits.ipa.panel-width.'+panelProfile()+'.v1',widthSlider.value);}catch(e){}place();});
+window.addEventListener('esa-panel-layout',queuePlace);
+window.addEventListener('resize',queuePlace);
+window.visualViewport?.addEventListener('resize',queuePlace);
+window.visualViewport?.addEventListener('scroll',queuePlace);
+new ResizeObserver(queuePlace).observe(panel);
+labels();place();window.esaI18n.ready.then(labels);
+})();
+</script>
+
+<script id="v8310-inverse-mode">
+(function(){
+'use strict';
+const button=document.getElementById('contrastToggle'),picker=document.getElementById('languageSelect'),key='esakits.ipa.inverse.v1';
+let inverse=false;try{inverse=localStorage.getItem(key)==='1';}catch(e){}
+function apply(){
+ document.documentElement.dataset.inverse=String(inverse);
+ const frame=document.getElementById('v83ChartFrame');
+ if(frame?.contentDocument?.documentElement)frame.contentDocument.documentElement.dataset.inverse=String(inverse);
+ button.setAttribute('aria-pressed',String(inverse));
+ const name=window.esaI18n.t('白黒反転',picker.value,'panel');button.title=name;button.setAttribute('aria-label',name);
+}
+button.addEventListener('click',()=>{inverse=!inverse;try{localStorage.setItem(key,inverse?'1':'0');}catch(e){}apply();});
+picker.addEventListener('change',apply);document.getElementById('v83ChartFrame').addEventListener('load',apply);apply();window.esaI18n.ready.then(apply);
+})();
+</script>
+<script id="v8315-feedback-settings">
+(function(){
+'use strict';
+const slider=document.getElementById('glowStrengthSlider'),value=document.getElementById('glowStrengthValue'),frame=document.getElementById('v83ChartFrame'),key='esakits.ipa.glow-strength.v1';
+let strength=60;
+try{const saved=localStorage.getItem(key);if(saved!==null&&Number.isFinite(Number(saved)))strength=Math.max(0,Math.min(100,Number(saved)));}catch(e){}
+function apply(){
+ slider.value=String(strength);value.value=strength+'%';slider.setAttribute('aria-valuetext',strength+'%');
+ const root=frame.contentDocument?.documentElement;
+ if(root)root.style.setProperty('--feedback-strength',String(strength/100));
+}
+slider.addEventListener('input',()=>{strength=Number(slider.value);try{localStorage.setItem(key,String(strength));}catch(e){}apply();});
+frame.addEventListener('load',apply);apply();window.esaI18n.ready.then(apply);
 })();
 </script>
 </body></html>
+

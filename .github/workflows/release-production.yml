@@ -1,0 +1,81 @@
+name: Verify and publish IPA Keyboard production v83.20
+on:
+  push:
+    branches: [main, release/ipa-keyboard-v83.20]
+    paths: ['index.html', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ipa-production-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.20'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check translation master
+        run: python3 tools/export-translations.py translations.xlsx translations.csv --check
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1
+      - run: npx playwright install chromium webkit --with-deps
+      - name: Serve at the production path
+        run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
+      - name: Verify translations and input
+        run: node qa/translations.cjs
+      - name: Verify display and gestures
+        run: |
+          node qa/intensity.cjs
+          node qa/feedback.cjs
+          node qa/inline.cjs
+          node qa/gestures.cjs
+      - name: Verify production assets and upgrade from old offline cache
+        run: node qa/production.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ipa-production-staged-screenshots
+          path: qa-production/
+  public:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1
+      - run: npx playwright install chromium webkit --with-deps
+      - name: Wait for GitHub Pages and compare public assets
+        shell: python
+        run: |
+          import urllib.request, pathlib, time
+          files=['index.html','chart.html','i18n.js','translations.csv','sw.js']
+          for attempt in range(36):
+              try:
+                  for name in files:
+                      request=urllib.request.Request('https://esakits.github.io/ipa-keyboard/'+name+'?release='+str(attempt),headers={'Cache-Control':'no-cache'})
+                      actual=urllib.request.urlopen(request,timeout=10).read()
+                      assert actual==pathlib.Path(name).read_bytes(), name
+                  print('Public production files match this commit exactly')
+                  break
+              except Exception as error:
+                  print('Waiting for Pages:',str(error))
+                  time.sleep(5)
+          else:
+              raise SystemExit('Production files did not update')
+      - name: Verify the live production URL in both browsers
+        env:
+          APP_URL: https://esakits.github.io/ipa-keyboard/
+          PUBLIC_CHECK: '1'
+        run: node qa/production.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ipa-production-public-screenshots
+          path: qa-production/

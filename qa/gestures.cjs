@@ -8,7 +8,7 @@ async function metrics(p){return await p.evaluate(()=>{
  return{scale:s,width:r.width*s,height:r.height*s,button:b.width*s,font:parseFloat(getComputedStyle(document.getElementById('out')).fontSize),x:(r.left-v.offsetLeft)*s,y:(r.top-v.offsetTop)*s,viewW:v.width*s,viewH:v.height*s};
 });}
 async function touchInFrame(p,f,selector){
- if(selector==='#chartZoomOpen'){await f.locator(selector).scrollIntoViewIfNeeded();await stable(p);}
+ if(selector==='#chartZoomOpen'){await p.locator('#chartZoomToggle').scrollIntoViewIfNeeded();await p.locator('#chartZoomToggle').tap();return;}
  const pt=await f.locator(selector).evaluate(el=>{
   const r=el.getBoundingClientRect(),host=frameElement,fr=host.getBoundingClientRect(),v=parent.visualViewport;
   const sx=fr.width/host.clientWidth,sy=fr.height/host.clientHeight;
@@ -46,7 +46,7 @@ async function touchPoints(p,points){return await p.evaluate(a=>a.map(t=>({x:vis
    await p.screenshot({path:'qa-production/chromium-native-page-scale-fixed-panel.png'});
   }
   // Open at the retained native page zoom, then exercise visible controls physically.
-  await f.locator('#chartZoomOpen').evaluate(el=>el.click());
+  await p.locator('#chartZoomToggle').evaluate(el=>el.click());
   await p.waitForFunction(()=>document.getElementById('v83ChartFrame').classList.contains('zoom-fullscreen'));
   await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');await stable(p);
   const open=await metrics(p);assert(Math.abs(open.width-initial.width)<1&&Math.abs(open.button-initial.button)<1);

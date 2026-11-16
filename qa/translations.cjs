@@ -8,7 +8,7 @@ async function chart(p){await p.frameLocator('#v83ChartFrame').locator('.v83-ipa
   const errors=[];p.on('pageerror',e=>errors.push(String(e)));let downloads=0;p.on('request',r=>{if(r.url().split('?')[0].endsWith('/translations.csv'))downloads++;});
   await p.goto(base+'ipa-keyboard/');const f=await chart(p);await p.evaluate(()=>esaI18n.ready);
   assert(await f.evaluate(()=>esaI18n===parent.esaI18n),'chart and panel share one catalog object');
-  assert.equal(await p.evaluate(async()=>{await esaI18n.ready;return new Set(['ui','chart','panel'].flatMap(s=>esaI18n.rows(s).map(r=>r.ja))).size;}),207);
+  assert.equal(await p.evaluate(async()=>{await esaI18n.ready;return new Set(['ui','chart','panel'].flatMap(s=>esaI18n.rows(s).map(r=>r.ja))).size;}),209);
   await f.waitForFunction(()=>[...document.querySelectorAll('.vowel-dynamic-glyph')].every(e=>e.style.fontSize==='32px'));
   const glyphs=()=>[...document.querySelectorAll('.vowel-dynamic-glyph')].map(e=>[e.dataset.v83Sym,e.textContent,e.getAttribute('x'),e.getAttribute('y'),e.style.fontSize]);const originalGlyphs=await f.evaluate(glyphs);
   for(const locale of ['ja','en','pt-BR','fa','ja-osaka','en','ja']){
@@ -47,7 +47,7 @@ await p.locator('#languageSelect').selectOption(locale);
   }
   await f.locator('#chartZoomOpen').evaluate(e=>e.click());await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');await f.locator('#zoomRange').fill('300');assert.equal(await f.locator('#zoomMapToggle').textContent(),'Hide overview');await f.locator('#zoomMapToggle').click();assert.equal(await f.locator('#zoomMapToggle').textContent(),'Show overview');await f.locator('#zoomMapToggle').click();assert(!/[\u3040-\u30ff\u4e00-\u9fff]/.test(await f.locator('#zoomMapCanvas').textContent()));await p.locator('#languageSelect').selectOption('fa');await p.waitForTimeout(100);assert.equal(await f.locator('#chart').getAttribute('data-feedback-scale'),'3','changing vowel labels in enlarged view preserves glow scale');
   await f.locator('#vowelQuadrilateral').scrollIntoViewIfNeeded();await p.screenshot({path:`qa-production/${name}-${width}-vowel-fa-zoom.png`});await f.locator('#zoomClose').click();await p.locator('#contrastToggle').evaluate(e=>e.click());await p.screenshot({path:`qa-production/${name}-${width}-placement-icons-dark.png`});
-  await p.close();console.log(`PASS TRANSLATIONS ${name} ${width}: 207 shared entries, complete labels in all 5 languages, UI and chart share a single CSV fetch`);
+  await p.close();console.log(`PASS TRANSLATIONS ${name} ${width}: 209 shared entries, complete labels in all 5 languages, UI and chart share a single CSV fetch`);
  }
  // Changing only the CSV must update both surfaces, including escaped commas, quotes and line breaks.
  const p=await b.newPage({serviceWorkers:'block',viewport:{width:390,height:844},hasTouch:true}),errors=[];p.on('pageerror',e=>errors.push(String(e)));

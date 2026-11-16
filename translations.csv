@@ -206,3 +206,5 @@
 "tr0205","chart","クレジットとライセンス","Credits and licenses","پدیدآورندگان و مجوزها","Créditos e licenças","クレジットとライセンス","v83.26 ライセンス表記","表示訳を追加"
 "tr0206","panel","パネルのサイズを変更","Resize panel","تغییر اندازهٔ پنل","Redimensionar painel","パネルのサイズを変更","v83.27 直接サイズ変更","表示訳を追加"
 "tr0207","panel","入力領域の高さを変更","Resize input area height","تغییر ارتفاع ناحیهٔ ورودی","Alterar a altura da área de entrada","入力領域の高さを変更","v83.27 直接サイズ変更","表示訳を追加"
+"tr0208","panel","この記号は、位置を変えると意味が変わるため標準位置で入力します。","This mark stays in its standard position because changing its position changes its meaning.","این نشانه در جایگاه استاندارد خود می‌ماند، زیرا تغییر جایگاه آن معنایش را تغییر می‌دهد.","Este sinal permanece na posição padrão, pois mudar sua posição altera seu significado.","この記号は、位置を変えると意味が変わるので標準位置で入力します。","v83.31 表示位置","表示訳を追加"
+"tr0209","panel","表示位置の情報を読み込めませんでした。","The display-position data could not be loaded.","داده‌های جایگاه نمایش بارگذاری نشد.","Não foi possível carregar os dados de posição de exibição.","表示位置の情報を読み込めませんでした。","v83.31 表示位置","表示訳を追加"

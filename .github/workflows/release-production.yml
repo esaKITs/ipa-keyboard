@@ -1,7 +1,7 @@
-name: Verify and publish IPA Keyboard production v83.20
+name: Verify and publish IPA Keyboard production v83.21
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.20]
+    branches: [main, release/ipa-keyboard-v83.21]
     paths: ['index.html', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.20'
+    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.21'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -25,6 +25,8 @@ jobs:
       - run: npx playwright install chromium webkit --with-deps
       - name: Serve at the production path
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
+      - name: Verify license footer has no blank area
+        run: node qa/layout-height.cjs
       - name: Verify production assets and upgrade from old offline cache
         run: node qa/production.cjs
       - name: Verify translations and input
@@ -73,7 +75,9 @@ jobs:
         env:
           APP_URL: https://esakits.github.io/ipa-keyboard/
           PUBLIC_CHECK: '1'
-        run: node qa/production.cjs
+        run: |
+          node qa/layout-height.cjs
+          node qa/production.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

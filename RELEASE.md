@@ -1,4 +1,6 @@
-# IPA Keyboard v83.20
+# IPA Keyboard v83.21
+
+v83.21 removes the 700px minimum frame height so the footer follows the license at the chart's actual scale. v83.20 is saved as branch backup/production-v83.20-20261116.
 
 Stable public URL: https://esakits.github.io/ipa-keyboard/
 

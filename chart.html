@@ -2221,7 +2221,7 @@ function height(){
  const content=document.getElementById('chartScaleContent');
  const box=content.getBoundingClientRect();
  const bottom=Math.max(box.bottom,document.querySelector('#chartScaleContent > details')?.getBoundingClientRect().bottom||0);
- try{parent.postMessage({kind:'esa-chart-height',height:Math.max(700,Math.ceil(bottom+12))},location.origin);}catch(e){}
+ try{parent.postMessage({kind:'esa-chart-height',height:Math.ceil(bottom+12)},location.origin);}catch(e){}
 }
 window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===parent&&e.data?.kind==='esa-request-height')height();});
 const zoomOpen=document.getElementById('chartZoomOpen'),zoomClose=document.getElementById('zoomClose');

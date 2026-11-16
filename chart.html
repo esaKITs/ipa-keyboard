@@ -821,7 +821,8 @@ html[data-inverse="true"] .v831-symbol-popup{--preview-fill:#303033;--preview-in
 
 .is-embedded-chart .chart-tool-row{display:none}
 #chart>h1#title{gap:0;margin:0 0 6px;text-align:center}
-</style><script>if(parent!==window)document.documentElement.classList.add("is-embedded-chart");</script><script src="i18n.js"></script></head><body><div class="chart-tool-row"><button type="button" id="chartZoomOpen" aria-haspopup="dialog" aria-controls="chartZoomDialog" data-i18n-key="⛶ 拡大表示">⛶ 拡大表示</button></div><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title"><span class="chart-title-main">国際音声記号 </span></h1><div id="pulmonicConsonants">
+#chart .v83-ipa-key,#chart .v83-ipa-key *,#chart .ipa,.v831-symbol-popup .preview-symbol{font-family:var(--ipa-font,'Doulos SIL Local'),serif!important}
+</style><script>if(parent!==window)document.documentElement.classList.add("is-embedded-chart");</script><script src="ipa-fonts.js"></script><script src="i18n.js"></script></head><body><div class="chart-tool-row"><button type="button" id="chartZoomOpen" aria-haspopup="dialog" aria-controls="chartZoomDialog" data-i18n-key="⛶ 拡大表示">⛶ 拡大表示</button></div><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title"><span class="chart-title-main">国際音声記号 </span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>
 		<table>
 			<!--<caption>記号が対になっている場合、右側は有声子音を表す。灰色の部分は調音が不可能と考えられる箇所を示す。</caption>-->
@@ -1876,12 +1877,12 @@ function render(){
    return lower.slice(0,-1).concat(upper.slice(0,-1));
  }
  function silhouette(el,size){
-   const ch=el.textContent,key=ch+'|'+size;
+   const ch=el.textContent,family=getComputedStyle(el).fontFamily,key=family+'|'+ch+'|'+size;
    if(cache.has(key))return cache.get(key);
    const scale=8,extent=Math.ceil(size*3+24),canvas=document.createElement('canvas');
    canvas.width=canvas.height=extent*scale;
    const ctx=canvas.getContext('2d',{willReadFrequently:true});
-   ctx.scale(scale,scale);ctx.font=size+'px "Doulos SIL Local"';
+   ctx.scale(scale,scale);ctx.font=size+'px '+family;
    ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText(ch,extent/2,extent/2);
    const data=ctx.getImageData(0,0,canvas.width,canvas.height).data,points=[];
    for(let y=0;y<canvas.height;y++){
@@ -1951,13 +1952,14 @@ function render(){
    }
    path.setAttribute('d',out.join(' '));rules.push({id,source:base,visible:path.getAttribute('d'),segments,stroke});
  }
- window.__ipaLineAudit={fontSize:font,officialGapEm,clearance:font*officialGapEm,glyphs,rules,baseline:'alphabetic',sampleScale:8};
+ window.__ipaLineAudit={fontFamily:window.esaIPAFonts.family(document.documentElement.dataset.ipaFont),fontSize:font,officialGapEm,clearance:font*officialGapEm,glyphs,rules,baseline:'alphabetic',sampleScale:8};
  window.dispatchEvent(new Event("resize"));
 }
 function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(render);}
 Promise.all([document.fonts.load('32px "Doulos SIL Local"',letters.map(el=>el.textContent).join("")),document.fonts.ready]).then(()=>{fontReady=true;schedule();});
 window.addEventListener("load",schedule,{once:true});schedule();
 window.addEventListener('esa-vowel-labels-change',schedule);
+window.addEventListener('esa-ipa-font-change',schedule);
 })();
 </script>
 <script id="v83-integration">
@@ -2032,6 +2034,7 @@ function showSymbolPopup(el,rect){
    if(panel){const pr=panel.getBoundingClientRect();obstacle={left:pr.left-fr.left,right:pr.right-fr.left,top:pr.top-fr.top,bottom:pr.bottom-fr.top};}
   }
  }catch(e){}
+ previewMeasure.font='38px "'+window.esaIPAFonts.family(document.documentElement.dataset.ipaFont)+'"';
  const pad=4,h=80,w=Math.max(40,Math.min(Math.max(64,Math.ceil(previewMeasure.measureText(sym).width+18)),right-left-2*pad));
  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
  const x=Math.max(left+w/2+pad,Math.min(right-w/2-pad,cx));

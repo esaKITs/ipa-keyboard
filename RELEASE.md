@@ -8,6 +8,8 @@ v83.23 replaces the rectangular symbol preview with a smooth key-preview silhoue
 
 v83.24 anchors combination notices beside the floating input panel, preferring above and falling below near the top edge, with viewport clamping and native zoom compensation. The app heading uses Arial/Helvetica. v83.23 is saved as backup/production-v83.23-20261116.
 
+A single IPA font selector applies Doulos SIL or Andika to chart symbols, output and key previews. Fonts are served locally with OFL notices. Per-font glyph silhouettes are remeasured while the PDF anchors and base rules remain fixed. The preference persists and both regular faces are precached for offline use.
+
 Stable public URL: https://esakits.github.io/ipa-keyboard/
 
 Promoted from esaKITs/ipa-keyboard-test, commit d388af1d2d89b299a119e7219eec69ad88ef6ae4, folder keyboard-v83-20/.

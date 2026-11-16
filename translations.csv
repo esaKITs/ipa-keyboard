@@ -200,3 +200,5 @@
 "tr0199","chart","拡大","Zoom in","بزرگ‌نمایی","Ampliar","拡大","v83.19 表示箇所","表示訳を追加"
 "tr0200","chart","拡大倍率","Zoom level","درصد بزرگ‌نمایی","Nível de ampliação","拡大倍率","v83.19 表示箇所","表示訳を追加"
 "tr0201","ui","IPA Keyboard {version} テスト版（ピンチ対応・独立した入力パネル）（v82.5機能 × IPA Chart v0.2.98）","IPA Keyboard {version} test version (pinch zoom and floating input panel) (v82.5 features × IPA Chart v0.2.98)","نسخهٔ آزمایشی IPA Keyboard {version} (بزرگ‌نمایی با دو انگشت و پنل ورودی شناور) (امکانات v82.5 × IPA Chart v0.2.98)","IPA Keyboard {version} versão de teste (zoom com dois dedos e painel de entrada flutuante) (funções v82.5 × IPA Chart v0.2.98)","IPA Keyboard {version} テスト版（ピンチ対応・独立した入力パネル）（v82.5機能 × IPA Chart v0.2.98）","v83.19 表示箇所","表示訳を追加"
+"tr0202","ui","IPAフォント","IPA font","قلم IPA","Fonte IPA","IPAフォント","v83.24 共通フォント設定","表示訳を追加"
+"tr0203","ui","フォントを読み込めなかったため、標準フォントに戻しました。","The font could not be loaded. The default font has been restored.","بارگذاری قلم ممکن نشد. قلم پیش‌فرض بازیابی شد.","Não foi possível carregar a fonte. A fonte padrão foi restaurada.","フォントを読み込めへんかったので、標準フォントに戻しました。","v83.24 共通フォント設定","表示訳を追加"

@@ -2028,10 +2028,12 @@ function showSymbolPopup(el,rect){
   const host=window.frameElement;
   if(host){
    const fr=host.getBoundingClientRect(),pv=parent.visualViewport;
-   left=Math.max(left,(pv?.offsetLeft||0)-fr.left);right=Math.min(right,(pv?.offsetLeft||0)+(pv?.width||parent.innerWidth)-fr.left);
-   top=Math.max(top,(pv?.offsetTop||0)-fr.top);bottom=Math.min(bottom,(pv?.offsetTop||0)+(pv?.height||parent.innerHeight)-fr.top);
+   const sx=fr.width/host.clientWidth||1,sy=fr.height/host.clientHeight||1;
+   left=0;top=0;right=innerWidth;bottom=innerHeight;
+   left=Math.max(left,((pv?.offsetLeft||0)-fr.left)/sx);right=Math.min(right,((pv?.offsetLeft||0)+(pv?.width||parent.innerWidth)-fr.left)/sx);
+   top=Math.max(top,((pv?.offsetTop||0)-fr.top)/sy);bottom=Math.min(bottom,((pv?.offsetTop||0)+(pv?.height||parent.innerHeight)-fr.top)/sy);
    const panel=parent.document.getElementById('floatingEditor');
-   if(panel){const pr=panel.getBoundingClientRect();obstacle={left:pr.left-fr.left,right:pr.right-fr.left,top:pr.top-fr.top,bottom:pr.bottom-fr.top};}
+   if(panel){const pr=panel.getBoundingClientRect();obstacle={left:(pr.left-fr.left)/sx,right:(pr.right-fr.left)/sx,top:(pr.top-fr.top)/sy,bottom:(pr.bottom-fr.top)/sy};}
   }
  }catch(e){}
  previewMeasure.font='38px "'+window.esaIPAFonts.family(document.documentElement.dataset.ipaFont)+'"';

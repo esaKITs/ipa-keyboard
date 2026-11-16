@@ -27,6 +27,8 @@ jobs:
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
       - name: Verify popup anchor at 260 percent and native page zoom
         run: node qa/popup-position.cjs
+      - name: Verify desktop size controls, font toggle and input color
+        run: node qa/settings.cjs
       - name: Verify common IPA font selection and geometry
         run: node qa/fonts.cjs
       - name: Verify notices follow the input panel
@@ -87,6 +89,7 @@ jobs:
           PUBLIC_CHECK: '1'
         run: |
           node qa/popup-position.cjs
+          node qa/settings.cjs
           node qa/fonts.cjs
           node qa/notice.cjs
           node qa/popup.cjs

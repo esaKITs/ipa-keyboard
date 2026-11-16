@@ -801,14 +801,24 @@ body{padding:8px!important;overflow-x:hidden!important}
 :root{--feedback-rgb:166,128,222;--feedback-strength:.6}
 html[data-inverse="true"]{--feedback-rgb:255,190,128;background:#000}
 html[data-inverse="true"] body{background:#000}
-html[data-inverse="true"] #chartScaleShell,html[data-inverse="true"] .chart-tool-row,html[data-inverse="true"] #chartZoomDialog,html[data-inverse="true"] .v831-symbol-popup{filter:invert(1) hue-rotate(180deg)}
+html[data-inverse="true"] #chartScaleShell,html[data-inverse="true"] .chart-tool-row,html[data-inverse="true"] #chartZoomDialog{filter:invert(1) hue-rotate(180deg)}
 .v83-purple-flash{position:fixed;z-index:2147483647;pointer-events:none;box-sizing:border-box;background:rgba(var(--feedback-rgb),.18);border:0;border-radius:50%;display:none}
 /* A lower undertie glyph extends into the preceding row in the source design.
    Keep original ink and positions, but place the '.' own cell above the
    subsequent row for accurate hit testing within the cell. */
 #chart #suprasegmentals tbody tr:nth-child(8) td.symbol{position:relative;z-index:5}
 #chart #suprasegmentals tbody tr:nth-child(9) td.symbol{position:relative;z-index:4}
-.v831-symbol-popup{position:fixed;z-index:2147483647;display:none;align-items:center;justify-content:center;min-width:58px;height:62px;padding:0 12px;background:#fff;color:#111;border:1px solid #777;border-radius:12px;box-shadow:0 6px 18px #0003;font:40px/1 "Doulos SIL Local","Doulos SIL","Times New Roman",serif;pointer-events:none;transform:translate(-50%,-100%);white-space:nowrap}.v831-symbol-popup.show{display:flex}
+/* A single smooth key-preview silhouette, with no entrance delay. */
+.v831-symbol-popup{--preview-fill:#fff;--preview-ink:#171717;--preview-edge:rgba(0,0,0,.12);position:fixed;z-index:2147483647;display:none;width:64px;height:80px;pointer-events:none;transform:translate(-50%,-100%);filter:drop-shadow(0 2px 3px rgba(0,0,0,.14));}
+.v831-symbol-popup.show{display:block}
+.v831-symbol-popup svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.v831-symbol-popup path{fill:var(--preview-fill);stroke:var(--preview-edge);stroke-width:.8;stroke-linejoin:round}
+.v831-symbol-popup .preview-symbol{position:absolute;top:0;left:6px;right:6px;height:55px;display:flex;align-items:center;justify-content:center;color:var(--preview-ink);white-space:nowrap;font:38px/1 'Doulos SIL Local','Doulos SIL','Times New Roman',serif;}
+.v831-symbol-popup[data-placement="below"]{transform:translate(-50%,0)}
+.v831-symbol-popup[data-placement="below"] svg{transform:scaleY(-1)}
+.v831-symbol-popup[data-placement="below"] .preview-symbol{top:25px}
+html[data-inverse="true"] .v831-symbol-popup{--preview-fill:#303033;--preview-ink:#fafafa;--preview-edge:rgba(255,255,255,.14);filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
+
 .is-embedded-chart .chart-tool-row{display:none}
 #chart>h1#title{gap:0;margin:0 0 6px;text-align:center}
 </style><script>if(parent!==window)document.documentElement.classList.add("is-embedded-chart");</script><script src="i18n.js"></script></head><body><div class="chart-tool-row"><button type="button" id="chartZoomOpen" aria-haspopup="dialog" aria-controls="chartZoomDialog" data-i18n-key="⛶ 拡大表示">⛶ 拡大表示</button></div><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title"><span class="chart-title-main">国際音声記号 </span></h1><div id="pulmonicConsonants">
@@ -2000,47 +2010,46 @@ window.addEventListener('scroll',repositionSelectedDot,true);
 new MutationObserver(()=>requestAnimationFrame(repositionSelectedDot)).observe(document.getElementById('chartScaleContent'),{attributes:true,attributeFilter:['style']});
 new MutationObserver(()=>requestAnimationFrame(repositionSelectedDot)).observe(document.getElementById('chart'),{attributes:true,attributeFilter:['style','data-feedback-scale']});
 
-const popup=document.createElement('div');popup.className='v831-symbol-popup';popup.id='v831SymbolPopup';popup.setAttribute('aria-hidden','true');document.body.appendChild(popup);
-let popupActive=null;
-function showSymbolPopup(el){
+const popup=document.createElement('div');popup.className='v831-symbol-popup';popup.id='v831SymbolPopup';popup.setAttribute('aria-hidden','true');
+popup.innerHTML='<svg aria-hidden="true" focusable="false"><path/></svg><span class="preview-symbol"></span>';document.body.appendChild(popup);
+const popupShape=popup.querySelector('path'),popupSVG=popup.querySelector('svg'),popupLabel=popup.querySelector('.preview-symbol');
+const previewMeasure=document.createElement('canvas').getContext('2d');previewMeasure.font='38px "Doulos SIL Local", "Doulos SIL", "Times New Roman", serif';
+let popupActive=null,popupShownAt=0;
+function showSymbolPopup(el,rect){
  if(!el)return;
- const rect=el.getBoundingClientRect(),sym=el.dataset.v83Sym;
+ rect=rect||el.getBoundingClientRect();const sym=el.dataset.v83Sym;
  if(!sym||!rect.width||!rect.height)return;
- popup.textContent=sym;
- popup.classList.add('show');
- // Measure the real bubble, then anchor its lower edge 7px above the glyph.
- // Coordinates stay in this frame's viewport, including after chart zoom/scroll.
- const bubble=popup.getBoundingClientRect(),vv=window.visualViewport;
- let obstacle=null;
- let left=vv?.offsetLeft||0,top=vv?.offsetTop||0;
+ const vv=window.visualViewport;
+ let obstacle=null,left=vv?.offsetLeft||0,top=vv?.offsetTop||0;
  let right=left+(vv?.width||innerWidth),bottom=top+(vv?.height||innerHeight);
- // In the embedded view, exclude the host toolbar and the offscreen frame area.
  try{
   const host=window.frameElement;
   if(host){
    const fr=host.getBoundingClientRect(),pv=parent.visualViewport;
-   left=Math.max(left,(pv?.offsetLeft||0)-fr.left);
-   right=Math.min(right,(pv?.offsetLeft||0)+(pv?.width||parent.innerWidth)-fr.left);
-   top=Math.max(top,(pv?.offsetTop||0)-fr.top);
-   bottom=Math.min(bottom,(pv?.offsetTop||0)+(pv?.height||parent.innerHeight)-fr.top);
+   left=Math.max(left,(pv?.offsetLeft||0)-fr.left);right=Math.min(right,(pv?.offsetLeft||0)+(pv?.width||parent.innerWidth)-fr.left);
+   top=Math.max(top,(pv?.offsetTop||0)-fr.top);bottom=Math.min(bottom,(pv?.offsetTop||0)+(pv?.height||parent.innerHeight)-fr.top);
    const panel=parent.document.getElementById('floatingEditor');
    if(panel){const pr=panel.getBoundingClientRect();obstacle={left:pr.left-fr.left,right:pr.right-fr.left,top:pr.top-fr.top,bottom:pr.bottom-fr.top};}
   }
  }catch(e){}
- const half=bubble.width/2,pad=4,gap=7;
- const x=Math.max(left+half+pad,Math.min(right-half-pad,rect.left+rect.width/2));
- let y=rect.top-gap;
- if(y-bubble.height<top+pad)y=rect.bottom+gap+bubble.height;
- y=Math.max(top+pad+bubble.height,Math.min(bottom-pad,y));
- if(obstacle&&x+half>obstacle.left&&x-half<obstacle.right&&y>obstacle.top&&y-bubble.height<obstacle.bottom){
-  const below=rect.bottom+gap+bubble.height;
-  if(below<=bottom-pad&&(below<=obstacle.top||below-bubble.height>=obstacle.bottom))y=below;
+ const pad=4,h=80,w=Math.max(40,Math.min(Math.max(64,Math.ceil(previewMeasure.measureText(sym).width+18)),right-left-2*pad));
+ const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+ const x=Math.max(left+w/2+pad,Math.min(right-w/2-pad,cx));
+ let below=cy-h<top+pad&&bottom-cy>cy-top;
+ let y=below?Math.max(top+pad,Math.min(bottom-pad-h,cy)):Math.max(top+pad+h,Math.min(bottom-pad,cy));
+ const overlaps=(a,b)=>obstacle&&x+w/2>obstacle.left&&x-w/2<obstacle.right&&b>obstacle.top&&a<obstacle.bottom;
+ if(overlaps(below?y:y-h,below?y+h:y)){
+  const otherY=below?Math.max(top+pad+h,Math.min(bottom-pad,cy)):Math.max(top+pad,Math.min(bottom-pad-h,cy));
+  if(!overlaps(below?otherY-h:otherY,below?otherY:otherY+h)){below=!below;y=otherY;}
  }
- popup.style.left=x+'px';popup.style.top=y+'px';
- popupActive=el;
+ const tip=Math.max(10,Math.min(w-10,cx-(x-w/2))),l=Math.max(14,tip-20),r=Math.min(w-14,tip+20),nl=Math.max(.5,tip-10),nr=Math.min(w-.5,tip+10);
+ const d=`M14 .5H${w-14}Q${w-.5} .5 ${w-.5} 14V43Q${w-.5} 55.5 ${w-14} 55.5H${r}C${nr} 55.5 ${nr} 65 ${nr} 70V77Q${nr} 79.5 ${tip+7} 79.5H${tip-7}Q${nl} 79.5 ${nl} 77V70C${nl} 65 ${nl} 55.5 ${l} 55.5H14Q.5 55.5 .5 43V14Q.5 .5 14 .5Z`;
+ // Width and outline are computed without forcing layout of a newly shown bubble.
+ popupLabel.textContent=sym;popup.style.width=w+'px';popup.style.left=x+'px';popup.style.top=y+'px';popup.dataset.placement=below?'below':'above';
+ popupSVG.setAttribute('viewBox',`0 0 ${w} 80`);popupShape.setAttribute('d',d);popup.classList.add('show');popupActive=el;popupShownAt=performance.now();
 }
 function hideSymbolPopup(){popup.classList.remove('show');popupActive=null;}
-window.__v831PopupState=()=>({show:popup.classList.contains('show'),text:popup.textContent,active:!!popupActive});
+window.__v831PopupState=()=>({show:popup.classList.contains('show'),text:popupLabel.textContent,active:!!popupActive,shownAt:popupShownAt});
 
 let flashTimer;
 function clean(raw){return raw.trim().replaceAll('◌','').replaceAll('\uFE0E','').replace(/\s+/g,'');}
@@ -2069,8 +2078,8 @@ document.querySelectorAll(SELECTOR).forEach(el=>{
  if(!previousTargets.has(el))hit.dataset.v8310Added='true';
 });
 function hitFrom(target){return target instanceof Element?target.closest('.v83-ipa-key'):null;}
-function flashHit(el){
- const a=el.getBoundingClientRect();
+function flashHit(el,rect){
+ const a=rect||el.getBoundingClientRect();
  if(!a.width||!a.height)return;
  // All symbols: 26px feathered feedback grows from 13px and eases back to a persistent dot.
  // A soft radial gradient marks the selected sound without a rectangular border.
@@ -2109,7 +2118,7 @@ document.addEventListener('keydown',e=>{suppressSymbolClick=null;const el=hitFro
 document.addEventListener('pointerdown',e=>{if(document.documentElement.dataset.chartGesture)return;gestureSuppressed=false;suppressSymbolClick=null;const el=hitFrom(e.target);if(el){
  // Keep the editor caret and suppress native touch selection for every symbol.
  e.preventDefault();heldSymbol=el;selectedDot.style.opacity='0';selectedDot.style.display='none';
- flashHit(el);showSymbolPopup(el);
+ const rect=el.getBoundingClientRect();showSymbolPopup(el,rect);flashHit(el,rect);
 }},true);
 function releaseSymbol(){if(heldSymbol){
  selectedSymbol=heldSymbol;heldSymbol=null;
@@ -2146,7 +2155,7 @@ document.addEventListener('scroll',hideSymbolPopup,true);
 window.addEventListener('resize',hideSymbolPopup);
 window.visualViewport?.addEventListener('resize',hideSymbolPopup);
 window.visualViewport?.addEventListener('scroll',hideSymbolPopup);
-document.addEventListener('keydown',e=>{const el=hitFrom(e.target);if(el&&(e.key==='Enter'||e.key===' ')){heldSymbol=el;selectedDot.style.opacity='0';selectedDot.style.display='none';flashHit(el);showSymbolPopup(el);}},true);
+document.addEventListener('keydown',e=>{const el=hitFrom(e.target);if(el&&(e.key==='Enter'||e.key===' ')){heldSymbol=el;selectedDot.style.opacity='0';selectedDot.style.display='none';const rect=el.getBoundingClientRect();showSymbolPopup(el,rect);flashHit(el,rect);}},true);
 document.addEventListener('keyup',e=>{if(e.key==='Enter'||e.key===' '){releaseSymbol();hideSymbolPopup();}},true);
 window.__v83HitStats=()=>({all:all.size,bySection:Object.fromEntries(['pulmonicConsonants','nonPulmonicConsonants','vowels','otherSymbols','diacritics','suprasegmentals','tonesAndWordAccents','diacriticsNote'].map(id=>[id,document.getElementById(id)?.querySelectorAll('.v83-ipa-key').length||0]))});
 // All visible translations share the same CSV catalog as the input panel.

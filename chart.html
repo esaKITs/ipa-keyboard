@@ -782,7 +782,7 @@ body{padding:8px!important;overflow-x:hidden!important}
 #chart #nonPulmonicConsonants thead th{padding-top:5px;padding-bottom:5px;line-height:1.2}
 /* v0.2.98: non-pulmonic consonants = 49% of 1040px pulmonary table. */
 #chart>.ipa-pdf-left>#nonPulmonicConsonants{width:510px;max-width:none;align-self:flex-start}
-#chart .vowel-chart-svg .vowel-dynamic-glyph{pointer-events:all;pointer-events:bounding-box}
+#chart .vowel-hover-area{fill:transparent;stroke:none;pointer-events:all}
 .license-details{font:13px/1.55 Arial,Helvetica,sans-serif;overflow-wrap:anywhere}.license-details p{margin:10px 0}.license-details a{color:inherit;text-decoration:underline}
 </style>
 <style id="v83-symbol-feedback">
@@ -1845,6 +1845,10 @@ function render(){
   el.style.dominantBaseline="alphabetic";
   const x=pdfToSvgX(Number(el.dataset.pdfX)),y=pdfToSvgY(Number(el.dataset.pdfY));
   recenter(el,x,y);
+  // Transparent SVG rectangles make character whitespace hoverable in WebKit too.
+  let hit=el.parentElement.querySelector('.vowel-hover-area');
+  if(!hit){hit=document.createElementNS(NS,'rect');hit.setAttribute('class','vowel-hover-area');hit.setAttribute('aria-hidden','true');el.parentElement.insertBefore(hit,el);}
+  const b=bbox(el);for(const [key,value]of Object.entries({x:b.x,y:b.y,width:b.width,height:b.height}))hit.setAttribute(key,String(value));
  }
  for(const el of labelEls){
   const x=pdfToSvgX(Number(el.dataset.pdfX)),y=pdfToSvgY(Number(el.dataset.pdfY));
@@ -2091,7 +2095,7 @@ document.querySelectorAll(SELECTOR).forEach(el=>{
  hit.dataset.v83Sym=symbol;
  if(!previousTargets.has(el))hit.dataset.v8310Added='true';
 });
-function hitFrom(target){return target instanceof Element?target.closest('.v83-ipa-key'):null;}
+function hitFrom(target){if(!(target instanceof Element))return null;return target.closest('.v83-ipa-key')||target.closest('.vowel-tooltip')?.querySelector('.v83-ipa-key')||null;}
 function flashHit(el,rect){
  const a=rect||el.getBoundingClientRect();
  if(!a.width||!a.height)return;

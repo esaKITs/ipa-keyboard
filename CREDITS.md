@@ -1,0 +1,31 @@
+# esaKITs — Enhanced Smart AI Kits
+
+© 2026 Tetsuya Esaki / esaKITs
+
+## Software — MIT License
+
+Based on the [IPA Unicode Keyboard by Weston Ruter](https://github.com/westonruter/ipa-chart), copyright © 2004–2006 Weston Ruter. Software modifications copyright © 2026 Tetsuya Esaki / esaKITs. The software portions are available under the [MIT License](LICENSE-MIT.txt), whose complete notice is retained in chart.html and LICENSE-MIT.txt. This software license does not replace the chart content or font licenses below.
+
+## IPA chart content and adaptations — CC BY-SA 4.0
+
+IPA chart adapted from materials copyright © 2026 International Phonetic Association, available under [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/).
+
+Sources, accessed 16 November 2026:
+
+- [IPA chart project and licensing](https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_T/IPA_charts_T.html)
+- [Official Japanese chart](https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf): Japanese version 2020; IPA Chart revised to 2015/2005; © 2026 International Phonetic Association.
+- [IPA charts in four fonts and licensing](https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_E/IPA_charts_E.html)
+
+The adapted chart content, including the reconstructed vowel diagram, chart layout adjustments, and translations or edits contributed by Tetsuya Esaki / esaKITs, is also licensed under CC BY-SA 4.0. These contributions include reconstructing vowel geometry from PDF coordinates, adjusting layout and typography, and adding or editing multilingual labels. Prior source attributions and modification notices are retained in the chart and translation history. The International Phonetic Association does not endorse this application. The linked CC license includes its disclaimer of warranties and limitation of liability.
+
+## Fonts — SIL Open Font License 1.1
+
+Font files retain their own copyright notices and OFL terms:
+
+- [Doulos SIL](fonts/OFL-DoulosSIL.txt)
+- [Andika](fonts/OFL-Andika.txt)
+- [Noto Sans JP](fonts/OFL-NotoSansJP.txt)
+
+## Unicode names
+
+Vowel hover descriptions use the Unicode character name and U+ code point. These names are identifiers, not translated phonetic descriptions. Tooltip metadata does not change the inserted Unicode text.

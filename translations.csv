@@ -203,3 +203,4 @@
 "tr0202","ui","IPAフォント","IPA font","قلم IPA","Fonte IPA","IPAフォント","v83.24 共通フォント設定","表示訳を追加"
 "tr0203","ui","フォントを読み込めなかったため、標準フォントに戻しました。","The font could not be loaded. The default font has been restored.","بارگذاری قلم ممکن نشد. قلم پیش‌فرض بازیابی شد.","Não foi possível carregar a fonte. A fonte padrão foi restaurada.","フォントを読み込めへんかったので、標準フォントに戻しました。","v83.24 共通フォント設定","表示訳を追加"
 "tr0204","ui","入力文字色","Input text color","رنگ متن ورودی","Cor do texto digitado","入力文字色","v83.25 入力文字色設定","表示訳を追加"
+"tr0205","chart","クレジットとライセンス","Credits and licenses","پدیدآورندگان و مجوزها","Créditos e licenças","クレジットとライセンス","v83.26 ライセンス表記","表示訳を追加"

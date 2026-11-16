@@ -1,10 +1,12 @@
-# IPA Keyboard v83.23
+# IPA Keyboard v83.24
 
 v83.21 removes the 700px minimum frame height so the footer follows the license at the chart's actual scale. v83.20 is saved as branch backup/production-v83.20-20261116.
 
 v83.22 puts the app name, version, language picker and enlarged-view icon on one row; chart reference metadata moves to the source notes. v83.21 is saved as backup/production-v83.21-20261116.
 
 v83.23 replaces the rectangular symbol preview with a smooth key-preview silhouette and native dark colours. Preview placement precedes glow animation and avoids measuring a newly displayed element. v83.22 is saved as backup/production-v83.22-20261116.
+
+v83.24 anchors combination notices beside the floating input panel, preferring above and falling below near the top edge, with viewport clamping and native zoom compensation. The app heading uses Arial/Helvetica. v83.23 is saved as backup/production-v83.23-20261116.
 
 Stable public URL: https://esakits.github.io/ipa-keyboard/
 

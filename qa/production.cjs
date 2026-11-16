@@ -8,7 +8,7 @@ async function ready(p){await p.locator('#out').waitFor();const f=await(await p.
   const context=await browser.newContext({viewport:{width,height:844},hasTouch:true,serviceWorkers:'block'}),p=await context.newPage(),errors=[],badAssets=[];
   p.on('pageerror',e=>errors.push(String(e)));p.on('response',r=>{if(/\.(woff2|csv|js|html)(\?|$)/.test(r.url())&&r.status()>=400)badAssets.push(r.status()+' '+r.url());});
   await p.goto(app);const f=await ready(p);
-  assert.equal(await p.title(),'IPA Keyboard v83.23 | esaKITs');assert.equal(await p.locator('.v83-label').textContent(),'v83.23');assert.equal(await f.locator('.v83-ipa-key').count(),235);
+  assert.equal(await p.title(),'IPA Keyboard v83.24 | esaKITs');assert.equal(await p.locator('.v83-label').textContent(),'v83.24');assert.equal(await f.locator('.v83-ipa-key').count(),235);
   for(const surface of[p,f])assert(await surface.evaluate(()=>document.fonts.check('20px "Doulos SIL Local"')&&document.fonts.check('20px "Noto Sans JP Local"')&&document.fonts.check('700 20px "Noto Sans JP Local"')),'local fonts load at production paths');
   for(const locale of ['ja','en','pt-BR','fa','ja-osaka','ja']){await p.locator('#languageSelect').selectOption(locale);await f.waitForFunction(locale=>document.documentElement.lang===(locale==='ja-osaka'?'ja':locale),locale);}
   const key=f.locator('#pulmonicConsonants [data-v83-sym="p"]').first();await key.scrollIntoViewIfNeeded();await key.dispatchEvent('pointerdown',{pointerType:'touch',button:0});assert((await f.evaluate(()=>__v831PopupState())).show,'popup remains enabled');await key.dispatchEvent('pointerup',{pointerType:'touch',button:0});assert.equal(await p.locator('#out').inputValue(),'p');
@@ -30,7 +30,7 @@ async function ready(p){await p.locator('#out').waitFor();const f=await(await p.
   await p.waitForFunction(async()=>!(await caches.keys()).includes('ipa-keyboard-v4'));
   assert(await p.evaluate(async()=>(await caches.keys()).includes('unrelated-app-cache')),'other apps keep their caches');
   if(name==='chromium')await context.setOffline(true);else await context.addCookies([{name:'ipa_test_network_down',value:'1',url:app}]);
-  await p.reload();const f=await ready(p);assert.equal(await p.title(),'IPA Keyboard v83.23 | esaKITs');await p.locator('#languageSelect').selectOption('en');await f.locator('#pulmonicConsonants [data-v83-sym="p"]').first().click();assert.equal(await p.locator('#out').inputValue(),'p');
+  await p.reload();const f=await ready(p);assert.equal(await p.title(),'IPA Keyboard v83.24 | esaKITs');await p.locator('#languageSelect').selectOption('en');await f.locator('#pulmonicConsonants [data-v83-sym="p"]').first().click();assert.equal(await p.locator('#out').inputValue(),'p');
   assert.equal(await p.evaluate(()=>esaI18n.failed),false,'CSV works offline');assert.equal(await f.locator('.v83-ipa-key').count(),235);await p.screenshot({path:`qa-production/${name}-upgraded-offline.png`,fullPage:true});await context.close();
   console.log(`PASS UPGRADE ${name}: legacy cache-first page replaced automatically, unrelated caches retained, chart/CSV/fonts/input work with ${name==='chromium'?'browser offline mode':'server connection failure'}`);
  }

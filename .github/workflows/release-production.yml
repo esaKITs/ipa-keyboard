@@ -25,6 +25,8 @@ jobs:
       - run: npx playwright install chromium webkit --with-deps
       - name: Serve at the production path
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
+      - name: Verify production assets and upgrade from old offline cache
+        run: node qa/production.cjs
       - name: Verify translations and input
         run: node qa/translations.cjs
       - name: Verify display and gestures
@@ -33,8 +35,6 @@ jobs:
           node qa/feedback.cjs
           node qa/inline.cjs
           node qa/gestures.cjs
-      - name: Verify production assets and upgrade from old offline cache
-        run: node qa/production.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

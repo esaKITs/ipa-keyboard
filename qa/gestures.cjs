@@ -8,6 +8,7 @@ async function metrics(p){return await p.evaluate(()=>{
  return{scale:s,width:r.width*s,height:r.height*s,button:b.width*s,font:parseFloat(getComputedStyle(document.getElementById('out')).fontSize),x:(r.left-v.offsetLeft)*s,y:(r.top-v.offsetTop)*s,viewW:v.width*s,viewH:v.height*s};
 });}
 async function touchInFrame(p,f,selector){
+ if(selector==='#chartZoomOpen'){await f.locator(selector).scrollIntoViewIfNeeded();await stable(p);}
  const pt=await f.locator(selector).evaluate(el=>{
   const r=el.getBoundingClientRect(),host=frameElement,fr=host.getBoundingClientRect(),v=parent.visualViewport;
   const sx=fr.width/host.clientWidth,sy=fr.height/host.clientHeight;

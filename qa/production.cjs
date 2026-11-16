@@ -32,7 +32,7 @@ async function ready(p){await p.locator('#out').waitFor();const f=await(await p.
   if(name==='chromium')await context.setOffline(true);else await context.addCookies([{name:'ipa_test_network_down',value:'1',url:app}]);
   await p.reload();const f=await ready(p);assert.equal(await p.title(),'IPA Keyboard v83.25 | esaKITs');await p.locator('#languageSelect').selectOption('en');await f.locator('#pulmonicConsonants [data-v83-sym="p"]').first().click();assert.equal(await p.locator('#out').inputValue(),'p');
   await p.locator('#settingsToggle').click();
-  for(const key of ['andika','doulos']){await p.locator('[data-ipa-font="'+key+'"]').click();await p.waitForFunction(()=>document.getElementById('ipaFontSelect').getAttribute('aria-busy')==='false');await f.waitForFunction(key=>__ipaLineAudit.fontFamily===esaIPAFonts.family(key),key);}
+  for(const key of ['andika','doulos']){await p.locator('#ipaFontChoices button[data-ipa-font="'+key+'"]').click();await p.waitForFunction(()=>document.getElementById('ipaFontSelect').getAttribute('aria-busy')==='false');await f.waitForFunction(key=>__ipaLineAudit.fontFamily===esaIPAFonts.family(key),key);}
   assert.equal(await p.evaluate(()=>esaI18n.failed),false,'CSV works offline');assert.equal(await f.locator('.v83-ipa-key').count(),235);await p.screenshot({path:`qa-production/${name}-upgraded-offline.png`,fullPage:true});await context.close();
   console.log(`PASS UPGRADE ${name}: legacy cache-first page replaced automatically, unrelated caches retained, chart/CSV/fonts/input work with ${name==='chromium'?'browser offline mode':'server connection failure'}`);
  }

@@ -812,13 +812,13 @@ window.esaI18n.ready.then(function(){
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   while(walker.nextNode()){
    const n=walker.currentNode;
-   if(n.parentElement&&n.parentElement.closest("#languageSelect,.v83-label,#toast"))continue;
+   if(n.parentElement&&n.parentElement.closest("#languageSelect,.v83-label,#toast,#languagePickerButton,#languagePickerMenu,#outVisual"))continue;
    if(!originalText.has(n))originalText.set(n,n.nodeValue);
    const raw=originalText.get(n),value=translateText(raw);
    if(n.nodeValue!==value)n.nodeValue=value;
   }
   root.querySelectorAll("*").forEach(el=>{
-   if(el===selector||el.closest("#languageSelect"))return;
+   if(el===selector||el.closest("#languageSelect,#languagePickerButton,#languagePickerMenu,#outVisual"))return;
    let saved=originalAttrs.get(el);if(!saved){saved={};originalAttrs.set(el,saved);}
    ["title","aria-label","placeholder","alt"].forEach(a=>{
     // These labels have one owner: the panel controllers using the shared catalog.

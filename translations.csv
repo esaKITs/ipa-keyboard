@@ -204,3 +204,5 @@
 "tr0203","ui","フォントを読み込めなかったため、標準フォントに戻しました。","The font could not be loaded. The default font has been restored.","بارگذاری قلم ممکن نشد. قلم پیش‌فرض بازیابی شد.","Não foi possível carregar a fonte. A fonte padrão foi restaurada.","フォントを読み込めへんかったので、標準フォントに戻しました。","v83.24 共通フォント設定","表示訳を追加"
 "tr0204","ui","入力文字色","Input text color","رنگ متن ورودی","Cor do texto digitado","入力文字色","v83.25 入力文字色設定","表示訳を追加"
 "tr0205","chart","クレジットとライセンス","Credits and licenses","پدیدآورندگان و مجوزها","Créditos e licenças","クレジットとライセンス","v83.26 ライセンス表記","表示訳を追加"
+"tr0206","panel","パネルのサイズを変更","Resize panel","تغییر اندازهٔ پنل","Redimensionar painel","パネルのサイズを変更","v83.27 直接サイズ変更","表示訳を追加"
+"tr0207","panel","入力領域の高さを変更","Resize input area height","تغییر ارتفاع ناحیهٔ ورودی","Alterar a altura da área de entrada","入力領域の高さを変更","v83.27 直接サイズ変更","表示訳を追加"

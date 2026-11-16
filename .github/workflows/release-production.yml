@@ -65,7 +65,7 @@ jobs:
         shell: python
         run: |
           import urllib.request, pathlib, time
-          files=['index.html','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js']
+          files=['index.html','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js','fonts/Andika-Regular.woff2','fonts/ipa-font-coverage.json']
           for attempt in range(36):
               try:
                   for name in files:

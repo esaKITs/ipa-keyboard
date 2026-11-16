@@ -540,7 +540,7 @@ document.addEventListener('keydown',function(e){
 });
 
 function snapshot(){if(undo[undo.length-1]!==out.value){undo.push(out.value);if(undo.length>120)undo.shift();}redo=[];}
-function showToast(msg,kind){var wt=byId('warnToggle');if(kind!=='info'&&wt&&!wt.checked)return;toast.style.background=kind==='info'?'#eef7ee':'#fff8ed';toast.style.color=kind==='info'?'#174b28':'#6f3810';toast.style.borderColor=kind==='info'?'#8cb99a':'#c98e51';clearTimeout(toastTimer);toast.textContent=msg;toast.classList.add('show');window.esaPositionNotice?.();toastTimer=setTimeout(function(){toast.classList.remove('show');},2600);}
+function showToast(msg,kind){var wt=byId('warnToggle');if(kind!=='info'&&wt&&!wt.checked)return;toast.style.background=kind==='info'?'#eef7ee':'#fff8ed';toast.style.color=kind==='info'?'#174b28':'#6f3810';toast.style.borderColor=kind==='info'?'#8cb99a':'#c98e51';clearTimeout(toastTimer);toast.dataset.messageKey=msg;toast.textContent=window.esaI18n.t(msg,byId('languageSelect').value);toast.classList.add('show');window.esaPositionNotice?.();toastTimer=setTimeout(function(){toast.classList.remove('show');},2600);}
 window.esaNotify=showToast;
 function prevCodePoint(){var p=typeof out.selectionStart==='number'?out.selectionStart:out.value.length;return Array.from(out.value.slice(0,p)).pop()||'';}
 function baseBefore(){var p=typeof out.selectionStart==='number'?out.selectionStart:out.value.length;var a=Array.from(out.value.slice(0,p).normalize('NFD'));for(var i=a.length-1;i>=0;i--){var ch=a[i];var cp=ch.codePointAt(0);var combining=(cp>=0x0300&&cp<=0x036f)||(cp>=0x1ab0&&cp<=0x1aff)||(cp>=0x1dc0&&cp<=0x1dff)||(cp>=0x20d0&&cp<=0x20ff)||(cp>=0xfe20&&cp<=0xfe2f);if(!combining&&!['ʰ','ʷ','ʲ','ˠ','ˤ','˞','ⁿ','ˡ'].includes(ch))return ch;}return '';}
@@ -740,7 +740,7 @@ window.esaI18n.ready.then(function(){
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   while(walker.nextNode()){
    const n=walker.currentNode;
-   if(n.parentElement&&n.parentElement.closest("#languageSelect,.v83-label"))continue;
+   if(n.parentElement&&n.parentElement.closest("#languageSelect,.v83-label,#toast"))continue;
    if(!originalText.has(n))originalText.set(n,n.nodeValue);
    const raw=originalText.get(n),value=translateText(raw);
    if(n.nodeValue!==value)n.nodeValue=value;
@@ -939,7 +939,11 @@ new MutationObserver(queue).observe(panel,{attributes:true,attributeFilter:['sty
 new ResizeObserver(queue).observe(panel);new ResizeObserver(place).observe(notice);
 window.addEventListener('resize',queue);window.addEventListener('scroll',queue,{passive:true});
 window.visualViewport?.addEventListener('resize',queue);window.visualViewport?.addEventListener('scroll',queue);
-document.getElementById('languageSelect').addEventListener('change',queue);
+function relabel(){
+ if(notice.dataset.messageKey){const value=window.esaI18n.t(notice.dataset.messageKey,document.getElementById('languageSelect').value);if(notice.textContent!==value)notice.textContent=value;}
+ place();
+}
+document.getElementById('languageSelect').addEventListener('change',relabel);window.esaI18n.ready.then(relabel);
 })();
 </script>
 <script id="shared-ipa-font-controller">

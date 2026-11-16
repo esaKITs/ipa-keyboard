@@ -29,9 +29,10 @@ async function ready(p){await p.locator('#out').waitFor();const f=await(await p.
   try{await p.locator('#out').waitFor({timeout:30000});}catch(error){console.log('UPGRADE DEBUG',await p.evaluate(async()=>({url:location.href,body:document.body.innerText,controller:navigator.serviceWorker.controller?.scriptURL,registrations:(await navigator.serviceWorker.getRegistrations()).map(r=>({active:r.active?.state,waiting:r.waiting?.state,installing:r.installing?.state})),caches:await caches.keys()})));await p.screenshot({path:`qa-production/${name}-upgrade-failure.png`});throw error;}await ready(p);
   await p.waitForFunction(async()=>!(await caches.keys()).includes('ipa-keyboard-v4'));
   assert(await p.evaluate(async()=>(await caches.keys()).includes('unrelated-app-cache')),'other apps keep their caches');
-  await context.setOffline(true);await p.reload();const f=await ready(p);assert.equal(await p.title(),'IPA Keyboard v83.20 | esaKITs');await p.locator('#languageSelect').selectOption('en');await f.locator('#pulmonicConsonants [data-v83-sym="p"]').first().click();assert.equal(await p.locator('#out').inputValue(),'p');
+  if(name==='chromium')await context.setOffline(true);else await context.addCookies([{name:'ipa_test_network_down',value:'1',url:app}]);
+  await p.reload();const f=await ready(p);assert.equal(await p.title(),'IPA Keyboard v83.20 | esaKITs');await p.locator('#languageSelect').selectOption('en');await f.locator('#pulmonicConsonants [data-v83-sym="p"]').first().click();assert.equal(await p.locator('#out').inputValue(),'p');
   assert.equal(await p.evaluate(()=>esaI18n.failed),false,'CSV works offline');assert.equal(await f.locator('.v83-ipa-key').count(),235);await p.screenshot({path:`qa-production/${name}-upgraded-offline.png`,fullPage:true});await context.close();
-  console.log(`PASS UPGRADE ${name}: legacy cache-first page replaced automatically, unrelated caches retained, chart/CSV/fonts/input work offline`);
+  console.log(`PASS UPGRADE ${name}: legacy cache-first page replaced automatically, unrelated caches retained, chart/CSV/fonts/input work with ${name==='chromium'?'browser offline mode':'server connection failure'}`);
  }
  await browser.close();
 }})().catch(e=>{console.error(e);process.exit(1)});

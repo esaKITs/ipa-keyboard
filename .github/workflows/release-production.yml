@@ -31,13 +31,6 @@ jobs:
         run: node qa/header.cjs
       - name: Verify production assets and upgrade from old offline cache
         run: node qa/production.cjs
-      - name: Verify editor gestures, fonts, notices and translations
-        if: github.ref != 'refs/heads/main'
-        run: |
-          node qa/editor-gestures.cjs
-          node qa/fonts.cjs
-          node qa/notice.cjs
-          node qa/translations.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

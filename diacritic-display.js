@@ -51,7 +51,7 @@ function refresh(){
    const marks=row.marks.map(m=>svgMark(m,font,size));for(const m of marks)if(m)cluster.appendChild(m.svg);inner.appendChild(cluster);placed.push({row,cluster,originalBaseline,base,baseBaseline,marks});
   }flush();if(text.endsWith('\n'))inner.appendChild(document.createTextNode('\u200b'));
   const scale=out.getBoundingClientRect().width/out.offsetWidth||1;
-  for(const p of placed){const top=p.cluster.getBoundingClientRect().top,baseLine=p.originalBaseline.getBoundingClientRect().top;p.base.style.top=((baseLine-p.baseBaseline.getBoundingClientRect().top)/scale)+'px';let up=0,down=0;for(const mark of p.marks){if(!mark)continue;const above=mark.svg.dataset.position==='above';let y;if(above){y=(baseLine-top)/scale-p.row.metrics.actualBoundingBoxAscent-gap-up-mark.height;up+=mark.height+gap;}else{y=(baseLine-top)/scale+p.row.metrics.actualBoundingBoxDescent+gap+down;down+=mark.height+gap;}mark.svg.style.top=y+'px';}}
+  for(const p of placed){const top=p.cluster.getBoundingClientRect().top,baseLine=p.originalBaseline.getBoundingClientRect().top;p.base.style.top=((baseLine-p.baseBaseline.getBoundingClientRect().top)/scale)+'px';let up=0,down=0;for(const mark of p.marks){if(!mark)continue;mark.svg.style.left=(p.base.getBoundingClientRect().width/scale/2)+'px';const above=mark.svg.dataset.position==='above';let y;if(above){y=(baseLine-top)/scale-p.row.metrics.actualBoundingBoxAscent-gap-up-mark.height;up+=mark.height+gap;}else{y=(baseLine-top)/scale+p.row.metrics.actualBoundingBoxDescent+gap+down;down+=mark.height+gap;}mark.svg.style.top=y+'px';}}
   scroll();return changed;
  }finally{refreshing=false;}
 }

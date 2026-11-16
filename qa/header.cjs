@@ -2,13 +2,14 @@ const {chromium,webkit}=require('playwright'),assert=require('node:assert/strict
 const app=process.env.APP_URL||'http://127.0.0.1:8765/ipa-keyboard/';fs.mkdirSync('qa-production',{recursive:true});
 (async()=>{for(const[name,engine]of Object.entries({chromium,webkit})){
  const b=await engine.launch({headless:true});
- for(const width of[320,390,1280]){
+ for(const width of[320,360,375,390,1280]){
   const p=await b.newPage({serviceWorkers:'block',viewport:{width,height:844},hasTouch:true});const errors=[];p.on('pageerror',e=>errors.push(String(e)));await p.goto(app);
   const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();await f.waitForFunction(()=>typeof esaSetLocale==='function');await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);
   for(const locale of['ja','en','pt-BR','fa','ja-osaka','ja']){
    await p.locator('#languageSelect').selectOption(locale);
    const box=await p.locator('.app-header').evaluate(e=>{const r=e.getBoundingClientRect(),items=[...e.children].map(x=>x.getBoundingClientRect());return{height:r.height,inside:items.every(x=>x.left>=r.left&&x.right<=r.right),row:items.every(x=>Math.abs(x.top+x.height/2-(r.top+r.height/2))<1),overlap:items.some((x,i)=>items.slice(i+1).some(y=>x.right>y.left+.5)),frameGap:document.getElementById('v83ChartFrame').getBoundingClientRect().top-r.bottom};});
    assert(box.height<=54&&box.inside&&box.row&&!box.overlap&&box.frameGap<=1,'one compact header row: '+locale+' '+JSON.stringify(box));
+   assert.equal(await p.locator('.language-caption').textContent(),'Language');assert.equal(await p.locator('.language-caption').getAttribute('for'),'languageSelect');assert((await p.locator('.language-caption').evaluate(e=>parseFloat(getComputedStyle(e).fontSize)))<=10,'small fixed Language label');
    const expected=await p.evaluate(lang=>esaI18n.t('⛶ 拡大表示',lang,'chart').replace(/^⛶\s*/,''),locale);assert.equal(await p.locator('#chartZoomToggle').getAttribute('aria-label'),expected);
   }
   assert.equal(await p.locator('.v83-integrated>.v83-label').count(),0,'no duplicate version row');assert.equal(await p.locator('.app-header .ipa-standard').count(),0);

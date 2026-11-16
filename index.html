@@ -466,6 +466,7 @@ body.editor-resizing{user-select:none;-webkit-user-select:none}
  .app-header[data-language="pt-BR"] .language-control{grid-column:1/-1;grid-row:2;justify-self:end}
  .app-header[data-language="pt-BR"] .language-select{width:180px;flex-basis:180px;font-size:13px;padding:0 5px;text-align:center;text-align-last:center}
 }
+#floatingEditor #status{color:#333}
 .ipa-output-surface{position:relative;width:100%;min-width:0}
 #out.visual-positioned{color:transparent!important;-webkit-text-fill-color:transparent;caret-color:var(--input-ink,#17365d)}
 #outVisual{position:absolute;pointer-events:none;z-index:1;overflow:hidden;border-radius:3px;color:var(--input-ink,#17365d);user-select:none;-webkit-user-select:none}
@@ -630,6 +631,7 @@ function insertText(s,btn){
  snapshot();grow();
  if(savedEnd===out.value.length)out.scrollTop=out.scrollHeight;
  resetDiaPositionAfterUse(originalSym);
+ if(requestedPosition!=='auto'&&isDiacritic(originalSym)&&!fixedDiacriticPositions.has(originalSym))statusMessage('');
  if(btn&&!isVowelKey(btn)){btn.classList.add('click-flash');setTimeout(function(){btn.classList.remove('click-flash');},420);}
 }
 function setValue(v,positions){out.value=v;window.esaDisplayPositions?.restore(v,positions||[]);var p=Math.min(savedStart,v.length);out.setSelectionRange(p,p);savedStart=savedEnd=p;grow();}

@@ -1,7 +1,7 @@
 const {chromium,webkit}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
 const app=process.env.APP_URL||'http://127.0.0.1:8765/ipa-keyboard/';fs.mkdirSync('qa-production',{recursive:true});
 async function compact(p,f,label){
- await f.waitForFunction(()=>{const c=document.getElementById('chartScaleContent').getBoundingClientRect(),d=document.querySelector('#chartScaleContent>details').getBoundingClientRect(),end=Math.max(c.bottom,d.bottom),h=frameElement.clientHeight;return h-end>=10&&h-end<=20;},null,{timeout:6000});
+ await f.waitForFunction(()=>{const c=document.getElementById('chartScaleContent').getBoundingClientRect(),d=document.querySelector('#chartScaleContent>details').getBoundingClientRect(),end=Math.max(c.bottom,d.bottom),h=frameElement.clientHeight;return h-end>=10&&h-end<=20&&document.getElementById('chartScaleShell').getBoundingClientRect().bottom>=d.bottom-1;},null,{timeout:6000});
  const box=await f.evaluate(()=>{const c=document.getElementById('chartScaleContent').getBoundingClientRect(),d=document.querySelector('#chartScaleContent>details').getBoundingClientRect(),shell=document.getElementById('chartScaleShell').getBoundingClientRect(),r=frameElement.getBoundingClientRect();return{height:frameElement.clientHeight,tail:frameElement.clientHeight-Math.max(c.bottom,d.bottom),clipped:shell.bottom<d.bottom-1,brandGap:parent.document.querySelector('.esakits-bottom').getBoundingClientRect().top-r.top-Math.max(c.bottom,d.bottom)};});
  assert(!box.clipped,'license text stays inside the chart: '+label+' '+JSON.stringify(box));assert(box.brandGap>=10&&box.brandGap<=36,'brand follows the license without a blank area: '+label+' '+JSON.stringify(box));return box;
 }

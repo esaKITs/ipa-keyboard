@@ -17,7 +17,7 @@ async function gesture(p,f,name,points){
  }
  await settle(p);
 }
-(async()=>{let scenarios=0;for(const[name,engine]of Object.entries({chromium,webkit})){
+(async()=>{let scenarios=0,failures=[];for(const[name,engine]of Object.entries({chromium,webkit})){
  const b=await engine.launch();for(const width of[320,375,393,768,1280]){
  const p=await b.newPage({viewport:{width,height:844},hasTouch:true,serviceWorkers:'block'}),errors=[],bad=[];p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(/\.(js|csv|woff2|html)(\?|$)/.test(r.url())&&r.status()>=400)bad.push(r.url());});
  try{
@@ -55,10 +55,10 @@ async function gesture(p,f,name,points){
  // Existing undo/redo and real symbol click, with panel moved away from the target.
  await p.locator('#undo').click();assert.equal(await p.locator('#out').inputValue(),'ab');await p.locator('#redo').click();assert.equal(await p.locator('#out').inputValue(),'abc');
  const key=f.locator('#pulmonicConsonants [data-v83-sym="p"]').first();await key.click();assert((await p.locator('#out').inputValue()).includes('p'),'real symbol click inserts IPA');
- await p.locator('#settingsToggle').click();await p.locator('#panelWidthSlider').fill('240');await p.locator('#panelWidthSlider').dispatchEvent('input');await p.locator('#inputSizeSlider').fill('0');await p.locator('#inputSizeSlider').dispatchEvent('input');await settle(p);const small=await p.locator('#floatingEditor').boundingBox();await p.locator('#inputSizeSlider').fill(width<=700?'7':'10');await p.locator('#inputSizeSlider').dispatchEvent('input');await settle(p);const large=await p.locator('#floatingEditor').boundingBox();assert(large.width>small.width+20,'font increases panel width');assert(large.height>small.height+5,'font increases panel height');await p.locator('#settingsToggle').click();
+ await p.locator('#settingsToggle').click();await p.locator('#panelWidthSlider').press('Home');await p.locator('#inputSizeSlider').press('Home');await settle(p);const small=await p.locator('#floatingEditor').boundingBox();await p.locator('#inputSizeSlider').press('End');await settle(p);const large=await p.locator('#floatingEditor').boundingBox();assert(large.width>small.width+20,'font increases panel width');assert(large.height>small.height+5,'font increases panel height');await p.locator('#settingsToggle').click();
  const pb=await p.locator('#floatingEditor').boundingBox();await drag(p,p.locator('#inputPanelDrag'),width>700?-60:20,-70);const pa=await p.locator('#floatingEditor').boundingBox();assert(Math.abs(pa.y-pb.y)>30,'panel drag works');
  await p.locator('#panelResizeW').focus();await p.keyboard.press('ArrowLeft');await settle(p);const narrow=await p.locator('#floatingEditor').boundingBox();assert(narrow.width<pa.width,'manual width works');
  const oh=await p.locator('#out').evaluate(e=>e.getBoundingClientRect().height);await p.locator('#inputHeightHandle').focus();await p.keyboard.press('ArrowDown');assert((await p.locator('#out').evaluate(e=>e.getBoundingClientRect().height))>oh,'manual height works');
  assert.deepEqual(errors,[]);assert.deepEqual(bad,[]);console.log(`PASS RECOVERY ${name} ${width}: 10 locale/theme scenarios, reachable header, single restore, zoom/pan, draggable overview, retained edits, font and manual panel geometry; gesture=${name==='chromium'?'native CDP touch':'synthetic WebKit TouchEvent handlers'}`);
- }catch(e){await p.screenshot({path:`qa-production/FAIL-${name}-${width}.png`});console.log('FAIL METRICS',await p.evaluate(()=>({errors:[],body:document.body.innerText.slice(0,200),header:document.querySelector('.app-header').getBoundingClientRect().toJSON(),panel:document.querySelector('#floatingEditor').getBoundingClientRect().toJSON()})));console.log('PAGE ERRORS',errors);throw e;}finally{await p.close();}
- }await b.close();}console.log('TOTAL PASS',scenarios);})().catch(e=>{console.error(e);process.exit(1)});
+ }catch(e){await p.screenshot({path:`qa-production/FAIL-${name}-${width}.png`});console.log('FAIL METRICS',await p.evaluate(()=>({errors:[],body:document.body.innerText.slice(0,200),header:document.querySelector('.app-header').getBoundingClientRect().toJSON(),panel:document.querySelector('#floatingEditor').getBoundingClientRect().toJSON()})));console.log('PAGE ERRORS',errors);console.error(e);failures.push(name+' '+width+': '+e.message);}finally{await p.close();}
+ }await b.close();}console.log('TOTAL PASS',scenarios);assert.deepEqual(failures,[]);})().catch(e=>{console.error(e);process.exit(1)});

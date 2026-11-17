@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        isolate: [no-native-output, fixed-height, no-native-range, no-overflow]
+        renderer: [default, skia-cpu]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,9 +21,11 @@ jobs:
       - run: npx playwright install webkit --with-deps
       - run: node qa/perf-probe.cjs
         env:
-          ISOLATE: ${{ matrix.isolate }}
+          ISOLATE: none
+          DEBUG: pw:browser
+          WEBKIT_SKIA_ENABLE_CPU_RENDERING: ${{ matrix.renderer == 'skia-cpu' && '1' || '0' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-slider-performance-trace-${{ matrix.isolate }}
+          name: public-slider-performance-trace-${{ matrix.renderer }}
           path: qa-production/

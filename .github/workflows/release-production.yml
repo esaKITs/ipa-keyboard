@@ -21,12 +21,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm install --no-save playwright@1.61.1
+      - run: npm install --no-save playwright@1.61.1 pngjs@7.0.0
       - run: npx playwright install chromium webkit --with-deps
       - name: Serve at the production path
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
       - name: Verify recovery behavior and single restore control
         run: |
+          node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs
@@ -46,7 +47,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm install --no-save playwright@1.61.1
+      - run: npm install --no-save playwright@1.61.1 pngjs@7.0.0
       - run: npx playwright install chromium webkit --with-deps
       - name: Wait for GitHub Pages and compare public assets
         shell: python
@@ -71,6 +72,7 @@ jobs:
           APP_URL: https://esakits.github.io/ipa-keyboard/
           PUBLIC_CHECK: '1'
         run: |
+          node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs

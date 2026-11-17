@@ -6,6 +6,10 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+# WPE Skia CPU rasterization avoids cold software-GPU stalls on GPU-less CI.
+# Application cold-load sequencing and every performance assertion remain unchanged.
+env:
+  WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
 concurrency:
   group: ipa-production-${{ github.ref }}
   cancel-in-progress: true

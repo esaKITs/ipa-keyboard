@@ -4,6 +4,10 @@ on:
     branches: [work/emergency-recovery-20261118]
 permissions:
   contents: read
+# WPE Skia CPU rasterization avoids cold software-GPU stalls on GPU-less CI.
+# Application cold-load sequencing and every performance assertion remain unchanged.
+env:
+  WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
 jobs:
   recovery:
     runs-on: ubuntu-latest

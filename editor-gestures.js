@@ -4,18 +4,23 @@
 const panel=document.getElementById('floatingEditor'),out=document.getElementById('out'),api=window.esaPanelGeometry,divider=document.getElementById('inputHeightHandle'),widthSlider=document.getElementById('panelWidthSlider');
 const handles=[['panelResizeN','n'],['panelResizeW','w'],['panelResizeE','e'],['panelResizeS','s'],['panelResizeNW','nw'],['panelResizeNE','ne'],['panelResizeSW','sw'],['panelResizeSE','se']].map(([id,axis])=>{const b=document.createElement('button');b.type='button';b.id=id;b.className='editor-size-handle';b.dataset.axis=axis;panel.appendChild(b);return b;});
 widthSlider.step='1';
-let active=null,pinch=null,gesture=null;
+let active=null,pinch=null,gesture=null,range=null;
 const heightKey=()=>`esakits.ipa.input-height.${api.profile()}.v1`;
 function savedHeight(){try{const n=Number(localStorage.getItem(heightKey()));return n>=36&&n<=1200?n:null;}catch(e){return null;}}
 function apply(){
  const saved=savedHeight();if(saved===null){delete out.dataset.manualHeight;return false;}
  const b=api.bounds(),scale=b.scale,chrome=panel.getBoundingClientRect().height*scale-out.getBoundingClientRect().height*scale;
- const height=Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(saved,b.h*scale-chrome)));
+ const style=getComputedStyle(out),line=parseFloat(style.lineHeight)||parseFloat(style.fontSize)*1.35;
+ const readable=Math.ceil(line+parseFloat(style.paddingTop)+parseFloat(style.paddingBottom)+parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth));
+ const height=Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(Math.max(saved,readable),b.h*scale-chrome)));
  out.dataset.manualHeight='true';if(Math.abs(parseFloat(out.style.height)-height)>.5)out.style.height=height+'px';return true;
 }
 function setHeight(n){try{localStorage.setItem(heightKey(),String(Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(1200,n)))));}catch(e){}apply();}
 function setWidth(n){const max=Math.min(api.profile()==='phone'?640:1200,Number(widthSlider.max));const width=Math.round(Math.max(240,Math.min(max,n)));try{localStorage.setItem(`esakits.ipa.panel-width.${api.profile()}.v1`,String(width));}catch(e){}api.setWidthReference();widthSlider.value=String(width);panel.style.width=width+'px';panel.classList.toggle('input-panel-compact',width<316);}
-window.esaEditorGeometry={apply,get active(){return !!active;}};
+window.esaEditorGeometry={apply,get range(){return range;},get active(){return !!active;}};
+for(const control of document.querySelectorAll('#settingsPanel input[type="range"]'))control.addEventListener('pointerdown',e=>{const r=control.getBoundingClientRect();range={id:e.pointerId,control,left:r.left,top:r.top,width:panel.getBoundingClientRect().width*api.bounds().scale};});
+function endRange(e){if(range?.id!==e.pointerId)return;range=null;const r=panel.getBoundingClientRect();api.move(r.left,r.top,true);api.place();}
+for(const type of ['pointerup','pointercancel'])document.addEventListener(type,endRange,true);
 function begin(e,axis){
  if(e.button!==0||active)return;e.preventDefault();e.stopPropagation();
  const b=api.bounds(),r=panel.getBoundingClientRect();active={id:e.pointerId,axis,x:e.clientX,y:e.clientY,left:r.left,top:r.top,panelHeight:r.height,width:r.width*b.scale,height:out.getBoundingClientRect().height*b.scale,scale:b.scale};e.currentTarget.setPointerCapture(e.pointerId);document.body.classList.add('editor-resizing');

@@ -28,12 +28,13 @@ jobs:
       - name: Serve independent historical snapshots
         run: |
           mkdir -p /tmp/ipa-baselines
-          for ref in 3dc0780da a57c319 174f768 1cbba6b; do
+          for ref in 3dc0780da a57c319 174f768 1cbba6b a389cb2; do
             mkdir /tmp/ipa-baselines/$ref
             git archive $ref | tar -x -C /tmp/ipa-baselines/$ref
           done
           nohup python3 -m http.server 8770 --bind 127.0.0.1 --directory /tmp/ipa-baselines >/tmp/ipa-baselines.log 2>&1 &
       - run: node qa/recovery-baseline.cjs
+      - run: node qa/baseline-panel.cjs
       - name: Verify historical stable core with its original production checks
         run: |
           git show 3dc0780da:qa/production.cjs > qa/recovery-old-production.cjs
@@ -42,6 +43,7 @@ jobs:
         run: nohup python3 qa/server.py >/tmp/ipa-recovery.log 2>&1 &
       - name: Current specification regression in Chromium and WebKit
         run: |
+          node qa/panel-controls.cjs
           node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs

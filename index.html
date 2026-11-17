@@ -504,13 +504,33 @@ body.editor-resizing{user-select:none;-webkit-user-select:none}
 .language-picker-option[aria-selected="true"]{font-weight:700}
 html[data-inverse="true"] .language-picker-menu{background:#252525;color:#eee;border-color:#777}
 html[data-inverse="true"] .language-picker-option.active{background:#454545}
-.app-header.language-two-rows{display:grid;grid-template-columns:minmax(0,1fr) auto 36px;gap:4px 8px}
+.app-header.language-two-rows{display:grid;grid-template-columns:minmax(0,1fr) auto 36px 36px;gap:4px 8px}
 .app-header.language-two-rows .title{grid-column:1;grid-row:1}
 .app-header.language-two-rows .v83-label{grid-column:2;grid-row:1;margin:0}
-.app-header.language-two-rows #chartZoomToggle{grid-column:3;grid-row:1}
+.app-header.language-two-rows .header-overview-slot{grid-column:3;grid-row:1}
+.app-header.language-two-rows #chartZoomToggle{grid-column:4;grid-row:1}
 .app-header.language-two-rows .language-control{grid-column:1/-1;grid-row:2;justify-self:end}
+/* Reserve the overview position before its control is mounted or shown. */
+.header-overview-slot{display:flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px}
+#headerOverviewSlot #zoomMapToggle{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:6px;border:1px solid #888;border-radius:7px;background:transparent;color:inherit;cursor:pointer;visibility:hidden}
+.app-header.chart-expanded #headerOverviewSlot #zoomMapToggle{visibility:visible}
+#headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(166,128,222,.20)}
+html[data-inverse="true"] #headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(255,175,95,.18)}
+#headerOverviewSlot #zoomMapToggle:focus-visible{outline:2px solid #9879d3;outline-offset:2px}
+@media(max-width:560px){
+ .app-header .language-control{position:relative;padding-top:9px}
+ .app-header .language-caption{position:absolute;top:0;left:0;line-height:9px}
+ .app-header .language-control.mobile-portuguese .language-select{top:9px}
+ .header-overview-slot{flex-basis:34px;width:34px;height:34px}
+}
+#floatingEditor .setting-row{grid-template-columns:64px 28px minmax(0,1fr) 28px}
+#floatingEditor .glow-setting-row{grid-template-columns:64px 28px minmax(0,1fr) 38px}
+#floatingEditor .range-step{display:flex;align-items:center;justify-content:center;width:100%;height:32px;min-height:32px;border:0;border-radius:4px;padding:0;background:transparent;color:inherit;touch-action:manipulation;cursor:pointer}
+#floatingEditor .range-step:focus-visible{outline:2px solid #9879d3;outline-offset:-2px}
+#floatingEditor .size-slider{touch-action:pan-y}
+
 .toolbar#floatingEditor{overflow-x:hidden}
-</style><script src="ipa-fonts.js"></script><script src="i18n.js"></script></head><body><main class="app"><header class="app-header"><h1 class="title">IPA Keyboard</h1><span class="v83-label">v83.34</span><div class="language-control"><label class="language-caption" for="languageSelect" lang="en" dir="ltr">Language</label><select class="version-ja language-select" id="languageSelect" aria-label="言語選択"><option value="ja" selected>日本語</option><option value="en">English</option><option value="pt-BR" lang="pt-BR">Português brasileiro</option><option value="fa" lang="fa" dir="rtl">فارسی</option><option value="ja-osaka">大阪方言</option></select></div><button type="button" id="chartZoomToggle" aria-label="拡大表示" title="拡大表示" aria-haspopup="dialog" aria-controls="v83ChartFrame" aria-expanded="false" disabled><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></svg></button></header><div class="toolbar" id="floatingEditor" role="region" aria-label="移動できるIPA入力パネル"><div class="input-panel-grip"><button type="button" id="inputPanelDrag" aria-label="入力パネルを移動。矢印キーでも移動できます"><span aria-hidden="true">⠿</span><span id="inputPanelTitle">IPA入力</span></button><button type="button" id="contrastToggle" title="白黒反転" aria-label="白黒反転" aria-pressed="false">◐</button><button type="button" id="inputPanelReset" title="入力パネルの位置を戻す" aria-label="入力パネルの位置を戻す">↺</button></div><textarea id="out" rows="1" class="output ipa" aria-label="IPA入力欄" spellcheck="false" style="height: 97px;"></textarea><button type="button" id="inputHeightHandle" aria-label="入力領域の高さを変更"></button><div class="controls main-controls">
+</style><script src="ipa-fonts.js"></script><script src="i18n.js"></script></head><body><main class="app"><header class="app-header"><h1 class="title">IPA Keyboard</h1><span class="v83-label">v83.34</span><div class="language-control"><label class="language-caption" for="languageSelect" lang="en" dir="ltr">Language</label><select class="version-ja language-select" id="languageSelect" aria-label="言語選択"><option value="ja" selected>日本語</option><option value="en">English</option><option value="pt-BR" lang="pt-BR">Português brasileiro</option><option value="fa" lang="fa" dir="rtl">فارسی</option><option value="ja-osaka">大阪方言</option></select></div><span id="headerOverviewSlot" class="header-overview-slot"></span><button type="button" id="chartZoomToggle" aria-label="拡大表示" title="拡大表示" aria-haspopup="dialog" aria-controls="v83ChartFrame" aria-expanded="false" disabled><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5"/></svg></button></header><div class="toolbar" id="floatingEditor" role="region" aria-label="移動できるIPA入力パネル"><div class="input-panel-grip"><button type="button" id="inputPanelDrag" aria-label="入力パネルを移動。矢印キーでも移動できます"><span aria-hidden="true">⠿</span><span id="inputPanelTitle">IPA入力</span></button><button type="button" id="contrastToggle" title="白黒反転" aria-label="白黒反転" aria-pressed="false">◐</button><button type="button" id="inputPanelReset" title="入力パネルの位置を戻す" aria-label="入力パネルの位置を戻す">↺</button></div><textarea id="out" rows="1" class="output ipa" aria-label="IPA入力欄" spellcheck="false" style="height: 97px;"></textarea><button type="button" id="inputHeightHandle" aria-label="入力領域の高さを変更"></button><div class="controls main-controls">
 <button class="ctl bracket-btn" id="phonetic" title="角括弧を付ける" aria-label="角括弧を付ける">[ ]</button>
 <button class="ctl icon-btn" id="copy" title="コピー" aria-label="コピー"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="1.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-10A1.5 1.5 0 0 0 3 5.5v10A1.5 1.5 0 0 0 4.5 17H8"/></svg></button>
 <button class="ctl icon-btn" id="undo" title="元に戻す" aria-label="元に戻す"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5"/><path d="M5 12h8a6 6 0 0 1 6 6"/></svg></button>
@@ -523,11 +543,11 @@ html[data-inverse="true"] .language-picker-option.active{background:#454545}
 <span id="status" aria-live="polite" style="font-size:12px;align-self:center"></span>
 </div>
 <div class="settings-panel" id="settingsPanel" hidden>
-<div class="setting-row"><span class="setting-label">入力文字</span><span class="size-a small-a">A</span><input id="inputSizeSlider" class="size-slider" type="range" min="0" max="7" step="1" value="2" aria-label="入力文字サイズ"><span class="size-a large-a">A</span></div>
-<div class="setting-row"><span class="setting-label">パネルの幅</span><span class="size-a small-a">−</span><input id="panelWidthSlider" class="size-slider" type="range" min="240" max="640" step="10" value="320" aria-label="入力パネルの幅"><span class="size-a large-a">＋</span></div>
-<div class="setting-row glow-setting-row"><span class="setting-label">光の濃さ</span><span class="size-a small-a">−</span><input id="glowStrengthSlider" class="size-slider" type="range" min="0" max="100" step="5" value="60" aria-label="光の濃さ"><output id="glowStrengthValue" for="glowStrengthSlider">60%</output></div>
+<div class="setting-row"><span class="setting-label">入力文字</span><button type="button" class="size-a small-a range-step" data-range="inputSizeSlider" data-delta="-1">A</button><input id="inputSizeSlider" class="size-slider" type="range" min="16" max="60" step="0.1" value="22" aria-label="入力文字サイズ"><button type="button" class="size-a large-a range-step" data-range="inputSizeSlider" data-delta="1">A</button></div>
+<div class="setting-row"><span class="setting-label">パネルの幅</span><button type="button" class="size-a small-a range-step" data-range="panelWidthSlider" data-delta="-10">−</button><input id="panelWidthSlider" class="size-slider" type="range" min="240" max="640" step="10" value="320" aria-label="入力パネルの幅"><button type="button" class="size-a large-a range-step" data-range="panelWidthSlider" data-delta="10">＋</button></div>
+<div class="setting-row glow-setting-row"><span class="setting-label">光の濃さ</span><button type="button" class="size-a small-a range-step" data-range="glowStrengthSlider" data-delta="-5">−</button><input id="glowStrengthSlider" class="size-slider" type="range" min="0" max="100" step="5" value="60" aria-label="光の濃さ"><button type="button" class="range-step" data-range="glowStrengthSlider" data-delta="5"><output id="glowStrengthValue" for="glowStrengthSlider">60%</output></button></div>
 <p class="panel-size-note">チャートの拡大はチャート側で変更できます。</p>
-<div class="setting-row" hidden><span class="setting-label">チャート内の文字</span><span class="size-a small-a">A</span><input id="chartSizeSlider" class="size-slider" type="range" min="0" max="8" step="1" value="3" aria-label="チャート文字サイズ"><span class="size-a large-a">A</span></div>
+<div class="setting-row" hidden><span class="setting-label">チャート内の文字</span><button type="button" class="size-a small-a range-step" data-range="chartSizeSlider" data-delta="-1">A</button><input id="chartSizeSlider" class="size-slider" type="range" min="0" max="8" step="1" value="3" aria-label="チャート文字サイズ"><button type="button" class="size-a large-a range-step" data-range="chartSizeSlider" data-delta="1">A</button></div>
 <div class="setting-row"><span id="ipaFontLabel" class="setting-label">IPAフォント</span><div id="ipaFontChoices" role="group" aria-labelledby="ipaFontLabel"><button type="button" data-ipa-font="doulos" aria-pressed="true">Doulos SIL</button><button type="button" data-ipa-font="andika" aria-pressed="false">Andika</button></div><select id="ipaFontSelect" hidden aria-hidden="true" tabindex="-1" aria-label="IPAフォント"><option value="doulos">Doulos SIL</option><option value="andika">Andika</option></select></div><div class="setting-row"><label class="setting-label" for="inputColorPicker">入力文字色</label><input id="inputColorPicker" type="color" value="#17365d"></div><div class="setting-row compact-setting"><label><input id="warnToggle" type="checkbox" checked> 組合せ警告</label></div>
 <div class="info-links"><button type="button" class="info-link" id="fontInfoBtn">フォントについて</button><button type="button" class="info-link" id="offlineInfoBtn">オフラインで使う</button></div>
 
@@ -581,12 +601,13 @@ function grow(){
  out.style.height=Math.min(phone?120:420,Math.max(phone?36:44,out.scrollHeight+border))+'px';
 }
 window.esaGrowOutput=grow;
-var phoneInputSizes=[16,18,22,26,32,40,48,60],desktopInputSizes=[16,18,22,26,32,40,48,60,72,96,120],inputSizes=phoneInputSizes,chartSizes=[22,24,26,28,30,34,38,44,50];
-var inputSizeIndex=1,chartSizeIndex=3;
-function applyInputSize(i){
- inputSizeIndex=Math.max(0,Math.min(inputSizes.length-1,Number(i)));
- out.style.fontSize=inputSizes[inputSizeIndex]+'px';grow();
+var chartSizes=[22,24,26,28,30,34,38,44,50],chartSizeIndex=3;
+function applyInputSize(size){
+ const maximum=matchMedia('(max-width:700px)').matches?60:120;
+ const value=Math.round(Math.max(16,Math.min(maximum,Number(size)))*10)/10;
+ out.style.fontSize=value+'px';document.getElementById('inputSizeSlider').value=String(value);grow();
  window.dispatchEvent(new Event('esa-panel-layout'));
+ return value;
 }
 function applyChartSize(i){
  chartSizeIndex=Math.max(0,Math.min(chartSizes.length-1,Number(i)));
@@ -597,15 +618,25 @@ var inputSizeSlider=byId('inputSizeSlider'),chartSizeSlider=byId('chartSizeSlide
 var inputDevice=matchMedia('(max-width:700px)');
 function inputProfile(){return inputDevice.matches?'phone':'desktop';}
 function loadInputProfile(){
- inputSizes=inputDevice.matches?phoneInputSizes:desktopInputSizes;inputSizeSlider.max=String(inputSizes.length-1);
+ const maximum=inputDevice.matches?60:120;inputSizeSlider.min='16';inputSizeSlider.max=String(maximum);inputSizeSlider.step='0.1';
  var size=inputDevice.matches?22:32;
- try{var v=Number(localStorage.getItem('esakits.ipa.input-font.'+inputProfile()+'.v1'));if(Number.isFinite(v)&&v>=16&&v<=inputSizes.at(-1))size=v;}catch(e){}
- inputSizeSlider.value=String(inputSizes.reduce((best,n,i)=>Math.abs(n-size)<Math.abs(inputSizes[best]-size)?i:best,0));applyInputSize(inputSizeSlider.value);out.style.fontSize=size+'px';grow();
- document.getElementById('floatingEditor').classList.toggle('input-panel-phone',inputDevice.matches);
+ try{var v=Number(localStorage.getItem('esakits.ipa.input-font.'+inputProfile()+'.v1'));if(Number.isFinite(v)&&v>=16&&v<=maximum)size=v;}catch(e){}
+ applyInputSize(size);document.getElementById('floatingEditor').classList.toggle('input-panel-phone',inputDevice.matches);
  window.dispatchEvent(new Event('esa-panel-layout'));
 }
-inputSizeSlider.addEventListener('input',function(){applyInputSize(this.value);try{localStorage.setItem('esakits.ipa.input-font.'+inputProfile()+'.v1',String(inputSizes[inputSizeIndex]));}catch(e){}});
-window.esaSetInputPixels=function(size){size=Math.round(Math.max(16,Math.min(inputSizes.at(-1),size)));out.style.fontSize=size+'px';inputSizeIndex=inputSizes.reduce((best,n,i)=>Math.abs(n-size)<Math.abs(inputSizes[best]-size)?i:best,0);inputSizeSlider.value=String(inputSizeIndex);grow();try{localStorage.setItem('esakits.ipa.input-font.'+inputProfile()+'.v1',String(size));}catch(e){}window.dispatchEvent(new Event('esa-panel-layout'));};
+let inputSizeFrame=0,pendingInputSize=null;
+function queueInputSize(size){
+ pendingInputSize=Number(size);if(inputSizeFrame)return;
+ inputSizeFrame=requestAnimationFrame(()=>{inputSizeFrame=0;const value=applyInputSize(pendingInputSize);try{localStorage.setItem('esakits.ipa.input-font.'+inputProfile()+'.v1',String(value));}catch(e){}});
+}
+inputSizeSlider.addEventListener('input',function(){queueInputSize(this.value);});
+window.esaSetInputPixels=queueInputSize;
+document.querySelectorAll('.range-step').forEach(button=>{
+ const slider=document.getElementById(button.dataset.range),delta=Number(button.dataset.delta);
+ function label(){button.setAttribute('aria-label',slider.getAttribute('aria-label')+(delta<0?' −':' ＋'));}
+ button.addEventListener('click',()=>{slider.value=String(Math.max(Number(slider.min),Math.min(Number(slider.max),(slider.id==='panelWidthSlider'?document.getElementById('floatingEditor').getBoundingClientRect().width*(window.visualViewport?.scale||1):Number(slider.value))+delta)));slider.dispatchEvent(new Event('input',{bubbles:true}));});
+ document.getElementById('languageSelect').addEventListener('change',label);window.esaI18n.ready.then(label);label();
+});
 chartSizeSlider.addEventListener('input',function(){applyChartSize(this.value);});
 loadInputProfile();inputDevice.addEventListener('change',loadInputProfile);applyChartSize(chartSizeSlider.value);
 var settingsToggle=byId('settingsToggle'),settingsPanel=byId('settingsPanel');
@@ -838,7 +869,7 @@ window.esaI18n.ready.then(function(){
    let saved=originalAttrs.get(el);if(!saved){saved={};originalAttrs.set(el,saved);}
    ["title","aria-label","placeholder","alt"].forEach(a=>{
     // These labels have one owner: the panel controllers using the shared catalog.
-    if(['floatingEditor','inputPanelDrag','inputPanelReset','contrastToggle','chartZoomToggle'].includes(el.id)&&['title','aria-label'].includes(a))return;
+    if(['floatingEditor','inputPanelDrag','inputPanelReset','contrastToggle','chartZoomToggle','zoomMapToggle'].includes(el.id)&&['title','aria-label'].includes(a))return;
     if(!Object.prototype.hasOwnProperty.call(saved,a))saved[a]=el.getAttribute(a);
     if(saved[a]!==null){const value=translateText(saved[a]);if(el.getAttribute(a)!==value)el.setAttribute(a,value);}
    });
@@ -857,6 +888,8 @@ window.esaI18n.ready.then(function(){
 const frame=document.getElementById('v83ChartFrame'),picker=document.getElementById('languageSelect'),headerZoom=document.getElementById('chartZoomToggle'),pageHeader=document.querySelector('.app-header');
 let expanded=false,layoutFrame=0,priorOverflow='',priorScroll=null,lastLayout='';
 function setLocale(){
+ const overview=frame.contentDocument?.readyState==='complete'?frame.contentDocument.getElementById('zoomMapToggle'):null;
+ if(overview){document.getElementById('headerOverviewSlot').appendChild(overview);overview.setAttribute('aria-controls','v83ChartFrame');}
  if(frame.contentWindow&&typeof frame.contentWindow.esaSetLocale==='function')frame.contentWindow.esaSetLocale(picker.value);
  const label=window.esaI18n.t('⛶ 拡大表示',picker.value,'chart').replace(/^⛶\s*/,'');
  headerZoom.setAttribute('aria-label',expanded?window.esaI18n.t('通常表示に戻る',picker.value,'chart'):label);headerZoom.title=headerZoom.getAttribute('aria-label');
@@ -867,11 +900,12 @@ window.esaI18n.ready.then(setLocale);
 function viewportLayout(){
  layoutFrame=0;if(!expanded)return;
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),x=v?.offsetLeft||0,y=v?.offsetTop||0,w=(v?.width||innerWidth)*s,h=(v?.height||innerHeight)*s;
- for(const [k,value]of Object.entries({'--header-left':x+'px','--header-top':y+'px','--header-width':w+'px','--header-scale':String(1/s)}))pageHeader.style.setProperty(k,value);
+ const padding=parseFloat(getComputedStyle(pageHeader.parentElement).paddingLeft)||0,cap=Math.min(w,parseFloat(getComputedStyle(pageHeader.parentElement).maxWidth)||w),left=x+((w-cap)/2+padding)/s,top=y+padding/s;
+ for(const [k,value]of Object.entries({'--header-left':left+'px','--header-top':top+'px','--header-width':(cap-2*padding)+'px','--header-scale':String(1/s)}))pageHeader.style.setProperty(k,value);
  const headerHeight=pageHeader.getBoundingClientRect().height;
  const signature=[x,y,w,h,s,headerHeight].map(n=>Math.round(n*1000)/1000).join(',');
  if(signature===lastLayout)return;lastLayout=signature;
- for(const [k,value]of Object.entries({'--zoom-view-left':x+'px','--zoom-view-top':(y+headerHeight)+'px','--zoom-view-width':w+'px','--zoom-view-height':Math.max(1,h-headerHeight*s)+'px','--zoom-view-compensation':String(1/s)}))frame.style.setProperty(k,value);
+ for(const [k,value]of Object.entries({'--zoom-view-left':x+'px','--zoom-view-top':(top+headerHeight)+'px','--zoom-view-width':w+'px','--zoom-view-height':Math.max(1,h-(top-y+headerHeight)*s)+'px','--zoom-view-compensation':String(1/s)}))frame.style.setProperty(k,value);
  frame.contentWindow?.postMessage({kind:'esa-chart-zoom-layout'},location.origin);
 }
 function queueLayout(){if(expanded&&!layoutFrame)layoutFrame=requestAnimationFrame(viewportLayout);}
@@ -912,8 +946,7 @@ let position=null,drag=null,placeFrame=0;
 try{const p=JSON.parse(localStorage.getItem(key));if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))position={x:Math.max(0,Math.min(1,p.x)),y:Math.max(0,Math.min(1,p.y))};}catch(e){}
 function bounds(){
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),pad=8/s;
- const expanded=document.getElementById('chartZoomToggle').getAttribute('aria-expanded')==='true';
- const top=Math.max(0,document.querySelector('.app-header').getBoundingClientRect().bottom-(v?.offsetTop||0))+(expanded?50/s:0);
+ const top=Math.max(0,document.querySelector('.app-header').getBoundingClientRect().bottom-(v?.offsetTop||0));
  return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad+top,w:Math.max(0,(v?.width||innerWidth)-2*pad),h:Math.max(0,(v?.height||innerHeight)-2*pad-top)};
 }
 function place(){
@@ -930,13 +963,16 @@ function place(){
  let baselineFont=phone?22:32;
  try{const saved=Number(localStorage.getItem('esakits.ipa.panel-width-font.'+panelProfile()+'.v1'));if(saved>=16&&saved<=120)baselineFont=saved;}catch(e){}
  const extraWidth=Math.max(0,Math.round((fontPx-baselineFont)*(phone?2.4:3.2)));
- const width=Math.min(b.w*b.scale,Number(widthSlider.value)+extraWidth);
+ const range=window.esaEditorGeometry?.range;
+ const width=Math.min(b.w*b.scale,range?range.width:Number(widthSlider.value)+extraWidth);
  panel.style.width=width+'px';
  panel.classList.toggle('input-panel-phone',phone);panel.classList.toggle('input-panel-compact',width<316);
  const r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);
  const x=position?b.x+position.x*dx:b.x+((innerWidth>700)?dx:0);
  const y=position?b.y+position.y*dy:b.y+((innerWidth>700&&document.getElementById('chartZoomToggle').getAttribute('aria-expanded')!=='true')?Math.min(Math.max(0,110/b.scale-b.y),dy):dy);
- panel.style.left=x+'px';panel.style.top=y+'px';notifyPanel();
+ panel.style.left=x+'px';panel.style.top=y+'px';
+ if(range){const r=range.control.getBoundingClientRect(),pr=panel.getBoundingClientRect();panel.style.left=Math.max(b.x,Math.min(b.x+b.w-pr.width,x+range.left-r.left))+'px';panel.style.top=Math.max(b.y,Math.min(b.y+b.h-pr.height,y+range.top-r.top))+'px';}
+ notifyPanel();
 }
 function notifyPanel(){
  const f=document.getElementById('v83ChartFrame'),fr=f.getBoundingClientRect(),r=panel.getBoundingClientRect(),sx=fr.width/f.clientWidth,sy=fr.height/f.clientHeight;

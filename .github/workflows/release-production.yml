@@ -27,6 +27,7 @@ jobs:
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
       - name: Verify recovery behavior and single restore control
         run: |
+          node qa/panel-controls.cjs
           node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs
@@ -72,6 +73,7 @@ jobs:
           APP_URL: https://esakits.github.io/ipa-keyboard/
           PUBLIC_CHECK: '1'
         run: |
+          node qa/panel-controls.cjs
           node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs

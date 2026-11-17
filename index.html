@@ -583,6 +583,7 @@ var inputSizeIndex=1,chartSizeIndex=3;
 function applyInputSize(i){
  inputSizeIndex=Math.max(0,Math.min(inputSizes.length-1,Number(i)));
  out.style.fontSize=inputSizes[inputSizeIndex]+'px';grow();
+ window.dispatchEvent(new Event('esa-panel-layout'));
 }
 function applyChartSize(i){
  chartSizeIndex=Math.max(0,Math.min(chartSizes.length-1,Number(i)));
@@ -912,7 +913,14 @@ function place(){
  const phone=panelProfile()==='phone';
  const maxWidth=Math.max(240,Math.floor((innerWidth-16)/10)*10);
  widthSlider.max=String(Math.min(phone?640:1200,maxWidth));widthSlider.value=String(Math.min(preferredWidth(),Number(widthSlider.max)));
- const width=Math.min(b.w*b.scale,Number(widthSlider.value));panel.style.width=width+'px';
+ // Grow the floating editor with its input text (within the available viewport).
+ // The width slider sets the baseline width; large glyphs need more room.
+ const input=document.getElementById('output');
+ const fontPx=parseFloat(getComputedStyle(input).fontSize)|| (phone?22:32);
+ const baselineFont=phone?22:32;
+ const extraWidth=Math.max(0,Math.round((fontPx-baselineFont)*(phone?2.4:3.2)));
+ const width=Math.min(b.w*b.scale,Number(widthSlider.value)+extraWidth);
+ panel.style.width=width+'px';
  panel.classList.toggle('input-panel-phone',phone);panel.classList.toggle('input-panel-compact',width<316);
  const r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);
  const x=position?b.x+position.x*dx:b.x+((innerWidth>700)?dx:0);

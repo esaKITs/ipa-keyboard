@@ -694,6 +694,9 @@ body{padding:8px!important;overflow-x:hidden!important}
 @media(max-width:580px){.zoom-toolbar{gap:4px;padding:6px}.zoom-toolbar .zoom-title{display:none}.zoom-toolbar button{padding:8px}.zoom-minimap{width:140px;height:140px;right:5px;top:66px}.zoom-minimap .map-title{font-size:9px}.zoom-minimap .map-canvas{inset:33px 4px 4px}.zoom-minimap .map-region{font-size:5px}}
 /* Single-row chart controls on narrow screens; keep the map launcher icon-sized. */
 .zoom-toolbar .zoom-map-open{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:6px;flex:0 0 38px}
+/* Keep the minimap button visible; a faint halo indicates the active state. */
+.zoom-toolbar .zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(166,128,222,.20)}
+html[data-inverse="true"] .zoom-toolbar .zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(255,175,95,.18)}
 @media(max-width:580px){.zoom-toolbar{flex-wrap:nowrap;gap:5px;padding:6px 7px;min-height:52px}.zoom-toolbar #zoomMinus,.zoom-toolbar #zoomPlus{flex:0 0 38px;width:38px;height:38px;padding:4px;font-size:23px}.zoom-toolbar input[type=range]{width:auto;min-width:24px;max-width:none;flex:1 1 0}.zoom-toolbar .zoom-label{flex:0 0 48px;min-width:0;font-size:15px;text-align:center}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex:0 0 36px;width:36px;height:36px;padding:6px}.zoom-minimap{top:60px}}
 @media(max-width:360px){.zoom-toolbar{gap:3px;padding:5px 4px}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex-basis:32px;width:32px;height:34px}}
 /* Icon-only viewer toolbar: minimap and return to normal view. */
@@ -1664,7 +1667,7 @@ SOFTWARE.
 </script><div id="chartZoomDialog" class="zoom-dialog" role="dialog" aria-modal="true" aria-label="IPAチャート拡大表示" hidden>
  <div class="zoom-toolbar">
  <span class="zoom-title" data-i18n-key="国際音声記号 — 拡大表示">国際音声記号 — 拡大表示</span>
- <button type="button" id="zoomMapToggle" class="zoom-map-open" aria-label="全体図を表示" title="全体図を表示" aria-controls="zoomMinimap" aria-expanded="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M10 9v12M10 15h11"/></svg></button>
+ <button type="button" id="zoomMapToggle" class="zoom-map-open" aria-label="全体図を表示" title="全体図を表示" aria-controls="zoomMinimap" aria-expanded="true" aria-pressed="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M10 9v12M10 15h11"/></svg></button>
  <button type="button" id="zoomClose" class="zoom-close" hidden aria-label="通常表示に戻る" title="通常表示に戻る"><svg class="restore-view-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8h5V3M16 3v5h5M21 16h-5v5M8 21v-5H3"/></svg></button>
  </div>
  <div id="zoomViewport" class="zoom-viewport" tabindex="0" aria-label="拡大したIPAチャート。スクロールして移動できます"><div id="zoomStage" class="zoom-stage"></div></div>
@@ -1690,7 +1693,7 @@ function placeMap(x,y){
  map.style.right='auto';map.style.left=mapPosition.x+'px';map.style.top=mapPosition.y+'px';
 }
 function constrainMap(){if(!active||map.hidden)return;const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();placeMap(mapPosition?.x??r.left-bounds.left,mapPosition?.y??r.top-bounds.top);}
-function showMap(show){map.hidden=!show;mapToggle.style.visibility=show?'hidden':'visible';mapToggle.setAttribute('aria-expanded',String(show));if(show){constrainMap();renderMinimap();}}
+function showMap(show){map.hidden=!show;mapToggle.setAttribute('aria-expanded',String(show));mapToggle.setAttribute('aria-pressed',String(show));if(show){constrainMap();renderMinimap();}}
 mapGrip.addEventListener('pointerdown',e=>{if(e.button!==0||mapDrag)return;e.preventDefault();const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left-bounds.left,top:r.top-bounds.top};try{mapGrip.setPointerCapture(e.pointerId);}catch{}mapGrip.focus({preventScroll:true});});
 mapGrip.addEventListener('pointermove',e=>{if(mapDrag?.id!==e.pointerId)return;e.preventDefault();placeMap(mapDrag.left+e.clientX-mapDrag.x,mapDrag.top+e.clientY-mapDrag.y);});
 function endMapDrag(e){if(mapDrag?.id===e.pointerId)mapDrag=null;}

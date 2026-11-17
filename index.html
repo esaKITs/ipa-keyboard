@@ -860,10 +860,10 @@ let expanded=false,layoutFrame=0,priorOverflow='',priorScroll=null,lastLayout=''
 function setLocale(){
  if(frame.contentWindow&&typeof frame.contentWindow.esaSetLocale==='function')frame.contentWindow.esaSetLocale(picker.value);
  const label=window.esaI18n.t('⛶ 拡大表示',picker.value,'chart').replace(/^⛶\s*/,'');
- headerZoom.setAttribute('aria-label',label);headerZoom.title=label;
+ headerZoom.setAttribute('aria-label',expanded?window.esaI18n.t('通常表示に戻る',picker.value,'chart'):label);headerZoom.title=headerZoom.getAttribute('aria-label');
  headerZoom.disabled=frame.contentDocument?.readyState!=='complete';
 }
-headerZoom.addEventListener('click',()=>frame.contentDocument?.getElementById('chartZoomOpen')?.click());
+headerZoom.addEventListener('click',()=>frame.contentDocument?.getElementById(expanded?'zoomClose':'chartZoomOpen')?.click());
 window.esaI18n.ready.then(setLocale);
 function viewportLayout(){
  layoutFrame=0;if(!expanded)return;
@@ -887,7 +887,9 @@ window.addEventListener('message',e=>{
  if(e.data.kind==='esa-chart-zoom'){
   const next=!!e.data.open;if(next===expanded){if(next)queueLayout();return;}
   if(next){priorOverflow=document.body.style.overflow;priorScroll={x:scrollX,y:scrollY};}
-  expanded=next;headerZoom.setAttribute('aria-expanded',String(expanded));pageHeader.classList.toggle('chart-expanded',expanded);frame.classList.toggle('zoom-fullscreen',expanded);lastLayout='';
+  expanded=next;headerZoom.setAttribute('aria-expanded',String(expanded));
+  headerZoom.querySelector('svg path')?.setAttribute('d',expanded?'M3 8h5V3M16 3v5h5M21 16h-5v5M8 21v-5H3':'M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5');
+  setLocale();pageHeader.classList.toggle('chart-expanded',expanded);frame.classList.toggle('zoom-fullscreen',expanded);lastLayout='';
   if(expanded){document.body.style.overflow='hidden';viewportLayout();}
   else{
    if(layoutFrame)cancelAnimationFrame(layoutFrame);layoutFrame=0;

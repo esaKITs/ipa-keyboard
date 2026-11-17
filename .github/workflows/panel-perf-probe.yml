@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        isolate: [none, panel-layer, out-layer, no-shadow]
+        isolate: [out-layer-repeat, out-paint, no-accent, system-output]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

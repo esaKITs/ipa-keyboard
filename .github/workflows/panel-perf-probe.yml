@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        isolate: [none, contain, legacy, observers]
+        prepare: [none, fontconfig, browser-baseline]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,11 +19,19 @@ jobs:
           node-version: '22'
       - run: npm install --no-save playwright@1.61.1
       - run: npx playwright install webkit --with-deps
+      - name: Rebuild system font cache
+        if: matrix.prepare == 'fontconfig'
+        run: fc-cache --force
+      - name: Exercise independent native font baseline
+        if: matrix.prepare == 'browser-baseline'
+        run: node qa/minimal-font-probe.cjs
+        env:
+          ISOLATE: system
       - run: node qa/perf-probe.cjs
         env:
-          ISOLATE: ${{ matrix.isolate }}
+          ISOLATE: none
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-slider-performance-trace-${{ matrix.isolate }}
+          name: public-slider-performance-trace-${{ matrix.prepare }}
           path: qa-production/

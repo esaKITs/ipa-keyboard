@@ -371,7 +371,8 @@ html[data-inverse="true"] .language-select{background:#252525;color:#eee;border-
 html[data-inverse="true"] .ipa-standard,html[data-inverse="true"] .v83-label,html[data-inverse="true"] .esakits-bottom{color:#ccc}
 html[data-inverse="true"] .v83-integrated{background:#000}
 html[data-inverse="true"] #floatingEditor,html[data-inverse="true"] #v83ChartFrame,html[data-inverse="true"] .info-dialog,html[data-inverse="true"] .confirm-dialog,html[data-inverse="true"] #toast,html[data-inverse="true"] #pop{filter:invert(1) hue-rotate(180deg);color-scheme:light}
-#contrastToggle[aria-pressed="true"]{background:#d4c2ee}
+/* Dark-mode toggle: subtle warm halo only when active; no solid purple fill. */
+#contrastToggle[aria-pressed="true"]{background:#eee;box-shadow:0 0 9px 3px rgba(255,175,95,.22)}
 html[data-inverse="true"] #v83ChartFrame{filter:none}
 
 /* v83.34: editor geometry and typography have their own responsive profile. */

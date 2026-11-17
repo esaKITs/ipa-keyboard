@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        engine: [normal, noatbridge, nojit]
+        renderer: [normal, no-compositing, softpipe, limited-llvmpipe]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -23,12 +23,11 @@ jobs:
         env:
           ISOLATE: none
           DEBUG: pw:browser
-          NO_AT_BRIDGE: ${{ matrix.engine == 'noatbridge' && '1' || '0' }}
-          JSC_useJIT: ${{ matrix.engine == 'nojit' && 'false' || 'true' }}
-          JSC_reportCompileTimes: 'true'
-          JSC_logGC: '1'
+          WEBKIT_DISABLE_COMPOSITING_MODE: ${{ matrix.renderer == 'no-compositing' && '1' || '0' }}
+          GALLIUM_DRIVER: ${{ matrix.renderer == 'softpipe' && 'softpipe' || 'llvmpipe' }}
+          LP_NUM_THREADS: ${{ matrix.renderer == 'limited-llvmpipe' && '2' || '0' }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-slider-performance-trace-${{ matrix.engine }}
+          name: public-slider-performance-trace-${{ matrix.renderer }}
           path: qa-production/

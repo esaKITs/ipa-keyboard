@@ -1,6 +1,8 @@
 const {webkit}=require('playwright'),fs=require('fs');fs.mkdirSync('qa-production',{recursive:true});
 const app='https://esakits.github.io/ipa-keyboard/';
-(async()=>{const results=[];for(const [width,mode]of[[320,'cold'],[375,'cold'],[320,'ready'],[320,'cold-repeat']]){const b=await webkit.launch(),p=await b.newPage({viewport:{width,height:844},hasTouch:true,serviceWorkers:'block'});
+(async()=>{const results=[];for(const [width,mode]of[[320,'cold']]){const b=await webkit.launch(),p=await b.newPage({viewport:{width,height:844},hasTouch:true,serviceWorkers:'block'});
+ if(process.env.ISOLATE==='chart')await p.route('**/chart.html',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><script>window.esaSetLocale=()=>{};<\/script>'}));
+ if(process.env.ISOLATE==='jpfont')await p.route('**/NotoSansJP-*.woff2',r=>r.abort());
  await p.addInitScript(()=>{
   window.__perf={callbacks:[],frames:[],inputs:[],fonts:[]};let last=performance.now();const raf=requestAnimationFrame.bind(window);
   function frame(t){if(t-last>80)__perf.frames.push({wall:Date.now(),gap:t-last});last=t;raf(frame);}raf(frame);

@@ -8,6 +8,10 @@ jobs:
   trace:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        isolate: [none, chart, jpfont]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,8 +20,10 @@ jobs:
       - run: npm install --no-save playwright@1.61.1
       - run: npx playwright install webkit --with-deps
       - run: node qa/perf-probe.cjs
+        env:
+          ISOLATE: ${{ matrix.isolate }}
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-slider-performance-trace
+          name: public-slider-performance-trace-${{ matrix.isolate }}
           path: qa-production/

@@ -340,6 +340,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .v83-integrated{width:100%;max-width:1080px;margin:12px auto 0;background:#fff}
 .v83-chartframe{border:0;display:block;width:100%;height:1220px;background:white}
 .v83-chartframe.zoom-fullscreen{position:fixed!important;left:var(--zoom-view-left,0px)!important;top:var(--zoom-view-top,0px)!important;right:auto!important;bottom:auto!important;width:var(--zoom-view-width,100vw)!important;height:var(--zoom-view-height,100dvh)!important;transform-origin:0 0;transform:scale(var(--zoom-view-compensation,1));z-index:2147483646!important;margin:0!important;border:0!important}
+.app-header.chart-expanded{position:fixed;left:var(--header-left,0px);top:var(--header-top,0px);width:var(--header-width,100vw);transform-origin:0 0;transform:scale(var(--header-scale,1));z-index:2147483647;margin:0}
 .v83-label{font:12px/1.5 system-ui,sans-serif;color:#444;padding:4px 0 8px;text-align:center}
 
 /* v83.34: draggable editor remains available above both chart viewing modes. */
@@ -371,7 +372,9 @@ html[data-inverse="true"] .language-select{background:#252525;color:#eee;border-
 html[data-inverse="true"] .ipa-standard,html[data-inverse="true"] .v83-label,html[data-inverse="true"] .esakits-bottom{color:#ccc}
 html[data-inverse="true"] .v83-integrated{background:#000}
 html[data-inverse="true"] #floatingEditor,html[data-inverse="true"] #v83ChartFrame,html[data-inverse="true"] .info-dialog,html[data-inverse="true"] .confirm-dialog,html[data-inverse="true"] #toast,html[data-inverse="true"] #pop{filter:invert(1) hue-rotate(180deg);color-scheme:light}
-#contrastToggle[aria-pressed="true"]{background:#d4c2ee}
+#contrastToggle[aria-pressed="true"]{background:transparent;box-shadow:0 0 9px 3px rgba(255,175,95,.18)}
+/* The editor is inverted as one surface; compensate the halo to keep its visible hue orange. */
+html[data-inverse="true"] #contrastToggle[aria-pressed="true"]{box-shadow:0 0 9px 3px rgba(160,240,255,.18)}
 html[data-inverse="true"] #v83ChartFrame{filter:none}
 
 /* v83.34: editor geometry and typography have their own responsive profile. */
@@ -851,26 +854,29 @@ window.esaI18n.ready.then(function(){
 <script id="v83-frame-controller">
 (function(){
 'use strict';
-const frame=document.getElementById('v83ChartFrame'),picker=document.getElementById('languageSelect'),headerZoom=document.getElementById('chartZoomToggle');
+const frame=document.getElementById('v83ChartFrame'),picker=document.getElementById('languageSelect'),headerZoom=document.getElementById('chartZoomToggle'),pageHeader=document.querySelector('.app-header');
 let expanded=false,layoutFrame=0,priorOverflow='',priorScroll=null,lastLayout='';
 function setLocale(){
  if(frame.contentWindow&&typeof frame.contentWindow.esaSetLocale==='function')frame.contentWindow.esaSetLocale(picker.value);
  const label=window.esaI18n.t('⛶ 拡大表示',picker.value,'chart').replace(/^⛶\s*/,'');
- headerZoom.setAttribute('aria-label',label);headerZoom.title=label;
+ headerZoom.setAttribute('aria-label',expanded?window.esaI18n.t('通常表示に戻る',picker.value,'chart'):label);headerZoom.title=headerZoom.getAttribute('aria-label');
  headerZoom.disabled=frame.contentDocument?.readyState!=='complete';
 }
-headerZoom.addEventListener('click',()=>frame.contentDocument?.getElementById('chartZoomOpen')?.click());
+headerZoom.addEventListener('click',()=>frame.contentDocument?.getElementById(expanded?'zoomClose':'chartZoomOpen')?.click());
 window.esaI18n.ready.then(setLocale);
 function viewportLayout(){
  layoutFrame=0;if(!expanded)return;
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),x=v?.offsetLeft||0,y=v?.offsetTop||0,w=(v?.width||innerWidth)*s,h=(v?.height||innerHeight)*s;
- const signature=[x,y,w,h,s].map(n=>Math.round(n*1000)/1000).join(',');
+ for(const [k,value]of Object.entries({'--header-left':x+'px','--header-top':y+'px','--header-width':w+'px','--header-scale':String(1/s)}))pageHeader.style.setProperty(k,value);
+ const headerHeight=pageHeader.getBoundingClientRect().height;
+ const signature=[x,y,w,h,s,headerHeight].map(n=>Math.round(n*1000)/1000).join(',');
  if(signature===lastLayout)return;lastLayout=signature;
- for(const [k,value]of Object.entries({'--zoom-view-left':x+'px','--zoom-view-top':y+'px','--zoom-view-width':w+'px','--zoom-view-height':h+'px','--zoom-view-compensation':String(1/s)}))frame.style.setProperty(k,value);
+ for(const [k,value]of Object.entries({'--zoom-view-left':x+'px','--zoom-view-top':(y+headerHeight)+'px','--zoom-view-width':w+'px','--zoom-view-height':Math.max(1,h-headerHeight*s)+'px','--zoom-view-compensation':String(1/s)}))frame.style.setProperty(k,value);
  frame.contentWindow?.postMessage({kind:'esa-chart-zoom-layout'},location.origin);
 }
 function queueLayout(){if(expanded&&!layoutFrame)layoutFrame=requestAnimationFrame(viewportLayout);}
 picker.addEventListener('change',setLocale);frame.addEventListener('load',setLocale);
+new ResizeObserver(queueLayout).observe(pageHeader);
 window.addEventListener('resize',queueLayout);visualViewport?.addEventListener('resize',queueLayout);visualViewport?.addEventListener('scroll',queueLayout);
 window.addEventListener('message',e=>{
  if(e.source!==frame.contentWindow||e.origin!==location.origin||!e.data?.kind)return;
@@ -880,7 +886,9 @@ window.addEventListener('message',e=>{
  if(e.data.kind==='esa-chart-zoom'){
   const next=!!e.data.open;if(next===expanded){if(next)queueLayout();return;}
   if(next){priorOverflow=document.body.style.overflow;priorScroll={x:scrollX,y:scrollY};}
-  expanded=next;headerZoom.setAttribute('aria-expanded',String(expanded));frame.classList.toggle('zoom-fullscreen',expanded);lastLayout='';
+  expanded=next;headerZoom.setAttribute('aria-expanded',String(expanded));pageHeader.classList.toggle('chart-expanded',expanded);frame.classList.toggle('zoom-fullscreen',expanded);lastLayout='';
+  headerZoom.querySelector('path').setAttribute('d',expanded?'M3 8h5V3M16 3v5h5M21 16h-5v5M8 21v-5H3':'M8 3H3v5M16 3h5v5M21 16v5h-5M8 21H3v-5');setLocale();
+  window.dispatchEvent(new Event('esa-panel-layout'));
   if(expanded){document.body.style.overflow='hidden';viewportLayout();}
   else{
    if(layoutFrame)cancelAnimationFrame(layoutFrame);layoutFrame=0;
@@ -904,7 +912,9 @@ let position=null,drag=null,placeFrame=0;
 try{const p=JSON.parse(localStorage.getItem(key));if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))position={x:Math.max(0,Math.min(1,p.x)),y:Math.max(0,Math.min(1,p.y))};}catch(e){}
 function bounds(){
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),pad=8/s;
- return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad,w:Math.max(0,(v?.width||innerWidth)-2*pad),h:Math.max(0,(v?.height||innerHeight)-2*pad)};
+ const expanded=document.getElementById('chartZoomToggle').getAttribute('aria-expanded')==='true';
+ const top=expanded?Math.max(0,document.querySelector('.app-header').getBoundingClientRect().bottom-(v?.offsetTop||0))+50/s:0;
+ return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad+top,w:Math.max(0,(v?.width||innerWidth)-2*pad),h:Math.max(0,(v?.height||innerHeight)-2*pad-top)};
 }
 function place(){
  placeFrame=0;const b=bounds();
@@ -915,7 +925,7 @@ function place(){
  widthSlider.max=String(Math.min(phone?640:1200,maxWidth));widthSlider.value=String(Math.min(preferredWidth(),Number(widthSlider.max)));
  // Grow the floating editor with its input text (within the available viewport).
  // The width slider sets the baseline width; large glyphs need more room.
- const input=document.getElementById('output');
+ const input=document.getElementById('out');
  const fontPx=parseFloat(getComputedStyle(input).fontSize)|| (phone?22:32);
  const baselineFont=phone?22:32;
  const extraWidth=Math.max(0,Math.round((fontPx-baselineFont)*(phone?2.4:3.2)));
@@ -924,15 +934,19 @@ function place(){
  panel.classList.toggle('input-panel-phone',phone);panel.classList.toggle('input-panel-compact',width<316);
  const r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);
  const x=position?b.x+position.x*dx:b.x+((innerWidth>700)?dx:0);
- const y=position?b.y+position.y*dy:b.y+((innerWidth>700)?Math.min(102/b.scale,dy):dy);
- panel.style.left=x+'px';panel.style.top=y+'px';
+ const y=position?b.y+position.y*dy:b.y+((innerWidth>700&&document.getElementById('chartZoomToggle').getAttribute('aria-expanded')!=='true')?Math.min(102/b.scale,dy):dy);
+ panel.style.left=x+'px';panel.style.top=y+'px';notifyPanel();
+}
+function notifyPanel(){
+ const f=document.getElementById('v83ChartFrame'),fr=f.getBoundingClientRect(),r=panel.getBoundingClientRect(),sx=fr.width/f.clientWidth,sy=fr.height/f.clientHeight;
+ f.contentWindow?.postMessage({kind:'esa-editor-rect',rect:{left:(r.left-fr.left)/sx,top:(r.top-fr.top)/sy,right:(r.right-fr.left)/sx,bottom:(r.bottom-fr.top)/sy}},location.origin);
 }
 function queuePlace(){if(!placeFrame&&!drag&&!window.esaEditorGeometry?.active)placeFrame=requestAnimationFrame(place);}
 function move(x,y,save=false){
  const b=bounds(),r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);
  const nx=Math.max(b.x,Math.min(b.x+dx,x)),ny=Math.max(b.y,Math.min(b.y+dy,y));
  position={x:dx?(nx-b.x)/dx:0,y:dy?(ny-b.y)/dy:0};
- panel.style.left=nx+'px';panel.style.top=ny+'px';
+ panel.style.left=nx+'px';panel.style.top=ny+'px';notifyPanel();
  if(save)try{localStorage.setItem(key,JSON.stringify(position));}catch(e){}
 }
 handle.addEventListener('pointerdown',e=>{

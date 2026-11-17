@@ -26,6 +26,17 @@ jobs:
           done
           nohup python3 -m http.server 8770 --bind 127.0.0.1 --directory /tmp/ipa-baselines >/tmp/ipa-baselines.log 2>&1 &
       - run: node qa/recovery-baseline.cjs
+      - name: Verify historical stable core with its original production checks
+        run: |
+          git show 3dc0780da:qa/production.cjs > qa/recovery-old-production.cjs
+          APP_URL=http://127.0.0.1:8770/3dc0780da/ PUBLIC_CHECK=1 node qa/recovery-old-production.cjs
+      - name: Serve candidate at production path
+        run: nohup python3 qa/server.py >/tmp/ipa-recovery.log 2>&1 &
+      - name: Current specification regression in Chromium and WebKit
+        run: |
+          node qa/recovery.cjs
+          node qa/viewer-icons.cjs
+          node qa/production.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

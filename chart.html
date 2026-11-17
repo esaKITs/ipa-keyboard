@@ -695,6 +695,12 @@ body{padding:8px!important;overflow-x:hidden!important}
 .zoom-toolbar .zoom-map-open{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:6px;flex:0 0 38px}
 @media(max-width:580px){.zoom-toolbar{flex-wrap:nowrap;gap:5px;padding:6px 7px;min-height:52px}.zoom-toolbar #zoomMinus,.zoom-toolbar #zoomPlus{flex:0 0 38px;width:38px;height:38px;padding:4px;font-size:23px}.zoom-toolbar input[type=range]{width:auto;min-width:24px;max-width:none;flex:1 1 0}.zoom-toolbar .zoom-label{flex:0 0 48px;min-width:0;font-size:15px;text-align:center}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex:0 0 36px;width:36px;height:36px;padding:6px}.zoom-minimap{top:60px}}
 @media(max-width:360px){.zoom-toolbar{gap:3px;padding:5px 4px}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex-basis:32px;width:32px;height:34px}}
+/* Embedded viewing uses the single parent header restore control. */
+.is-embedded-chart .zoom-toolbar{position:absolute;right:6px;top:6px;z-index:5;min-height:0;padding:0;border:0;background:transparent}
+.is-embedded-chart .zoom-toolbar .zoom-title,.is-embedded-chart #zoomClose{display:none!important}
+.zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(166,128,222,.20)}
+/* The viewer is inverted as one surface, so compensate its warm active halo. */
+html[data-inverse="true"] .zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(160,240,255,.18)}
 /* Icon-only viewer toolbar: minimap and return to normal view. */
 .zoom-toolbar{justify-content:flex-end;flex-wrap:nowrap}
 .zoom-toolbar .zoom-title{margin-right:auto}
@@ -1680,16 +1686,26 @@ const openBtn=document.getElementById("chartZoomOpen"), dialog=document.getEleme
 const viewport=document.getElementById("zoomViewport"), stage=document.getElementById("zoomStage");
 const map=document.getElementById("zoomMinimap"), mapCanvas=document.getElementById("zoomMapCanvas"), mapWindow=document.getElementById("zoomMapWindow");
 const mapToggle=document.getElementById("zoomMapToggle"),mapGrip=document.getElementById("zoomMapDrag"),mapClose=document.getElementById("zoomMapClose");
-let mapPosition=null,mapDrag=null;
+let mapPosition=null,mapDrag=null,editorRect=null;
 function placeMap(x,y){
  if(!active||map.hidden)return;
  const bounds=dialog.getBoundingClientRect(),r=map.getBoundingClientRect(),toolbar=dialog.querySelector('.zoom-toolbar').getBoundingClientRect();
  const top=Math.min(toolbar.bottom-bounds.top+6,Math.max(6,bounds.height-r.height-6));
  mapPosition={x:clamp(x,6,Math.max(6,bounds.width-r.width-6)),y:clamp(y,top,Math.max(top,bounds.height-r.height-6))};
+ if(editorRect){
+  const e=editorRect,m=mapPosition,w=r.width,h=r.height;
+  const hits=(x,y)=>x<e.right+6&&x+w>e.left-6&&y<e.bottom+6&&y+h>e.top-6;
+  if(hits(m.x,m.y)){
+   const candidates=[[m.x,e.top-h-6],[e.left-w-6,m.y],[e.right+6,m.y],[m.x,e.bottom+6]]
+    .filter(([x,y])=>x>=6&&x+w<=bounds.width-6&&y>=top&&y+h<=bounds.height-6&&!hits(x,y))
+    .sort((a,b)=>Math.hypot(a[0]-m.x,a[1]-m.y)-Math.hypot(b[0]-m.x,b[1]-m.y));
+   if(candidates.length)mapPosition={x:candidates[0][0],y:candidates[0][1]};
+  }
+ }
  map.style.right='auto';map.style.left=mapPosition.x+'px';map.style.top=mapPosition.y+'px';
 }
 function constrainMap(){if(!active||map.hidden)return;const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();placeMap(mapPosition?.x??r.left-bounds.left,mapPosition?.y??r.top-bounds.top);}
-function showMap(show){map.hidden=!show;mapToggle.style.visibility=show?'hidden':'visible';mapToggle.setAttribute('aria-expanded',String(show));if(show){constrainMap();renderMinimap();}}
+function showMap(show){map.hidden=!show;mapToggle.setAttribute('aria-pressed',String(show));mapToggle.setAttribute('aria-expanded',String(show));if(show){constrainMap();renderMinimap();}}
 mapGrip.addEventListener('pointerdown',e=>{if(e.button!==0||mapDrag)return;e.preventDefault();const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left-bounds.left,top:r.top-bounds.top};try{mapGrip.setPointerCapture(e.pointerId);}catch{}mapGrip.focus({preventScroll:true});});
 mapGrip.addEventListener('pointermove',e=>{if(mapDrag?.id!==e.pointerId)return;e.preventDefault();placeMap(mapDrag.left+e.clientX-mapDrag.x,mapDrag.top+e.clientY-mapDrag.y);});
 function endMapDrag(e){if(mapDrag?.id===e.pointerId)mapDrag=null;}
@@ -1769,7 +1785,7 @@ function openViewer(){
   zoom=clamp(parent!==window?(parent.visualViewport?.scale||1):1,1,3);baseScale=Math.min(1,Math.max(1,viewport.clientWidth-12)/BASE);
   setZoom(zoom,false);viewport.scrollLeft=0;viewport.scrollTop=0;
   drawMap();renderMinimap();notifyZoom(true);queueViewerLayout();
-  document.getElementById('zoomClose').focus({preventScroll:true});
+  (parent!==window?viewport:document.getElementById('zoomClose')).focus({preventScroll:true});
  }catch(e){closeViewer();throw e;}
 }
 function closeViewer(){
@@ -1811,7 +1827,7 @@ viewport.addEventListener('touchmove',e=>{
 },{passive:false,capture:true});
 function endPinch(e){if(!e.touches.length){pinch=null;pinchPan=null;delete document.documentElement.dataset.chartGesture;}else if(e.touches.length===1){pinch=null;const p=point(e.touches[0]);pinchPan={x:p.x,y:p.y,startX:p.x,startY:p.y,moved:true};}}
 viewport.addEventListener('touchend',endPinch,{passive:true});viewport.addEventListener('touchcancel',endPinch,{passive:true});
-window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===parent&&e.data?.kind==='esa-chart-zoom-layout')queueViewerLayout();});
+window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.kind==='esa-chart-zoom-layout')queueViewerLayout();if(e.data?.kind==='esa-editor-rect'){editorRect=e.data.rect;constrainMap();}});
 openBtn.addEventListener("click",openViewer);
 document.getElementById("zoomClose").addEventListener("click",closeViewer);
 window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window.esaI18n.t("通常表示に戻る",window.esaChartLocale,"chart");const restoreButton=document.getElementById("zoomClose");restoreButton.setAttribute("aria-label",restoreLabel);restoreButton.title=restoreLabel;const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;const mapLabel=window.esaI18n.t("全体図を表示",window.esaChartLocale,"chart");mapToggle.setAttribute("aria-label",mapLabel);mapToggle.title=mapLabel;if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});

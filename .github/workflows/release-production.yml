@@ -25,9 +25,16 @@ jobs:
       - run: npx playwright install chromium webkit --with-deps
       - name: Serve at the production path
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
+      - name: Serve immutable geometry reference
+        run: |
+          git fetch --depth=1 origin a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b
+          mkdir -p /tmp/ipa-vowel-reference
+          git archive a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b | tar -x -C /tmp/ipa-vowel-reference
+          nohup python3 -m http.server 8771 --bind 127.0.0.1 --directory /tmp/ipa-vowel-reference >/tmp/ipa-vowel-reference.log 2>&1 &
       - name: Verify recovery behavior and single restore control
         run: |
           node qa/panel-controls.cjs
+          node qa/vowel-equivalence.cjs
           node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs
@@ -68,12 +75,19 @@ jobs:
                   time.sleep(5)
           else:
               raise SystemExit('Production files did not update')
+      - name: Serve immutable geometry reference
+        run: |
+          git fetch --depth=1 origin a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b
+          mkdir -p /tmp/ipa-vowel-reference
+          git archive a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b | tar -x -C /tmp/ipa-vowel-reference
+          nohup python3 -m http.server 8771 --bind 127.0.0.1 --directory /tmp/ipa-vowel-reference >/tmp/ipa-vowel-reference.log 2>&1 &
       - name: Verify the live production URL in both browsers
         env:
           APP_URL: https://esakits.github.io/ipa-keyboard/
           PUBLIC_CHECK: '1'
         run: |
           node qa/panel-controls.cjs
+          node qa/vowel-equivalence.cjs
           node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs

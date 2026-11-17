@@ -1877,7 +1877,7 @@ const letters=[...svg.querySelectorAll(".vowel-dynamic-glyph")];
 const labelEls=[...svg.querySelectorAll(".vowel-measured-label")];
 const layer=svg.querySelector("#vowelCutouts");
 const NS="http://www.w3.org/2000/svg";
-let scheduled=false,fontReady=false;
+let scheduled=false,fontReady=false,warming=false;
 const pdfToSvgX=x=>260+1.23*(165+(x-381.2925)*(250/151.4302)-260);
 const pdfToSvgY=y=>140+1.23*(48+(y-290.7778)*(190/114.941)-140);
 function bbox(el){try{return el.getBBox();}catch(_){return {x:0,y:0,width:0,height:0};}}
@@ -1891,6 +1891,18 @@ function render(){
  scheduled=false;
  if(!fontReady)return;
  const font=32;
+ const cache=window.__ipaSilhouettes||(window.__ipaSilhouettes=new Map());
+ // Keep exactly the same silhouettes, but avoid rasterizing all 28 in one blocking frame.
+ const missing=letters.filter(el=>!cache.has(getComputedStyle(el).fontFamily+'|'+el.textContent+'|'+font));
+ if(missing.length){
+  if(!warming){warming=true;(async()=>{
+   const nextFrame=()=>new Promise(resolve=>requestAnimationFrame(resolve));
+   function interacting(){try{return !!(parent.esaEditorGeometry?.range||parent.esaEditorGeometry?.active||parent.document.body.classList.contains('input-panel-dragging')||document.documentElement.dataset.chartGesture);}catch(e){return false;}}
+   try{for(const el of missing){await nextFrame();while(interacting())await nextFrame();silhouette(el,font);}}
+   finally{warming=false;schedule();}
+  })();}
+  return;
+ }
  for(const el of letters){
   el.style.fontSize=font+"px";
   el.style.dominantBaseline="alphabetic";
@@ -1931,7 +1943,6 @@ function render(){
  const EPS=1e-10;
  if(!window.__ipaBaseRulePaths)window.__ipaBaseRulePaths=
    [...svg.querySelectorAll('path.official-vowel-rule')].map(path=>({path,base:path.getAttribute('d'),id:path.dataset.officialDrawing||'front'}));
- const cache=window.__ipaSilhouettes||(window.__ipaSilhouettes=new Map());
  function hull(points){
    points.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
    const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
@@ -1958,7 +1969,7 @@ function render(){
      }
    }
    if(points.length<3)throw Error('Missing rendered glyph '+ch);
-   const poly=hull(points);cache.set(key,poly);return poly;
+   const poly=hull(points);cache.set(key,poly);canvas.width=canvas.height=0;return poly;
  }
  function convexClip(a,b,poly,pad=0){
    const vx=b[0]-a[0],vy=b[1]-a[1];let lo=-Infinity,hi=Infinity;

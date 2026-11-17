@@ -1,7 +1,7 @@
-name: Verify and publish IPA Keyboard production v83.33
+name: Verify and publish IPA Keyboard production v83.34
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.33]
+    branches: [main, release/ipa-keyboard-v83.34]
     paths: ['index.html', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'diacritic-display.js', 'language-picker.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.33'
+    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.34'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -25,8 +25,8 @@ jobs:
       - run: npx playwright install chromium webkit --with-deps
       - name: Serve at the production path
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
-      - name: Verify movable overview and close button
-        run: node qa/overview.cjs
+      - name: Verify restore-view icon and translations
+        run: node qa/viewer-icons.cjs
       - name: Verify production assets and upgrade from old offline cache
         run: node qa/production.cjs
       - uses: actions/upload-artifact@v4
@@ -68,7 +68,7 @@ jobs:
           APP_URL: https://esakits.github.io/ipa-keyboard/
           PUBLIC_CHECK: '1'
         run: |
-          node qa/overview.cjs
+          node qa/viewer-icons.cjs
           node qa/production.cjs
       - uses: actions/upload-artifact@v4
         if: always()

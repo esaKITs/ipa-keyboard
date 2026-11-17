@@ -689,7 +689,7 @@ body{padding:8px!important;overflow-x:hidden!important}
 .zoom-minimap .map-canvas{position:absolute;inset:33px 6px 7px 6px;background:#fff;border:1px solid #a7b4bf}
 .zoom-minimap .map-region{position:absolute;border:1px solid #bbc5d0;background:#edf3f8;font-size:7px;text-align:center;overflow:hidden}
 .zoom-minimap .map-window{position:absolute;z-index:2;border:2px solid #dc623e;background:rgba(237,129,60,.19);pointer-events:none;box-sizing:border-box}
-.zoom-toolbar .zoom-close{font-weight:700}
+.zoom-toolbar .zoom-close{display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:7px}
 @media(max-width:580px){.zoom-toolbar{gap:4px;padding:6px}.zoom-toolbar .zoom-title{display:none}.zoom-toolbar button{padding:8px}.zoom-minimap{width:140px;height:140px;right:5px;top:66px}.zoom-minimap .map-title{font-size:9px}.zoom-minimap .map-canvas{inset:33px 4px 4px}.zoom-minimap .map-region{font-size:5px}}
 /* v0.2.60: keep zoom launcher at readable native size on phones, outside responsive chart scaling. */
 .chart-tool-row{width:1040px;max-width:calc(100vw - 16px);margin:0 auto 6px;text-align:right}
@@ -1660,7 +1660,7 @@ SOFTWARE.
  <button type="button" id="zoomPlus" aria-label="拡大">＋</button>
  <span class="zoom-label" id="zoomPercent">100%</span>
  <button type="button" id="zoomMapToggle" aria-pressed="true">全体図を隠す</button>
- <button type="button" id="zoomClose" class="zoom-close" data-i18n-key="閉じる ✕">閉じる ✕</button>
+ <button type="button" id="zoomClose" class="zoom-close" aria-label="通常表示に戻る" title="通常表示に戻る"><svg class="restore-view-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8h5V3M16 3v5h5M21 16h-5v5M8 21v-5H3"/></svg></button>
  </div>
  <div id="zoomViewport" class="zoom-viewport" tabindex="0" aria-label="拡大したIPAチャート。スクロールして移動できます"><div id="zoomStage" class="zoom-stage"></div></div>
  <div class="zoom-minimap" id="zoomMinimap" role="group" aria-label="チャート全体図。ドラッグで表示位置を移動">
@@ -1814,7 +1814,7 @@ document.getElementById("zoomClose").addEventListener("click",closeViewer);
 document.getElementById("zoomMinus").addEventListener("click",()=>setZoom(zoom-.25));
 document.getElementById("zoomPlus").addEventListener("click",()=>setZoom(zoom+.25));
 range.addEventListener("input",()=>setZoom(Number(range.value)/100));
-window.addEventListener("esa-chart-locale-change",()=>{const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale,"chart");if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});
+window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window.esaI18n.t("通常表示に戻る",window.esaChartLocale,"chart");const restoreButton=document.getElementById("zoomClose");restoreButton.setAttribute("aria-label",restoreLabel);restoreButton.title=restoreLabel;const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale,"chart");if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});
 mapToggle.addEventListener("click",()=>showMap(map.hidden));
 viewport.addEventListener("scroll",renderMinimap,{passive:true});
 mapCanvas.addEventListener("pointerdown",e=>{drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});

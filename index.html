@@ -341,6 +341,9 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .v83-chartframe{border:0;display:block;width:100%;height:1220px;background:white}
 .v83-chartframe.zoom-fullscreen{position:fixed!important;left:var(--zoom-view-left,0px)!important;top:var(--zoom-view-top,0px)!important;right:auto!important;bottom:auto!important;width:var(--zoom-view-width,100vw)!important;height:var(--zoom-view-height,100dvh)!important;transform-origin:0 0;transform:scale(var(--zoom-view-compensation,1));z-index:2147483646!important;margin:0!important;border:0!important}
 .v83-label{font:12px/1.5 system-ui,sans-serif;color:#444;padding:4px 0 8px;text-align:center}
+/* Preserve the existing page header above the expanded chart. */
+.app-header.chart-expanded{position:fixed;top:var(--zoom-view-top,0px);left:var(--zoom-view-left,0px);right:0;z-index:2147483647;background:var(--ui)}
+
 
 /* v83.34: draggable editor remains available above both chart viewing modes. */
 .toolbar#floatingEditor{position:fixed;z-index:2147483647;left:8px;top:110px;width:min(480px,calc(100vw - 16px));padding:8px;border:1px solid #aaa;border-radius:12px;background:#fafaf9;box-shadow:0 6px 24px #0003;max-height:calc(var(--panel-vh,100dvh) - 16px);overflow:auto;box-sizing:border-box}
@@ -852,7 +855,7 @@ window.esaI18n.ready.then(function(){
 <script id="v83-frame-controller">
 (function(){
 'use strict';
-const frame=document.getElementById('v83ChartFrame'),picker=document.getElementById('languageSelect'),headerZoom=document.getElementById('chartZoomToggle');
+const frame=document.getElementById('v83ChartFrame'),picker=document.getElementById('languageSelect'),headerZoom=document.getElementById('chartZoomToggle'),pageHeader=document.querySelector('.app-header');
 let expanded=false,layoutFrame=0,priorOverflow='',priorScroll=null,lastLayout='';
 function setLocale(){
  if(frame.contentWindow&&typeof frame.contentWindow.esaSetLocale==='function')frame.contentWindow.esaSetLocale(picker.value);
@@ -865,9 +868,12 @@ window.esaI18n.ready.then(setLocale);
 function viewportLayout(){
  layoutFrame=0;if(!expanded)return;
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),x=v?.offsetLeft||0,y=v?.offsetTop||0,w=(v?.width||innerWidth)*s,h=(v?.height||innerHeight)*s;
- const signature=[x,y,w,h,s].map(n=>Math.round(n*1000)/1000).join(',');
+ const headerHeight=pageHeader.getBoundingClientRect().height;
+ const signature=[x,y,w,h,s,headerHeight].map(n=>Math.round(n*1000)/1000).join(',');
  if(signature===lastLayout)return;lastLayout=signature;
- for(const [k,value]of Object.entries({'--zoom-view-left':x+'px','--zoom-view-top':y+'px','--zoom-view-width':w+'px','--zoom-view-height':h+'px','--zoom-view-compensation':String(1/s)}))frame.style.setProperty(k,value);
+ pageHeader.style.setProperty('--zoom-view-left',x+'px');
+ pageHeader.style.setProperty('--zoom-view-top',y+'px');
+ for(const [k,value]of Object.entries({'--zoom-view-left':x+'px','--zoom-view-top':(y+headerHeight)+'px','--zoom-view-width':w+'px','--zoom-view-height':Math.max(1,h-headerHeight*s)+'px','--zoom-view-compensation':String(1/s)}))frame.style.setProperty(k,value);
  frame.contentWindow?.postMessage({kind:'esa-chart-zoom-layout'},location.origin);
 }
 function queueLayout(){if(expanded&&!layoutFrame)layoutFrame=requestAnimationFrame(viewportLayout);}
@@ -881,7 +887,7 @@ window.addEventListener('message',e=>{
  if(e.data.kind==='esa-chart-zoom'){
   const next=!!e.data.open;if(next===expanded){if(next)queueLayout();return;}
   if(next){priorOverflow=document.body.style.overflow;priorScroll={x:scrollX,y:scrollY};}
-  expanded=next;headerZoom.setAttribute('aria-expanded',String(expanded));frame.classList.toggle('zoom-fullscreen',expanded);lastLayout='';
+  expanded=next;headerZoom.setAttribute('aria-expanded',String(expanded));pageHeader.classList.toggle('chart-expanded',expanded);frame.classList.toggle('zoom-fullscreen',expanded);lastLayout='';
   if(expanded){document.body.style.overflow='hidden';viewportLayout();}
   else{
    if(layoutFrame)cancelAnimationFrame(layoutFrame);layoutFrame=0;

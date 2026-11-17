@@ -635,7 +635,7 @@ document.querySelectorAll('.range-step').forEach(button=>{
  const slider=document.getElementById(button.dataset.range),delta=Number(button.dataset.delta);
  function label(){button.setAttribute('aria-label',slider.getAttribute('aria-label')+(delta<0?' −':' ＋'));}
  button.addEventListener('click',()=>{slider.value=String(Math.max(Number(slider.min),Math.min(Number(slider.max),(slider.id==='panelWidthSlider'?document.getElementById('floatingEditor').getBoundingClientRect().width*(window.visualViewport?.scale||1):Number(slider.value))+delta)));slider.dispatchEvent(new Event('input',{bubbles:true}));});
- document.getElementById('languageSelect').addEventListener('change',label);window.esaI18n.ready.then(label);label();
+ document.getElementById('languageSelect').addEventListener('change',()=>queueMicrotask(label));window.esaI18n.ready.then(label);label();
 });
 chartSizeSlider.addEventListener('input',function(){applyChartSize(this.value);});
 loadInputProfile();inputDevice.addEventListener('change',loadInputProfile);applyChartSize(chartSizeSlider.value);
@@ -964,7 +964,7 @@ function place(){
  try{const saved=Number(localStorage.getItem('esakits.ipa.panel-width-font.'+panelProfile()+'.v1'));if(saved>=16&&saved<=120)baselineFont=saved;}catch(e){}
  const extraWidth=Math.max(0,Math.round((fontPx-baselineFont)*(phone?2.4:3.2)));
  const range=window.esaEditorGeometry?.range;
- const width=Math.min(b.w*b.scale,range?range.width:Number(widthSlider.value)+extraWidth);
+ const width=Math.min(b.w*b.scale,range?.freezeWidth?range.width:Number(widthSlider.value)+extraWidth);
  panel.style.width=width+'px';
  panel.classList.toggle('input-panel-phone',phone);panel.classList.toggle('input-panel-compact',width<316);
  const r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);

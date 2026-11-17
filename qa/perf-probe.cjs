@@ -3,7 +3,10 @@ const app='https://esakits.github.io/ipa-keyboard/';
 (async()=>{const results=[];for(const [width,mode]of[[320,'cold']]){const b=await webkit.launch(),p=await b.newPage({viewport:{width,height:844},hasTouch:true,serviceWorkers:'block'});
  if(process.env.ISOLATE==='chart')await p.route('**/chart.html',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><script>window.esaSetLocale=()=>{};<\/script>'}));
  if(process.env.ISOLATE==='jpfont')await p.route('**/NotoSansJP-*.woff2',r=>r.abort());
- await p.addInitScript(()=>{
+ await p.addInitScript(mode=>{
+ document.addEventListener('DOMContentLoaded',()=>{if(window!==top)return;if(mode==='contain'){const style=document.createElement('style');style.textContent='#floatingEditor{contain:layout style}';document.head.appendChild(style);}if(mode==='legacy')document.querySelector('.sheet')?.remove();});
+ if(mode==='observers'){for(const key of['ResizeObserver','MutationObserver']){window[key]=class{observe(){}disconnect(){}unobserve(){}takeRecords(){return[];}};}}
+
   window.__perf={callbacks:[],frames:[],inputs:[],fonts:[]};let last=performance.now();const raf=requestAnimationFrame.bind(window);
   function frame(t){if(t-last>80)__perf.frames.push({wall:Date.now(),gap:t-last});last=t;raf(frame);}raf(frame);
   function timed(cb,type,stack){return function(...args){const at=performance.now();try{return cb.apply(this,args);}finally{const duration=performance.now()-at;if(duration>5)__perf.callbacks.push({wall:Date.now(),type,duration,stack});}};}
@@ -13,7 +16,7 @@ const app='https://esakits.github.io/ipa-keyboard/';
   for(const key of ['ResizeObserver','MutationObserver']){const Native=window[key];window[key]=class extends Native{constructor(cb){super(timed(cb,key,new Error().stack));}};}
   document.addEventListener('DOMContentLoaded',()=>{for(const type of['loading','loadingdone'])document.fonts.addEventListener(type,()=>__perf.fonts.push({wall:Date.now(),type,status:document.fonts.status}));});
   document.addEventListener('input',e=>{if(e.target.id!=='inputSizeSlider')return;const at=performance.now(),info={wall:Date.now(),requested:e.target.value,status:document.fonts.status,busy:document.getElementById('ipaFontSelect')?.getAttribute('aria-busy'),check:document.fonts.check('60px "Doulos SIL Local"','pʰãŋ̊')};raf(()=>raf(()=>__perf.inputs.push({...info,font:getComputedStyle(document.getElementById('out')).fontSize,delay:performance.now()-at})));},true);
- });
+ },process.env.ISOLATE);
  await p.goto(app);const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();await f.waitForFunction(()=>typeof esaSetLocale==='function');await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);
  if(mode==='ready'){await p.waitForFunction(()=>document.getElementById('ipaFontSelect').getAttribute('aria-busy')==='false');await f.waitForFunction(()=>window.__ipaLineAudit?.fontFamily);}
  await p.locator('#out').fill('pʰãŋ̊');await p.locator('#out').press('ArrowLeft');await p.evaluate(()=>esaSetInputPixels(16));await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));await p.evaluate(()=>{localStorage.setItem('esakits.ipa.input-height.'+esaPanelGeometry.profile()+'.v1','36');esaEditorGeometry.apply();esaPanelGeometry.move(16,300,true);});await p.locator('#settingsToggle').tap();await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));

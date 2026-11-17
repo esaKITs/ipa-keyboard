@@ -5,13 +5,9 @@ on:
 permissions:
   contents: read
 jobs:
-  trace:
+  prepare:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      fail-fast: false
-      matrix:
-        renderer: [normal, no-compositing, softpipe, limited-llvmpipe]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,15 +15,49 @@ jobs:
           node-version: '22'
       - run: npm install --no-save playwright@1.61.1
       - run: npx playwright install webkit --with-deps
-      - run: node qa/perf-probe.cjs
+      - name: Record cold renderer and populate its native shader cache
+        run: node qa/perf-probe.cjs
         env:
           ISOLATE: none
+          MESA_SHADER_CACHE_SHOW_STATS: 'true'
           DEBUG: pw:browser
-          WEBKIT_DISABLE_COMPOSITING_MODE: ${{ matrix.renderer == 'no-compositing' && '1' || '0' }}
-          GALLIUM_DRIVER: ${{ matrix.renderer == 'softpipe' && 'softpipe' || 'llvmpipe' }}
-          LP_NUM_THREADS: ${{ matrix.renderer == 'limited-llvmpipe' && '2' || '0' }}
+      - name: Package native renderer cache
+        run: |
+          du -sh ~/.cache/mesa*
+          cd "$HOME/.cache"
+          tar -czf /tmp/mesa-native-cache.tgz mesa_shader_cache*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mesa-native-cache
+          path: /tmp/mesa-native-cache.tgz
+  restored:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1
+      - run: npx playwright install webkit --with-deps
+      - uses: actions/download-artifact@v4
+        with:
+          name: mesa-native-cache
+          path: /tmp
+      - name: Restore driver cache before the first browser/application launch
+        run: |
+          mkdir -p "$HOME/.cache"
+          tar -xzf /tmp/mesa-native-cache.tgz -C "$HOME/.cache"
+          du -sh ~/.cache/mesa*
+      - name: Fresh browser and cold public page with prepared native driver
+        run: node qa/perf-probe.cjs
+        env:
+          ISOLATE: none
+          MESA_SHADER_CACHE_SHOW_STATS: 'true'
+          DEBUG: pw:browser
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-slider-performance-trace-${{ matrix.renderer }}
+          name: native-cache-restored-performance
           path: qa-production/

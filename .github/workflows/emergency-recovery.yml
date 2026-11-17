@@ -1,0 +1,33 @@
+name: Emergency recovery diagnosis and regression
+on:
+  push:
+    branches: [work/emergency-recovery-20261118]
+permissions:
+  contents: read
+jobs:
+  recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1
+      - run: npx playwright install chromium webkit --with-deps
+      - name: Serve independent historical snapshots
+        run: |
+          mkdir -p /tmp/ipa-baselines
+          for ref in 3dc0780da a57c319 174f768 1cbba6b; do
+            mkdir /tmp/ipa-baselines/$ref
+            git archive $ref | tar -x -C /tmp/ipa-baselines/$ref
+          done
+          nohup python3 -m http.server 8770 --bind 127.0.0.1 --directory /tmp/ipa-baselines >/tmp/ipa-baselines.log 2>&1 &
+      - run: node qa/recovery-baseline.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: emergency-recovery-evidence
+          path: qa-production/

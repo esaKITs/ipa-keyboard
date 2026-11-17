@@ -43,6 +43,7 @@ jobs:
       - name: Current specification regression in Chromium and WebKit
         run: |
           node qa/recovery.cjs
+          node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs
           node qa/production.cjs
       - uses: actions/upload-artifact@v4

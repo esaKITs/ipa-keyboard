@@ -28,6 +28,7 @@ jobs:
       - name: Verify recovery behavior and single restore control
         run: |
           node qa/recovery.cjs
+          node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs
       - name: Verify production assets and upgrade from old offline cache
         run: node qa/production.cjs
@@ -71,6 +72,7 @@ jobs:
           PUBLIC_CHECK: '1'
         run: |
           node qa/recovery.cjs
+          node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs
           node qa/production.cjs
       - uses: actions/upload-artifact@v4

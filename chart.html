@@ -694,7 +694,11 @@ body{padding:8px!important;overflow-x:hidden!important}
 /* Single-row chart controls on narrow screens; keep the map launcher icon-sized. */
 .zoom-toolbar .zoom-map-open{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:6px;flex:0 0 38px}
 @media(max-width:580px){.zoom-toolbar{flex-wrap:nowrap;gap:5px;padding:6px 7px;min-height:52px}.zoom-toolbar #zoomMinus,.zoom-toolbar #zoomPlus{flex:0 0 38px;width:38px;height:38px;padding:4px;font-size:23px}.zoom-toolbar input[type=range]{width:auto;min-width:24px;max-width:none;flex:1 1 0}.zoom-toolbar .zoom-label{flex:0 0 48px;min-width:0;font-size:15px;text-align:center}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex:0 0 36px;width:36px;height:36px;padding:6px}.zoom-minimap{top:60px}}
-@media(max-width:360px){.zoom-toolbar{gap:3px;padding:5px 4px}.zoom-toolbar #zoomMinus,.zoom-toolbar #zoomPlus{flex-basis:34px;width:34px}.zoom-toolbar .zoom-label{flex-basis:43px;font-size:14px}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex-basis:32px;width:32px;height:34px}}
+@media(max-width:360px){.zoom-toolbar{gap:3px;padding:5px 4px}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex-basis:32px;width:32px;height:34px}}
+/* Icon-only viewer toolbar: minimap and return to normal view. */
+.zoom-toolbar{justify-content:flex-end;flex-wrap:nowrap}
+.zoom-toolbar .zoom-title{margin-right:auto}
+@media(max-width:580px){.zoom-toolbar{justify-content:flex-end}.zoom-toolbar .zoom-title{display:none}}
 /* v0.2.60: keep zoom launcher at readable native size on phones, outside responsive chart scaling. */
 .chart-tool-row{width:1040px;max-width:calc(100vw - 16px);margin:0 auto 6px;text-align:right}
 
@@ -1659,10 +1663,6 @@ SOFTWARE.
 </script><div id="chartZoomDialog" class="zoom-dialog" role="dialog" aria-modal="true" aria-label="IPAチャート拡大表示" hidden>
  <div class="zoom-toolbar">
  <span class="zoom-title" data-i18n-key="国際音声記号 — 拡大表示">国際音声記号 — 拡大表示</span>
- <button type="button" id="zoomMinus" aria-label="縮小">−</button>
- <input type="range" id="zoomRange" min="100" max="300" step="1" value="100" aria-label="拡大倍率">
- <button type="button" id="zoomPlus" aria-label="拡大">＋</button>
- <span class="zoom-label" id="zoomPercent">100%</span>
  <button type="button" id="zoomMapToggle" class="zoom-map-open" aria-label="全体図を表示" title="全体図を表示" aria-controls="zoomMinimap" aria-expanded="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M10 9v12M10 15h11"/></svg></button>
  <button type="button" id="zoomClose" class="zoom-close" aria-label="通常表示に戻る" title="通常表示に戻る"><svg class="restore-view-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8h5V3M16 3v5h5M21 16h-5v5M8 21v-5H3"/></svg></button>
  </div>
@@ -1679,7 +1679,6 @@ const chart=document.getElementById("chart"), originalParent=chart.parentNode, o
 const openBtn=document.getElementById("chartZoomOpen"), dialog=document.getElementById("chartZoomDialog");
 const viewport=document.getElementById("zoomViewport"), stage=document.getElementById("zoomStage");
 const map=document.getElementById("zoomMinimap"), mapCanvas=document.getElementById("zoomMapCanvas"), mapWindow=document.getElementById("zoomMapWindow");
-const range=document.getElementById("zoomRange"), percent=document.getElementById("zoomPercent");
 const mapToggle=document.getElementById("zoomMapToggle"),mapGrip=document.getElementById("zoomMapDrag"),mapClose=document.getElementById("zoomMapClose");
 let mapPosition=null,mapDrag=null;
 function placeMap(x,y){
@@ -1709,7 +1708,7 @@ function scale(){return baseScale*zoom;}
 function setZoom(z,keepCenter=true){
  if(!active)return;
  const old=scale(), centerX=(viewport.scrollLeft+viewport.clientWidth/2)/old, centerY=(viewport.scrollTop+viewport.clientHeight/2)/old;
- zoom=clamp(z,1,3);chart.dataset.feedbackScale=String(zoom);range.value=String(Math.round(zoom*100));percent.textContent=Math.round(zoom*100)+"%";
+ zoom=clamp(z,1,3);chart.dataset.feedbackScale=String(zoom);
  const next=scale(),height=chart.offsetHeight;
  stage.style.width=(BASE*next)+"px";stage.style.height=(height*next)+"px";
  chart.style.transform="scale("+next+")";
@@ -1815,11 +1814,20 @@ viewport.addEventListener('touchend',endPinch,{passive:true});viewport.addEventL
 window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===parent&&e.data?.kind==='esa-chart-zoom-layout')queueViewerLayout();});
 openBtn.addEventListener("click",openViewer);
 document.getElementById("zoomClose").addEventListener("click",closeViewer);
-document.getElementById("zoomMinus").addEventListener("click",()=>setZoom(zoom-.25));
-document.getElementById("zoomPlus").addEventListener("click",()=>setZoom(zoom+.25));
-range.addEventListener("input",()=>setZoom(Number(range.value)/100));
-window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window.esaI18n.t("通常表示に戻る",window.esaChartLocale,"chart");const restoreButton=document.getElementById("zoomClose");restoreButton.setAttribute("aria-label",restoreLabel);restoreButton.title=restoreLabel;const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale,"chart");if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});
+window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window.esaI18n.t("通常表示に戻る",window.esaChartLocale,"chart");const restoreButton=document.getElementById("zoomClose");restoreButton.setAttribute("aria-label",restoreLabel);restoreButton.title=restoreLabel;const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;const mapLabel=window.esaI18n.t("全体図を表示",window.esaChartLocale,"chart");mapToggle.setAttribute("aria-label",mapLabel);mapToggle.title=mapLabel;if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});
 mapToggle.addEventListener("click",()=>showMap(map.hidden));
+// Desktop chart-only zoom: Ctrl/Command + wheel, anchored at the pointer.
+viewport.addEventListener('wheel',e=>{
+ if(!active||!(e.ctrlKey||e.metaKey))return;
+ e.preventDefault();
+ const rect=viewport.getBoundingClientRect();
+ const x=e.clientX-rect.left,y=e.clientY-rect.top;
+ const oldScale=scale(),chartX=(viewport.scrollLeft+x)/oldScale,chartY=(viewport.scrollTop+y)/oldScale;
+ const factor=Math.exp(-e.deltaY*.002);
+ setZoom(zoom*factor,false);
+ viewport.scrollLeft=chartX*scale()-x;viewport.scrollTop=chartY*scale()-y;
+ renderMinimap();
+},{passive:false});
 viewport.addEventListener("scroll",renderMinimap,{passive:true});
 mapCanvas.addEventListener("pointerdown",e=>{drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});
 mapCanvas.addEventListener("pointermove",e=>{if(drag)moveFromMap(e);});

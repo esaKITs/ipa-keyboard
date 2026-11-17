@@ -927,7 +927,8 @@ function place(){
  // The width slider sets the baseline width; large glyphs need more room.
  const input=document.getElementById('out');
  const fontPx=parseFloat(getComputedStyle(input).fontSize)|| (phone?22:32);
- const baselineFont=phone?22:32;
+ let baselineFont=phone?22:32;
+ try{const saved=Number(localStorage.getItem('esakits.ipa.panel-width-font.'+panelProfile()+'.v1'));if(saved>=16&&saved<=120)baselineFont=saved;}catch(e){}
  const extraWidth=Math.max(0,Math.round((fontPx-baselineFont)*(phone?2.4:3.2)));
  const width=Math.min(b.w*b.scale,Number(widthSlider.value)+extraWidth);
  panel.style.width=width+'px';
@@ -974,13 +975,14 @@ function labels(){
  document.getElementById('inputPanelTitle').textContent=t[0];handle.setAttribute('aria-label',t[1]);reset.setAttribute('aria-label',t[2]);reset.title=t[2];panel.setAttribute('aria-label',t[0]);
 }
 document.getElementById('languageSelect').addEventListener('change',()=>{labels();requestAnimationFrame(place);});
-widthSlider.addEventListener('input',()=>{try{localStorage.setItem('esakits.ipa.panel-width.'+panelProfile()+'.v1',widthSlider.value);}catch(e){}place();});
+function setWidthReference(){try{localStorage.setItem('esakits.ipa.panel-width-font.'+panelProfile()+'.v1',String(parseFloat(getComputedStyle(document.getElementById('out')).fontSize)));}catch(e){}}
+widthSlider.addEventListener('input',()=>{setWidthReference();try{localStorage.setItem('esakits.ipa.panel-width.'+panelProfile()+'.v1',widthSlider.value);}catch(e){}place();});
 window.addEventListener('esa-panel-layout',queuePlace);
 window.addEventListener('resize',queuePlace);
 window.visualViewport?.addEventListener('resize',queuePlace);
 window.visualViewport?.addEventListener('scroll',queuePlace);
 new ResizeObserver(queuePlace).observe(panel);
-window.esaPanelGeometry={bounds,place,move,profile:panelProfile};
+window.esaPanelGeometry={bounds,place,move,profile:panelProfile,setWidthReference};
 labels();place();window.esaI18n.ready.then(labels);
 })();
 </script>

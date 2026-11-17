@@ -21,6 +21,10 @@ jobs:
           key: ipa-recovery-playwright-1.61.1-ubuntu-latest
       - run: npm install --no-save playwright@1.61.1
       - run: npx playwright install chromium webkit --with-deps
+      - uses: actions/cache/save@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ipa-recovery-playwright-1.61.1-ubuntu-latest
       - name: Serve independent historical snapshots
         run: |
           mkdir -p /tmp/ipa-baselines

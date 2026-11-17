@@ -14,7 +14,7 @@ function apply(){
  out.dataset.manualHeight='true';if(Math.abs(parseFloat(out.style.height)-height)>.5)out.style.height=height+'px';return true;
 }
 function setHeight(n){try{localStorage.setItem(heightKey(),String(Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(1200,n)))));}catch(e){}apply();}
-function setWidth(n){const max=Math.min(api.profile()==='phone'?640:1200,Number(widthSlider.max));const width=Math.round(Math.max(240,Math.min(max,n)));try{localStorage.setItem(`esakits.ipa.panel-width.${api.profile()}.v1`,String(width));}catch(e){}widthSlider.value=String(width);panel.style.width=width+'px';panel.classList.toggle('input-panel-compact',width<316);}
+function setWidth(n){const max=Math.min(api.profile()==='phone'?640:1200,Number(widthSlider.max));const width=Math.round(Math.max(240,Math.min(max,n)));try{localStorage.setItem(`esakits.ipa.panel-width.${api.profile()}.v1`,String(width));}catch(e){}api.setWidthReference();widthSlider.value=String(width);panel.style.width=width+'px';panel.classList.toggle('input-panel-compact',width<316);}
 window.esaEditorGeometry={apply,get active(){return !!active;}};
 function begin(e,axis){
  if(e.button!==0||active)return;e.preventDefault();e.stopPropagation();

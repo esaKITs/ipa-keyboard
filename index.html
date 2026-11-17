@@ -476,7 +476,7 @@ body.editor-resizing{user-select:none;-webkit-user-select:none}
  .app-header[data-language="pt-BR"]{gap:2px}
  .app-header[data-language="pt-BR"] .title{font-size:12px}
  .app-header[data-language="pt-BR"] .v83-label{font-size:8px}
- .app-header[data-language="pt-BR"] #chartZoomToggle{flex-basis:32px;width:32px;height:34px}
+ .app-header[data-language="pt-BR"] #chartZoomToggle{flex-basis:34px;width:34px;height:34px}
 }
 
 #floatingEditor #status{color:#333}
@@ -913,7 +913,7 @@ try{const p=JSON.parse(localStorage.getItem(key));if(p&&Number.isFinite(p.x)&&Nu
 function bounds(){
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),pad=8/s;
  const expanded=document.getElementById('chartZoomToggle').getAttribute('aria-expanded')==='true';
- const top=expanded?Math.max(0,document.querySelector('.app-header').getBoundingClientRect().bottom-(v?.offsetTop||0))+50/s:0;
+ const top=Math.max(0,document.querySelector('.app-header').getBoundingClientRect().bottom-(v?.offsetTop||0))+(expanded?50/s:0);
  return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad+top,w:Math.max(0,(v?.width||innerWidth)-2*pad),h:Math.max(0,(v?.height||innerHeight)-2*pad-top)};
 }
 function place(){
@@ -935,7 +935,7 @@ function place(){
  panel.classList.toggle('input-panel-phone',phone);panel.classList.toggle('input-panel-compact',width<316);
  const r=panel.getBoundingClientRect(),dx=Math.max(0,b.w-r.width),dy=Math.max(0,b.h-r.height);
  const x=position?b.x+position.x*dx:b.x+((innerWidth>700)?dx:0);
- const y=position?b.y+position.y*dy:b.y+((innerWidth>700&&document.getElementById('chartZoomToggle').getAttribute('aria-expanded')!=='true')?Math.min(102/b.scale,dy):dy);
+ const y=position?b.y+position.y*dy:b.y+((innerWidth>700&&document.getElementById('chartZoomToggle').getAttribute('aria-expanded')!=='true')?Math.min(Math.max(0,110/b.scale-b.y),dy):dy);
  panel.style.left=x+'px';panel.style.top=y+'px';notifyPanel();
 }
 function notifyPanel(){

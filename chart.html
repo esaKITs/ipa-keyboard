@@ -677,14 +677,20 @@ body{padding:8px!important;overflow-x:hidden!important}
 .zoom-viewport{position:relative;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;background:#e9edf1;touch-action:none}
 .zoom-stage{position:relative;margin:0;overflow:visible;background:#fff}
 .zoom-stage>#chart{position:absolute;left:0;top:0;transform-origin:top left;max-width:none!important}
-.zoom-minimap{position:absolute;z-index:4;right:12px;top:72px;width:178px;height:156px;background:rgba(255,255,255,.96);color:#26323c;border:1px solid #8796a5;border-radius:6px;box-shadow:0 2px 12px #0003;touch-action:none;user-select:none;cursor:crosshair}
+.zoom-minimap{position:absolute;z-index:4;right:12px;top:72px;width:178px;height:170px;background:rgba(255,255,255,.96);color:#26323c;border:1px solid #8796a5;border-radius:6px;box-shadow:0 2px 12px #0003;touch-action:none;user-select:none;cursor:crosshair}
 .zoom-minimap[hidden]{display:none!important}
-.zoom-minimap .map-title{position:absolute;left:5px;top:3px;font-size:11px;font-weight:700}
-.zoom-minimap .map-canvas{position:absolute;inset:21px 6px 7px 6px;background:#fff;border:1px solid #a7b4bf}
+.zoom-minimap .map-heading{position:absolute;inset:0 0 auto;display:flex;direction:ltr;align-items:center;height:32px}
+.zoom-minimap .map-grip{display:flex;align-items:center;gap:4px;flex:1;min-width:0;height:32px;padding:0 6px;border:0;background:transparent;color:inherit;text-align:left;cursor:grab;touch-action:none;font:inherit}
+.zoom-minimap .map-grip:active{cursor:grabbing}
+.zoom-minimap .map-title{font-size:11px;font-weight:700;white-space:nowrap}
+.zoom-minimap .map-close{flex:none;width:32px;height:32px;padding:0;border:0;border-radius:0 5px 0 0;background:transparent;color:inherit;font:22px/1 Arial,sans-serif;cursor:pointer}
+.zoom-minimap .map-close:hover{background:#0001}
+.zoom-minimap button:focus-visible{outline:2px solid #2379ba;outline-offset:-3px}
+.zoom-minimap .map-canvas{position:absolute;inset:33px 6px 7px 6px;background:#fff;border:1px solid #a7b4bf}
 .zoom-minimap .map-region{position:absolute;border:1px solid #bbc5d0;background:#edf3f8;font-size:7px;text-align:center;overflow:hidden}
 .zoom-minimap .map-window{position:absolute;z-index:2;border:2px solid #dc623e;background:rgba(237,129,60,.19);pointer-events:none;box-sizing:border-box}
 .zoom-toolbar .zoom-close{font-weight:700}
-@media(max-width:580px){.zoom-toolbar{gap:4px;padding:6px}.zoom-toolbar .zoom-title{display:none}.zoom-toolbar button{padding:8px}.zoom-minimap{width:140px;height:124px;right:5px;top:66px}.zoom-minimap .map-title{font-size:9px}.zoom-minimap .map-canvas{inset:17px 4px 4px}.zoom-minimap .map-region{font-size:5px}}
+@media(max-width:580px){.zoom-toolbar{gap:4px;padding:6px}.zoom-toolbar .zoom-title{display:none}.zoom-toolbar button{padding:8px}.zoom-minimap{width:140px;height:140px;right:5px;top:66px}.zoom-minimap .map-title{font-size:9px}.zoom-minimap .map-canvas{inset:33px 4px 4px}.zoom-minimap .map-region{font-size:5px}}
 /* v0.2.60: keep zoom launcher at readable native size on phones, outside responsive chart scaling. */
 .chart-tool-row{width:1040px;max-width:calc(100vw - 16px);margin:0 auto 6px;text-align:right}
 
@@ -1658,7 +1664,7 @@ SOFTWARE.
  </div>
  <div id="zoomViewport" class="zoom-viewport" tabindex="0" aria-label="拡大したIPAチャート。スクロールして移動できます"><div id="zoomStage" class="zoom-stage"></div></div>
  <div class="zoom-minimap" id="zoomMinimap" role="group" aria-label="チャート全体図。ドラッグで表示位置を移動">
- <div class="map-title" data-i18n-key="IPA全体図">IPA全体図</div>
+ <div class="map-heading"><button type="button" id="zoomMapDrag" class="map-grip" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown"><span aria-hidden="true">⠿</span><span class="map-title" data-i18n-key="IPA全体図">IPA全体図</span></button><button type="button" id="zoomMapClose" class="map-close" aria-label="閉じる" title="閉じる"><span aria-hidden="true">×</span></button></div>
  <div class="map-canvas" id="zoomMapCanvas"><div id="zoomMapWindow" class="map-window"></div></div>
  </div>
 </div><script>
@@ -1670,7 +1676,23 @@ const openBtn=document.getElementById("chartZoomOpen"), dialog=document.getEleme
 const viewport=document.getElementById("zoomViewport"), stage=document.getElementById("zoomStage");
 const map=document.getElementById("zoomMinimap"), mapCanvas=document.getElementById("zoomMapCanvas"), mapWindow=document.getElementById("zoomMapWindow");
 const range=document.getElementById("zoomRange"), percent=document.getElementById("zoomPercent");
-const mapToggle=document.getElementById("zoomMapToggle");
+const mapToggle=document.getElementById("zoomMapToggle"),mapGrip=document.getElementById("zoomMapDrag"),mapClose=document.getElementById("zoomMapClose");
+let mapPosition=null,mapDrag=null;
+function placeMap(x,y){
+ if(!active||map.hidden)return;
+ const bounds=dialog.getBoundingClientRect(),r=map.getBoundingClientRect(),toolbar=dialog.querySelector('.zoom-toolbar').getBoundingClientRect();
+ const top=Math.min(toolbar.bottom-bounds.top+6,Math.max(6,bounds.height-r.height-6));
+ mapPosition={x:clamp(x,6,Math.max(6,bounds.width-r.width-6)),y:clamp(y,top,Math.max(top,bounds.height-r.height-6))};
+ map.style.right='auto';map.style.left=mapPosition.x+'px';map.style.top=mapPosition.y+'px';
+}
+function constrainMap(){if(!active||map.hidden)return;const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();placeMap(mapPosition?.x??r.left-bounds.left,mapPosition?.y??r.top-bounds.top);}
+function showMap(show){map.hidden=!show;mapToggle.textContent=window.esaI18n.t(show?'全体図を隠す':'全体図を表示',window.esaChartLocale||'ja','chart');mapToggle.setAttribute('aria-pressed',String(show));if(show){constrainMap();renderMinimap();}}
+mapGrip.addEventListener('pointerdown',e=>{if(e.button!==0||mapDrag)return;e.preventDefault();const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left-bounds.left,top:r.top-bounds.top};try{mapGrip.setPointerCapture(e.pointerId);}catch{}mapGrip.focus({preventScroll:true});});
+mapGrip.addEventListener('pointermove',e=>{if(mapDrag?.id!==e.pointerId)return;e.preventDefault();placeMap(mapDrag.left+e.clientX-mapDrag.x,mapDrag.top+e.clientY-mapDrag.y);});
+function endMapDrag(e){if(mapDrag?.id===e.pointerId)mapDrag=null;}
+for(const name of ['pointerup','pointercancel','lostpointercapture'])mapGrip.addEventListener(name,endMapDrag);
+mapGrip.addEventListener('keydown',e=>{const delta={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!delta)return;e.preventDefault();constrainMap();const step=e.shiftKey?36:12;placeMap(mapPosition.x+delta[0]*step,mapPosition.y+delta[1]*step);});
+mapClose.addEventListener('click',()=>{showMap(false);mapToggle.focus({preventScroll:true});});
 const BASE=1040;
 let active=false, zoom=1, baseScale=1, lastFocus=null, drag=false;
 const parts=[
@@ -1733,7 +1755,7 @@ function queueViewerLayout(){
   baseScale=Math.min(1,Math.max(1,width-12)/BASE);
   setZoom(zoom,false);
   viewport.scrollLeft=cx*scale()-width/2;viewport.scrollTop=cy*scale()-height/2;
-  drawMap();renderMinimap();dialog.dataset.ready='true';
+  drawMap();renderMinimap();constrainMap();dialog.dataset.ready='true';
  });
 }
 function openViewer(){
@@ -1748,7 +1770,7 @@ function openViewer(){
  }catch(e){closeViewer();throw e;}
 }
 function closeViewer(){
- if(!active)return;active=false;pinch=null;pinchPan=null;delete document.documentElement.dataset.chartGesture;
+ if(!active)return;active=false;pinch=null;pinchPan=null;mapDrag=null;delete document.documentElement.dataset.chartGesture;
  if(layoutPending)cancelAnimationFrame(layoutPending);layoutPending=0;layoutSignature='';
  dialog.hidden=true;dialog.dataset.ready='false';
  chart.style.removeProperty('transform');chart.style.removeProperty('margin');chart.style.removeProperty('width');chart.style.removeProperty('min-width');
@@ -1793,7 +1815,7 @@ document.getElementById("zoomMinus").addEventListener("click",()=>setZoom(zoom-.
 document.getElementById("zoomPlus").addEventListener("click",()=>setZoom(zoom+.25));
 range.addEventListener("input",()=>setZoom(Number(range.value)/100));
 window.addEventListener("esa-chart-locale-change",()=>{mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale,"chart");if(active){drawMap();renderMinimap();}});
-mapToggle.addEventListener("click",()=>{map.hidden=!map.hidden;mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale||"ja","chart");mapToggle.setAttribute("aria-pressed",String(!map.hidden));});
+mapToggle.addEventListener("click",()=>showMap(map.hidden));
 viewport.addEventListener("scroll",renderMinimap,{passive:true});
 mapCanvas.addEventListener("pointerdown",e=>{drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});
 mapCanvas.addEventListener("pointermove",e=>{if(drag)moveFromMap(e);});

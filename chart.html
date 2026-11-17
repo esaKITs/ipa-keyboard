@@ -1814,7 +1814,7 @@ document.getElementById("zoomClose").addEventListener("click",closeViewer);
 document.getElementById("zoomMinus").addEventListener("click",()=>setZoom(zoom-.25));
 document.getElementById("zoomPlus").addEventListener("click",()=>setZoom(zoom+.25));
 range.addEventListener("input",()=>setZoom(Number(range.value)/100));
-window.addEventListener("esa-chart-locale-change",()=>{const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale,"chart");if(active){drawMap();renderMinimap();}});
+window.addEventListener("esa-chart-locale-change",()=>{const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;mapToggle.textContent=window.esaI18n.t(map.hidden?"全体図を表示":"全体図を隠す",window.esaChartLocale,"chart");if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});
 mapToggle.addEventListener("click",()=>showMap(map.hidden));
 viewport.addEventListener("scroll",renderMinimap,{passive:true});
 mapCanvas.addEventListener("pointerdown",e=>{drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});
@@ -1833,6 +1833,7 @@ document.addEventListener("keydown",e=>{
  }
 });
 window.addEventListener("resize",queueViewerLayout,{passive:true});
+new ResizeObserver(()=>{if(active){constrainMap();queueViewerLayout();}}).observe(viewport);
 })();
 </script>
 

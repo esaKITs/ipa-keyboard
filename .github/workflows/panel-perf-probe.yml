@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        isolate: [out-layer-repeat, out-paint, no-accent, system-output]
+        engine: [normal, noatbridge, nojit]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,9 +21,14 @@ jobs:
       - run: npx playwright install webkit --with-deps
       - run: node qa/perf-probe.cjs
         env:
-          ISOLATE: ${{ matrix.isolate }}
+          ISOLATE: none
+          DEBUG: pw:browser
+          NO_AT_BRIDGE: ${{ matrix.engine == 'noatbridge' && '1' || '0' }}
+          JSC_useJIT: ${{ matrix.engine == 'nojit' && 'false' || 'true' }}
+          JSC_reportCompileTimes: 'true'
+          JSC_logGC: '1'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: public-slider-performance-trace-${{ matrix.isolate }}
+          name: public-slider-performance-trace-${{ matrix.engine }}
           path: qa-production/

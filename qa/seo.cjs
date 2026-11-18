@@ -8,13 +8,26 @@ const title='Free Online IPA Keyboard – Interactive IPA Chart | esaKITs';
 const canonical='https://esakits.github.io/ipa-keyboard/';
 fs.mkdirSync('qa-production',{recursive:true});
 async function settle(p){await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(r)))));}
+async function settledChart(p,f){
+ await p.waitForFunction(()=>document.getElementById('ipaFontSelect').getAttribute('aria-busy')==='false');
+ await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);
+ await f.waitForFunction(()=>window.__ipaLineAudit?.fontFamily===esaIPAFonts.family(document.documentElement.dataset.ipaFont));
+ // A locale/font/layout notification can follow the first ready flag. Observe
+ // the actual SVG and frame geometry, without changing styles or the clock.
+ await f.waitForFunction(async()=>{
+  const sample=()=>JSON.stringify({svg:document.querySelector('#vowelQuadrilateral svg').outerHTML,audit:window.__ipaLineAudit,chart:document.getElementById('chart').getBoundingClientRect().toJSON(),frame:frameElement.getBoundingClientRect().toJSON(),viewport:document.getElementById('zoomViewport').getBoundingClientRect().toJSON(),fonts:document.fonts.status});
+  let last=sample(),stable=0;
+  while(stable<8){await new Promise(requestAnimationFrame);const now=sample();stable=now===last?stable+1:0;last=now;}
+  return true;
+ },null,{timeout:15000});
+}
 async function ready(p,url,locale,dark){
  const response=await p.goto(url);assert.equal(response.status(),200);assert(!/noindex/i.test(response.headers()['x-robots-tag']||''));
  await p.waitForFunction(()=>document.getElementById('zoomMapToggle')&&!document.getElementById('chartZoomToggle').disabled);
  const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();
  await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);await f.waitForFunction(()=>window.__ipaLineAudit?.fontFamily);
  await p.locator('#languageSelect').selectOption(locale);await f.waitForFunction(l=>document.documentElement.lang===l,locale);
- if(dark)await p.locator('#contrastToggle').click();await settle(p);await settle(f);return f;
+ if(dark)await p.locator('#contrastToggle').click();await settledChart(p,f);await settle(p);await settle(f);return f;
 }
 async function metadata(p){
  assert.equal(await p.title(),title);
@@ -26,19 +39,21 @@ async function metadata(p){
 async function geometry(p,f){
  const collect=(doc,selectors)=>selectors.map(s=>{const e=doc.querySelector(s);if(!e)return{s,missing:true};const r=e.getBoundingClientRect(),c=getComputedStyle(e);return{s,rect:[r.x,r.y,r.width,r.height],display:c.display,color:c.color,background:c.backgroundColor,shadow:c.boxShadow,font:c.font,transform:c.transform,visibility:c.visibility};});
  const script=collect.toString();
- return{root:await p.evaluate(s=>eval('('+s+')')(document,['.app-header','.title','.v83-label','#languageSelect','#zoomMapToggle','#chartZoomToggle','#v83ChartFrame','#floatingEditor','#out','#contrastToggle']),script),chart:await f.evaluate(s=>eval('('+s+')')(document,['#chart','#pulmonicConsonants','#vowels','#vowelQuadrilateral','#zoomViewport','#zoomMinimap','#v831SymbolPopup','.v83-purple-flash']),script)};
+ return{root:await p.evaluate(s=>eval('('+s+')')(document,['.app-header','.title','.v83-label','#languageSelect','#zoomMapToggle','#chartZoomToggle','#v83ChartFrame','#floatingEditor','#out','#contrastToggle']),script),chart:await f.evaluate(s=>eval('('+s+')')(document,['#chart','#pulmonicConsonants','#vowels','#vowelQuadrilateral','#zoomViewport','#zoomMinimap','#v831SymbolPopup','.v83-purple-flash']),script),vowels:await f.evaluate(()=>({audit:window.__ipaLineAudit,letters:[...document.querySelectorAll('#vowelQuadrilateral .vowel-dynamic-glyph,#vowelQuadrilateral .vowel-measured-label')].map(e=>({text:e.textContent,x:e.getAttribute('x'),y:e.getAttribute('y'),dx:e.getAttribute('dx'),dy:e.getAttribute('dy'),rect:e.getBoundingClientRect().toJSON(),font:getComputedStyle(e).font,baseline:getComputedStyle(e).dominantBaseline}))}))};
 }
 async function compare(pages,frames,label,state){
  const snapshots=[];
  for(let i=0;i<2;i++){
-  const p=pages[i],f=frames[i];await p.bringToFront();await p.waitForFunction(()=>document.hasFocus());
+  const p=pages[i],f=frames[i];await p.bringToFront();await p.waitForFunction(()=>document.hasFocus());await settledChart(p,f);
   if(state==='held'){await f.locator('#vowels .v83-ipa-key').first().focus();await p.keyboard.down('Space');await f.locator('.v83-purple-flash').evaluate(e=>Promise.all(e.getAnimations().map(a=>a.finished)));}
   await settle(p);await settle(f);snapshots.push({focused:await p.evaluate(()=>document.hasFocus()),layout:await geometry(p,f),image:await p.screenshot({path:`qa-production/${prefix}-seo-${label}-${state}-${i?'after':'before'}.png`,fullPage:true,caret:'hide'})});
   if(state==='held'){await p.keyboard.up('Space');await p.waitForTimeout(360);}
  }
- assert.deepEqual(snapshots[1].layout,snapshots[0].layout,label+' '+state+' geometry/styles');
+ if(JSON.stringify(snapshots[1].layout)!==JSON.stringify(snapshots[0].layout))fs.writeFileSync(`qa-production/${prefix}-seo-${label}-${state}-metrics.json`,JSON.stringify(snapshots.map(s=>({focused:s.focused,layout:s.layout})),null,2));
+ assert.deepEqual(snapshots[1].layout,snapshots[0].layout,label+' '+state+' geometry/styles/SVG glyph coordinates');
  const a=PNG.sync.read(snapshots[0].image),b=PNG.sync.read(snapshots[1].image);assert.equal(b.width,a.width);assert.equal(b.height,a.height);
  let changed=0;for(let i=0;i<a.data.length;i+=4)if(a.data[i]!==b.data[i]||a.data[i+1]!==b.data[i+1]||a.data[i+2]!==b.data[i+2]||a.data[i+3]!==b.data[i+3])changed++;
+ if(changed)fs.writeFileSync(`qa-production/${prefix}-seo-${label}-${state}-metrics.json`,JSON.stringify(snapshots.map(s=>({focused:s.focused,layout:s.layout})),null,2));
  assert.equal(changed,0,label+' '+state+' exact pixels');return{state,width:a.width,height:a.height,changedPixels:changed};
 }
 async function functional(p,f,name){

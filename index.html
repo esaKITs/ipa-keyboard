@@ -427,11 +427,11 @@ html[data-inverse="true"] #v83ChartFrame{filter:none}
 .app-header,.is-persian .app-header{display:flex;flex-direction:row;direction:ltr;align-items:center;gap:8px;min-height:52px;padding:8px;}
 .app-header .title{flex:0 0 auto;font:700 18px/1.15 Georgia,'Times New Roman',serif;white-space:nowrap;margin:0;text-align:left;overflow-wrap:normal}
 .app-header .v83-label{flex:0 0 auto;font:11px/1.2 system-ui,sans-serif;padding:0;margin:0 auto 0 0;white-space:nowrap}
-.app-header .language-select{flex:0 0 91px;width:91px;height:34px;min-width:0;margin:0;padding:0 5px;font-size:14px;line-height:normal;}
+.app-header .language-select{flex:0 0 91px;width:91px;height:36px;min-width:0;margin:0;padding:0 5px;font-size:14px;line-height:normal;}
 #chartZoomToggle{display:flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:7px;border:1px solid #888;border-radius:7px;background:transparent;color:inherit;cursor:pointer;}
 #chartZoomToggle:disabled{opacity:.45;cursor:default}
 #chartZoomToggle:focus-visible{outline:2px solid #9879d3;outline-offset:2px}
-@media(max-width:370px){.app-header,.is-persian .app-header{gap:5px;padding:6px;min-height:48px}.app-header .title{font-size:16px}.app-header .language-select{flex-basis:80px;width:80px;font-size:13px}#chartZoomToggle{flex-basis:34px;width:34px;height:34px}.app-header .v83-label{font-size:11px}}
+@media(max-width:370px){.app-header,.is-persian .app-header{gap:5px;padding:6px;min-height:48px}.app-header .title{font-size:16px}.app-header .language-select{flex-basis:80px;width:80px;font-size:13px}.app-header .v83-label{font-size:11px}}
 /* Warnings follow the independent floating input panel. */
 .app-header .title{font-family:Arial,Helvetica,sans-serif}
 #toast{z-index:2147483647;left:0;top:0;right:auto;bottom:auto;width:max-content;max-width:calc(100vw - 16px);padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.45;transform-origin:0 0;transition:opacity 120ms ease-out}
@@ -467,16 +467,15 @@ body.editor-resizing{user-select:none;-webkit-user-select:none}
  .app-header[data-language="pt-BR"] .v83-label{font-size:10px}
  .app-header[data-language="pt-BR"] .language-control{flex:1 1 auto;min-width:0;gap:3px;position:relative}
  .app-header[data-language="pt-BR"] .language-caption{font-size:8px}
- .language-control.mobile-portuguese .language-picker-button{display:flex;flex:1 1 auto;min-width:0;height:34px;align-items:center;justify-content:center;gap:4px;padding:0 5px;border:1px solid var(--line);border-radius:6px;background:transparent;color:inherit;font:var(--mobile-language-font,11px)/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;pointer-events:none}
+ .language-control.mobile-portuguese .language-picker-button{display:flex;flex:1 1 auto;min-width:0;height:36px;align-items:center;justify-content:center;gap:4px;padding:0 5px;border:1px solid var(--line);border-radius:6px;background:transparent;color:inherit;font:var(--mobile-language-font,11px)/1.2 Arial,Helvetica,sans-serif;white-space:nowrap;pointer-events:none}
  .language-control.mobile-portuguese .language-picker-button svg{width:12px;height:12px}
- .app-header .language-control.mobile-portuguese .language-select{position:absolute;right:0;top:0;width:var(--mobile-language-width,120px);height:34px;opacity:0;font-size:16px;padding:0;cursor:pointer}
+ .app-header .language-control.mobile-portuguese .language-select{position:absolute;right:0;top:0;width:var(--mobile-language-width,120px);height:36px;opacity:0;font-size:16px;padding:0;cursor:pointer}
  .language-control.mobile-portuguese:focus-within .language-picker-button{outline:2px solid #9879d3;outline-offset:2px}
 }
 @media(max-width:350px){
  .app-header[data-language="pt-BR"]{gap:2px}
  .app-header[data-language="pt-BR"] .title{font-size:12px}
  .app-header[data-language="pt-BR"] .v83-label{font-size:8px}
- .app-header[data-language="pt-BR"] #chartZoomToggle{flex-basis:34px;width:34px;height:34px}
 }
 
 #floatingEditor #status{color:#333}
@@ -494,7 +493,7 @@ body.editor-resizing{user-select:none;-webkit-user-select:none}
 .language-picker-button{display:none}
 .language-control.desktop-language{position:relative}
 .app-header .language-control.desktop-language .language-select{position:absolute;inset:0;width:100%!important;height:100%;opacity:0;pointer-events:none;flex:none}
-.language-control.desktop-language .language-picker-button{display:flex;align-items:center;gap:10px;min-height:34px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:transparent;color:inherit;font:14px/1.2 Arial,Helvetica,sans-serif;cursor:pointer;white-space:nowrap}
+.language-control.desktop-language .language-picker-button{display:flex;align-items:center;gap:10px;height:36px;min-height:36px;padding:0 12px;border:1px solid #888;border-radius:7px;background:transparent;color:inherit;font:14px/1.2 Arial,Helvetica,sans-serif;cursor:pointer;white-space:nowrap}
 .language-picker-button svg{flex:none}
 .language-picker-button:focus-visible{outline:2px solid #9879d3;outline-offset:2px}
 .language-picker-menu{position:fixed;z-index:2147483647;overflow:auto;padding:5px 0;border:1px solid #999;border-radius:7px;background:#fff;color:#111;box-shadow:0 5px 20px #0003;font:14px/1.4 Arial,Helvetica,sans-serif;box-sizing:border-box}
@@ -512,17 +511,19 @@ html[data-inverse="true"] .language-picker-option.active{background:#454545}
 .app-header.language-two-rows .language-control{grid-column:1/-1;grid-row:2;justify-self:end}
 /* Reserve the overview position before its control is mounted or shown. */
 .header-overview-slot{display:flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px}
-#headerOverviewSlot #zoomMapToggle{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:6px;border:1px solid #888;border-radius:7px;background:transparent;color:inherit;cursor:pointer;visibility:hidden}
+#headerOverviewSlot #zoomMapToggle{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:7px;border:1px solid #888;border-radius:7px;background:transparent;color:inherit;cursor:pointer;visibility:hidden}
 .app-header.chart-expanded #headerOverviewSlot #zoomMapToggle{visibility:visible}
-#headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(166,128,222,.20)}
-html[data-inverse="true"] #headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 10px 3px rgba(255,175,95,.18)}
+#headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 0 1px rgba(166,128,222,.60),0 0 7px 2px rgba(166,128,222,.42),0 0 14px 4px rgba(166,128,222,.24)}
+html[data-inverse="true"] #headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 0 1px rgba(255,175,95,.65),0 0 7px 2px rgba(255,175,95,.46),0 0 14px 4px rgba(255,175,95,.28)}
 #headerOverviewSlot #zoomMapToggle:focus-visible{outline:2px solid #9879d3;outline-offset:2px}
-@media(max-width:560px){
- .app-header .language-control{position:relative;padding-top:9px}
- .app-header .language-caption{position:absolute;top:0;left:0;line-height:9px}
- .app-header .language-control.mobile-portuguese .language-select{top:9px}
- .header-overview-slot{flex-basis:34px;width:34px;height:34px}
-}
+/* Caption occupies its own space above a single 36px control row. */
+.app-header,.is-persian .app-header{padding-top:16px;padding-bottom:7px}
+.app-header .language-control{position:relative;height:36px;padding-top:0}
+.app-header .language-caption{position:absolute;top:-12px;left:0;line-height:10px}
+.app-header .language-select{border-color:#888;border-radius:7px}
+.app-header .language-control.mobile-portuguese .language-select{top:0}
+.app-header .language-control.mobile-portuguese .language-picker-button{border-color:#888;border-radius:7px}
+#headerOverviewSlot #zoomMapToggle svg,#chartZoomToggle svg{display:block;flex:none;width:20px;height:20px}
 #floatingEditor .setting-row{grid-template-columns:64px 28px minmax(0,1fr) 28px}
 #floatingEditor .glow-setting-row{grid-template-columns:64px 28px minmax(0,1fr) 38px}
 #floatingEditor .range-step{display:flex;align-items:center;justify-content:center;width:100%;height:32px;min-height:32px;border:0;border-radius:4px;padding:0;background:transparent;color:inherit;touch-action:manipulation;cursor:pointer}

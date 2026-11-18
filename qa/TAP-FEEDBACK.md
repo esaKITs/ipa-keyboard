@@ -13,3 +13,5 @@ Existing header tests now require launcher visibility and hit targets in both mo
 Physical iPhone is unavailable. WebKit inline pinch is exercised through its touch-event handlers; native iPhone multi-touch is not claimed.
 
 The held-pointer QA resolves a real SVG text or its existing vowel hover proxy through elementFromPoint, verifies the parent iframe is not covered, and records the native event target. Mouse-held checks use a consistent mouse stream; native touchscreen normal-launch checks are separate and all existing touch suites remain. The CI job budget is 25 minutes because dependency installation exceeded five minutes in a retry; the 250ms application response threshold and every assertion are unchanged.
+
+All ten new feedback cases, header checks, existing 160 view cycles, 100 recovery cases and editor checks passed in run 44358520349. The final offline upgrade check exposed one older wait predicate reading the not-yet-created __ipaLineAudit global directly. Its optional window lookup now waits for the same exact requested font family instead of throwing before initialization. No assertion, timeout or offline/network-failure condition was removed.

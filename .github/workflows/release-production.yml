@@ -1,8 +1,8 @@
 name: Verify and publish IPA Keyboard production v83.34
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119]
-    paths: ['index.html', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'diacritic-display.js', 'language-picker.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
+    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119, work/seo-20261119]
+    paths: ['index.html', 'sitemap.xml', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'diacritic-display.js', 'language-picker.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119'
+    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119' || github.ref == 'refs/heads/work/seo-20261119'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -35,6 +35,13 @@ jobs:
           mkdir -p /tmp/ipa-vowel-reference
           git archive a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b | tar -x -C /tmp/ipa-vowel-reference
           nohup python3 -m http.server 8771 --bind 127.0.0.1 --directory /tmp/ipa-vowel-reference >/tmp/ipa-vowel-reference.log 2>&1 &
+      - name: Serve immutable SEO baseline
+        if: github.ref == 'refs/heads/work/seo-20261119' || contains(github.event.head_commit.message, '[seo]')
+        run: |
+          git fetch --depth=1 origin 3922bb8b4b2b42307680b41f9e5d77e67e7571fc
+          mkdir -p /tmp/ipa-seo-reference/ipa-keyboard
+          git archive 3922bb8b4b2b42307680b41f9e5d77e67e7571fc | tar -x -C /tmp/ipa-seo-reference/ipa-keyboard
+          nohup python3 -m http.server 8772 --bind 127.0.0.1 --directory /tmp/ipa-seo-reference >/tmp/ipa-seo-reference.log 2>&1 &
       - name: Verify recovery behavior and single restore control
         run: |
           node qa/panel-controls.cjs
@@ -45,6 +52,11 @@ jobs:
           node qa/recovery.cjs
           node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs
+      - name: Verify SEO metadata and exact visual equivalence
+        if: github.ref == 'refs/heads/work/seo-20261119' || contains(github.event.head_commit.message, '[seo]')
+        run: |
+          python3 qa/seo-static.py
+          node qa/seo.cjs
       - name: Verify production assets and upgrade from old offline cache
         run: node qa/production.cjs
       - uses: actions/upload-artifact@v4
@@ -67,7 +79,7 @@ jobs:
         shell: python
         run: |
           import urllib.request, pathlib, time
-          files=['index.html','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js','fonts/Andika-Regular.woff2','fonts/ipa-font-coverage.json','CREDITS.md','LICENSE-MIT.txt','editor-gestures.js','diacritic-display.js','language-picker.js','fonts/positioned-diacritics.json']
+          files=['index.html','sitemap.xml','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js','fonts/Andika-Regular.woff2','fonts/ipa-font-coverage.json','CREDITS.md','LICENSE-MIT.txt','editor-gestures.js','diacritic-display.js','language-picker.js','fonts/positioned-diacritics.json']
           for attempt in range(36):
               try:
                   for name in files:
@@ -87,6 +99,13 @@ jobs:
           mkdir -p /tmp/ipa-vowel-reference
           git archive a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b | tar -x -C /tmp/ipa-vowel-reference
           nohup python3 -m http.server 8771 --bind 127.0.0.1 --directory /tmp/ipa-vowel-reference >/tmp/ipa-vowel-reference.log 2>&1 &
+      - name: Serve immutable SEO baseline
+        if: contains(github.event.head_commit.message, '[seo]')
+        run: |
+          git fetch --depth=1 origin 3922bb8b4b2b42307680b41f9e5d77e67e7571fc
+          mkdir -p /tmp/ipa-seo-reference/ipa-keyboard
+          git archive 3922bb8b4b2b42307680b41f9e5d77e67e7571fc | tar -x -C /tmp/ipa-seo-reference/ipa-keyboard
+          nohup python3 -m http.server 8772 --bind 127.0.0.1 --directory /tmp/ipa-seo-reference >/tmp/ipa-seo-reference.log 2>&1 &
       - name: Verify the live production URL in both browsers
         env:
           APP_URL: https://esakits.github.io/ipa-keyboard/
@@ -101,6 +120,14 @@ jobs:
           node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs
           node qa/production.cjs
+      - name: Verify public SEO and exact visual equivalence
+        if: contains(github.event.head_commit.message, '[seo]')
+        env:
+          APP_URL: https://esakits.github.io/ipa-keyboard/
+          PUBLIC_CHECK: '1'
+        run: |
+          python3 qa/seo-static.py
+          node qa/seo.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

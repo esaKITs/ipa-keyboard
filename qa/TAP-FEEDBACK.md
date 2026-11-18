@@ -1,0 +1,13 @@
+# Visible tap halo, inverse indication and persistent overview launcher
+
+Starting verified main: `f6fe2f483ff2da850bf9d5b02522c5fdcaccfab3`, preserved independently in `backup/before-tap-feedback-20261119-f6fe2f4`. Work branch: `work/tap-feedback-20261119`.
+
+The transient symbol halo previously measured 26px times chart zoom, so at normal zoom a finger could completely cover it. Its peak now measures 96 visible screen pixels in both normal and expanded views, using the iframe's displayed scale and the parent visual viewport scale to avoid multiplying it again during browser pinch zoom. The 13px selected dot, its existing chart-zoom scaling, opacity/colour, intensity settings, popup, input target and chart geometry are unchanged. The held animation grows from that same dot diameter and the release shrinks back to it before disappearing. No rectangle, border or extra click interception is introduced.
+
+The inverse button was already emitting an orange halo, with 18% alpha; the supplied dark screenshot shows it faintly. It now uses near-edge and outer halos like the overview indicator, retaining inversion compensation so the rendered colour remains orange. It remains unlit on white, has no solid active fill and no animation, and retains the existing ◐ icon.
+
+Following the user's additional instruction, the overview launcher is now visible in normal view too, in its existing fixed slot. A normal-view activation opens the existing expanded viewer and shows the overview. In expanded view it toggles the overview. Its pressed state/glow now represents actual visibility (viewer open and map not hidden), including on close/reload. Normal activation restores focus to this launcher on return. No additional button or new window is added.
+
+Existing header tests now require launcher visibility and hit targets in both modes rather than the previous hidden-normal specification. `qa/tap-feedback.cjs` additionally exercises normal launch by tap and keyboard, close/reopen, focus restoration, actual native pointer symbol activation, 96px held halo versus unchanged dot sizes, normal/inline/expanded zoom, both themes, zero intensity over all symbol sections, saved theme and Chromium browser-page zoom. Rendered inverse-halo pixels are compared with the previous 18% implementation and required to be visibly stronger and orange. All existing suites, gesture checks, pixel-colour checks, geometry equality and cold slider timing assertions are retained.
+
+Physical iPhone is unavailable. WebKit inline pinch is exercised through its touch-event handlers; native iPhone multi-touch is not claimed.

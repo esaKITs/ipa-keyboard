@@ -1705,7 +1705,8 @@ function placeMap(x,y){
  map.style.right='auto';map.style.left=mapPosition.x+'px';map.style.top=mapPosition.y+'px';
 }
 function constrainMap(){if(!active||map.hidden)return;const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();placeMap(mapPosition?.x??r.left-bounds.left,mapPosition?.y??r.top-bounds.top);}
-function showMap(show){map.hidden=!show;mapToggle.setAttribute('aria-pressed',String(show));mapToggle.setAttribute('aria-expanded',String(show));if(show){constrainMap();renderMinimap();}}
+function syncMapToggle(){const shown=active&&!map.hidden;mapToggle.setAttribute('aria-pressed',String(shown));mapToggle.setAttribute('aria-expanded',String(shown));}
+function showMap(show){map.hidden=!show;syncMapToggle();if(show){constrainMap();renderMinimap();}}
 mapGrip.addEventListener('pointerdown',e=>{if(e.button!==0||mapDrag)return;e.preventDefault();const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left-bounds.left,top:r.top-bounds.top};try{mapGrip.setPointerCapture(e.pointerId);}catch{}mapGrip.focus({preventScroll:true});});
 mapGrip.addEventListener('pointermove',e=>{if(mapDrag?.id!==e.pointerId)return;e.preventDefault();placeMap(mapDrag.left+e.clientX-mapDrag.x,mapDrag.top+e.clientY-mapDrag.y);});
 function endMapDrag(e){if(mapDrag?.id===e.pointerId)mapDrag=null;}
@@ -1714,6 +1715,7 @@ mapGrip.addEventListener('keydown',e=>{const delta={ArrowLeft:[-1,0],ArrowRight:
 mapClose.addEventListener('click',()=>{showMap(false);mapToggle.focus({preventScroll:true});});
 const BASE=1040;
 let active=false, zoom=1, baseScale=1, lastFocus=null, drag=false;
+syncMapToggle();
 const parts=[
  ["pulmonicConsonants","肺気流子音"],["nonPulmonicConsonants","非肺気流"],["vowels","母音"],
  ["otherSymbols","その他"],["suprasegmentals","超分節"],["diacritics","補助記号"],
@@ -1777,21 +1779,21 @@ function queueViewerLayout(){
   drawMap();renderMinimap();constrainMap();dialog.dataset.ready='true';
  });
 }
-function openViewer(){
- if(active)return;active=true;lastFocus=document.activeElement;layoutSignature='';
+function openViewer(returnFocus){
+ if(active)return;active=true;lastFocus=returnFocus?.nodeType===1?returnFocus:document.activeElement;layoutSignature='';
  try{
   dialog.hidden=false;dialog.dataset.ready='false';document.body.style.overflow='hidden';
   stage.appendChild(chart);chart.style.margin='0';chart.style.width=BASE+'px';chart.style.minWidth=BASE+'px';
   zoom=clamp(parent!==window?(parent.visualViewport?.scale||1):1,1,3);baseScale=Math.min(1,Math.max(1,viewport.clientWidth-12)/BASE);
   setZoom(zoom,false);viewport.scrollLeft=0;viewport.scrollTop=0;
-  drawMap();renderMinimap();notifyZoom(true);queueViewerLayout();
+  drawMap();renderMinimap();syncMapToggle();notifyZoom(true);queueViewerLayout();
   (parent!==window?viewport:document.getElementById('zoomClose')).focus({preventScroll:true});
  }catch(e){closeViewer();throw e;}
 }
 function closeViewer(){
  if(!active)return;active=false;pinch=null;pinchPan=null;mapDrag=null;delete document.documentElement.dataset.chartGesture;
  if(layoutPending)cancelAnimationFrame(layoutPending);layoutPending=0;layoutSignature='';
- dialog.hidden=true;dialog.dataset.ready='false';
+ dialog.hidden=true;dialog.dataset.ready='false';syncMapToggle();
  chart.style.removeProperty('transform');chart.style.removeProperty('margin');chart.style.removeProperty('width');chart.style.removeProperty('min-width');
  if(originalNext)originalParent.insertBefore(chart,originalNext);else originalParent.appendChild(chart);
  document.body.style.overflow='';window.dispatchEvent(new Event('resize'));notifyZoom(false);
@@ -1831,7 +1833,7 @@ window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==
 openBtn.addEventListener("click",openViewer);
 document.getElementById("zoomClose").addEventListener("click",closeViewer);
 window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window.esaI18n.t("通常表示に戻る",window.esaChartLocale,"chart");const restoreButton=document.getElementById("zoomClose");restoreButton.setAttribute("aria-label",restoreLabel);restoreButton.title=restoreLabel;const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;const mapLabel=window.esaI18n.t("全体図を表示",window.esaChartLocale,"chart");mapToggle.setAttribute("aria-label",mapLabel);mapToggle.title=mapLabel;if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});
-mapToggle.addEventListener("click",()=>showMap(map.hidden));
+mapToggle.addEventListener("click",()=>{if(!active){openViewer(mapToggle);showMap(true);}else showMap(map.hidden);});
 // Desktop chart-only zoom: Ctrl/Command + wheel, anchored at the pointer.
 viewport.addEventListener('wheel',e=>{
  if(!active||!(e.ctrlKey||e.metaKey))return;
@@ -2065,6 +2067,12 @@ selectedDot.style.cssText='position:fixed;display:none;z-index:2147483645;width:
 document.body.appendChild(selectedDot);
 let selectedSymbol=null, heldSymbol=null, suppressSymbolClick=null,gestureSuppressed=false;
 function feedbackScale(el){return Math.max(1,Math.min(4,Number(el?.closest('#chart')?.dataset.feedbackScale)||1));}
+// Express transient feedback in visible screen pixels, including browser page zoom.
+function feedbackScreenScale(){
+ let value=window.visualViewport?.scale||1;
+ try{if(parent!==window){const host=window.frameElement;value=(parent.visualViewport?.scale||1)*(host.getBoundingClientRect().width/host.clientWidth||1);}}catch(e){}
+ return Math.max(.1,value);
+}
 function repositionSelectedDot(){
  if(heldSymbol||glowReleasePending||!selectedSymbol||!document.contains(selectedSymbol)){selectedDot.style.opacity='0';selectedDot.style.display='none';return;}
  const rect=selectedSymbol.getBoundingClientRect();
@@ -2161,10 +2169,11 @@ function hitFrom(target){if(!(target instanceof Element))return null;return targ
 function flashHit(el,rect){
  const a=rect||el.getBoundingClientRect();
  if(!a.width||!a.height)return;
- // All symbols: 26px feathered feedback grows from 13px and eases back to a persistent dot.
+ // A 96 screen-pixel tap halo stays visible outside a fingertip at every chart zoom.
  // A soft radial gradient marks the selected sound without a rectangular border.
  {
-  const diameter=26*feedbackScale(el);
+  const diameter=96/feedbackScreenScale();
+  const restScale=Math.min(1,13*feedbackScale(el)/diameter);flash.dataset.restScale=String(restScale);
   const centerX=a.left+a.width/2,centerY=a.top+a.height/2;
   const x=centerX-diameter/2,y=centerY-diameter/2;
   const paint='background:radial-gradient(circle closest-side,rgba(var(--feedback-rgb),var(--feedback-strength)) 0%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.91)) 25%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.75)) 50%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.48)) 75%,rgba(var(--feedback-rgb),calc(var(--feedback-strength)*.21)) 91%,rgba(var(--feedback-rgb),0) 100%);border:0;box-shadow:none;';
@@ -2172,8 +2181,8 @@ function flashHit(el,rect){
   clearTimeout(glowReleaseTimer);glowReleasePending=false;
   if(symbolGlowAnimation){symbolGlowAnimation.cancel();symbolGlowAnimation=null;}
   flash.style.cssText='position:fixed;z-index:2147483647;pointer-events:none;display:block;box-sizing:border-box;border-radius:50%;width:'+diameter+'px;height:'+diameter+'px;left:'+x+'px;top:'+y+'px;transform:scale(1);opacity:1;'+paint;
-  // One feathered circle expands smoothly from the 13px centre to a 26px glow.
-  symbolGlowAnimation=flash.animate([{transform:'scale(.5)',opacity:.35},{transform:'scale(1)',opacity:1}],{duration:220,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
+  // Preserve the existing selected-dot diameter; only the held halo grows larger.
+  symbolGlowAnimation=flash.animate([{transform:'scale('+restScale+')',opacity:.35},{transform:'scale(1)',opacity:1}],{duration:220,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});
   return;
  }
 }
@@ -2205,7 +2214,7 @@ function releaseSymbol(){if(heldSymbol){
  // Animate the current visual state instead of snapping between two sizes.
  const fromTransform=getComputedStyle(flash).transform,fromOpacity=getComputedStyle(flash).opacity;
  if(symbolGlowAnimation)symbolGlowAnimation.cancel();
- symbolGlowAnimation=flash.animate([{transform:fromTransform,opacity:fromOpacity},{transform:'scale(.5)',opacity:0}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'});
+ symbolGlowAnimation=flash.animate([{transform:fromTransform,opacity:fromOpacity},{transform:'scale('+(flash.dataset.restScale||.5)+')',opacity:0}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)',fill:'both'});
  glowReleasePending=false;clearTimeout(glowReleaseTimer);
  selectedDot.style.opacity='0';repositionSelectedDot();
  requestAnimationFrame(()=>{if(!heldSymbol&&selectedSymbol)selectedDot.style.opacity='1';});

@@ -372,9 +372,9 @@ html[data-inverse="true"] .language-select{background:#252525;color:#eee;border-
 html[data-inverse="true"] .ipa-standard,html[data-inverse="true"] .v83-label,html[data-inverse="true"] .esakits-bottom{color:#ccc}
 html[data-inverse="true"] .v83-integrated{background:#000}
 html[data-inverse="true"] #floatingEditor,html[data-inverse="true"] #v83ChartFrame,html[data-inverse="true"] .info-dialog,html[data-inverse="true"] .confirm-dialog,html[data-inverse="true"] #toast,html[data-inverse="true"] #pop{filter:invert(1) hue-rotate(180deg);color-scheme:light}
-#contrastToggle[aria-pressed="true"]{background:transparent;box-shadow:0 0 9px 3px rgba(255,175,95,.18)}
+#contrastToggle[aria-pressed="true"]{background:transparent;box-shadow:0 0 0 1px rgba(255,175,95,.65),0 0 7px 2px rgba(255,175,95,.46),0 0 14px 4px rgba(255,175,95,.28)}
 /* The editor is inverted as one surface; compensate the halo to keep its visible hue orange. */
-html[data-inverse="true"] #contrastToggle[aria-pressed="true"]{box-shadow:0 0 9px 3px rgba(104,66,28,.18)}
+html[data-inverse="true"] #contrastToggle[aria-pressed="true"]{box-shadow:0 0 0 1px rgba(104,66,28,.65),0 0 7px 2px rgba(104,66,28,.46),0 0 14px 4px rgba(104,66,28,.28)}
 html[data-inverse="true"] #v83ChartFrame{filter:none}
 
 /* v83.34: editor geometry and typography have their own responsive profile. */
@@ -511,8 +511,7 @@ html[data-inverse="true"] .language-picker-option.active{background:#454545}
 .app-header.language-two-rows .language-control{grid-column:1/-1;grid-row:2;justify-self:end}
 /* Reserve the overview position before its control is mounted or shown. */
 .header-overview-slot{display:flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px}
-#headerOverviewSlot #zoomMapToggle{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:7px;border:1px solid #888;border-radius:7px;background:transparent;color:inherit;cursor:pointer;visibility:hidden}
-.app-header.chart-expanded #headerOverviewSlot #zoomMapToggle{visibility:visible}
+#headerOverviewSlot #zoomMapToggle{display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:7px;border:1px solid #888;border-radius:7px;background:transparent;color:inherit;cursor:pointer}
 #headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 0 1px rgba(166,128,222,.60),0 0 7px 2px rgba(166,128,222,.42),0 0 14px 4px rgba(166,128,222,.24)}
 html[data-inverse="true"] #headerOverviewSlot #zoomMapToggle[aria-pressed="true"]{box-shadow:0 0 0 1px rgba(255,175,95,.65),0 0 7px 2px rgba(255,175,95,.46),0 0 14px 4px rgba(255,175,95,.28)}
 #headerOverviewSlot #zoomMapToggle:focus-visible{outline:2px solid #9879d3;outline-offset:2px}

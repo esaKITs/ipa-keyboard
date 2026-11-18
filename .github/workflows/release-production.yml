@@ -1,7 +1,7 @@
 name: Verify and publish IPA Keyboard production v83.34
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119]
+    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119]
     paths: ['index.html', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'diacritic-display.js', 'language-picker.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119'
+    if: github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -40,6 +40,7 @@ jobs:
           node qa/panel-controls.cjs
           node qa/vowel-equivalence.cjs
           node qa/header-alignment.cjs
+          node qa/tap-feedback.cjs
           node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs
@@ -94,6 +95,7 @@ jobs:
           node qa/panel-controls.cjs
           node qa/vowel-equivalence.cjs
           node qa/header-alignment.cjs
+          node qa/tap-feedback.cjs
           node qa/final-four.cjs
           node qa/recovery.cjs
           node qa/editor-gestures.cjs

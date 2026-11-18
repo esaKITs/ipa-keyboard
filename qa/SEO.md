@@ -25,3 +25,5 @@ References:
 - https://developers.google.com/search/docs/appearance/structured-data/software-app
 - https://schema.org/WebApplication
 - https://ogp.me/
+
+The first staged SEO run (44371122210) passed the entire existing regression and 78 new comparison cases; one first Chromium screenshot differed by ten one-level edge pixels with identical geometry/styles, and one new cursor test assumed a focus-restored caret position. The comparison now explicitly activates and verifies focus on each tab. Held-key capture happens entirely within each foreground tab because the app intentionally releases feedback on window blur. Native editing explicitly moves to End before testing ArrowLeft and inserts X at the asserted position, and the exact same copy/edit sequence is checked on the immutable baseline as well as the candidate. Zero-pixel tolerance and every app assertion remain unchanged. SEO comparison follows the cold panel check so a failed comparison is diagnosed before the remaining long regression.

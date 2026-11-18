@@ -30,15 +30,20 @@ async function geometry(p,f){
 }
 async function compare(pages,frames,label,state){
  const snapshots=[];
- for(let i=0;i<2;i++){await settle(pages[i]);await settle(frames[i]);snapshots.push({layout:await geometry(pages[i],frames[i]),image:await pages[i].screenshot({path:`qa-production/${prefix}-seo-${label}-${state}-${i?'after':'before'}.png`,fullPage:true,caret:'hide'})});}
+ for(let i=0;i<2;i++){
+  const p=pages[i],f=frames[i];await p.bringToFront();await p.waitForFunction(()=>document.hasFocus());
+  if(state==='held'){await f.locator('#vowels .v83-ipa-key').first().focus();await p.keyboard.down('Space');await f.locator('.v83-purple-flash').evaluate(e=>Promise.all(e.getAnimations().map(a=>a.finished)));}
+  await settle(p);await settle(f);snapshots.push({focused:await p.evaluate(()=>document.hasFocus()),layout:await geometry(p,f),image:await p.screenshot({path:`qa-production/${prefix}-seo-${label}-${state}-${i?'after':'before'}.png`,fullPage:true,caret:'hide'})});
+  if(state==='held'){await p.keyboard.up('Space');await p.waitForTimeout(360);}
+ }
  assert.deepEqual(snapshots[1].layout,snapshots[0].layout,label+' '+state+' geometry/styles');
  const a=PNG.sync.read(snapshots[0].image),b=PNG.sync.read(snapshots[1].image);assert.equal(b.width,a.width);assert.equal(b.height,a.height);
  let changed=0;for(let i=0;i<a.data.length;i+=4)if(a.data[i]!==b.data[i]||a.data[i+1]!==b.data[i+1]||a.data[i+2]!==b.data[i+2]||a.data[i+3]!==b.data[i+3])changed++;
  assert.equal(changed,0,label+' '+state+' exact pixels');return{state,width:a.width,height:a.height,changedPixels:changed};
 }
 async function functional(p,f,name){
- const out=p.locator('#out');await out.fill('ab');await out.press('End');await out.press('c');await p.locator('#undo').click();assert.equal(await out.inputValue(),'ab');await p.locator('#redo').click();assert.equal(await out.inputValue(),'abc');
- await out.press('ArrowLeft');await out.press('X');assert.equal(await out.inputValue(),'abXc');assert.equal(await out.evaluate(e=>e.selectionStart),3);
+ await p.bringToFront();await p.waitForFunction(()=>document.hasFocus());const out=p.locator('#out');await out.fill('ab');await out.press('End');await out.press('c');await p.locator('#undo').click();assert.equal(await out.inputValue(),'ab');await p.locator('#redo').click();assert.equal(await out.inputValue(),'abc');
+ await out.press('End');assert.equal(await out.evaluate(e=>e.selectionStart),3,'explicit end position after focusing the textarea');await out.press('ArrowLeft');assert.equal(await out.evaluate(e=>e.selectionStart),2,'native cursor movement');await out.press('X');assert.equal(await out.inputValue(),'abXc');assert.equal(await out.evaluate(e=>e.selectionStart),3);
  const symbols=[];
  for(const id of['pulmonicConsonants','vowels','diacritics','suprasegmentals']){const key=f.locator('#'+id+' .v83-ipa-key').first(),sym=await key.getAttribute('data-v83-sym'),before=await out.inputValue();await out.press('End');await key.focus();await p.keyboard.press('Space');await p.waitForTimeout(340);assert.equal(await out.inputValue(),before+sym);symbols.push(sym);}
  // Use the actual system clipboard and native paste; no Clipboard API mocks.
@@ -57,13 +62,11 @@ async function functional(p,f,name){
     comparisons.push(await compare(pages,frames,label,'normal'));
     for(let i=0;i<2;i++){await pages[i].locator('#chartZoomToggle').click();await frames[i].waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');}
     comparisons.push(await compare(pages,frames,label,'expanded'));
-    for(let i=0;i<2;i++){const key=frames[i].locator('#vowels .v83-ipa-key').first();await key.focus();await pages[i].keyboard.down('Space');await frames[i].locator('.v83-purple-flash').evaluate(e=>Promise.all(e.getAnimations().map(a=>a.finished)));}
     comparisons.push(await compare(pages,frames,label,'held'));
-    for(let i=0;i<2;i++){await pages[i].keyboard.up('Space');await pages[i].waitForTimeout(360);}
     comparisons.push(await compare(pages,frames,label,'released'));
     for(let i=0;i<2;i++)await pages[i].locator('#chartZoomToggle').click();
     assert.equal(await pages[1].title(),title,'language switching/viewer must not overwrite SEO title');
-    if(width===393&&locale==='ja'&&!dark)functionalResults.push(await functional(pages[1],frames[1],name));
+    if(width===393&&locale==='ja'&&!dark){const before=await functional(pages[0],frames[0],name),after=await functional(pages[1],frames[1],name);assert.deepEqual(after,before,'same native editing/copy behavior on immutable baseline and candidate');functionalResults.push({before,after});}
     assert.deepEqual(errors,[]);results.push({engine:name,width,locale,dark,comparisons,errors});console.log('PASS SEO VISUAL',label,'four states, zero changed pixels');
    }catch(e){failures.push({label,error:e.message,stack:e.stack,errors});console.error('FAIL SEO',JSON.stringify(failures.at(-1)));}
    finally{for(const c of contexts)await c.close();}

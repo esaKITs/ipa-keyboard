@@ -31,6 +31,15 @@ async function confirmFont(p,f){
  await settledChart(p,f);await p.locator('#settingsToggle').click();await settledChart(p,f);
  assert.equal(await p.locator('#ipaFontSelect').inputValue(),'doulos');
 }
+async function prepareRaster(p,f){
+ // Same-source controls reproduce 3/4/10 edge-pixel differences in Chromium's
+ // initial raster. A real viewport cycle removes that variance without masks,
+ // style overrides, pixel tolerance, or changing application source.
+ const viewport=p.viewportSize();
+ await p.setViewportSize({...viewport,width:viewport.width+1});await settledChart(p,f);
+ await p.setViewportSize(viewport);await settledChart(p,f);
+ assert.deepEqual(p.viewportSize(),viewport,'restore the exact comparison viewport');
+}
 async function ready(p,url,locale,dark){
  const response=await p.goto(url);assert.equal(response.status(),200);assert(!/noindex/i.test(response.headers()['x-robots-tag']||''));
  await p.waitForFunction(()=>document.getElementById('zoomMapToggle')&&!document.getElementById('chartZoomToggle').disabled);
@@ -55,6 +64,7 @@ async function compare(pages,frames,label,state){
  const snapshots=[];
  for(let i=0;i<2;i++){
   const p=pages[i],f=frames[i];await p.bringToFront();await p.waitForFunction(()=>document.hasFocus());await settledChart(p,f);
+  if(state==='normal'||state==='expanded')await prepareRaster(p,f);
   if(state==='held'){await f.locator('#vowels .v83-ipa-key').first().focus();await p.keyboard.down('Space');await f.locator('.v83-purple-flash').evaluate(e=>Promise.all(e.getAnimations().map(a=>a.finished)));}
   await settle(p);await settle(f);snapshots.push({focused:await p.evaluate(()=>document.hasFocus()),layout:await geometry(p,f),image:await p.screenshot({path:`qa-production/${prefix}-seo-${label}-${state}-${i?'after':'before'}.png`,fullPage:true,caret:'hide'})});
   if(state==='held'){await p.keyboard.up('Space');await p.waitForTimeout(360);}
@@ -99,5 +109,5 @@ async function functional(p,f,name){
   await browser.close();
  }
  const http=await request.newContext();const s=await http.get(new URL('sitemap.xml',app).href);assert.equal(s.status(),200);const xml=await s.text();assert.equal((xml.match(/<loc>/g)||[]).length,1);assert(xml.includes('<loc>'+canonical+'</loc>'));await http.dispose();
- fs.writeFileSync('qa-production/seo-results.json',JSON.stringify({app,reference,results,functionalResults,failures},null,2));assert.deepEqual(failures,[]);assert.equal(results.length,80);assert.equal(functionalResults.length,2);
+ fs.writeFileSync('qa-production/seo-results.json',JSON.stringify({app,reference,comparisonPreparation:'Existing native Doulos font confirmation; native viewport width +1 then exact restoration before normal/expanded capture. Exact SVG/geometry and zero pixel differences remain required. Initial unprepared raster equality is not claimed.',results,functionalResults,failures},null,2));assert.deepEqual(failures,[]);assert.equal(results.length,80);assert.equal(functionalResults.length,2);
 })().catch(e=>{console.error(e);process.exit(1)});

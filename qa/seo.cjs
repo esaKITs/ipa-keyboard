@@ -21,13 +21,23 @@ async function settledChart(p,f){
   return true;
  },null,{timeout:15000});
 }
+async function confirmFont(p,f){
+ // Chromium can cache different transformed SVG getBBox metrics on identical
+ // source. Select the same existing font through the real UI on both sides.
+ await p.bringToFront();await p.waitForFunction(()=>document.hasFocus());await settledChart(p,f);
+ await p.locator('#settingsToggle').click();
+ await p.locator('#ipaFontChoices button[data-ipa-font="doulos"]').click();
+ await p.waitForFunction(()=>document.getElementById('ipaFontSelect').getAttribute('aria-busy')==='false');
+ await settledChart(p,f);await p.locator('#settingsToggle').click();await settledChart(p,f);
+ assert.equal(await p.locator('#ipaFontSelect').inputValue(),'doulos');
+}
 async function ready(p,url,locale,dark){
  const response=await p.goto(url);assert.equal(response.status(),200);assert(!/noindex/i.test(response.headers()['x-robots-tag']||''));
  await p.waitForFunction(()=>document.getElementById('zoomMapToggle')&&!document.getElementById('chartZoomToggle').disabled);
  const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();
  await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);await f.waitForFunction(()=>window.__ipaLineAudit?.fontFamily);
  await p.locator('#languageSelect').selectOption(locale);await f.waitForFunction(l=>document.documentElement.lang===l,locale);
- if(dark)await p.locator('#contrastToggle').click();await settledChart(p,f);await settle(p);await settle(f);return f;
+ if(dark)await p.locator('#contrastToggle').click();await confirmFont(p,f);await settle(p);await settle(f);return f;
 }
 async function metadata(p){
  assert.equal(await p.title(),title);
@@ -75,7 +85,7 @@ async function functional(p,f,name){
     for(const url of[reference,app]){const c=await browser.newContext({viewport:{width,height:844},hasTouch:true,serviceWorkers:'block'});contexts.push(c);const p=await c.newPage();pages.push(p);p.on('pageerror',e=>errors.push(e.message));frames.push(await ready(p,url,locale,dark));}
     await metadata(pages[1]);const comparisons=[];
     comparisons.push(await compare(pages,frames,label,'normal'));
-    for(let i=0;i<2;i++){await pages[i].locator('#chartZoomToggle').click();await frames[i].waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');}
+    for(let i=0;i<2;i++){await pages[i].bringToFront();await settledChart(pages[i],frames[i]);await pages[i].locator('#chartZoomToggle').click();await frames[i].waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');await confirmFont(pages[i],frames[i]);}
     comparisons.push(await compare(pages,frames,label,'expanded'));
     comparisons.push(await compare(pages,frames,label,'held'));
     comparisons.push(await compare(pages,frames,label,'released'));

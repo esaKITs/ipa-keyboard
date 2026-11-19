@@ -1,0 +1,30 @@
+name: Diagnose screenshot edge rasterization
+on:
+  push:
+    branches: [work/seo-edge-probe-20261119]
+    paths: ['qa/seo-edge-probe.cjs', '.github/workflows/seo-edge-probe.yml']
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1 pngjs@7.0.0
+      - run: npx playwright install chromium --with-deps
+      - name: Serve immutable baseline
+        run: |
+          git fetch --depth=1 origin 3922bb8b4b2b42307680b41f9e5d77e67e7571fc
+          mkdir -p /tmp/ipa-seo-reference/ipa-keyboard
+          git archive 3922bb8b4b2b42307680b41f9e5d77e67e7571fc | tar -x -C /tmp/ipa-seo-reference/ipa-keyboard
+          nohup python3 -m http.server 8772 --bind 127.0.0.1 --directory /tmp/ipa-seo-reference >/tmp/ipa-seo-reference.log 2>&1 &
+      - run: node qa/seo-edge-probe.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: seo-edge-probe
+          path: qa-production/

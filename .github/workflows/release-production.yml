@@ -71,6 +71,8 @@ jobs:
         run: node qa/desktop-zoom.cjs
       - name: Verify cold panel responsiveness
         run: node qa/panel-controls.cjs
+      - name: Verify panel and chart recovery across 100 scenarios
+        run: node qa/recovery.cjs
       - name: Verify SEO metadata and exact visual equivalence
         if: github.ref == 'refs/heads/work/seo-20261119' || contains(github.event.head_commit.message, '[seo]')
         run: |
@@ -82,7 +84,6 @@ jobs:
           node qa/header-alignment.cjs
           node qa/tap-feedback.cjs
           node qa/final-four.cjs
-          node qa/recovery.cjs
           node qa/editor-gestures.cjs
           node qa/viewer-icons.cjs
       - name: Verify production assets and upgrade from old offline cache
@@ -142,6 +143,7 @@ jobs:
           node qa/floating-overview.cjs
           node qa/desktop-zoom.cjs
           node qa/panel-controls.cjs
+          node qa/recovery.cjs
           node qa/vowel-equivalence.cjs
           node qa/header-alignment.cjs
           node qa/tap-feedback.cjs

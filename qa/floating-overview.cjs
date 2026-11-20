@@ -62,10 +62,12 @@ async function moveTo(p,block,grip,x,y){const b=await block.boundingBox(),r=awai
  }
  // User-driven placement can cover the header; its own controls remain usable.
  await moveTo(p,map,grip,8,6);const upper=await reachable(map,width);assert(upper.y<=10&&overlaps(upper,header),'overview reaches header area');await reachable(grip,width);await reachable(p.locator('#zoomMapClose'),width);
+ if(locale==='ja'&&[320,393,1280].includes(width))await p.screenshot({path:`qa-production/${prefix}-map-over-header-${name}-${width}-${dark?'dark':'light'}.png`});
  await p.locator('#zoomMapClose').click();assert.equal(await map.isVisible(),false);await reachable(p.locator('#zoomMapToggle'),width);await p.locator('#zoomMapToggle').click();assert(await map.isVisible(),'closed overview reopens');
  await moveTo(p,map,grip,Math.max(8,width-outer.width-80),header.y+header.height+22);
  // Move the editor across the header and retain its branded grip, controls and edits.
  await moveTo(p,panel,p.locator('#inputPanelDrag'),8,8);const upperPanel=await reachable(panel,width);assert(upperPanel.y<=10&&overlaps(upperPanel,header),'editor reaches header area');await reachable(p.locator('#inputPanelDrag'),width);await reachable(p.locator('#inputPanelReset'),width);assert.equal(await p.locator('#inputPanelTitle').textContent(),'IPA Keyboard');assert(await p.locator('.panel-brand-logo').isVisible());
+ if(locale==='ja'&&[320,393,1280].includes(width))await p.screenshot({path:`qa-production/${prefix}-editor-over-header-${name}-${width}-${dark?'dark':'light'}.png`});
  await p.locator('#inputPanelReset').click();await settle(p);await reachable(p.locator('#chartZoomToggle'),width);await reachable(p.locator('#zoomMapToggle'),width);
  if(locale==='ja'&&[320,393,1280].includes(width))await p.screenshot({path:`qa-production/${prefix}-floating-overview-${name}-${width}-${dark?'dark':'light'}.png`});
  await p.locator('#chartZoomToggle').click();await p.waitForFunction(()=>document.getElementById('chartZoomToggle').getAttribute('aria-expanded')==='false');assert.equal(await map.isVisible(),false,'no orphan overview outside enlarged mode');assert.deepEqual(await p.locator('#out').evaluate(e=>({text:e.value,start:e.selectionStart,end:e.selectionEnd})),saved,'text and caret survive overview operations');assert.equal(await p.locator('.v83-label').textContent(),'v83.34');

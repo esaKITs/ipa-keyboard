@@ -1,6 +1,7 @@
 'use strict';
 const {chromium,webkit}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
 const app=process.env.APP_URL||'http://127.0.0.1:8765/ipa-keyboard/',prefix=process.env.PUBLIC_CHECK?'public':'staged';
+const baseline=process.env.OVERVIEW_BASELINE_URL;
 fs.mkdirSync('qa-production',{recursive:true});
 const results=[],failures=[];
 const settle=p=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
@@ -9,7 +10,17 @@ async function reachable(l,width){assert(await l.isVisible(),'visible '+l);const
 async function moveTo(p,block,grip,x,y){const b=await block.boundingBox(),r=await grip.boundingBox();await p.mouse.move(r.x+r.width/2,r.y+r.height/2);await p.mouse.down();await p.mouse.move(r.x+r.width/2+x-b.x,r.y+r.height/2+y-b.y,{steps:12});await p.mouse.up();await settle(p);}
 (async()=>{for(const[name,engine]of Object.entries({chromium,webkit})){
  const browser=await engine.launch();
- try{for(const width of[320,375,393,768,1280]){
+ try{
+ if(baseline){
+  const p=await browser.newPage({viewport:{width:1280,height:844},serviceWorkers:'block'});
+  await p.goto(baseline);await p.waitForFunction(()=>document.getElementById('zoomMinimap')?.classList.contains('is-parent-map'));
+  const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();await p.locator('#chartZoomToggle').click();await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');
+  await f.locator('#chartZoomDecrease').focus();await p.keyboard.press('Tab');
+  assert.equal(await p.locator('#zoomMapDrag').evaluate(e=>e===document.activeElement),false,'preserved portal baseline cannot tab to overview');
+  assert.equal(await f.locator('#chartZoomDecrease').evaluate(e=>e===document.activeElement),true,'reproduced focus stall at last chart control');
+  console.log('REPRODUCED PORTAL TAB STALL',name,'8eabe88163a3acbde7c694268ce97640a33bd3a9');await p.close();
+ }
+ for(const width of[320,375,393,768,1280]){
  const p=await browser.newPage({viewport:{width,height:844},hasTouch:width<=768,serviceWorkers:'block'}),errors=[];p.on('pageerror',e=>errors.push(String(e)));
  try{
  await p.goto(app);const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();await f.waitForFunction(()=>typeof esaSetLocale==='function');await p.waitForFunction(()=>document.getElementById('zoomMinimap')?.classList.contains('is-parent-map'));await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);
@@ -24,6 +35,15 @@ async function moveTo(p,block,grip,x,y){const b=await block.boundingBox(),r=awai
  assert.equal(labels.length,7);for(const l of labels){assert(l.font>=8,'labels are larger than the former 5/7px '+JSON.stringify(l));assert(l.fits,'full translated label fits '+JSON.stringify(l));assert.equal(l.box,'border-box','borders do not enlarge projected geometry');assert(l.left>=-.01&&l.top>=-.01&&l.left+l.width<=100.01&&l.top+l.height<=100.01,'region inside canvas');}
  assert(Math.min(...labels.map(l=>l.top))<.01,'no unused title band above regions');assert(Math.max(...labels.map(l=>l.top+l.height))>99.99,'no unused trailing band');
  const outer=await map.boundingBox(),canvas=await p.locator('#zoomMapCanvas').boundingBox();assert(canvas.x-outer.x<=1.5&&outer.x+outer.width-canvas.x-canvas.width<=1.5&&outer.y+outer.height-canvas.y-canvas.height<=1.5,'canvas uses the card edges without nested gutters');
+ if(locale==='ja'&&!dark){
+  const last=await f.locator('#chartZoomDecrease').isVisible()?f.locator('#chartZoomDecrease'):f.locator('#zoomViewport');
+  await last.focus();await p.keyboard.press('Tab');assert(await grip.evaluate(e=>e===document.activeElement),'Tab reaches the parent-hosted overview grip');
+  await p.keyboard.press('Tab');assert(await p.locator('#zoomMapClose').evaluate(e=>e===document.activeElement),'Tab reaches overview close');
+  await p.keyboard.press('Tab');assert(await f.locator('#zoomViewport').evaluate(e=>e===document.activeElement),'Tab returns to chart');
+  await p.keyboard.press('Shift+Tab');assert(await p.locator('#zoomMapClose').evaluate(e=>e===document.activeElement),'reverse Tab reaches close');
+  await p.keyboard.press('Shift+Tab');assert(await grip.evaluate(e=>e===document.activeElement),'reverse Tab reaches grip');
+  await p.keyboard.press('Shift+Tab');assert(await last.evaluate(e=>e===document.activeElement),'reverse Tab returns to last chart control');
+ }
  // Enlarge the real chart, then tap each real overview region and check the
  // actual corresponding chart section is centred in the viewport.
  const vr=await f.locator('#zoomViewport').boundingBox();await p.mouse.move(vr.x+20,vr.y+400);await p.keyboard.down('Control');await p.mouse.wheel(0,-1400);await p.keyboard.up('Control');await f.waitForFunction(()=>Number(document.getElementById('chartZoomSlider').value)===4);await settle(p);

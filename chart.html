@@ -1987,10 +1987,11 @@ document.addEventListener("keydown",e=>{
  if(e.key==="Escape"){e.preventDefault();closeViewer();}
  // Keep keyboard focus within dialog (the underlying chart is not reachable).
  if(e.key==="Tab"){
-  const focusable=[...dialog.querySelectorAll('button:not([disabled]),input:not([disabled]),[tabindex="0"]')].filter(el=>!el.closest("[hidden]"));
+  const focusable=[...dialog.querySelectorAll('button:not([disabled]),input:not([disabled]),[tabindex="0"]')].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length);
   const first=focusable[0],last=focusable[focusable.length-1];
-  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
-  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  const portal=map.classList.contains('is-parent-map')&&!map.hidden;
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();(portal?mapClose:last)?.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();(portal?mapGrip:first)?.focus();}
  }
 });
 window.addEventListener("resize",queueViewerLayout,{passive:true});

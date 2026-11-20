@@ -952,6 +952,11 @@ headerZoom.addEventListener('click',()=>frame.contentDocument?.getElementById(ex
 document.addEventListener('keydown',e=>{
  if(expanded)frame.contentWindow?.esaChartZoomKey?.(e);
  if(expanded&&e.key==='Escape'&&e.target.closest?.('#zoomMinimap')){e.preventDefault();frame.contentDocument?.getElementById('zoomClose')?.click();}
+ if(expanded&&e.key==='Tab'&&e.target.closest?.('#zoomMinimap')){
+  const focusable=[...frame.contentDocument.getElementById('chartZoomDialog').querySelectorAll('button:not([disabled]),input:not([disabled]),[tabindex="0"]')].filter(el=>!el.closest('[hidden]')&&el.getClientRects().length);
+  if(!e.shiftKey&&e.target.id==='zoomMapClose'){e.preventDefault();focusable[0]?.focus();}
+  else if(e.shiftKey&&e.target.id==='zoomMapDrag'){e.preventDefault();focusable.at(-1)?.focus();}
+ }
 });
 window.esaI18n.ready.then(setLocale);
 function viewportLayout(){

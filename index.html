@@ -572,6 +572,7 @@ html[data-inverse="true"] #headerOverviewSlot #zoomMapToggle[aria-pressed="true"
 #floatingEditor .size-slider{touch-action:pan-y}
 
 .toolbar#floatingEditor{overflow-x:hidden}
+#floatingEditor{--float-safe-top:env(safe-area-inset-top,0px);--float-safe-bottom:env(safe-area-inset-bottom,0px);--float-safe-left:env(safe-area-inset-left,0px);--float-safe-right:env(safe-area-inset-right,0px)}
 #floatingEditor #inputPanelTitle{font-size:11px;font-weight:600;letter-spacing:.01em}
 #inputPanelDrag .panel-brand-logo{display:block;flex:none;width:16px;height:16px;border-radius:4px}
 html[data-inverse="true"] #inputPanelDrag .panel-brand-logo{filter:invert(1) hue-rotate(180deg)}
@@ -1002,9 +1003,10 @@ let position=null,drag=null,placeFrame=0;
 try{const p=JSON.parse(localStorage.getItem(key));if(p&&Number.isFinite(p.x)&&Number.isFinite(p.y))position={x:Math.max(0,Math.min(1,p.x)),y:Math.max(0,Math.min(1,p.y))};}catch(e){}
 function bounds(){
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),pad=8/s;
- const top=0; // User-placed panels may overlap the header; keep their grips on screen.
+ const style=getComputedStyle(panel),safe=side=>(parseFloat(style.getPropertyValue('--float-safe-'+side))||0)/s;
+ const top=safe('top'),left=safe('left'),right=safe('right'),bottom=safe('bottom'); // Header overlap is user-controlled; respect device safe areas.
  const zoomGutter=document.getElementById('chartZoomToggle').getAttribute('aria-expanded')==='true'&&matchMedia('(min-width:600px) and (hover:hover) and (pointer:fine)').matches?64/s:0;
- return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad+top,w:Math.max(0,(v?.width||innerWidth)-2*pad-zoomGutter),h:Math.max(0,(v?.height||innerHeight)-2*pad-top)};
+ return {scale:s,x:(v?.offsetLeft||0)+pad+left,y:(v?.offsetTop||0)+pad+top,w:Math.max(0,(v?.width||innerWidth)-2*pad-zoomGutter-left-right),h:Math.max(0,(v?.height||innerHeight)-2*pad-top-bottom)};
 }
 function place(){
  placeFrame=0;const b=bounds();

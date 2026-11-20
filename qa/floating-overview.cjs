@@ -31,11 +31,14 @@ async function moveTo(p,block,grip,x,y){const b=await block.boundingBox(),r=awai
   const tile=p.locator('#zoomMapCanvas [data-region="'+id+'"]'),tr=await tile.boundingBox(),cr=await p.locator('#zoomMapCanvas').boundingBox();
   await p.evaluate(()=>document.getElementById('zoomMapCanvas').addEventListener('pointerdown',e=>{window.__mapTapPoint={x:e.clientX,y:e.clientY};},{once:true}));
   await tile.click();await settle(p);const tap=await p.evaluate(()=>window.__mapTapPoint);
-  const d=await f.evaluate(id=>{const v=document.getElementById('zoomViewport'),a=v.getBoundingClientRect(),r=document.getElementById(id).getBoundingClientRect(),c=document.getElementById('chart').getBoundingClientRect(),parts=['pulmonicConsonants','nonPulmonicConsonants','vowels','otherSymbols','suprasegmentals','diacritics','tonesAndWordAccents'].map(x=>document.getElementById(x).getBoundingClientRect());return{dx:r.left+r.width/2-a.left-v.clientWidth/2,dy:r.top+r.height/2-a.top-v.clientHeight/2,chartWidth:c.width,extentHeight:Math.max(...parts.map(p=>p.bottom))-Math.min(...parts.map(p=>p.top))};},id);
+  const d=await f.evaluate(id=>{const v=document.getElementById('zoomViewport'),a=v.getBoundingClientRect(),r=document.getElementById(id).getBoundingClientRect(),c=document.getElementById('chart').getBoundingClientRect(),parts=['pulmonicConsonants','nonPulmonicConsonants','vowels','otherSymbols','suprasegmentals','diacritics','tonesAndWordAccents'].map(x=>document.getElementById(x).getBoundingClientRect());return{dx:r.left+r.width/2-a.left-v.clientWidth/2,dy:r.top+r.height/2-a.top-v.clientHeight/2,chartWidth:c.width,extentHeight:Math.max(...parts.map(p=>p.bottom))-Math.min(...parts.map(p=>p.top)),scrollX:v.scrollLeft,scrollY:v.scrollTop,maxX:v.scrollWidth-v.clientWidth,maxY:v.scrollHeight-v.clientHeight};},id);
   // Account for native pointer-coordinate quantisation in this small overview;
   // the navigation error itself must still stay below 1.6 CSS pixels.
   const dx=d.dx+(tap.x-tr.x-tr.width/2)*d.chartWidth/cr.width,dy=d.dy+(tap.y-tr.y-tr.height/2)*d.extentHeight/cr.height;
-  assert(Math.abs(dx)<1.6&&Math.abs(dy)<1.6,'overview accurately centres '+id+' '+JSON.stringify({dx,dy,d,tap}));
+  // At a real chart edge the nearest valid scroll position replaces centring;
+  // this must be the exact boundary, not an arbitrary offset or empty overscroll.
+  const expectedX=Math.max(0,Math.min(d.maxX,d.scrollX+dx)),expectedY=Math.max(0,Math.min(d.maxY,d.scrollY+dy));
+  assert(Math.abs(d.scrollX-expectedX)<1.6&&Math.abs(d.scrollY-expectedY)<1.6,'overview accurate centre or exact chart boundary '+id+' '+JSON.stringify({dx,dy,expectedX,expectedY,d,tap}));
  }
  // User-driven placement can cover the header; its own controls remain usable.
  await moveTo(p,map,grip,8,6);const upper=await reachable(map,width);assert(upper.y<=10&&overlaps(upper,header),'overview reaches header area');await reachable(grip,width);await reachable(p.locator('#zoomMapClose'),width);

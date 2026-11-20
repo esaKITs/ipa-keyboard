@@ -860,7 +860,7 @@ html[data-inverse="true"] .v831-symbol-popup{--preview-fill:#303033;--preview-in
 #chart .v83-ipa-key,#chart .v83-ipa-key *,#chart .ipa,.v831-symbol-popup .preview-symbol{font-family:var(--ipa-font,'Doulos SIL Local'),serif!important}
 </style><style id="overviewStyleRules">
 /* Shared by the chart and its parent-hosted, draggable overview. */
-.zoom-minimap{--map-label-size:10px;position:absolute;z-index:4;right:12px;top:72px;width:224px;height:224px;box-sizing:border-box;overflow:hidden;background:#faf9fc;color:#26323c;border:1px solid #b7b2bf;border-radius:10px;box-shadow:0 3px 12px #0002;touch-action:none;user-select:none;cursor:crosshair;font-family:'Noto Sans JP Local',sans-serif}
+.zoom-minimap{--float-safe-top:env(safe-area-inset-top,0px);--float-safe-bottom:env(safe-area-inset-bottom,0px);--float-safe-left:env(safe-area-inset-left,0px);--float-safe-right:env(safe-area-inset-right,0px);--map-label-size:10px;position:absolute;z-index:4;right:12px;top:72px;width:224px;height:224px;box-sizing:border-box;overflow:hidden;background:#faf9fc;color:#26323c;border:1px solid #b7b2bf;border-radius:10px;box-shadow:0 3px 12px #0002;touch-action:none;user-select:none;cursor:crosshair;font-family:'Noto Sans JP Local',sans-serif}
 .zoom-minimap[hidden]{display:none!important}
 .zoom-minimap.is-parent-map{position:fixed;z-index:2147483647;transform-origin:0 0}
 html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotate(180deg);color-scheme:light}
@@ -1737,7 +1737,8 @@ function mapBounds(){
  if(map.classList.contains('is-parent-map')){
   const v=parent.visualViewport,sc=Math.max(.1,v?.scale||1);
   map.style.transform='scale('+(1/sc)+')';
-  return {left:v?.offsetLeft||0,top:v?.offsetTop||0,width:v?.width||parent.innerWidth,height:v?.height||parent.innerHeight,scale:sc};
+  const style=parent.getComputedStyle(map),safe=side=>(parseFloat(style.getPropertyValue('--float-safe-'+side))||0)/sc;
+  return {left:(v?.offsetLeft||0)+safe('left'),top:(v?.offsetTop||0)+safe('top'),width:(v?.width||parent.innerWidth)-safe('left')-safe('right'),height:(v?.height||parent.innerHeight)-safe('top')-safe('bottom'),scale:sc};
  }
  const b=dialog.getBoundingClientRect();return {left:b.left,top:b.top,width:b.width,height:b.height,scale:1};
 }

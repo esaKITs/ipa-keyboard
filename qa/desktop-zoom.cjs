@@ -11,7 +11,7 @@ async function open(p,url,width=1280,touch=false){
  const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();
  await f.waitForFunction(()=>typeof esaSetLocale==='function');await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);
  await p.locator('#chartZoomToggle').click();await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');await settle(p);
- if(await f.locator('#zoomMinimap').isVisible())await f.locator('#zoomMapClose').click();return f;
+ if(await p.locator('#zoomMinimap').isVisible())await p.locator('#zoomMapClose').click();return f;
 }
 async function point(p,f){const r=await f.locator('#zoomViewport').boundingBox();await p.mouse.move(r.x+r.width*.42,r.y+180);return f.evaluate(()=>{const v=document.getElementById('zoomViewport'),r=v.getBoundingClientRect(),c=document.getElementById('chart').getBoundingClientRect(),s=new DOMMatrix(getComputedStyle(document.getElementById('chart')).transform).a;const x=r.left+v.clientWidth*.42,y=r.top+180;return {x,y,cx:(x-c.left)/s,cy:(y-c.top)/s};});}
 async function drift(f,a){return f.evaluate(a=>{const c=document.getElementById('chart'),r=c.getBoundingClientRect(),s=new DOMMatrix(getComputedStyle(c).transform).a;return {dx:r.left+a.cx*s-a.x,dy:r.top+a.cy*s-a.y};},a);}
@@ -39,7 +39,7 @@ const overlap=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.h
  for(const lang of ['ja','en','pt-BR','fa'])for(const dark of [false,true]){
  await p.locator('#languageSelect').selectOption(lang);if((await p.locator('html').getAttribute('data-inverse'))!==String(dark))await p.locator('#contrastToggle').click();
  const oldScroll=await p.evaluate(()=>({x:scrollX,y:scrollY}));await p.locator('#chartZoomToggle').click();await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');await settle(p);
- if(await f.locator('#zoomMinimap').isVisible())await f.locator('#zoomMapClose').click();
+ if(await p.locator('#zoomMinimap').isVisible())await p.locator('#zoomMapClose').click();
  const rail=f.locator('#chartZoomControls'),slider=f.locator('#chartZoomSlider');await hit(rail);await hit(slider);assert.equal(await slider.getAttribute('max'),'4');
  const rb=await rail.boundingBox(),vb=await f.locator('#zoomViewport').boundingBox(),pb=await p.locator('#floatingEditor').boundingBox();assert(rb.x>=vb.x+vb.width,'slider has a separate gutter');assert(!overlap(rb,pb),'editor leaves controls free');assert(rb.y>=vb.y&&rb.y+rb.height<=844,'slider fits screen');
  await p.locator('#out').focus();let a=await point(p,f),s=await scale(f);await gesture(f,'gesturestart',1);await gesture(f,'gesturechange',1.002);await gesture(f,'gestureend',1.002);await anchored(f,a,'tiny initial pinch');a=await point(p,f);s=await scale(f);await p.keyboard.press('Control+=');await settle(p);assert(await scale(f)>s,'Ctrl + zooms only chart even with retained editor focus');await anchored(f,a,'Ctrl +');
@@ -65,7 +65,7 @@ const overlap=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.h
  const out=await p.locator('#out').inputValue(),vrect=await f.locator('#zoomViewport').boundingBox(),beforePan=await f.locator('#zoomViewport').evaluate(v=>({x:v.scrollLeft,y:v.scrollTop}));
  await p.mouse.move(vrect.x+120,vrect.y+140);await p.mouse.down();await p.mouse.move(vrect.x+70,vrect.y+100,{steps:10});await p.mouse.up();await settle(p);const afterPan=await f.locator('#zoomViewport').evaluate(v=>({x:v.scrollLeft,y:v.scrollTop}));assert(afterPan.x>beforePan.x+30&&afterPan.y>beforePan.y+25,'mouse drag pans chart');assert.equal(await p.locator('#out').inputValue(),out,'pan never inputs symbols');
  // Overview can be moved to the right edge without covering the slider.
- await p.locator('#zoomMapToggle').click();await f.locator('#zoomMapDrag').focus();for(let i=0;i<40;i++)await p.keyboard.press('Shift+ArrowRight');await settle(p);assert(!overlap(await f.locator('#zoomMinimap').boundingBox(),await rail.boundingBox()));await hit(slider);
+ await p.locator('#zoomMapToggle').click();await p.locator('#zoomMapDrag').focus();for(let i=0;i<40;i++)await p.keyboard.press('Shift+ArrowRight');await settle(p);assert(!overlap(await p.locator('#zoomMinimap').boundingBox(),await rail.boundingBox()));await hit(slider);
  if(lang==='ja')await p.screenshot({path:`qa-production/${process.env.PUBLIC_CHECK?'public':'staged'}-${name}-${width}-desktop-slider-${dark?'dark':'light'}.png`});
  await p.locator('#chartZoomToggle').click();await settle(p);assert.equal(await rail.isVisible(),false);assert.deepEqual(await p.evaluate(()=>({x:scrollX,y:scrollY})),oldScroll);assert.deepEqual(await p.locator('#out').evaluate(e=>({text:e.value,start:e.selectionStart,end:e.selectionEnd})),saved);assert.equal(await p.locator('.v83-label').textContent(),'v83.34');
  results.push({name,width,lang,dark,pass:true,rangeEvents:values.length});console.log('PASS DESKTOP ZOOM',name,width,lang,dark);

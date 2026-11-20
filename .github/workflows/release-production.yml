@@ -1,7 +1,7 @@
 name: Verify and publish IPA Keyboard production v83.34
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119, work/seo-20261119, work/desktop-zoom-20261120]
+    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119, work/seo-20261119, work/desktop-zoom-20261120, work/floating-overview-20261121]
     paths: ['index.html', 'sitemap.xml', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'diacritic-display.js', 'language-picker.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/work/desktop-zoom-20261120' || github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119' || github.ref == 'refs/heads/work/seo-20261119'
+    if: github.ref == 'refs/heads/work/floating-overview-20261121' || github.ref == 'refs/heads/work/desktop-zoom-20261120' || github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119' || github.ref == 'refs/heads/work/seo-20261119'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -53,6 +53,12 @@ jobs:
         if: github.ref == 'refs/heads/work/desktop-zoom-20261120'
         env:
           ZOOM_BASELINE_URL: http://127.0.0.1:8773/ipa-keyboard/
+        run: node qa/desktop-zoom.cjs
+      - name: Verify overview readability and freely placed panels
+        if: github.ref == 'refs/heads/work/floating-overview-20261121'
+        run: node qa/floating-overview.cjs
+      - name: Verify desktop zoom on floating overview branch
+        if: github.ref == 'refs/heads/work/floating-overview-20261121'
         run: node qa/desktop-zoom.cjs
       - name: Verify cold panel responsiveness
         run: node qa/panel-controls.cjs
@@ -92,7 +98,7 @@ jobs:
         shell: python
         run: |
           import urllib.request, pathlib, time
-          files=['index.html','sitemap.xml','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js','fonts/Andika-Regular.woff2','fonts/ipa-font-coverage.json','CREDITS.md','LICENSE-MIT.txt','editor-gestures.js','diacritic-display.js','language-picker.js','fonts/positioned-diacritics.json']
+          files=['apple-touch-icon.png','index.html','sitemap.xml','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js','fonts/Andika-Regular.woff2','fonts/ipa-font-coverage.json','CREDITS.md','LICENSE-MIT.txt','editor-gestures.js','diacritic-display.js','language-picker.js','fonts/positioned-diacritics.json']
           for attempt in range(36):
               try:
                   for name in files:
@@ -124,6 +130,7 @@ jobs:
           APP_URL: https://esakits.github.io/ipa-keyboard/
           PUBLIC_CHECK: '1'
         run: |
+          node qa/floating-overview.cjs
           node qa/desktop-zoom.cjs
           node qa/panel-controls.cjs
           node qa/vowel-equivalence.cjs

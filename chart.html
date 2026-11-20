@@ -691,23 +691,23 @@ body{padding:8px!important;overflow-x:hidden!important}
 }
 .zoom-stage{position:relative;margin:0;overflow:visible;background:#fff}
 .zoom-stage>#chart{position:absolute;left:0;top:0;transform-origin:top left;max-width:none!important}
-.zoom-minimap{position:absolute;z-index:4;right:12px;top:72px;width:178px;height:170px;background:rgba(255,255,255,.96);color:#26323c;border:1px solid #8796a5;border-radius:6px;box-shadow:0 2px 12px #0003;touch-action:none;user-select:none;cursor:crosshair}
-.zoom-minimap[hidden]{display:none!important}
-.zoom-minimap .map-heading{position:absolute;inset:0 0 auto;display:flex;direction:ltr;align-items:center;height:32px}
-.zoom-minimap .map-grip{display:flex;align-items:center;gap:4px;flex:1;min-width:0;height:32px;padding:0 6px;border:0;background:transparent;color:inherit;text-align:left;cursor:grab;touch-action:none;font:inherit}
-.zoom-minimap .map-grip:active{cursor:grabbing}
-.zoom-minimap .map-title{font-size:11px;font-weight:700;white-space:nowrap}
-.zoom-minimap .map-close{flex:none;width:32px;height:32px;padding:0;border:0;border-radius:0 5px 0 0;background:transparent;color:inherit;font:22px/1 Arial,sans-serif;cursor:pointer}
-.zoom-minimap .map-close:hover{background:#0001}
-.zoom-minimap button:focus-visible{outline:2px solid #2379ba;outline-offset:-3px}
-.zoom-minimap .map-canvas{position:absolute;inset:33px 6px 7px 6px;background:#fff;border:1px solid #a7b4bf}
-.zoom-minimap .map-region{position:absolute;border:1px solid #bbc5d0;background:#edf3f8;font-size:7px;text-align:center;overflow:hidden}
-.zoom-minimap .map-window{position:absolute;z-index:2;border:2px solid #dc623e;background:rgba(237,129,60,.19);pointer-events:none;box-sizing:border-box}
+
+
+
+
+
+
+
+
+
+
+
+
 .zoom-toolbar .zoom-close{display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:7px}
-@media(max-width:580px){.zoom-toolbar{gap:4px;padding:6px}.zoom-toolbar .zoom-title{display:none}.zoom-toolbar button{padding:8px}.zoom-minimap{width:140px;height:140px;right:5px;top:66px}.zoom-minimap .map-title{font-size:9px}.zoom-minimap .map-canvas{inset:33px 4px 4px}.zoom-minimap .map-region{font-size:5px}}
+@media(max-width:580px){.zoom-toolbar{gap:4px;padding:6px}.zoom-toolbar .zoom-title{display:none}.zoom-toolbar button{padding:8px}}
 /* Single-row chart controls on narrow screens; keep the map launcher icon-sized. */
 .zoom-toolbar .zoom-map-open{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;padding:6px;flex:0 0 38px}
-@media(max-width:580px){.zoom-toolbar{flex-wrap:nowrap;gap:5px;padding:6px 7px;min-height:52px}.zoom-toolbar #zoomMinus,.zoom-toolbar #zoomPlus{flex:0 0 38px;width:38px;height:38px;padding:4px;font-size:23px}.zoom-toolbar input[type=range]{width:auto;min-width:24px;max-width:none;flex:1 1 0}.zoom-toolbar .zoom-label{flex:0 0 48px;min-width:0;font-size:15px;text-align:center}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex:0 0 36px;width:36px;height:36px;padding:6px}.zoom-minimap{top:60px}}
+@media(max-width:580px){.zoom-toolbar{flex-wrap:nowrap;gap:5px;padding:6px 7px;min-height:52px}.zoom-toolbar #zoomMinus,.zoom-toolbar #zoomPlus{flex:0 0 38px;width:38px;height:38px;padding:4px;font-size:23px}.zoom-toolbar input[type=range]{width:auto;min-width:24px;max-width:none;flex:1 1 0}.zoom-toolbar .zoom-label{flex:0 0 48px;min-width:0;font-size:15px;text-align:center}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex:0 0 36px;width:36px;height:36px;padding:6px}}
 @media(max-width:360px){.zoom-toolbar{gap:3px;padding:5px 4px}.zoom-toolbar .zoom-map-open,.zoom-toolbar .zoom-close{flex-basis:32px;width:32px;height:34px}}
 /* Embedded viewing uses the single parent header restore control. */
 .is-embedded-chart .zoom-toolbar{display:none}
@@ -858,6 +858,24 @@ html[data-inverse="true"] .v831-symbol-popup{--preview-fill:#303033;--preview-in
 .is-embedded-chart .chart-tool-row{display:none}
 #chart>h1#title{gap:0;margin:0 0 6px;text-align:center}
 #chart .v83-ipa-key,#chart .v83-ipa-key *,#chart .ipa,.v831-symbol-popup .preview-symbol{font-family:var(--ipa-font,'Doulos SIL Local'),serif!important}
+</style><style id="overviewStyleRules">
+/* Shared by the chart and its parent-hosted, draggable overview. */
+.zoom-minimap{--map-label-size:10px;position:absolute;z-index:4;right:12px;top:72px;width:224px;height:224px;box-sizing:border-box;overflow:hidden;background:#faf9fc;color:#26323c;border:1px solid #b7b2bf;border-radius:10px;box-shadow:0 3px 12px #0002;touch-action:none;user-select:none;cursor:crosshair;font-family:'Noto Sans JP Local',sans-serif}
+.zoom-minimap[hidden]{display:none!important}
+.zoom-minimap.is-parent-map{position:fixed;z-index:2147483647;transform-origin:0 0}
+html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotate(180deg);color-scheme:light}
+.zoom-minimap .map-heading{position:absolute;inset:0 0 auto;display:flex;direction:ltr;align-items:center;height:32px;border-bottom:1px solid #cbc5d4;background:#faf9fc}
+.zoom-minimap .map-grip{display:flex;align-items:center;gap:5px;flex:1;min-width:0;height:32px;padding:0 8px;border:0;background:transparent;color:inherit;text-align:left;cursor:grab;touch-action:none;font:inherit}
+.zoom-minimap .map-grip:active{cursor:grabbing}
+.zoom-minimap .map-title{font-size:12px;font-weight:600;white-space:nowrap}
+.zoom-minimap .map-close{flex:none;width:32px;height:32px;padding:0;border:0;background:transparent;color:inherit;font:22px/1 Arial,sans-serif;cursor:pointer}
+.zoom-minimap .map-close:hover{background:#0001}
+.zoom-minimap button:focus-visible{outline:2px solid #a680de;outline-offset:-3px}
+.zoom-minimap .map-canvas{position:absolute;inset:33px 0 0;background:#f1eef7;border:0}
+.zoom-minimap .map-region{position:absolute;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid #cbc5d4;background:#f1eef7;padding:1px;font-size:var(--map-label-size);line-height:1.12;font-weight:500;text-align:center;overflow:hidden}
+.zoom-minimap .map-label{display:block;width:100%;overflow-wrap:anywhere}
+.zoom-minimap .map-window{position:absolute;z-index:2;border:1.5px solid #a680de;background:rgba(166,128,222,.10);pointer-events:none;box-sizing:border-box}
+@media(max-width:580px){.zoom-minimap{--map-label-size:9px;width:184px;height:204px}}
 </style><script>if(parent!==window)document.documentElement.classList.add("is-embedded-chart");</script><script src="ipa-fonts.js"></script><script src="i18n.js"></script></head><body><div class="chart-tool-row"><button type="button" id="chartZoomOpen" aria-haspopup="dialog" aria-controls="chartZoomDialog" data-i18n-key="⛶ 拡大表示">⛶ 拡大表示</button></div><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title"><span class="chart-title-main">国際音声記号 </span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>
 		<table>
@@ -1692,7 +1710,7 @@ SOFTWARE.
  <input id="chartZoomSlider" type="range" min="1" max="4" step="0.001" value="1" aria-label="Zoom"/>
  <button type="button" id="chartZoomDecrease" aria-label="Zoom out">−</button>
  </div>
- <div class="zoom-minimap" id="zoomMinimap" role="group" aria-label="チャート全体図。ドラッグで表示位置を移動">
+ <div class="zoom-minimap" id="zoomMinimap" hidden role="group" aria-label="チャート全体図。ドラッグで表示位置を移動">
  <div class="map-heading"><button type="button" id="zoomMapDrag" class="map-grip" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown"><span aria-hidden="true">⠿</span><span class="map-title" data-i18n-key="IPA全体図">IPA全体図</span></button><button type="button" id="zoomMapClose" class="map-close" aria-label="閉じる" title="閉じる"><span aria-hidden="true">×</span></button></div>
  <div class="map-canvas" id="zoomMapCanvas"><div id="zoomMapWindow" class="map-window"></div></div>
  </div>
@@ -1714,29 +1732,46 @@ function syncZoomLabels(){
 window.addEventListener('esa-chart-locale-change',syncZoomLabels);
 window.esaI18n.ready.then(syncZoomLabels);
 const desktopZoom=matchMedia('(min-width:600px) and (hover:hover) and (pointer:fine)');
-let mapPosition=null,mapDrag=null,editorRect=null;
+let mapPosition=null,mapDrag=null,editorRect=null,mapShown=true,mapExtent=null;
+function mapBounds(){
+ if(map.classList.contains('is-parent-map')){
+  const v=parent.visualViewport,sc=Math.max(.1,v?.scale||1);
+  map.style.transform='scale('+(1/sc)+')';
+  return {left:v?.offsetLeft||0,top:v?.offsetTop||0,width:v?.width||parent.innerWidth,height:v?.height||parent.innerHeight,scale:sc};
+ }
+ const b=dialog.getBoundingClientRect();return {left:b.left,top:b.top,width:b.width,height:b.height,scale:1};
+}
 function placeMap(x,y){
  if(!active||map.hidden)return;
- const bounds=dialog.getBoundingClientRect(),r=map.getBoundingClientRect(),toolbar=dialog.querySelector('.zoom-toolbar').getBoundingClientRect();
- const availableWidth=bounds.width-(desktopZoom.matches?64:0);
- const top=Math.min(toolbar.bottom-bounds.top+6,Math.max(6,bounds.height-r.height-6));
- mapPosition={x:clamp(x,6,Math.max(6,availableWidth-r.width-6)),y:clamp(y,top,Math.max(top,bounds.height-r.height-6))};
+ const bounds=mapBounds(),r=map.getBoundingClientRect(),pad=6/bounds.scale;
+ const availableWidth=bounds.width-(desktopZoom.matches?64/bounds.scale:0),top=pad;
+ mapPosition={x:clamp(x,pad,Math.max(pad,availableWidth-r.width-pad)),y:clamp(y,top,Math.max(top,bounds.height-r.height-pad))};
  if(editorRect){
-  const e=editorRect,m=mapPosition,w=r.width,h=r.height;
-  const hits=(x,y)=>x<e.right+6&&x+w>e.left-6&&y<e.bottom+6&&y+h>e.top-6;
+  let e=editorRect;
+  if(map.classList.contains('is-parent-map')){
+   const host=frameElement.getBoundingClientRect(),sx=host.width/frameElement.clientWidth,sy=host.height/frameElement.clientHeight;
+   e={left:host.left+e.left*sx-bounds.left,right:host.left+e.right*sx-bounds.left,top:host.top+e.top*sy-bounds.top,bottom:host.top+e.bottom*sy-bounds.top};
+  }
+  const m=mapPosition,w=r.width,h=r.height;
+  const hits=(x,y)=>x<e.right+pad&&x+w>e.left-pad&&y<e.bottom+pad&&y+h>e.top-pad;
   if(hits(m.x,m.y)){
-   const candidates=[[m.x,e.top-h-6],[e.left-w-6,m.y],[e.right+6,m.y],[m.x,e.bottom+6]]
-    .filter(([x,y])=>x>=6&&x+w<=availableWidth-6&&y>=top&&y+h<=bounds.height-6&&!hits(x,y))
+   const candidates=[[m.x,e.top-h-pad],[e.left-w-pad,m.y],[e.right+pad,m.y],[m.x,e.bottom+pad]]
+    .filter(([x,y])=>x>=pad&&x+w<=availableWidth-pad&&y>=top&&y+h<=bounds.height-pad&&!hits(x,y))
     .sort((a,b)=>Math.hypot(a[0]-m.x,a[1]-m.y)-Math.hypot(b[0]-m.x,b[1]-m.y));
    if(candidates.length)mapPosition={x:candidates[0][0],y:candidates[0][1]};
   }
  }
- map.style.right='auto';map.style.left=mapPosition.x+'px';map.style.top=mapPosition.y+'px';
+ map.style.right='auto';map.style.left=(mapPosition.x+(map.classList.contains('is-parent-map')?bounds.left:0))+'px';map.style.top=(mapPosition.y+(map.classList.contains('is-parent-map')?bounds.top:0))+'px';
 }
-function constrainMap(){if(!active||map.hidden)return;const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();placeMap(mapPosition?.x??r.left-bounds.left,mapPosition?.y??r.top-bounds.top);}
+function constrainMap(){
+ if(!active||map.hidden)return;
+ const b=mapBounds(),r=map.getBoundingClientRect();
+ const initialTop=map.classList.contains('is-parent-map')?Math.max(6/b.scale,parent.document.querySelector('.app-header').getBoundingClientRect().bottom-b.top+8/b.scale):r.top-b.top;
+ placeMap(mapPosition?.x??Math.max(6/b.scale,b.width-r.width-(desktopZoom.matches?64/b.scale:0)-6/b.scale),mapPosition?.y??initialTop);
+}
 function syncMapToggle(){const shown=active&&!map.hidden;mapToggle.setAttribute('aria-pressed',String(shown));mapToggle.setAttribute('aria-expanded',String(shown));}
-function showMap(show){map.hidden=!show;syncMapToggle();if(show){constrainMap();renderMinimap();}}
-mapGrip.addEventListener('pointerdown',e=>{if(e.button!==0||mapDrag)return;e.preventDefault();const r=map.getBoundingClientRect(),bounds=dialog.getBoundingClientRect();mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left-bounds.left,top:r.top-bounds.top};try{mapGrip.setPointerCapture(e.pointerId);}catch{}mapGrip.focus({preventScroll:true});});
+function showMap(show){mapShown=show;map.hidden=!active||!show;syncMapToggle();if(show){fitMapLabels();constrainMap();renderMinimap();}}
+mapGrip.addEventListener('pointerdown',e=>{if(e.button!==0||mapDrag)return;e.preventDefault();const bounds=mapBounds(),r=map.getBoundingClientRect();mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left-bounds.left,top:r.top-bounds.top};try{mapGrip.setPointerCapture(e.pointerId);}catch{}mapGrip.focus({preventScroll:true});});
 mapGrip.addEventListener('pointermove',e=>{if(mapDrag?.id!==e.pointerId)return;e.preventDefault();placeMap(mapDrag.left+e.clientX-mapDrag.x,mapDrag.top+e.clientY-mapDrag.y);});
 function endMapDrag(e){if(mapDrag?.id===e.pointerId)mapDrag=null;}
 for(const name of ['pointerup','pointercancel','lostpointercapture'])mapGrip.addEventListener(name,endMapDrag);
@@ -1768,34 +1803,45 @@ function setZoom(z,keepCenter=true){
  if(keepCenter){viewport.scrollLeft=centerX*next-viewport.clientWidth/2;viewport.scrollTop=centerY*next-viewport.clientHeight/2;}
  renderMinimap();
 }
+function fitMapLabels(){
+ if(map.hidden)return;
+ const preferred=parseFloat(getComputedStyle(map).getPropertyValue('--map-label-size'))||10;
+ for(const item of mapCanvas.querySelectorAll('.map-region')){
+  const label=item.querySelector('.map-label');let size=preferred;
+  item.style.fontSize=size+'px';
+  while(size>8&&(label.scrollHeight>item.clientHeight-2||label.scrollWidth>item.clientWidth-2)){size=Math.max(8,size-.25);item.style.fontSize=size+'px';}
+ }
+}
 function drawMap(){
- mapCanvas.querySelectorAll(".map-region").forEach(el=>el.remove());
- const chartH=Math.max(1,chart.offsetHeight), chartRect=chart.getBoundingClientRect();
- // offsetTop/Left reflects layout geometry; transform scale is ignored by offset dimensions.
- for(const [id,label] of parts){
-  const el=chart.querySelector("#"+id); if(!el)continue;
-  const item=document.createElement("div");item.className="map-region";item.textContent=window.esaI18n.t(document.querySelector("#"+id+" h2")?.dataset.i18nKey||({pulmonicConsonants:"子音（肺気流）",nonPulmonicConsonants:"子音（非肺気流）",vowels:"母音",otherSymbols:"その他の記号",suprasegmentals:"超分節的要素",diacritics:"補助記号",tonesAndWordAccents:"声調と語アクセント"}[id]),window.esaChartLocale||"ja","chart");
-  item.style.left=(100*el.offsetLeft/BASE)+"%";
-  item.style.top=(100*el.offsetTop/chartH)+"%";
-  item.style.width=(100*el.offsetWidth/BASE)+"%";
-  item.style.height=(100*el.offsetHeight/chartH)+"%";
+ mapCanvas.querySelectorAll('.map-region').forEach(el=>el.remove());
+ const chartRect=chart.getBoundingClientRect(),sc=scale();
+ const regions=parts.map(([id])=>chart.querySelector('#'+id)).filter(Boolean).map(el=>{const r=el.getBoundingClientRect();return {el,left:(r.left-chartRect.left)/sc,top:(r.top-chartRect.top)/sc,width:r.width/sc,height:r.height/sc};});
+ const top=Math.min(...regions.map(e=>e.top)),bottom=Math.max(...regions.map(e=>e.top+e.height));
+ mapExtent={top,height:Math.max(1,bottom-top)};
+ map.querySelector('.map-title').textContent=window.esaI18n.t('IPA全体図',window.esaChartLocale||'ja','chart');
+ for(const region of regions){
+  const el=region.el;
+  const item=document.createElement('div'),label=document.createElement('span');item.className='map-region';label.className='map-label';
+  label.textContent=window.esaI18n.t(el.querySelector('h2')?.dataset.i18nKey||({pulmonicConsonants:'子音（肺気流）',nonPulmonicConsonants:'子音（非肺気流）',vowels:'母音',otherSymbols:'その他の記号',suprasegmentals:'超分節的要素',diacritics:'補助記号',tonesAndWordAccents:'声調と語アクセント'}[el.id]),window.esaChartLocale||'ja','chart');
+  item.dataset.region=el.id;item.title=label.textContent;item.appendChild(label);
+  item.style.left=(100*region.left/BASE)+'%';item.style.top=(100*(region.top-mapExtent.top)/mapExtent.height)+'%';
+  item.style.width=(100*region.width/BASE)+'%';item.style.height=(100*region.height/mapExtent.height)+'%';
   mapCanvas.insertBefore(item,mapWindow);
  }
+ fitMapLabels();
 }
 function renderMinimap(){
  if(!active)return;
- const sc=scale(),cw=BASE*sc,ch=Math.max(1,chart.offsetHeight*sc);
- const x=clamp(viewport.scrollLeft/cw,0,1),y=clamp(viewport.scrollTop/ch,0,1);
- mapWindow.style.left=(100*x)+"%";mapWindow.style.top=(100*y)+"%";
- mapWindow.style.width=(100*Math.min(1,viewport.clientWidth/cw))+"%";
- mapWindow.style.height=(100*Math.min(1,viewport.clientHeight/ch))+"%";
+ const sc=scale(),extent=mapExtent||{top:0,height:Math.max(1,chart.offsetHeight)};
+ const left=clamp(viewport.scrollLeft/sc/BASE,0,1),right=clamp((viewport.scrollLeft+viewport.clientWidth)/sc/BASE,0,1);
+ const top=clamp((viewport.scrollTop/sc-extent.top)/extent.height,0,1),bottom=clamp(((viewport.scrollTop+viewport.clientHeight)/sc-extent.top)/extent.height,0,1);
+ mapWindow.style.left=(100*left)+'%';mapWindow.style.top=(100*top)+'%';mapWindow.style.width=(100*(right-left))+'%';mapWindow.style.height=(100*(bottom-top))+'%';
 }
 function moveFromMap(e){
- const rect=mapCanvas.getBoundingClientRect();
- const x=clamp((e.clientX-rect.left)/rect.width,0,1);
- const y=clamp((e.clientY-rect.top)/rect.height,0,1);
- viewport.scrollLeft=x*stage.offsetWidth-viewport.clientWidth/2;
- viewport.scrollTop=y*stage.offsetHeight-viewport.clientHeight/2;
+ const rect=mapCanvas.getBoundingClientRect(),extent=mapExtent||{top:0,height:Math.max(1,chart.offsetHeight)};
+ const x=clamp((e.clientX-rect.left)/rect.width,0,1),y=clamp((e.clientY-rect.top)/rect.height,0,1);
+ viewport.scrollLeft=x*BASE*scale()-viewport.clientWidth/2;
+ viewport.scrollTop=(extent.top+y*extent.height)*scale()-viewport.clientHeight/2;
  renderMinimap();
 }
 
@@ -1817,7 +1863,7 @@ function queueViewerLayout(){
 function openViewer(returnFocus){
  if(active)return;active=true;lastFocus=returnFocus?.nodeType===1?returnFocus:document.activeElement;layoutSignature='';
  try{
-  dialog.hidden=false;dialog.dataset.ready='false';document.body.style.overflow='hidden';
+  dialog.hidden=false;map.hidden=!mapShown;dialog.dataset.ready='false';document.body.style.overflow='hidden';
   stage.appendChild(chart);chart.style.margin='0';chart.style.width=BASE+'px';chart.style.minWidth=BASE+'px';
   zoom=clamp(parent!==window?(parent.visualViewport?.scale||1):1,1,4);baseScale=viewerBaseScale(viewport.clientWidth);
   setZoom(zoom,false);viewport.scrollLeft=0;viewport.scrollTop=0;
@@ -1828,7 +1874,7 @@ function openViewer(returnFocus){
 function closeViewer(){
  if(!active)return;active=false;pinch=null;pinchPan=null;desktopGesture=null;pointerInside=false;pointerAnchor=null;mousePan=null;mapDrag=null;delete document.documentElement.dataset.chartGesture;
  if(layoutPending)cancelAnimationFrame(layoutPending);layoutPending=0;layoutSignature='';
- dialog.hidden=true;dialog.dataset.ready='false';syncMapToggle();
+ dialog.hidden=true;map.hidden=true;dialog.dataset.ready='false';syncMapToggle();
  chart.style.removeProperty('transform');chart.style.removeProperty('margin');chart.style.removeProperty('width');chart.style.removeProperty('min-width');
  if(originalNext)originalParent.insertBefore(chart,originalNext);else originalParent.appendChild(chart);
  document.body.style.overflow='';window.dispatchEvent(new Event('resize'));notifyZoom(false);

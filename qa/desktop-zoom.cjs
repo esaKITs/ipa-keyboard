@@ -14,7 +14,8 @@ async function open(p,url,width=1280,touch=false){
  if(await f.locator('#zoomMinimap').isVisible())await f.locator('#zoomMapClose').click();return f;
 }
 async function point(p,f){const r=await f.locator('#zoomViewport').boundingBox();await p.mouse.move(r.x+r.width*.42,r.y+180);return f.evaluate(()=>{const v=document.getElementById('zoomViewport'),r=v.getBoundingClientRect(),c=document.getElementById('chart').getBoundingClientRect(),s=new DOMMatrix(getComputedStyle(document.getElementById('chart')).transform).a;const x=r.left+v.clientWidth*.42,y=r.top+180;return {x,y,cx:(x-c.left)/s,cy:(y-c.top)/s};});}
-async function anchored(f,a,label){const d=await f.evaluate(a=>{const c=document.getElementById('chart'),r=c.getBoundingClientRect(),s=new DOMMatrix(getComputedStyle(c).transform).a;return {dx:r.left+a.cx*s-a.x,dy:r.top+a.cy*s-a.y};},a);assert(Math.abs(d.dx)<1.6&&Math.abs(d.dy)<1.6,label+' anchor drift '+JSON.stringify(d));return d;}
+async function drift(f,a){return f.evaluate(a=>{const c=document.getElementById('chart'),r=c.getBoundingClientRect(),s=new DOMMatrix(getComputedStyle(c).transform).a;return {dx:r.left+a.cx*s-a.x,dy:r.top+a.cy*s-a.y};},a);}
+async function anchored(f,a,label){const d=await drift(f,a);assert(Math.abs(d.dx)<1.6&&Math.abs(d.dy)<1.6,label+' anchor drift '+JSON.stringify(d));return d;}
 async function gesture(f,type,value){return f.locator('#zoomViewport').evaluate((v,{type,value})=>{const e=new Event(type,{bubbles:true,cancelable:true});Object.defineProperty(e,'scale',{value});v.dispatchEvent(e);return e.defaultPrevented;},{type,value});}
 async function nativeWheel(p,delta){const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame(),old=await scale(f);await p.keyboard.down('Control');await p.mouse.wheel(0,delta);await p.keyboard.up('Control');await f.waitForFunction(old=>new DOMMatrix(getComputedStyle(document.getElementById('chart')).transform).a!==old,old);await settle(p);}
 async function hit(l){assert(await l.isVisible(),'visible '+l);assert(await l.evaluate(e=>{const r=e.getBoundingClientRect(),h=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return e===h||e.contains(h);}), 'uncovered '+l);}
@@ -26,9 +27,9 @@ const overlap=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.h
   const p=await b.newPage({viewport:{width:1280,height:844},serviceWorkers:'block'}),f=await open(p,baseline);await point(p,f);const initial=await scale(f);
   await f.locator('#zoomViewport').focus();await p.keyboard.press('Control+=');await settle(p);const key=await scale(f);
   await gesture(f,'gesturestart',1);await gesture(f,'gesturechange',1.5);await gesture(f,'gestureend',1.5);const pinch=await scale(f);
-  const a=await point(p,f);await nativeWheel(p,-120);const wheel=await scale(f);const drift=await anchored(f,a,'baseline wheel');
+  const a=await point(p,f);await nativeWheel(p,-120);const wheel=await scale(f);const offset=await drift(f,a);assert(Math.abs(offset.dx)>10,'baseline reproduces pointer anchor clamping at entry scale');
   assert.equal(key,initial,'baseline reproduces missing Ctrl +/- handler');assert.equal(pinch,initial,'baseline reproduces missing desktop GestureEvent handler');assert(wheel>initial,'existing Ctrl wheel path actually works');
-  results.push({name,baseline:{initial,key,pinch,wheel,drift}});await p.screenshot({path:`qa-production/${name}-desktop-zoom-before.png`});await p.close();
+  results.push({name,baseline:{initial,key,pinch,wheel,offset}});console.log('REPRODUCED BASELINE',name,{initial,key,pinch,wheel,offset});fs.writeFileSync('qa-production/desktop-zoom-results.json',JSON.stringify(results,null,2));await p.screenshot({path:`qa-production/${name}-desktop-zoom-before.png`});await p.close();
  }
  for(const width of [768,1280]){
  const p=await b.newPage({viewport:{width,height:844},serviceWorkers:'block'}),errors=[];p.on('pageerror',e=>errors.push(String(e)));
@@ -54,7 +55,7 @@ const overlap=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.h
  const sr=await slider.boundingBox(),value=Number(await slider.inputValue()),thumb=sr.y+11+(1-(value-1)/3)*(sr.height-22);
  await p.mouse.move(sr.x+sr.width/2,thumb);await p.mouse.down();await p.mouse.move(sr.x+sr.width/2,sr.y+12,{steps:18});await p.mouse.up();await settle(p);
  const values=await f.evaluate(()=>window.__rangeValues);assert(values.length>=5,'continuous native slider input '+JSON.stringify(values));assert(values.at(-1)>value+.3);assert(values.every((v,i)=>i===0||v>=values[i-1]-.002));
- await slider.focus();await p.keyboard.press('End');await settle(p);assert.equal(Number(await slider.inputValue()),4);const maximum=await scale(f);assert(Math.abs(maximum/(Math.min(1,(vb.width-12)/1040))-4)<.02,'fourfold maximum');
+ await slider.focus();await p.keyboard.press('End');await settle(p);assert.equal(Number(await slider.inputValue()),4);const maximum=await scale(f);assert(Math.abs(maximum/((vb.width-12)/1040)-4)<.02,'fourfold maximum');
  await p.keyboard.press('Home');await settle(p);assert.equal(Number(await slider.inputValue()),1);const minimum=await scale(f);await f.locator('#chartZoomIncrease').click();assert(await scale(f)>minimum);await f.locator('#chartZoomDecrease').click();assert(Math.abs(await scale(f)-minimum)<.001);
  // Slider zoom preserves visible centre (within scroll limits).
  await slider.focus();await p.keyboard.press('End');await settle(p);await f.locator('#zoomViewport').evaluate(v=>{v.scrollLeft=300;v.scrollTop=300});await settle(p);

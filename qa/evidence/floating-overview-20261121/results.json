@@ -1,0 +1,58 @@
+{
+  "version": "v83.34",
+  "before": "c4e8a2045f4d30ee0ccea736e1d29ad4d15e8df8",
+  "published": "2711356c48299ae7059952592b999830ee54c196",
+  "backup": "backup/before-floating-overview-20261121-c4e8a20",
+  "url": "https://esakits.github.io/ipa-keyboard/",
+  "runs": {
+    "staged": 44817563330,
+    "pages": 44819964747,
+    "public": 44819965201
+  },
+  "conclusions": {
+    "staged": "success",
+    "pages": "success",
+    "public": "success"
+  },
+  "stagedPassGroups": {
+    "FLOATING OVERVIEW": 80,
+    "DESKTOP ZOOM": 32,
+    "MOBILE NO SLIDER": 8,
+    "PANEL CONTROLS": 10,
+    "RECOVERY": 10,
+    "VOWEL EQUIVALENCE": 16,
+    "HEADER ALIGNMENT": 10,
+    "TAP FEEDBACK": 10,
+    "FINAL FOUR": 10,
+    "DIRECT EDITOR": 4,
+    "VIEWER ICON": 6,
+    "PRODUCTION": 4,
+    "UPGRADE": 2
+  },
+  "publicPassGroups": {
+    "FLOATING OVERVIEW": 80,
+    "DESKTOP ZOOM": 32,
+    "MOBILE NO SLIDER": 8,
+    "PANEL CONTROLS": 10,
+    "RECOVERY": 20,
+    "VOWEL EQUIVALENCE": 16,
+    "HEADER ALIGNMENT": 10,
+    "TAP FEEDBACK": 10,
+    "FINAL FOUR": 10,
+    "DIRECT EDITOR": 4,
+    "VIEWER ICON": 6,
+    "PRODUCTION": 4
+  },
+  "publicAssetBytesMatch": 16,
+  "physicalIPhoneTest": false,
+  "latestScreenshotsDownloadedLocally": false,
+  "reason": "executor environment startup failed; Actions screenshots and JSON are saved as artifacts",
+  "artifacts": [
+    {
+      "id": 14670858440,
+      "name": "ipa-production-public-screenshots",
+      "size": 17928561,
+      "digest": "sha256:50541ad4aca6f2bc42d6d0645a64b08e79b2ba15486964634418199cbb4a657a"
+    }
+  ]
+}

@@ -36,7 +36,7 @@ async function moveTo(p,block,grip,x,y){const b=await block.boundingBox(),r=awai
  assert(Math.min(...labels.map(l=>l.top))<.01,'no unused title band above regions');assert(Math.max(...labels.map(l=>l.top+l.height))>99.99,'no unused trailing band');
  const outer=await map.boundingBox(),canvas=await p.locator('#zoomMapCanvas').boundingBox();assert(canvas.x-outer.x<=1.5&&outer.x+outer.width-canvas.x-canvas.width<=1.5&&outer.y+outer.height-canvas.y-canvas.height<=1.5,'canvas uses the card edges without nested gutters');
  if(locale==='ja'&&!dark){
-  const last=await f.locator('#chartZoomDecrease').isVisible()?f.locator('#chartZoomDecrease'):f.locator('#zoomViewport');
+  const last=f.locator('#chartZoomDialog button:not([disabled]):visible,#chartZoomDialog input:not([disabled]):visible,#chartZoomDialog [tabindex="0"]:visible').last();
   await last.focus();await p.keyboard.press('Tab');assert(await grip.evaluate(e=>e===document.activeElement),'Tab reaches the parent-hosted overview grip');
   await p.keyboard.press('Tab');assert(await p.locator('#zoomMapClose').evaluate(e=>e===document.activeElement),'Tab reaches overview close');
   await p.keyboard.press('Tab');assert(await f.locator('#zoomViewport').evaluate(e=>e===document.activeElement),'Tab returns to chart');

@@ -1752,6 +1752,11 @@ const parts=[
 ];
 function clamp(n,a,b){return Math.min(b,Math.max(a,n));}
 function scale(){return baseScale*zoom;}
+function viewerBaseScale(width){
+ // Desktop starts at exactly the available width, so even a tiny pinch can
+ // preserve its anchor without being clamped by an unscrollable side gap.
+ return desktopZoom.matches?Math.max(1,width)/BASE:Math.min(1,Math.max(1,width-12)/BASE);
+}
 function setZoom(z,keepCenter=true){
  if(!active)return;
  const old=scale(), centerX=(viewport.scrollLeft+viewport.clientWidth/2)/old, centerY=(viewport.scrollTop+viewport.clientHeight/2)/old;
@@ -1803,7 +1808,7 @@ function queueViewerLayout(){
   const width=viewport.clientWidth,height=viewport.clientHeight;if(width<=0||height<=0)return;
   const signature=width+'x'+height;if(signature===layoutSignature)return;layoutSignature=signature;
   const old=scale(),cx=(viewport.scrollLeft+width/2)/Math.max(.001,old),cy=(viewport.scrollTop+height/2)/Math.max(.001,old);
-  baseScale=Math.max(1,width-12)/BASE;
+  baseScale=viewerBaseScale(width);
   setZoom(zoom,false);
   viewport.scrollLeft=cx*scale()-width/2;viewport.scrollTop=cy*scale()-height/2;
   drawMap();renderMinimap();constrainMap();dialog.dataset.ready='true';
@@ -1814,7 +1819,7 @@ function openViewer(returnFocus){
  try{
   dialog.hidden=false;dialog.dataset.ready='false';document.body.style.overflow='hidden';
   stage.appendChild(chart);chart.style.margin='0';chart.style.width=BASE+'px';chart.style.minWidth=BASE+'px';
-  zoom=clamp(parent!==window?(parent.visualViewport?.scale||1):1,1,4);baseScale=Math.max(1,viewport.clientWidth-12)/BASE;
+  zoom=clamp(parent!==window?(parent.visualViewport?.scale||1):1,1,4);baseScale=viewerBaseScale(viewport.clientWidth);
   setZoom(zoom,false);viewport.scrollLeft=0;viewport.scrollTop=0;
   drawMap();renderMinimap();syncMapToggle();notifyZoom(true);queueViewerLayout();
   (parent!==window?viewport:document.getElementById('zoomClose')).focus({preventScroll:true});

@@ -938,6 +938,9 @@ function setLocale(){
  headerZoom.disabled=frame.contentDocument?.readyState!=='complete';
 }
 headerZoom.addEventListener('click',()=>frame.contentDocument?.getElementById(expanded?'zoomClose':'chartZoomOpen')?.click());
+// Keyboard events stay in their focused document; forward chart zoom shortcuts
+// when focus remains in the header while the pointer is over the chart.
+document.addEventListener('keydown',e=>{if(expanded)frame.contentWindow?.esaChartZoomKey?.(e);});
 window.esaI18n.ready.then(setLocale);
 function viewportLayout(){
  layoutFrame=0;if(!expanded)return;
@@ -989,7 +992,8 @@ try{const p=JSON.parse(localStorage.getItem(key));if(p&&Number.isFinite(p.x)&&Nu
 function bounds(){
  const v=window.visualViewport,s=Math.max(.1,v?.scale||1),pad=8/s;
  const top=Math.max(0,document.querySelector('.app-header').getBoundingClientRect().bottom-(v?.offsetTop||0));
- return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad+top,w:Math.max(0,(v?.width||innerWidth)-2*pad),h:Math.max(0,(v?.height||innerHeight)-2*pad-top)};
+ const zoomGutter=document.getElementById('chartZoomToggle').getAttribute('aria-expanded')==='true'&&matchMedia('(min-width:600px) and (hover:hover) and (pointer:fine)').matches?64/s:0;
+ return {scale:s,x:(v?.offsetLeft||0)+pad,y:(v?.offsetTop||0)+pad+top,w:Math.max(0,(v?.width||innerWidth)-2*pad-zoomGutter),h:Math.max(0,(v?.height||innerHeight)-2*pad-top)};
 }
 function place(){
  placeFrame=0;const b=bounds();

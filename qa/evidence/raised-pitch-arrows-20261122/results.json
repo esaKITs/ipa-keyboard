@@ -1,0 +1,180 @@
+{
+  "version": "v83.34",
+  "baseline": "fd6345e2bb50c878fff0081ea8955cea246a9b0e",
+  "published": "1646b6c148f5be0b0f420490b96515fc5839470f",
+  "backup": "backup/before-raised-pitch-arrows-20261121-fd6345e",
+  "officialSource": "https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_E/IPA_Kiel_sl.pdf#page=13",
+  "staged": {
+    "run": 44915590361,
+    "job": 136880381334,
+    "result": "success",
+    "artifact": 14711639840,
+    "sha256": "8a31b67c367c0c04f2edd1c8aac6e0303fd774781673348abd3ef4dd46bb72a2",
+    "results": [
+      {
+        "file": "desktop-zoom-results.json",
+        "cases": 32,
+        "failures": null
+      },
+      {
+        "file": "vowel-equivalence-results.json",
+        "cases": 16,
+        "failures": 0
+      },
+      {
+        "file": "floating-overview-results.json",
+        "cases": 80,
+        "failures": 0
+      },
+      {
+        "file": "suprasegmental-grouping-results.json",
+        "cases": 80,
+        "failures": 0
+      },
+      {
+        "file": "panel-controls-results.json",
+        "cases": 10,
+        "failures": 0
+      },
+      {
+        "file": "final-four-results.json",
+        "cases": 10,
+        "failures": 0
+      },
+      {
+        "file": "tap-feedback-results.json",
+        "cases": 10,
+        "failures": 0
+      },
+      {
+        "file": "header-alignment-results.json",
+        "cases": 10,
+        "failures": 0
+      }
+    ]
+  },
+  "pages": {
+    "run": 44934419495,
+    "result": "success"
+  },
+  "public": {
+    "run": 44934419918,
+    "job": 136937834154,
+    "result": "success",
+    "artifact": 14719702744,
+    "sha256": "798c23ad1e85ab16d333988b3b9ef7f190f42b03f29b1f633376920f5fe90221",
+    "results": [
+      {
+        "file": "desktop-zoom-results.json",
+        "cases": 32,
+        "failures": null
+      },
+      {
+        "file": "vowel-equivalence-results.json",
+        "cases": 16,
+        "failures": 0
+      },
+      {
+        "file": "floating-overview-results.json",
+        "cases": 80,
+        "failures": 0
+      },
+      {
+        "file": "suprasegmental-grouping-results.json",
+        "cases": 80,
+        "failures": 0
+      },
+      {
+        "file": "panel-controls-results.json",
+        "cases": 10,
+        "failures": 0
+      },
+      {
+        "file": "final-four-results.json",
+        "cases": 10,
+        "failures": 0
+      },
+      {
+        "file": "tap-feedback-results.json",
+        "cases": 10,
+        "failures": 0
+      },
+      {
+        "file": "header-alignment-results.json",
+        "cases": 10,
+        "failures": 0
+      }
+    ]
+  },
+  "assets": {
+    "apple-touch-icon.png": {
+      "bytes": 5479,
+      "sha256": "cd341d3b13c8c0926313b061ff6cf898f46c085ca1a137647cae9a6c2cb9954e"
+    },
+    "index.html": {
+      "bytes": 136343,
+      "sha256": "b607f3e163cf5db3a9052abb4af6b420d0e38f403af517e15fa1011b516ece6e"
+    },
+    "sitemap.xml": {
+      "bytes": 174,
+      "sha256": "6fa9936677e98187bd5a23648b94ee8b7137b73e58a2b318813fab4a1d8f9768"
+    },
+    "chart.html": {
+      "bytes": 138010,
+      "sha256": "212bbbbbfb8f60997ae01381a65b60939a499f07f4c8cb31d6c2a572266fb51c"
+    },
+    "i18n.js": {
+      "bytes": 2406,
+      "sha256": "6b20a7143e6e99ff64c74045b64545d2b611320ee3618efdba7b93d1681fb8e9"
+    },
+    "translations.csv": {
+      "bytes": 49530,
+      "sha256": "b32463b7d23a7a42e32271f73c4ddab39d37368b67ae5386396ebeb6880e34fd"
+    },
+    "ipa-fonts.js": {
+      "bytes": 1505,
+      "sha256": "edc268ff13ccb58459e73395a9d066f84f3c76e7123adeb1ee45b40780850947"
+    },
+    "sw.js": {
+      "bytes": 2197,
+      "sha256": "42df5ce74527f70cdfd0694cca16fe3d60d926287b20f38bc01b0e31ccacffaf"
+    },
+    "fonts/Andika-Regular.woff2": {
+      "bytes": 295740,
+      "sha256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb"
+    },
+    "fonts/ipa-font-coverage.json": {
+      "bytes": 4594,
+      "sha256": "6ff5da6588db4d4012fa6f6ff89555b473c589ad4aeca56c62973f76985599f5"
+    },
+    "CREDITS.md": {
+      "bytes": 2872,
+      "sha256": "f709f7b12f6e2e38c234ed36c838d36455ebd1496d3f71a5a858678b01d0c8ae"
+    },
+    "LICENSE-MIT.txt": {
+      "bytes": 1142,
+      "sha256": "b81601890570aa42d7c59c28a1edb2943afb1035dd96e5a537074334210487ba"
+    },
+    "editor-gestures.js": {
+      "bytes": 7374,
+      "sha256": "ec102052329ad778a5b3cb57df74fc95c3d51b2f048418cd9a2c3dc7f08705d6"
+    },
+    "diacritic-display.js": {
+      "bytes": 8834,
+      "sha256": "c17ffd3170df94a810f6a16986199819f1bb1806ab8c4e3d98f248e8e4639cd3"
+    },
+    "language-picker.js": {
+      "bytes": 5728,
+      "sha256": "14d3be6361c985850bac02f032c21b84558a6d8d0542c4d2ba14447bddac8999"
+    },
+    "fonts/positioned-diacritics.json": {
+      "bytes": 22911,
+      "sha256": "26b1e6ba8079523049dcf3a4a581c43aa9d7cd3224ec814484e810ae77728301"
+    }
+  },
+  "unverified": [
+    "Physical iPhone Safari",
+    "WebKit native multi-touch injection (existing pinch test uses synthetic TouchEvents)"
+  ],
+  "finalMain": "1646b6c148f5be0b0f420490b96515fc5839470f"
+}

@@ -20,12 +20,21 @@ const settle=p=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestA
    assert.deepEqual(structure.arrows.map(x=>x.codePointAt(0)),[0xA71C,0x2197,0xA71B,0x2198]);
    assert.equal(await f.locator('#pitchMovements sup').count(),0,'native raised characters, not CSS superscripts');
    const metrics=await f.evaluate(async()=>{
-    const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d'),all=[];
+    const canvas=document.createElement('canvas');canvas.width=320;canvas.height=320;
+    const ctx=canvas.getContext('2d',{willReadFrequently:true}),all=[],baseline=224;
+    // WebKit reports zero instead of a negative canvas TextMetrics descent.
+    // Measure actual rasterized ink in both engines; keep the same strict criteria.
+    function ink(text){
+     ctx.clearRect(0,0,320,320);ctx.fillText(text,64,baseline);
+     const data=ctx.getImageData(0,0,320,320).data;let top=320,bottom=-1;
+     for(let y=0;y<320;y++)for(let x=0;x<320;x++)if(data[(y*320+x)*4+3]>16){top=Math.min(top,y);bottom=Math.max(bottom,y);}
+     return{ascent:baseline-top,descent:bottom-baseline,height:bottom-top+1};
+    }
     for(const font of window.esaIPAFonts.options){
-     await window.esaIPAFonts.load(document,font.key);ctx.font='32px "'+font.family+'"';
+     await window.esaIPAFonts.load(document,font.key);ctx.font='128px "'+font.family+'"';
      for(const [raised,ordinary]of [['ꜜ','\u2193'],['ꜛ','\u2191']]){
-      const r=ctx.measureText(raised),o=ctx.measureText(ordinary);
-      all.push({font:font.key,codepoint:raised.codePointAt(0),ascent:r.actualBoundingBoxAscent,descent:r.actualBoundingBoxDescent,height:r.actualBoundingBoxAscent+r.actualBoundingBoxDescent,ordinaryHeight:o.actualBoundingBoxAscent+o.actualBoundingBoxDescent});
+      const r=ink(raised),o=ink(ordinary);
+      all.push({font:font.key,codepoint:raised.codePointAt(0),pixelFontSize:128,...r,ordinaryHeight:o.height});
      }
     }
     return all;

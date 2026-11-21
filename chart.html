@@ -409,42 +409,42 @@ div#diacritics td.wideCell + th {
 /* Tones and Word Accents ********************************/
 
 
-div#tonesAndWordAccents  {
+div:is(#tonesAndWordAccents,#pitchMovements)  {
 	clear:right;
 	float:right;
 	margin-bottom:1em;
 }
-div#tonesAndWordAccents h2  {
+div:is(#tonesAndWordAccents,#pitchMovements) h3  {
 	text-align:center;
 	white-space:nowrap;
 }
-div#tonesAndWordAccents td, div#tonesAndWordAccents th  {
+div:is(#tonesAndWordAccents,#pitchMovements) td, div:is(#tonesAndWordAccents,#pitchMovements) th  {
 	
 }
 
-div#tonesAndWordAccents td  {
+div:is(#tonesAndWordAccents,#pitchMovements) td  {
 	font-size:20pt;
 	text-align:center;
 }
 
-div#tonesAndWordAccents thead th {
+div:is(#tonesAndWordAccents,#pitchMovements) thead th {
 	text-align:center;
 	font-weight:bold;
 	padding:3px;
 }
-div#tonesAndWordAccents tbody th {
+div:is(#tonesAndWordAccents,#pitchMovements) tbody th {
 	padding:0px 2ex 0px 2ex;
 	text-align:left;
 	font-size:10pt;	
 }
-div#tonesAndWordAccents tbody th.or {
+div:is(#tonesAndWordAccents,#pitchMovements) tbody th.or {
 	padding:0px 2px 0px 2px;
 	font-size:8pt;
 	vertical-align:middle;
 }
 
 /*
-div#tonesAndWordAccents tbody th#notSupported p {
+div:is(#tonesAndWordAccents,#pitchMovements) tbody th#notSupported p {
 	padding:1ex;
 	border:dotted 1px #BBBBBB;
 	text-align:center;
@@ -590,7 +590,7 @@ body{margin:0;padding:16px;overflow-x:auto;background:#fff}
 #chart>.ipa-pdf-left>#diacritics{width:100%}
 #chart>.ipa-pdf-right>#vowels{width:100%}
 #chart>.ipa-pdf-right>#suprasegmentals{width:100%}
-#chart>.ipa-pdf-right>#tonesAndWordAccents{width:100%}
+#chart>.ipa-pdf-right>:is(#tonesAndWordAccents,#pitchMovements){width:100%}
 #chart h1,#chart h2,#chart th{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif}
 #chart h2{font-size:15px;margin:0 0 5px}
 #chart th{font-size:11px}
@@ -600,16 +600,16 @@ body{margin:0;padding:16px;overflow-x:auto;background:#fff}
 #chart #pulmonicConsonants td{font-size:20pt}
 #chart #vowelQuadrilateral{width:100%;height:270px;position:relative;overflow:visible}
 #chart #vowelBackground{width:100%;height:100%}
-#chart #suprasegmentals table,#chart #tonesAndWordAccents table,#chart #otherSymbols table,#chart #diacritics table{width:100%;max-width:100%}
+#chart #suprasegmentals table,#chart :is(#tonesAndWordAccents,#pitchMovements) table,#chart #otherSymbols table,#chart #diacritics table{width:100%;max-width:100%}
 #chart #diacritics>p{font-size:11px;line-height:1.35;margin:7px 0 0}
 #chart #diacritics td{font-size:12px}
 #chart #diacritics span.ipa{font-size:18pt}
 #chart #pulmonicConsonants>p,#chart #vowels>p{font-size:11px;line-height:1.35;margin:4px 0}
-#chart #nonPulmonicConsonants th,#chart #diacritics th,#chart #otherSymbols th,#chart #suprasegmentals th,#chart #tonesAndWordAccents th{font-size:11px}
-#chart #suprasegmentals td,#chart #tonesAndWordAccents td{font-size:12px}
+#chart #nonPulmonicConsonants th,#chart #diacritics th,#chart #otherSymbols th,#chart #suprasegmentals th,#chart :is(#tonesAndWordAccents,#pitchMovements) th{font-size:11px}
+#chart #suprasegmentals td,#chart :is(#tonesAndWordAccents,#pitchMovements) td{font-size:12px}
 #chart #suprasegmentals th{white-space:normal}
 .ipa-text-arrow{font-family:"DejaVu Sans","Noto Sans Symbols 2","Noto Sans Symbols",Arial,sans-serif!important;font-variant-emoji:text;font-size:20pt;line-height:1;white-space:nowrap}
-#chart #tonesAndWordAccents .ipa-text-arrow{display:inline-block;min-width:1.25em;text-align:center}
+#chart :is(#tonesAndWordAccents,#pitchMovements) .ipa-text-arrow{display:inline-block;min-width:1.25em;text-align:center}
 .source-note,body>details{display:block;width:1040px;max-width:1040px;margin:7px auto;font:10px/1.35 system-ui,sans-serif;color:#555}
 
 /* v0.2.1: Fit the entire fixed-layout chart as one page on narrow screens. */
@@ -735,7 +735,7 @@ html[data-inverse="true"] .zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10p
 
 /* v0.2.60: tighten vertical whitespace in non-vowel tables only.
    Keep all glyph font sizes, horizontal spacing and vowel SVG unchanged. */
-#chart :is(#pulmonicConsonants,#nonPulmonicConsonants,#otherSymbols,#suprasegmentals,#diacritics,#tonesAndWordAccents) :is(td,th){line-height:1.08;height:auto;min-height:0}
+#chart :is(#pulmonicConsonants,#nonPulmonicConsonants,#otherSymbols,#suprasegmentals,#diacritics,:is(#tonesAndWordAccents,#pitchMovements)) :is(td,th){line-height:1.08;height:auto;min-height:0}
 #chart #pulmonicConsonants :is(td,th){padding-top:0;padding-bottom:0}
 /* Pulmonic only: add glyph-bottom breathing room without creating a white gap below gray impossible spans. */
 #chart #pulmonicConsonants tbody td > span{padding-bottom:3px}
@@ -773,33 +773,33 @@ html[data-inverse="true"] .zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10p
 #chart #diacritics tbody .ipa{font-size:32px}
 /* v0.2.98: align wide diacritics with tone table beneath suprasegmentals, avoiding overlap. */
 #chart>.ipa-pdf-left>#diacritics{margin-top:0}
-#chart>.ipa-pdf-right>#tonesAndWordAccents{width:305px;align-self:flex-end}
-#chart #tonesAndWordAccents table{table-layout:fixed}
-#chart #tonesAndWordAccents tbody th{overflow-wrap:anywhere;padding-left:1px;padding-right:1px}
+#chart>.ipa-pdf-right>:is(#tonesAndWordAccents,#pitchMovements){width:305px;align-self:flex-end}
+#chart :is(#tonesAndWordAccents,#pitchMovements) table{table-layout:fixed}
+#chart :is(#tonesAndWordAccents,#pitchMovements) tbody th{overflow-wrap:anywhere;padding-left:1px;padding-right:1px}
 
 
-#chart #tonesAndWordAccents :is(td,th){padding-top:0;padding-bottom:0}
+#chart :is(#tonesAndWordAccents,#pitchMovements) :is(td,th){padding-top:0;padding-bottom:0}
 /* v0.2.98: restore IPA tone glyphs to chart-scale typography; labels remain unchanged. */
-#chart #tonesAndWordAccents tbody td{font-size:26px}
-#chart #tonesAndWordAccents tbody .ipa-text-arrow{font-size:26px}
+#chart :is(#tonesAndWordAccents,#pitchMovements) tbody td{font-size:26px}
+#chart :is(#tonesAndWordAccents,#pitchMovements) tbody .ipa-text-arrow{font-size:26px}
 /* v0.2.98: align suprasegmental and tone symbols to actual 25.5px vowel glyphs; narrow tone block without changing labels. */
 #chart #suprasegmentals tbody td.symbol,#chart #suprasegmentals tbody td.example{font-size:25.5px}
-#chart>.ipa-pdf-right>#tonesAndWordAccents{width:410px;align-self:flex-start}
-#chart #tonesAndWordAccents table{width:100%;max-width:100%}
-#chart #tonesAndWordAccents tbody td,#chart #tonesAndWordAccents tbody .ipa-text-arrow{font-size:25.5px}
-#chart #tonesAndWordAccents tbody th{padding-left:3px;padding-right:3px}
+#chart>.ipa-pdf-right>:is(#tonesAndWordAccents,#pitchMovements){width:410px;align-self:flex-start}
+#chart :is(#tonesAndWordAccents,#pitchMovements) table{width:100%;max-width:100%}
+#chart :is(#tonesAndWordAccents,#pitchMovements) tbody td,#chart :is(#tonesAndWordAccents,#pitchMovements) tbody .ipa-text-arrow{font-size:25.5px}
+#chart :is(#tonesAndWordAccents,#pitchMovements) tbody th{padding-left:3px;padding-right:3px}
 
 
-#chart :is(#pulmonicConsonants,#nonPulmonicConsonants,#otherSymbols,#suprasegmentals,#diacritics,#tonesAndWordAccents) :is(td,th) :is(span,p){line-height:inherit}
+#chart :is(#pulmonicConsonants,#nonPulmonicConsonants,#otherSymbols,#suprasegmentals,#diacritics,:is(#tonesAndWordAccents,#pitchMovements)) :is(td,th) :is(span,p){line-height:inherit}
 /* v0.2.98: final cascade after earlier local rules; actual vowel symbols use inline 32px. */
 #chart #suprasegmentals tbody td.symbol,#chart #suprasegmentals tbody td.example{font-size:32px}
-#chart #tonesAndWordAccents tbody td,#chart #tonesAndWordAccents tbody .ipa-text-arrow{font-size:32px}
+#chart :is(#tonesAndWordAccents,#pitchMovements) tbody td,#chart :is(#tonesAndWordAccents,#pitchMovements) tbody .ipa-text-arrow{font-size:32px}
 
 
 /* v0.2.98 final positioning: no panel overlap; keep diacritics 68% of chart. */
-#chart>.ipa-pdf-right>#tonesAndWordAccents{width:305px;align-self:flex-end}
-#chart #tonesAndWordAccents table{width:100%;max-width:100%;table-layout:fixed}
-#chart #tonesAndWordAccents tbody th{overflow-wrap:anywhere;padding-left:1px;padding-right:1px}
+#chart>.ipa-pdf-right>:is(#tonesAndWordAccents,#pitchMovements){width:305px;align-self:flex-end}
+#chart :is(#tonesAndWordAccents,#pitchMovements) table{width:100%;max-width:100%;table-layout:fixed}
+#chart :is(#tonesAndWordAccents,#pitchMovements) tbody th{overflow-wrap:anywhere;padding-left:1px;padding-right:1px}
 
 /* v0.2.98: provide actual ink clearance for 32px combining diacritic examples. */
 #chart #diacritics tbody :is(td,th){padding-top:2px;padding-bottom:4px;line-height:1.12;vertical-align:middle}
@@ -818,6 +818,13 @@ html[data-inverse="true"] .zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10p
 #chart>.ipa-pdf-left>#nonPulmonicConsonants{width:510px;max-width:none;align-self:flex-start}
 #chart .vowel-hover-area{fill:transparent;stroke:none;pointer-events:all}
 .license-details{font:13px/1.55 Arial,Helvetica,sans-serif;overflow-wrap:anywhere}.license-details p{margin:10px 0}.license-details a{color:inherit;text-decoration:underline}
+/* The heading covers all three groups; pitch movements are outside the tone table. */
+#chart>.ipa-pdf-right>#suprasegmentalGroup{width:305px;align-self:flex-end;border-inline-start:1px solid #aaa;padding-inline-start:10px}
+#chart #suprasegmentalGroup>div{float:none;clear:none;position:relative;width:100%;margin:0}
+#chart #suprasegmentalGroup>#suprasegmentals{margin-bottom:16px}
+#chart #suprasegmentalGroup>#tonesAndWordAccents{margin-bottom:12px}
+#chart #suprasegmentalGroup>#pitchMovements{border-top:1px solid #aaa;padding-top:8px}
+#chart #toneHeading{font-family:'Noto Sans JP Local',sans-serif;font-size:13px;margin:0 0 5px;text-align:center;white-space:normal}
 </style>
 <style id="v83-symbol-feedback">
 /* Interaction-only layer: the original chart geometry and measured SVG coordinates stay untouched. */
@@ -1459,8 +1466,9 @@ html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotat
 <g class="vowel-symbols"><g class="vowel-tooltip"><title id="vowel-title-0">U+0069: LATIN SMALL LETTER I</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-0" data-idx="0" data-pdf-x="374.8367" data-pdf-y="289.4276" text-anchor="middle" x="154.342" y="45.768">i</text></g><g class="vowel-tooltip"><title id="vowel-title-1">U+0079: LATIN SMALL LETTER Y</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-1" data-idx="1" data-pdf-x="391.2305" data-pdf-y="289.4276" text-anchor="middle" x="181.407" y="45.768">y</text></g><g class="vowel-tooltip"><title id="vowel-title-2">U+0268: LATIN SMALL LETTER I WITH STROKE</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-2" data-idx="2" data-pdf-x="450.2642" data-pdf-y="289.4276" text-anchor="middle" x="278.867" y="45.768">ɨ</text></g><g class="vowel-tooltip"><title id="vowel-title-3">U+0289: LATIN SMALL LETTER U BAR</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-3" data-idx="3" data-pdf-x="466.4764" data-pdf-y="289.3956" text-anchor="middle" x="305.632" y="45.715">ʉ</text></g><g class="vowel-tooltip"><title id="vowel-title-4">U+026F: LATIN SMALL LETTER TURNED M</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-4" data-idx="4" data-pdf-x="522.9789" data-pdf-y="289.3795" text-anchor="middle" x="398.914" y="45.689">ɯ</text></g><g class="vowel-tooltip"><title id="vowel-title-5">U+0075: LATIN SMALL LETTER U</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-5" data-idx="5" data-pdf-x="541.7064" data-pdf-y="289.4276" text-anchor="middle" x="429.831" y="45.768">u</text></g><g class="vowel-tooltip"><title id="vowel-title-6">U+026A: LATIN LETTER SMALL CAPITAL I</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-6" data-idx="6" data-pdf-x="409.0286" data-pdf-y="307.1938" text-anchor="middle" x="210.790" y="75.136">ɪ</text></g><g class="vowel-tooltip"><title id="vowel-title-7">U+028F: LATIN LETTER SMALL CAPITAL Y</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-7" data-idx="7" data-pdf-x="420.4669" data-pdf-y="307.2258" text-anchor="middle" x="229.674" y="75.189">ʏ</text></g><g class="vowel-tooltip"><title id="vowel-title-8">U+028A: LATIN SMALL LETTER UPSILON</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-8" data-idx="8" data-pdf-x="506.7827" data-pdf-y="307.2258" text-anchor="middle" x="372.175" y="75.189">ʊ</text></g><g class="vowel-tooltip"><title id="vowel-title-9">U+0065: LATIN SMALL LETTER E</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-9" data-idx="9" data-pdf-x="398.6958" data-pdf-y="327.1066" text-anchor="middle" x="193.732" y="108.052">e</text></g><g class="vowel-tooltip"><title id="vowel-title-10">U+00F8: LATIN SMALL LETTER O WITH STROKE</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-10" data-idx="10" data-pdf-x="416.3979" data-pdf-y="327.0907" text-anchor="middle" x="222.956" y="108.026">ø</text></g><g class="vowel-tooltip"><title id="vowel-title-11">U+0258: LATIN SMALL LETTER REVERSED E</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-11" data-idx="11" data-pdf-x="461.8053" data-pdf-y="327.0163" text-anchor="middle" x="297.921" y="107.903">ɘ</text></g><g class="vowel-tooltip"><title id="vowel-title-12">U+0275: LATIN SMALL LETTER BARRED O</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-12" data-idx="12" data-pdf-x="479.1322" data-pdf-y="327.0746" text-anchor="middle" x="326.526" y="107.999">ɵ</text></g><g class="vowel-tooltip"><title id="vowel-title-13">U+0264: LATIN SMALL LETTER RAMS HORN</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-13" data-idx="13" data-pdf-x="524.1084" data-pdf-y="327.0906" text-anchor="middle" x="400.778" y="108.026">ɤ</text></g><g class="vowel-tooltip"><title id="vowel-title-14">U+006F: LATIN SMALL LETTER O</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-14" data-idx="14" data-pdf-x="541.578" data-pdf-y="327.1066" text-anchor="middle" x="429.619" y="108.052">o</text></g><g class="vowel-tooltip"><title id="vowel-title-15">U+0259: LATIN SMALL LETTER SCHWA</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-15" data-idx="15" data-pdf-x="476.273" data-pdf-y="345.514" text-anchor="middle" x="321.806" y="138.480">ə</text></g><g class="vowel-tooltip"><title id="vowel-title-16">U+025B: LATIN SMALL LETTER OPEN E</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-16" data-idx="16" data-pdf-x="423.687" data-pdf-y="364.802" text-anchor="middle" x="234.990" y="170.364">ɛ</text></g><g class="vowel-tooltip"><title id="vowel-title-17">U+0153: LATIN SMALL LIGATURE OE</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-17" data-idx="17" data-pdf-x="443.055" data-pdf-y="364.834" text-anchor="middle" x="266.965" y="170.417">œ</text></g><g class="vowel-tooltip"><title id="vowel-title-18">U+025C: LATIN SMALL LETTER REVERSED OPEN E</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-18" data-idx="18" data-pdf-x="475.095" data-pdf-y="364.818" text-anchor="middle" x="319.861" y="170.390">ɜ</text></g><g class="vowel-tooltip"><title id="vowel-title-19">U+025E: LATIN SMALL LETTER CLOSED REVERSED OPEN E</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-19" data-idx="19" data-pdf-x="491.49" data-pdf-y="364.856" text-anchor="middle" x="346.928" y="170.453">ɞ</text></g><g class="vowel-tooltip"><title id="vowel-title-20">U+028C: LATIN SMALL LETTER TURNED V</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-20" data-idx="20" data-pdf-x="525.222" data-pdf-y="364.818" text-anchor="middle" x="402.617" y="170.390">ʌ</text></g><g class="vowel-tooltip"><title id="vowel-title-21">U+0254: LATIN SMALL LETTER OPEN O</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-21" data-idx="21" data-pdf-x="541.37" data-pdf-y="364.834" text-anchor="middle" x="429.276" y="170.417">ɔ</text></g><g class="vowel-tooltip"><title id="vowel-title-22">U+00E6: LATIN SMALL LETTER AE</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-22" data-idx="22" data-pdf-x="435.6939" data-pdf-y="387.1656" text-anchor="middle" x="254.813" y="207.331">æ</text></g><g class="vowel-tooltip"><title id="vowel-title-23">U+0250: LATIN SMALL LETTER TURNED A</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-23" data-idx="23" data-pdf-x="489.209" data-pdf-y="383.561" text-anchor="middle" x="343.162" y="201.373">ɐ</text></g><g class="vowel-tooltip"><title id="vowel-title-24">U+0061: LATIN SMALL LETTER A</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-24" data-idx="24" data-pdf-x="449.688" data-pdf-y="404.147" text-anchor="middle" x="277.916" y="235.402">a</text></g><g class="vowel-tooltip"><title id="vowel-title-25">U+0276: LATIN LETTER SMALL CAPITAL OE</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-25" data-idx="25" data-pdf-x="469.32" data-pdf-y="404.115" text-anchor="middle" x="310.327" y="235.349">ɶ</text></g><g class="vowel-tooltip"><title id="vowel-title-26">U+0251: LATIN SMALL LETTER ALPHA</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-26" data-idx="26" data-pdf-x="524.229" data-pdf-y="404.131" text-anchor="middle" x="400.978" y="235.375">ɑ</text></g><g class="vowel-tooltip"><title id="vowel-title-27">U+0252: LATIN SMALL LETTER TURNED ALPHA</title><text class="vowel-dynamic-glyph" aria-describedby="vowel-title-27" data-idx="27" data-pdf-x="541.947" data-pdf-y="404.115" text-anchor="middle" x="430.229" y="235.349">ɒ</text></g></g>
 <text class="vowel-note" x="500" y="290" text-anchor="end"><tspan x="500" y="290">記号が対になっている場合、</tspan><tspan x="500" y="303">右側の記号が円唇母音を表す。</tspan></text>
 </svg></div>
-		</div><div id="suprasegmentals">
-		<h2>超分節的要素</h2>
+		</div><div id="suprasegmentalGroup" role="group" aria-labelledby="suprasegmentalHeading">
+		<h2 id="suprasegmentalHeading">超分節的要素</h2>
+		<div id="suprasegmentals">
 		<table>
 			<col style="width:56px" />
 			<col style="width:104px" />
@@ -1509,8 +1517,8 @@ html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotat
 				</tr>
 			</tbody>
 		</table>
-		</div><div id="tonesAndWordAccents">
-		<h2>声調と語アクセント</h2>
+		</div><div id="tonesAndWordAccents" role="group" aria-labelledby="toneHeading">
+		<h3 id="toneHeading">声調と語アクセント</h3>
 		<table>
 			<colgroup span="4">
 				<col />
@@ -1602,6 +1610,12 @@ Update this chart to correspond to: http://upload.wikimedia.org/wikipedia/en/1/1
 					<th>上昇下降</th>
 				</tr>
 				<!-- Note: there are more tone contour letters than displayed on the official chart -->
+			</tbody>
+		</table>
+		</div><div id="pitchMovements">
+		<table>
+			<colgroup><col /><col /><col /><col /><col /><col /><col /><col /></colgroup>
+			<tbody>
 				<tr>
 					<td title="U+2193: DOWNWARDS ARROW">↓</td>
 					<th colspan="3">ダウンステップ</th>
@@ -1618,8 +1632,7 @@ Update this chart to correspond to: http://upload.wikimedia.org/wikipedia/en/1/1
 				</tr>
 			</tbody>
 		</table>
-		<!--<p>Note: these last four are not tech</p>-->
-		</div></div></div><p class="source-note chart-reference">IPA Chart <span id="appVersion" aria-label="バージョン0.2.98">0.2.98</span> · <span id="alphabetRevision" data-i18n-key="（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span></p><p class="source-note" data-i18n-key="制作・編集：江崎哲也（山梨大学／esaKITs） / Tetsuya Esaki (University of Yamanashi)。© 2026 T. Esaki (esaKITs)。">制作・編集：江崎哲也（山梨大学／esaKITs） / Tetsuya Esaki (University of Yamanashi)。© 2026 T. Esaki (esaKITs)。</p><p class="source-note" data-i18n-key="本チャートは、Weston Ruter氏がMIT Licenseのもとで公開したIPA Chartの配置を基に制作しました。その先駆的な取り組みと、成果を広く公開されたことに深く感謝いたします。">本チャートは、Weston Ruter氏がMIT Licenseのもとで公開したIPA Chartの配置を基に制作しました。その先駆的な取り組みと、成果を広く公開されたことに深く感謝いたします。</p><p class="source-note" data-i18n-template="日本語表記は、国際音声学会（IPA）の公式日本語版（Japanese version 2020、© 2026 International Phonetic Association）を参照しました。資料：{資料リンク}（IPA Chart revised to 2015/2005）。">日本語表記は、国際音声学会（IPA）の公式日本語版（Japanese version 2020、© 2026 International Phonetic Association）を参照しました。資料：<a data-i18n-token="{資料リンク}" data-i18n-key="国際音声学会公式PDF" href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf" target="_blank" rel="noopener">国際音声学会公式PDF</a>（IPA Chart revised to 2015/2005）。</p><p class="source-note" data-i18n-key="母音四辺形は、IPA公式PDFからベクター座標を抽出し、輪郭線・交点・各母音記号の位置関係を計測したうえで再構成しました。">母音四辺形は、IPA公式PDFからベクター座標を抽出し、輪郭線・交点・各母音記号の位置関係を計測したうえで再構成しました。</p><p class="source-note license-summary">IPA chart and adaptations: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>.</p><details id="creditsLicenses"><summary data-i18n-key="クレジットとライセンス">クレジットとライセンス</summary><div class="license-details" lang="en" dir="ltr">
+		</div></div></div></div><p class="source-note chart-reference">IPA Chart <span id="appVersion" aria-label="バージョン0.2.98">0.2.98</span> · <span id="alphabetRevision" data-i18n-key="（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）">（IPA 2015/2005改訂・2026年公開の日本語版資料に準拠）</span></p><p class="source-note" data-i18n-key="制作・編集：江崎哲也（山梨大学／esaKITs） / Tetsuya Esaki (University of Yamanashi)。© 2026 T. Esaki (esaKITs)。">制作・編集：江崎哲也（山梨大学／esaKITs） / Tetsuya Esaki (University of Yamanashi)。© 2026 T. Esaki (esaKITs)。</p><p class="source-note" data-i18n-key="本チャートは、Weston Ruter氏がMIT Licenseのもとで公開したIPA Chartの配置を基に制作しました。その先駆的な取り組みと、成果を広く公開されたことに深く感謝いたします。">本チャートは、Weston Ruter氏がMIT Licenseのもとで公開したIPA Chartの配置を基に制作しました。その先駆的な取り組みと、成果を広く公開されたことに深く感謝いたします。</p><p class="source-note" data-i18n-template="日本語表記は、国際音声学会（IPA）の公式日本語版（Japanese version 2020、© 2026 International Phonetic Association）を参照しました。資料：{資料リンク}（IPA Chart revised to 2015/2005）。">日本語表記は、国際音声学会（IPA）の公式日本語版（Japanese version 2020、© 2026 International Phonetic Association）を参照しました。資料：<a data-i18n-token="{資料リンク}" data-i18n-key="国際音声学会公式PDF" href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf" target="_blank" rel="noopener">国際音声学会公式PDF</a>（IPA Chart revised to 2015/2005）。</p><p class="source-note" data-i18n-key="母音四辺形は、IPA公式PDFからベクター座標を抽出し、輪郭線・交点・各母音記号の位置関係を計測したうえで再構成しました。">母音四辺形は、IPA公式PDFからベクター座標を抽出し、輪郭線・交点・各母音記号の位置関係を計測したうえで再構成しました。</p><p class="source-note license-summary">IPA chart and adaptations: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>.</p><details id="creditsLicenses"><summary data-i18n-key="クレジットとライセンス">クレジットとライセンス</summary><div class="license-details" lang="en" dir="ltr">
 <p>esaKITs — Enhanced Smart AI Kits<br>© 2026 Tetsuya Esaki / esaKITs</p>
 <p>Based on the <a href="https://github.com/westonruter/ipa-chart">IPA Unicode Keyboard by Weston Ruter</a> (MIT License). The software portions and their modifications are provided under the MIT License below; the chart content and fonts have the separate licenses stated here.</p>
 <p>IPA chart adapted from materials © 2026 International Phonetic Association, available under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Sources: <a href="https://www.internationalphoneticassociation.org/IPAcharts/IPA_charts_T/IPA_charts_T.html">IPA charts in other languages</a> and <a href="https://www.internationalphoneticassociation.org/IPAcharts/common_files/pdfs/pdfs_IPA_charts_T/IPA_Kiel_jpn.pdf">Japanese chart (Japanese version 2020; revised to 2015/2005; © 2026 IPA)</a>. Accessed 16 November 2026.</p>
@@ -1783,8 +1796,7 @@ let active=false, zoom=1, baseScale=1, lastFocus=null, drag=false;
 syncMapToggle();
 const parts=[
  ["pulmonicConsonants","肺気流子音"],["nonPulmonicConsonants","非肺気流"],["vowels","母音"],
- ["otherSymbols","その他"],["suprasegmentals","超分節"],["diacritics","補助記号"],
- ["tonesAndWordAccents","声調"]
+ ["otherSymbols","その他"],["suprasegmentalGroup","超分節"],["diacritics","補助記号"]
 ];
 function clamp(n,a,b){return Math.min(b,Math.max(a,n));}
 function scale(){return baseScale*zoom;}
@@ -1823,7 +1835,7 @@ function drawMap(){
  for(const region of regions){
   const el=region.el;
   const item=document.createElement('div'),label=document.createElement('span');item.className='map-region';label.className='map-label';
-  label.textContent=window.esaI18n.t(el.querySelector('h2')?.dataset.i18nKey||({pulmonicConsonants:'子音（肺気流）',nonPulmonicConsonants:'子音（非肺気流）',vowels:'母音',otherSymbols:'その他の記号',suprasegmentals:'超分節的要素',diacritics:'補助記号',tonesAndWordAccents:'声調と語アクセント'}[el.id]),window.esaChartLocale||'ja','chart');
+  label.textContent=window.esaI18n.t(el.querySelector('h2')?.dataset.i18nKey||({pulmonicConsonants:'子音（肺気流）',nonPulmonicConsonants:'子音（非肺気流）',vowels:'母音',otherSymbols:'その他の記号',suprasegmentalGroup:'超分節的要素',diacritics:'補助記号',tonesAndWordAccents:'声調と語アクセント'}[el.id]),window.esaChartLocale||'ja','chart');
   item.dataset.region=el.id;item.title=label.textContent;item.appendChild(label);
   item.style.left=(100*region.left/BASE)+'%';item.style.top=(100*(region.top-mapExtent.top)/mapExtent.height)+'%';
   item.style.width=(100*region.width/BASE)+'%';item.style.height=(100*region.height/mapExtent.height)+'%';
@@ -2181,7 +2193,7 @@ const BASE_SELECTOR=[
  '#otherSymbols tbody td[title^="U+"]','#otherSymbols tbody th span[title^="U+"]',
  '#diacritics tbody td[title^="U+"]',
  '#suprasegmentals tbody td.symbol',
- '#tonesAndWordAccents tbody td[title^="U+"]',
+ '#tonesAndWordAccents tbody td[title^="U+"]','#pitchMovements tbody td[title^="U+"]',
  '#vowelQuadrilateral .vowel-dynamic-glyph',
  '#diacritics tbody td.leftExample','#diacritics tbody td.rightExample',
  '#suprasegmentals tbody td.example','#suprasegmentals tbody td#stressExample','#suprasegmentals tbody td#syllableExample'
@@ -2378,7 +2390,7 @@ window.visualViewport?.addEventListener('resize',hideSymbolPopup);
 window.visualViewport?.addEventListener('scroll',hideSymbolPopup);
 document.addEventListener('keydown',e=>{const el=hitFrom(e.target);if(el&&(e.key==='Enter'||e.key===' ')){heldSymbol=el;selectedDot.style.opacity='0';selectedDot.style.display='none';const rect=el.getBoundingClientRect();showSymbolPopup(el,rect);flashHit(el,rect);}},true);
 document.addEventListener('keyup',e=>{if(e.key==='Enter'||e.key===' '){releaseSymbol();hideSymbolPopup();}},true);
-window.__v83HitStats=()=>({all:all.size,bySection:Object.fromEntries(['pulmonicConsonants','nonPulmonicConsonants','vowels','otherSymbols','diacritics','suprasegmentals','tonesAndWordAccents','diacriticsNote'].map(id=>[id,document.getElementById(id)?.querySelectorAll('.v83-ipa-key').length||0]))});
+window.__v83HitStats=()=>({all:all.size,bySection:Object.fromEntries(['pulmonicConsonants','nonPulmonicConsonants','vowels','otherSymbols','diacritics','suprasegmentals','tonesAndWordAccents','pitchMovements','diacriticsNote'].map(id=>[id,document.getElementById(id)?.querySelectorAll('.v83-ipa-key').length||0]))});
 // All visible translations share the same CSV catalog as the input panel.
 window.esaI18n.ready.then(function(){
 const dictionary=window.esaI18n.rows('chart');
@@ -2437,7 +2449,7 @@ function applyLocale(){
    if(node.nodeValue!==val)node.nodeValue=val;
   }
   // Prefix labels for the controls are also translated from the existing dictionary.
-  root.querySelectorAll('h2,th,p').forEach(el=>{
+  root.querySelectorAll('h2,h3,th,p').forEach(el=>{
    if(el.closest('.v83-ipa-key'))return;
    if(!originalAttrs.has(el))originalAttrs.set(el,el.getAttribute('title'));
   });

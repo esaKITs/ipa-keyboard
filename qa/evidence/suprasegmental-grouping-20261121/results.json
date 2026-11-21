@@ -1,0 +1,216 @@
+{
+  "version": "v83.34",
+  "baseline": "2711356c48299ae7059952592b999830ee54c196",
+  "published": "fd6345e2bb50c878fff0081ea8955cea246a9b0e",
+  "backup": "backup/before-suprasegmental-grouping-20261121-2711356",
+  "stagedRun": 44877572105,
+  "pagesRun": 44878933720,
+  "publicRun": 44878934041,
+  "staged": "success",
+  "pages": "success",
+  "public": "success",
+  "assets": {
+    "apple-touch-icon.png": {
+      "bytes": 5479,
+      "sha256": "cd341d3b13c8c0926313b061ff6cf898f46c085ca1a137647cae9a6c2cb9954e"
+    },
+    "index.html": {
+      "bytes": 136343,
+      "sha256": "b607f3e163cf5db3a9052abb4af6b420d0e38f403af517e15fa1011b516ece6e"
+    },
+    "sitemap.xml": {
+      "bytes": 174,
+      "sha256": "6fa9936677e98187bd5a23648b94ee8b7137b73e58a2b318813fab4a1d8f9768"
+    },
+    "chart.html": {
+      "bytes": 137974,
+      "sha256": "d4f4592f40e29a77b99f0b76ab1786b83f540ab533d5a1ae9dea8f3d6a3c4966"
+    },
+    "i18n.js": {
+      "bytes": 2406,
+      "sha256": "6b20a7143e6e99ff64c74045b64545d2b611320ee3618efdba7b93d1681fb8e9"
+    },
+    "translations.csv": {
+      "bytes": 49530,
+      "sha256": "b32463b7d23a7a42e32271f73c4ddab39d37368b67ae5386396ebeb6880e34fd"
+    },
+    "ipa-fonts.js": {
+      "bytes": 1505,
+      "sha256": "edc268ff13ccb58459e73395a9d066f84f3c76e7123adeb1ee45b40780850947"
+    },
+    "sw.js": {
+      "bytes": 2197,
+      "sha256": "42df5ce74527f70cdfd0694cca16fe3d60d926287b20f38bc01b0e31ccacffaf"
+    },
+    "fonts/Andika-Regular.woff2": {
+      "bytes": 295740,
+      "sha256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb"
+    },
+    "fonts/ipa-font-coverage.json": {
+      "bytes": 4594,
+      "sha256": "6ff5da6588db4d4012fa6f6ff89555b473c589ad4aeca56c62973f76985599f5"
+    },
+    "CREDITS.md": {
+      "bytes": 2872,
+      "sha256": "f709f7b12f6e2e38c234ed36c838d36455ebd1496d3f71a5a858678b01d0c8ae"
+    },
+    "LICENSE-MIT.txt": {
+      "bytes": 1142,
+      "sha256": "b81601890570aa42d7c59c28a1edb2943afb1035dd96e5a537074334210487ba"
+    },
+    "editor-gestures.js": {
+      "bytes": 7374,
+      "sha256": "ec102052329ad778a5b3cb57df74fc95c3d51b2f048418cd9a2c3dc7f08705d6"
+    },
+    "diacritic-display.js": {
+      "bytes": 8834,
+      "sha256": "c17ffd3170df94a810f6a16986199819f1bb1806ab8c4e3d98f248e8e4639cd3"
+    },
+    "language-picker.js": {
+      "bytes": 5728,
+      "sha256": "14d3be6361c985850bac02f032c21b84558a6d8d0542c4d2ba14447bddac8999"
+    },
+    "fonts/positioned-diacritics.json": {
+      "bytes": 22911,
+      "sha256": "26b1e6ba8079523049dcf3a4a581c43aa9d7cd3224ec814484e810ae77728301"
+    }
+  },
+  "stagedResults": [
+    {
+      "file": "desktop-zoom-results.json",
+      "cases": 32,
+      "failures": null
+    },
+    {
+      "file": "vowel-equivalence-results.json",
+      "cases": 16,
+      "failures": 0
+    },
+    {
+      "file": "floating-overview-results.json",
+      "cases": 80,
+      "failures": 0
+    },
+    {
+      "file": "suprasegmental-grouping-results.json",
+      "cases": 80,
+      "failures": 0
+    },
+    {
+      "file": "panel-controls-results.json",
+      "cases": 10,
+      "failures": 0
+    },
+    {
+      "file": "final-four-results.json",
+      "cases": 10,
+      "failures": 0
+    },
+    {
+      "file": "tap-feedback-results.json",
+      "cases": 10,
+      "failures": 0
+    },
+    {
+      "file": "header-alignment-results.json",
+      "cases": 10,
+      "failures": 0
+    }
+  ],
+  "unverified": [
+    "Physical iPhone Safari",
+    "Native WebKit multi-touch injection; existing pinch assertions use synthetic TouchEvents"
+  ],
+  "publicResults": [
+    {
+      "file": "desktop-zoom-results.json",
+      "cases": 32,
+      "failures": null
+    },
+    {
+      "file": "final-four-results.json",
+      "cases": 10,
+      "failures": 0
+    },
+    {
+      "file": "floating-overview-results.json",
+      "cases": 80,
+      "failures": 0
+    },
+    {
+      "file": "header-alignment-results.json",
+      "cases": 10,
+      "failures": 0
+    },
+    {
+      "file": "panel-controls-results.json",
+      "cases": 10,
+      "failures": 0
+    },
+    {
+      "file": "suprasegmental-grouping-results.json",
+      "cases": 80,
+      "failures": 0
+    },
+    {
+      "file": "tap-feedback-results.json",
+      "cases": 10,
+      "failures": 0
+    },
+    {
+      "file": "vowel-equivalence-results.json",
+      "cases": 16,
+      "failures": 0
+    }
+  ],
+  "stagedArtifact": {
+    "id": 14697137822,
+    "sha256": "b1cffd69ac23117ba1eab732a6913def4b74671754cfabdafb0ba299db609fc3"
+  },
+  "publicArtifact": {
+    "id": 14697314393,
+    "sha256": "af5ef800b0d352a42e9f7c5f102371582851cb5c11619717d3b2924c8124e28e"
+  },
+  "finalMain": "fd6345e2bb50c878fff0081ea8955cea246a9b0e",
+  "stagedPublicImageComparison": [
+    {
+      "image": "chromium-1280-light",
+      "identicalPNG": false,
+      "publicSha256": "331b9914f72dd6f5c155d05b791ce526ca4f27f2feea5120b92e1e9a24688e33",
+      "pixelDifferenceBounds": [
+        29,
+        705,
+        42,
+        718
+      ],
+      "sameDimensions": true,
+      "note": "Only a 13x13 pixel region at the selected-symbol residual glow differs; all other pixels match."
+    },
+    {
+      "image": "webkit-1280-dark",
+      "identicalPNG": false,
+      "publicSha256": "e931ed98ffc7ad8db6ff380eef2d5e747909736547a6a18720c9cbd974d0417b",
+      "pixelDifferenceBounds": [
+        29,
+        705,
+        42,
+        718
+      ],
+      "sameDimensions": true,
+      "note": "Only a 13x13 pixel region at the selected-symbol residual glow differs; all other pixels match."
+    },
+    {
+      "image": "webkit-393-light",
+      "identicalPNG": false,
+      "publicSha256": "86add37f6ac74009cd475a4d2209bd98e1321363331ca6fbd4da7af9b7d1b89e",
+      "pixelDifferenceBounds": [
+        5,
+        216,
+        18,
+        229
+      ],
+      "sameDimensions": true,
+      "note": "Only a 13x13 pixel region at the selected-symbol residual glow differs; all other pixels match."
+    }
+  ]
+}

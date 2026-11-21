@@ -1,7 +1,7 @@
 name: Verify and publish IPA Keyboard production v83.34
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119, work/seo-20261119, work/desktop-zoom-20261120, work/floating-overview-20261121, work/suprasegmental-grouping-20261121]
+    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119, work/seo-20261119, work/desktop-zoom-20261120, work/floating-overview-20261121, work/suprasegmental-grouping-20261121, work/raised-pitch-arrows-20261121]
     paths: ['index.html', 'sitemap.xml', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'diacritic-display.js', 'language-picker.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/work/suprasegmental-grouping-20261121' || github.ref == 'refs/heads/work/floating-overview-20261121' || github.ref == 'refs/heads/work/desktop-zoom-20261120' || github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119' || github.ref == 'refs/heads/work/seo-20261119'
+    if: github.ref == 'refs/heads/work/raised-pitch-arrows-20261121' || github.ref == 'refs/heads/work/suprasegmental-grouping-20261121' || github.ref == 'refs/heads/work/floating-overview-20261121' || github.ref == 'refs/heads/work/desktop-zoom-20261120' || github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119' || github.ref == 'refs/heads/work/seo-20261119'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -70,7 +70,7 @@ jobs:
         if: github.ref == 'refs/heads/work/floating-overview-20261121'
         run: node qa/desktop-zoom.cjs
       - name: Verify suprasegmental grouping and existing zoom controls
-        if: github.ref == 'refs/heads/work/suprasegmental-grouping-20261121'
+        if: github.ref == 'refs/heads/work/suprasegmental-grouping-20261121' || github.ref == 'refs/heads/work/raised-pitch-arrows-20261121'
         run: |
           node qa/suprasegmental-grouping.cjs
           node qa/floating-overview.cjs

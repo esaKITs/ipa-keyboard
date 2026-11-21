@@ -36,7 +36,10 @@ const settle=p=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestA
     assert.equal(await p.locator('#zoomMapCanvas [data-region="suprasegmentalGroup"]').count(),1);assert.equal(await p.locator('#zoomMapCanvas [data-region="tonesAndWordAccents"]').count(),0,'subgroup is not presented as a peer');
     await p.locator('#zoomMapCanvas [data-region="suprasegmentalGroup"]').click();await p.locator('#zoomMapClose').click();
     // Native pointer activation of a moved key (no force / dispatched click).
+    const panel=await p.locator('#floatingEditor').boundingBox(),grip=await p.locator('#inputPanelDrag').boundingBox();
+    await p.mouse.move(grip.x+grip.width/2,grip.y+grip.height/2);await p.mouse.down();await p.mouse.move(grip.x+grip.width/2+8-panel.x,grip.y+grip.height/2+80-panel.y,{steps:12});await p.mouse.up();await settle(p);
     const key=f.locator('#pitchMovements .v83-ipa-key').first();await out.press('End');const before=await out.inputValue();
+    await key.scrollIntoViewIfNeeded();const hitBox=await key.boundingBox();assert.equal(await p.evaluate(r=>document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.id,hitBox),'v83ChartFrame','native click is not covered by the floating editor');
     await f.evaluate(()=>{window.__groupingPointerTrace=[];for(const type of ['pointerdown','pointerup','click'])document.addEventListener(type,e=>window.__groupingPointerTrace.push({type,target:e.target.outerHTML?.slice(0,160),gesture:document.documentElement.dataset.chartGesture,x:e.clientX,y:e.clientY}),{capture:true});});
     await key.click();await settle(p);assert.equal(await out.inputValue(),before+'↓',JSON.stringify({trace:await f.evaluate(()=>window.__groupingPointerTrace),selection:await out.evaluate(e=>({start:e.selectionStart,end:e.selectionEnd})),key:await key.boundingBox()}));
     if(locale==='ja'&&[393,1280].includes(width))await f.locator('#suprasegmentalGroup').screenshot({path:`qa-production/${prefix}-suprasegmentals-${name}-${width}-${dark?'dark':'light'}.png`});

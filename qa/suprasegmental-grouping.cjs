@@ -43,6 +43,7 @@ const settle=p=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestA
     await f.evaluate(()=>{window.__groupingPointerTrace=[];for(const type of ['pointerdown','pointerup','click'])document.addEventListener(type,e=>window.__groupingPointerTrace.push({type,target:e.target.outerHTML?.slice(0,160),gesture:document.documentElement.dataset.chartGesture,x:e.clientX,y:e.clientY}),{capture:true});});
     await key.click();await settle(p);assert.equal(await out.inputValue(),before+'↓',JSON.stringify({trace:await f.evaluate(()=>window.__groupingPointerTrace),selection:await out.evaluate(e=>({start:e.selectionStart,end:e.selectionEnd})),key:await key.boundingBox()}));
     if(locale==='ja'&&[393,1280].includes(width))await f.locator('#suprasegmentalGroup').screenshot({path:`qa-production/${prefix}-suprasegmentals-${name}-${width}-${dark?'dark':'light'}.png`});
+    await p.locator('#inputPanelReset').click();await settle(p);
     await p.locator('#chartZoomToggle').click();assert.equal(await out.inputValue(),before+'↓','mode restore retains inserted text');
     assert.deepEqual(errors,[]);results.push({engine:name,width,locale,dark,structure,layout,pass:true});
    }

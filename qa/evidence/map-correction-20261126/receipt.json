@@ -1,0 +1,75 @@
+{
+  "version": "v83.34",
+  "candidate": "3cac782b57e74934f3ccf36f0aa6b23407a2f2b4",
+  "main": "1646b6c148f5be0b0f420490b96515fc5839470f",
+  "productionChanged": false,
+  "run": {
+    "id": 45651777015,
+    "url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45651777015",
+    "status": "completed",
+    "conclusion": "success",
+    "sha": "3cac782b57e74934f3ccf36f0aa6b23407a2f2b4"
+  },
+  "jobs": [
+    {
+      "id": 139337888846,
+      "name": "verify (geometry)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 139337888928,
+      "name": "verify (overview)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 139337888929,
+      "name": "verify (feedback)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 139337888933,
+      "name": "verify (panel)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 139337888952,
+      "name": "verify (zoom)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 139337888979,
+      "name": "verify (recovery)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 139337889029,
+      "name": "verify (phase1)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "reviewDeployment": {
+    "id": "appgprj_6b06ccbff9dc81918ab6ce34d194d24c~appgdep_b0942143af6881918ff6bf5a0eac5215",
+    "project_id": "appgprj_6b06ccbff9dc81918ab6ce34d194d24c",
+    "title": "esaKITs IPA Keyboard — 第1弾確認用",
+    "version_id": "appgprj_6b06ccbff9dc81918ab6ce34d194d24c~appgver_3529601438f08191969169b0a50df62d",
+    "type": "publish",
+    "status": "succeeded",
+    "publication_stage": "ready",
+    "is_async_publication": true,
+    "url": "https://esakits-ipa-phase1-a46f518.esakit.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "release---6955709445fc819199d49f2cd02715a8",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-11-25T16:22:41.443249+00:00"
+  },
+  "siteSourceCommit": "550066e9ed5dbbeed8a0bc89def9e8fd1bcb364a"
+}

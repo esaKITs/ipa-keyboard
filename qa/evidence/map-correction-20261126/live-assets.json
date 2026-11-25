@@ -1,0 +1,32 @@
+[
+  {
+    "file": "index.html",
+    "status": 200,
+    "matches": true,
+    "sha256": "b607f3e163cf5db3a9052abb4af6b420d0e38f403af517e15fa1011b516ece6e"
+  },
+  {
+    "file": "chart.html",
+    "status": 200,
+    "matches": true,
+    "sha256": "bfefea0ee245d0d863e5c10627d2089504f09ae8c105ca9ca91b31de5a6aa83e"
+  },
+  {
+    "file": "editor-gestures.js",
+    "status": 200,
+    "matches": true,
+    "sha256": "09c076d07b243a619e183e59f9b9069108a6f56f02d4cc7fac9789118bfdcd2b"
+  },
+  {
+    "file": "translations.csv",
+    "status": 200,
+    "matches": true,
+    "sha256": "b32463b7d23a7a42e32271f73c4ddab39d37368b67ae5386396ebeb6880e34fd"
+  },
+  {
+    "file": "sw.js",
+    "status": 200,
+    "matches": true,
+    "sha256": "42df5ce74527f70cdfd0694cca16fe3d60d926287b20f38bc01b0e31ccacffaf"
+  }
+]

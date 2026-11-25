@@ -55,7 +55,7 @@ const overlap=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.h
  const sr=await slider.boundingBox(),value=Number(await slider.inputValue()),thumb=sr.y+11+(1-(value-1)/3)*(sr.height-22);
  await p.mouse.move(sr.x+sr.width/2,thumb);await p.mouse.down();await p.mouse.move(sr.x+sr.width/2,sr.y+12,{steps:18});await p.mouse.up();await settle(p);
  const values=await f.evaluate(()=>window.__rangeValues);assert(values.length>=5,'continuous native slider input '+JSON.stringify(values));assert(values.at(-1)>value+.3);assert(values.every((v,i)=>i===0||v>=values[i-1]-.002));
- await slider.focus();await p.keyboard.press('End');await settle(p);assert.equal(Number(await slider.inputValue()),4);const maximum=await scale(f);assert(Math.abs(maximum/(vb.width/1040)-4)<.02,'fourfold maximum');
+ await slider.focus();await p.keyboard.press('End');await settle(p);assert.equal(Number(await slider.inputValue()),4);const maximum=await scale(f);assert(Math.abs(maximum/((vb.width-16)/1040)-4)<.02,'fourfold maximum relative to fit width inside both 8px stage gutters');
  await p.keyboard.press('Home');await settle(p);assert.equal(Number(await slider.inputValue()),1);const minimum=await scale(f);await f.locator('#chartZoomIncrease').click();assert(await scale(f)>minimum);await f.locator('#chartZoomDecrease').click();assert(Math.abs(await scale(f)-minimum)<.001);
  // Slider zoom preserves visible centre (within scroll limits).
  await slider.focus();await p.keyboard.press('End');await settle(p);await f.locator('#zoomViewport').evaluate(v=>{v.scrollLeft=300;v.scrollTop=300});await settle(p);

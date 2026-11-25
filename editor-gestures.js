@@ -26,7 +26,7 @@ function setHeight(n){try{localStorage.setItem(heightFontKey(),String(parseFloat
 function setWidth(n){const max=Math.min(api.profile()==='phone'?640:1200,Number(widthSlider.max));const width=Math.round(Math.max(240,Math.min(max,n)));try{localStorage.setItem(`esakits.ipa.panel-width.${api.profile()}.v1`,String(width));}catch(e){}api.setWidthReference();widthSlider.value=String(width);panel.style.width=width+'px';panel.classList.toggle('input-panel-compact',width<316);}
 window.esaEditorGeometry={apply,get range(){return range;},get active(){return !!active;}};
 for(const control of document.querySelectorAll('#settingsPanel input[type="range"]'))control.addEventListener('pointerdown',e=>{const r=control.getBoundingClientRect();range={id:e.pointerId,control,freezeWidth:control.id==='inputSizeSlider',left:r.left,top:r.top,width:panel.getBoundingClientRect().width*api.bounds().scale};});
-function endRange(e){if(range?.id!==e.pointerId)return;range=null;requestAnimationFrame(()=>{const r=panel.getBoundingClientRect();api.move(r.left,r.top,true);api.place();});}
+function endRange(e){if(range?.id!==e.pointerId)return;range=null;requestAnimationFrame(()=>{apply();const r=panel.getBoundingClientRect();api.move(r.left,r.top,true);api.place();});}
 for(const type of ['pointerup','pointercancel'])document.addEventListener(type,endRange,true);
 function begin(e,axis){
  if(e.button!==0||active)return;e.preventDefault();e.stopPropagation();

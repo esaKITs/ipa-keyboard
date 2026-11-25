@@ -1,0 +1,25 @@
+{
+  "app_version": "v83.34",
+  "github_app_commit": "a46f518f6eb5af3fe34bdd1f1a6001d5ba849bee",
+  "hosting_source_commit": "ceea6e89d171443cda69ffb084f1434cc4a1a8c4",
+  "review_url": "https://esakits-ipa-phase1-a46f518.esakit.chatgpt.site",
+  "visibility": "owner-only; ChatGPT sign-in required",
+  "deployment_status": "succeeded",
+  "project_id": "appgprj_6b06ccbff9dc81918ab6ce34d194d24c",
+  "deployment_id": "appgprj_6b06ccbff9dc81918ab6ce34d194d24c~appgdep_6955709445fc819199d49f2cd02715a8",
+  "github_actions_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272",
+  "github_actions_result": "success, 7/7 jobs",
+  "live_authenticated_asset_check": {
+    "http_status": 200,
+    "exact_match_to_verified_app": [
+      "index.html",
+      "chart.html",
+      "editor-gestures.js",
+      "translations.csv",
+      "sw.js"
+    ]
+  },
+  "post_deployment_browser_check": "Owner-only sign-in gate confirmed; signed-in browser interaction not performed",
+  "production_main": "1646b6c148f5be0b0f420490b96515fc5839470f",
+  "production_changed": false
+}

@@ -1,0 +1,219 @@
+{
+  "results": [
+    {
+      "name": "chromium",
+      "baseline": {
+        "before": {
+          "font": 32,
+          "height": 295,
+          "text": ""
+        },
+        "after": {
+          "font": 120,
+          "height": 295,
+          "text": ""
+        },
+        "leftGutter": 0,
+        "commit": "1646b6c148f5be0b0f420490b96515fc5839470f"
+      }
+    },
+    {
+      "name": "chromium",
+      "width": 320,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "trusted CDP touches",
+      "errors": []
+    },
+    {
+      "name": "chromium",
+      "width": 375,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "trusted CDP touches",
+      "errors": []
+    },
+    {
+      "name": "chromium",
+      "width": 393,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "trusted CDP touches",
+      "errors": []
+    },
+    {
+      "name": "chromium",
+      "width": 768,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "trusted CDP touches",
+      "errors": []
+    },
+    {
+      "name": "chromium",
+      "width": 1280,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "trusted CDP touches",
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "baseline": {
+        "before": {
+          "font": 32,
+          "height": 295,
+          "text": ""
+        },
+        "after": {
+          "font": 120,
+          "height": 295,
+          "text": ""
+        },
+        "leftGutter": 0,
+        "commit": "1646b6c148f5be0b0f420490b96515fc5839470f"
+      }
+    },
+    {
+      "name": "webkit",
+      "width": 320,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "synthetic WebKit touch handlers",
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "width": 375,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "synthetic WebKit touch handlers",
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "width": 393,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "synthetic WebKit touch handlers",
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "width": 768,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "synthetic WebKit touch handlers",
+      "errors": []
+    },
+    {
+      "name": "webkit",
+      "width": 1280,
+      "locales": 5,
+      "themes": 2,
+      "scales": [
+        1,
+        2,
+        4
+      ],
+      "manualFontIndependent": true,
+      "fontHeightFollow": true,
+      "mapOuterFixed": true,
+      "mapProjection": true,
+      "gutters": 8,
+      "pinch": "synthetic WebKit touch handlers",
+      "errors": []
+    }
+  ],
+  "failures": []
+}

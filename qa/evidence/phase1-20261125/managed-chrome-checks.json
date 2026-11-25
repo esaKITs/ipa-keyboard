@@ -1,0 +1,31 @@
+{
+  "candidate": "a46f518f6eb5af3fe34bdd1f1a6001d5ba849bee",
+  "method": "Visible UI interaction through managed Chrome preview, followed by DOM/computed-style reads and native clipboard read",
+  "manual_resize_then_font_change": {
+    "before": {
+      "font_px": 16,
+      "input_height_px": 54
+    },
+    "after": {
+      "font_px": 120,
+      "input_height_px": 405
+    }
+  },
+  "copy": {
+    "text": "pʰãŋ̊ꜜꜛ",
+    "native_clipboard_exact_match": true
+  },
+  "color": {
+    "before": "#17365d",
+    "selected": "#244b78",
+    "computed": "rgb(36, 75, 120)",
+    "restored": "#17365d"
+  },
+  "font": {
+    "selected": "andika",
+    "computed_family": "\"Andika Local\", serif",
+    "text_unchanged": true,
+    "restored": "doulos"
+  },
+  "actual_iPhone_hardware_test": false
+}

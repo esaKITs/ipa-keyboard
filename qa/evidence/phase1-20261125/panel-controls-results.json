@@ -1,0 +1,118 @@
+{
+  "app": "http://127.0.0.1:8765/ipa-keyboard/",
+  "candidateChart": null,
+  "candidateSha256": null,
+  "results": [
+    {
+      "engine": "chromium",
+      "width": 320,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 17,
+      "smallHeight": 36,
+      "largeHeight": 135,
+      "readable": 91,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 16.80000000000291,
+      "smallHeight": 36,
+      "largeHeight": 135,
+      "readable": 91,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 16.89999999999418,
+      "smallHeight": 36,
+      "largeHeight": 135,
+      "readable": 91,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 17,
+      "smallHeight": 44,
+      "largeHeight": 270,
+      "readable": 174,
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 16.89999999999418,
+      "smallHeight": 44,
+      "largeHeight": 270,
+      "readable": 174,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 320,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 30,
+      "smallHeight": 36,
+      "largeHeight": 135,
+      "readable": 91,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 31,
+      "smallHeight": 36,
+      "largeHeight": 135,
+      "readable": 91,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 31,
+      "smallHeight": 36,
+      "largeHeight": 135,
+      "readable": 91,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 32,
+      "smallHeight": 44,
+      "largeHeight": 270,
+      "readable": 174,
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "distinctSizes": 24,
+      "trackDrift": 0,
+      "maxPaintDelay": 32,
+      "smallHeight": 44,
+      "largeHeight": 270,
+      "readable": 174,
+      "errors": []
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,28 @@
+{
+  "baseline": "1646b6c148f5be0b0f420490b96515fc5839470f",
+  "candidate": "a46f518f6eb5af3fe34bdd1f1a6001d5ba849bee",
+  "chart_content_identical": true,
+  "svg_count": 4,
+  "all_svg_identical": true,
+  "unchanged_files": {
+    "index.html": true,
+    "ipa-fonts.js": true,
+    "diacritic-display.js": true,
+    "i18n.js": true,
+    "translations.csv": true,
+    "translations.xlsx": true,
+    "language-picker.js": true,
+    "sw.js": true
+  },
+  "app_identical_to_9fb296f": true,
+  "changed_tracked_files": [
+    ".github/workflows/phase1-display.yml",
+    "chart.html",
+    "editor-gestures.js",
+    "qa/desktop-zoom.cjs",
+    "qa/editor-gestures.cjs",
+    "qa/floating-overview.cjs",
+    "qa/panel-controls.cjs",
+    "qa/phase1-display.cjs"
+  ]
+}

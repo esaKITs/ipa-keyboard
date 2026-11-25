@@ -1,0 +1,113 @@
+{
+  "baseline": "1646b6c148f5be0b0f420490b96515fc5839470f",
+  "candidate": "a46f518f6eb5af3fe34bdd1f1a6001d5ba849bee",
+  "mainAtFinalCheck": "1646b6c148f5be0b0f420490b96515fc5839470f",
+  "version": "v83.34",
+  "productionChanged": false,
+  "run": {
+    "id": 45605133272,
+    "url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272",
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "a46f518f6eb5af3fe34bdd1f1a6001d5ba849bee"
+  },
+  "jobs": [
+    {
+      "name": "verify (overview)",
+      "id": 139174117283,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272/job/139174117283"
+    },
+    {
+      "name": "verify (phase1)",
+      "id": 139174117459,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272/job/139174117459"
+    },
+    {
+      "name": "verify (geometry)",
+      "id": 139174117486,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272/job/139174117486"
+    },
+    {
+      "name": "verify (zoom)",
+      "id": 139174117494,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272/job/139174117494"
+    },
+    {
+      "name": "verify (feedback)",
+      "id": 139174117519,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272/job/139174117519"
+    },
+    {
+      "name": "verify (recovery)",
+      "id": 139174117521,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272/job/139174117521"
+    },
+    {
+      "name": "verify (panel)",
+      "id": 139174117934,
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/esaKITs/ipa-keyboard/actions/runs/45605133272/job/139174117934"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 15018395619,
+      "name": "phase1-feedback-evidence",
+      "size_in_bytes": 11171427,
+      "digest": "sha256:50beab54f5b59d467dacf5c7a8eb101cd17b6591961fd010f46437cac1069261"
+    },
+    {
+      "id": 15017721906,
+      "name": "phase1-recovery-evidence",
+      "size_in_bytes": 2437196,
+      "digest": "sha256:dfab43eecdf5cbd3572518c96da2913db0aa0234e620a5d75cff1f44a30b57ab"
+    },
+    {
+      "id": 15017716733,
+      "name": "phase1-geometry-evidence",
+      "size_in_bytes": 217808,
+      "digest": "sha256:89de9095cf5d26fc7f13a8c1a22aac748e3e06df09292057b56965cab9edd9bc"
+    },
+    {
+      "id": 15017233519,
+      "name": "phase1-panel-evidence",
+      "size_in_bytes": 1173050,
+      "digest": "sha256:d4019297422649e0fffdde8f56c426011260ba15cc6c8e53e7679cddc70c3956"
+    },
+    {
+      "id": 15016828809,
+      "name": "phase1-overview-evidence",
+      "size_in_bytes": 2315423,
+      "digest": "sha256:6b2fed1e9575033916426b6afa4788a1908fab2b24f526565f79b33643f5fb4b"
+    },
+    {
+      "id": 15016753844,
+      "name": "phase1-phase1-evidence",
+      "size_in_bytes": 1508134,
+      "digest": "sha256:a11391d35af1fc2b7e4a1812040f0a9a7012d43d9cd70a8f46d7781c3ee2e41a"
+    },
+    {
+      "id": 15016709328,
+      "name": "phase1-zoom-evidence",
+      "size_in_bytes": 473876,
+      "digest": "sha256:6d0966b4fa07d9f3565860e6062157d28a0d263a593bf91e2da71db66fa6e65e"
+    }
+  ],
+  "backups": {
+    "before": "backup/before-phase1-20261125-1646b6c",
+    "after": "backup/after-phase1-verified-20261125"
+  }
+}

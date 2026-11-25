@@ -38,10 +38,10 @@ async function moveTo(p,block,grip,x,y){const b=await block.boundingBox(),r=awai
  if(locale==='ja'&&!dark){
   const last=f.locator('#chartZoomDialog button:not([disabled]):visible,#chartZoomDialog input:not([disabled]):visible,#chartZoomDialog [tabindex="0"]:visible').last();
   await last.focus();await p.keyboard.press('Tab');assert(await grip.evaluate(e=>e===document.activeElement),'Tab reaches the parent-hosted overview grip');
-  await p.keyboard.press('Tab');assert(await p.locator('#zoomMapClose').evaluate(e=>e===document.activeElement),'Tab reaches overview close');
+  await p.keyboard.press('Tab');assert(await p.locator('#zoomMapIncrease').evaluate(e=>e===document.activeElement),'Tab reaches enabled map zoom');await p.keyboard.press('Tab');assert(await p.locator('#zoomMapClose').evaluate(e=>e===document.activeElement),'Tab reaches overview close');
   await p.keyboard.press('Tab');assert(await f.locator('#zoomViewport').evaluate(e=>e===document.activeElement),'Tab returns to chart');
   await p.keyboard.press('Shift+Tab');assert(await p.locator('#zoomMapClose').evaluate(e=>e===document.activeElement),'reverse Tab reaches close');
-  await p.keyboard.press('Shift+Tab');assert(await grip.evaluate(e=>e===document.activeElement),'reverse Tab reaches grip');
+  await p.keyboard.press('Shift+Tab');assert(await p.locator('#zoomMapIncrease').evaluate(e=>e===document.activeElement),'reverse Tab reaches map zoom');await p.keyboard.press('Shift+Tab');assert(await grip.evaluate(e=>e===document.activeElement),'reverse Tab reaches grip');
   await p.keyboard.press('Shift+Tab');assert(await last.evaluate(e=>e===document.activeElement),'reverse Tab returns to last chart control');
  }
  // Enlarge the real chart, then tap each real overview region and check the

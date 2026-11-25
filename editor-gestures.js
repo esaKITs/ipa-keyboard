@@ -6,16 +6,19 @@ const handles=[['panelResizeN','n'],['panelResizeW','w'],['panelResizeE','e'],['
 widthSlider.step='1';
 let active=null,pinch=null,gesture=null,range=null;
 const heightKey=()=>`esakits.ipa.input-height.${api.profile()}.v1`;
+const heightFontKey=()=>`esakits.ipa.input-height-font.${api.profile()}.v1`;
 function savedHeight(){try{const n=Number(localStorage.getItem(heightKey()));return n>=36&&n<=1200?n:null;}catch(e){return null;}}
 function apply(){
  const saved=savedHeight();if(saved===null){delete out.dataset.manualHeight;return false;}
  const b=api.bounds(),scale=b.scale,chrome=panel.getBoundingClientRect().height*scale-out.getBoundingClientRect().height*scale;
  const style=getComputedStyle(out),line=parseFloat(style.lineHeight)||parseFloat(style.fontSize)*1.35;
  const readable=Math.ceil(line+parseFloat(style.paddingTop)+parseFloat(style.paddingBottom)+parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth));
- const height=Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(Math.max(saved,readable),b.h*scale-chrome)));
+ let reference;try{reference=Number(localStorage.getItem(heightFontKey()));if(!(reference>0)){reference=parseFloat(style.fontSize);localStorage.setItem(heightFontKey(),String(reference));}}catch(e){reference=parseFloat(style.fontSize);}
+ const desired=saved*parseFloat(style.fontSize)/reference;
+ const height=Math.max(api.profile()==='phone'?36:44,Math.min(Math.max(desired,readable),b.h*scale-chrome));
  out.dataset.manualHeight='true';if(Math.abs(parseFloat(out.style.height)-height)>.5)out.style.height=height+'px';return true;
 }
-function setHeight(n){try{localStorage.setItem(heightKey(),String(Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(1200,n)))));}catch(e){}apply();}
+function setHeight(n){try{localStorage.setItem(heightFontKey(),String(parseFloat(getComputedStyle(out).fontSize)));localStorage.setItem(heightKey(),String(Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(1200,n)))));}catch(e){}apply();}
 function setWidth(n){const max=Math.min(api.profile()==='phone'?640:1200,Number(widthSlider.max));const width=Math.round(Math.max(240,Math.min(max,n)));try{localStorage.setItem(`esakits.ipa.panel-width.${api.profile()}.v1`,String(width));}catch(e){}api.setWidthReference();widthSlider.value=String(width);panel.style.width=width+'px';panel.classList.toggle('input-panel-compact',width<316);}
 window.esaEditorGeometry={apply,get range(){return range;},get active(){return !!active;}};
 for(const control of document.querySelectorAll('#settingsPanel input[type="range"]'))control.addEventListener('pointerdown',e=>{const r=control.getBoundingClientRect();range={id:e.pointerId,control,freezeWidth:control.id==='inputSizeSlider',left:r.left,top:r.top,width:panel.getBoundingClientRect().width*api.bounds().scale};});
@@ -27,7 +30,7 @@ function begin(e,axis){
 }
 function moving(e){if(!active||active.id!==e.pointerId)return;e.preventDefault();const a=active,dx=(e.clientX-a.x)*a.scale,dy=(e.clientY-a.y)*a.scale;if(/[ew]/.test(a.axis))setWidth(a.width+(a.axis.includes('w')?-dx:dx));if(/[ns]/.test(a.axis))setHeight(a.height+(a.axis.includes('n')?-dy:dy));const r=panel.getBoundingClientRect();api.move(a.left+(a.axis.includes('w')?a.width/a.scale-r.width:0),a.top+(a.axis.includes('n')?a.panelHeight-r.height:0));}
 function end(e){if(!active||active.id!==e.pointerId)return;const r=panel.getBoundingClientRect();active=null;document.body.classList.remove('editor-resizing');api.move(r.left,r.top,true);api.place();}
-function autoHeight(){try{localStorage.removeItem(heightKey());}catch(e){}delete out.dataset.manualHeight;out.style.height='auto';const phone=api.profile()==='phone';out.style.height=Math.min(phone?120:420,Math.max(phone?36:44,out.scrollHeight+2))+'px';window.dispatchEvent(new Event('esa-panel-layout'));}
+function autoHeight(){try{localStorage.removeItem(heightKey());localStorage.removeItem(heightFontKey());}catch(e){}delete out.dataset.manualHeight;out.style.height='auto';const phone=api.profile()==='phone';out.style.height=Math.min(phone?120:420,Math.max(phone?36:44,out.scrollHeight+2))+'px';window.dispatchEvent(new Event('esa-panel-layout'));}
 for(const h of[...handles,divider]){
  const axis=h.dataset.axis||'s';h.addEventListener('pointerdown',e=>begin(e,axis));h.addEventListener('pointermove',moving);for(const type of['pointerup','pointercancel','lostpointercapture'])h.addEventListener(type,end);
  h.addEventListener('keydown',e=>{if(e.key==='Home'){e.preventDefault();autoHeight();return;}const delta={ArrowLeft:-1,ArrowRight:1,ArrowUp:-1,ArrowDown:1}[e.key];if(!delta)return;e.preventDefault();const step=delta*(e.shiftKey?40:10),r=panel.getBoundingClientRect(),scale=api.bounds().scale;if(/[ew]/.test(axis)&&/Left|Right/.test(e.key))setWidth(r.width*scale+step);if(/[ns]/.test(axis)&&/Up|Down/.test(e.key))setHeight(out.getBoundingClientRect().height*scale+step);api.move(r.left,r.top,true);api.place();});

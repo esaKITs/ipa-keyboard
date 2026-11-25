@@ -690,7 +690,7 @@ body{padding:8px!important;overflow-x:hidden!important}
  .zoom-controls :focus-visible{outline:2px solid #a680de;outline-offset:2px}
 }
 .zoom-stage{position:relative;margin:0;overflow:visible;background:#fff}
-.zoom-stage>#chart{position:absolute;left:0;top:0;transform-origin:top left;max-width:none!important}
+.zoom-stage>#chart{position:absolute;left:8px;top:8px;transform-origin:top left;max-width:none!important}
 
 
 
@@ -878,7 +878,8 @@ html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotat
 .zoom-minimap .map-close{flex:none;width:32px;height:32px;padding:0;border:0;background:transparent;color:inherit;font:22px/1 Arial,sans-serif;cursor:pointer}
 .zoom-minimap .map-close:hover{background:#0001}
 .zoom-minimap button:focus-visible{outline:2px solid #a680de;outline-offset:-3px}
-.zoom-minimap .map-canvas{position:absolute;inset:33px 0 0;background:#f1eef7;border:0}
+.zoom-minimap .map-zoom{flex:none;width:24px;height:32px;padding:0;border:0;background:transparent;color:inherit;font:18px/1 Arial,sans-serif;cursor:pointer}
+.zoom-minimap .map-canvas{overflow:hidden;position:absolute;inset:33px 0 0;background:#f1eef7;border:0}
 .zoom-minimap .map-region{position:absolute;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid #cbc5d4;background:#f1eef7;padding:1px;font-size:var(--map-label-size);line-height:1.12;font-weight:500;text-align:center;overflow:hidden}
 .zoom-minimap .map-label{display:block;width:100%;overflow-wrap:anywhere}
 .zoom-minimap .map-window{position:absolute;z-index:2;border:1.5px solid #a680de;background:rgba(166,128,222,.10);pointer-events:none;box-sizing:border-box}
@@ -1724,7 +1725,7 @@ SOFTWARE.
  <button type="button" id="chartZoomDecrease" aria-label="Zoom out">−</button>
  </div>
  <div class="zoom-minimap" id="zoomMinimap" hidden role="group" aria-label="チャート全体図。ドラッグで表示位置を移動">
- <div class="map-heading"><button type="button" id="zoomMapDrag" class="map-grip" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown"><span aria-hidden="true">⠿</span><span class="map-title" data-i18n-key="IPA全体図">IPA全体図</span></button><button type="button" id="zoomMapClose" class="map-close" aria-label="閉じる" title="閉じる"><span aria-hidden="true">×</span></button></div>
+ <div class="map-heading"><button type="button" id="zoomMapDrag" class="map-grip" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown"><span aria-hidden="true">⠿</span><span class="map-title" data-i18n-key="IPA全体図">IPA全体図</span></button><button type="button" id="zoomMapDecrease" class="map-zoom" aria-label="縮小">−</button><button type="button" id="zoomMapIncrease" class="map-zoom" aria-label="拡大">+</button><button type="button" id="zoomMapClose" class="map-close" aria-label="閉じる" title="閉じる"><span aria-hidden="true">×</span></button></div>
  <div class="map-canvas" id="zoomMapCanvas"><div id="zoomMapWindow" class="map-window"></div></div>
  </div>
 </div><script>
@@ -1740,7 +1741,7 @@ const zoomSlider=document.getElementById('chartZoomSlider'),zoomControls=documen
 function syncZoomLabels(){
  const t=key=>window.esaI18n.t(key,window.esaChartLocale||'ja','chart');
  zoomControls.setAttribute('aria-label',t('拡大倍率'));zoomSlider.setAttribute('aria-label',t('拡大倍率'));
- for(const [id,key]of [['chartZoomIncrease','拡大'],['chartZoomDecrease','縮小']])document.getElementById(id).setAttribute('aria-label',t(key));
+ for(const [id,key]of [['chartZoomIncrease','拡大'],['chartZoomDecrease','縮小'],['zoomMapIncrease','拡大'],['zoomMapDecrease','縮小']])document.getElementById(id).setAttribute('aria-label',t(key));
 }
 window.addEventListener('esa-chart-locale-change',syncZoomLabels);
 window.esaI18n.ready.then(syncZoomLabels);
@@ -1791,7 +1792,8 @@ function endMapDrag(e){if(mapDrag?.id===e.pointerId)mapDrag=null;}
 for(const name of ['pointerup','pointercancel','lostpointercapture'])mapGrip.addEventListener(name,endMapDrag);
 mapGrip.addEventListener('keydown',e=>{const delta={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!delta)return;e.preventDefault();constrainMap();const step=e.shiftKey?36:12;placeMap(mapPosition.x+delta[0]*step,mapPosition.y+delta[1]*step);});
 mapClose.addEventListener('click',()=>{showMap(false);mapToggle.focus({preventScroll:true});});
-const BASE=1040;
+const BASE=1040,GUTTER=8;
+let mapZoom=1,mapX=0,mapY=0;
 let active=false, zoom=1, baseScale=1, lastFocus=null, drag=false;
 syncMapToggle();
 const parts=[
@@ -1801,23 +1803,25 @@ const parts=[
 function clamp(n,a,b){return Math.min(b,Math.max(a,n));}
 function scale(){return baseScale*zoom;}
 function viewerBaseScale(width){
- // Desktop starts at exactly the available width, so even a tiny pinch can
- // preserve its anchor without being clamped by an unscrollable side gap.
- return desktopZoom.matches?Math.max(1,width)/BASE:Math.min(1,Math.max(1,width-12)/BASE);
+ // Fit the chart and both real gutters. All gesture/map coordinates use
+ // the chart origin inside this stage, rather than the viewport origin.
+ return desktopZoom.matches?Math.max(1,width-2*GUTTER)/BASE:Math.min(1,Math.max(1,width-2*GUTTER)/BASE);
 }
 function setZoom(z,keepCenter=true){
  if(!active)return;
- const old=scale(), centerX=(viewport.scrollLeft+viewport.clientWidth/2)/old, centerY=(viewport.scrollTop+viewport.clientHeight/2)/old;
+ const old=scale(), centerX=(viewport.scrollLeft+viewport.clientWidth/2-GUTTER)/old, centerY=(viewport.scrollTop+viewport.clientHeight/2-GUTTER)/old;
  zoom=clamp(z,1,4);chart.dataset.feedbackScale=String(zoom);
  zoomSlider.value=String(zoom);zoomSlider.style.setProperty('--zoom-fill',((zoom-1)/3*100)+'%');
  const next=scale(),height=chart.offsetHeight;
- stage.style.width=(BASE*next)+"px";stage.style.height=(height*next)+"px";
+ stage.style.width=(BASE*next+2*GUTTER)+"px";stage.style.height=(height*next+2*GUTTER)+"px";
  chart.style.transform="scale("+next+")";
- if(keepCenter){viewport.scrollLeft=centerX*next-viewport.clientWidth/2;viewport.scrollTop=centerY*next-viewport.clientHeight/2;}
+ if(keepCenter){viewport.scrollLeft=GUTTER+centerX*next-viewport.clientWidth/2;viewport.scrollTop=GUTTER+centerY*next-viewport.clientHeight/2;}
  renderMinimap();
 }
 function fitMapLabels(){
  if(map.hidden)return;
+ const title=map.querySelector('.map-title');let titleSize=12;title.style.fontSize=titleSize+'px';
+ while(titleSize>8&&mapGrip.scrollWidth>mapGrip.clientWidth){titleSize-=.25;title.style.fontSize=titleSize+'px';}
  const preferred=parseFloat(getComputedStyle(map).getPropertyValue('--map-label-size'))||10;
  for(const item of mapCanvas.querySelectorAll('.map-region')){
   const label=item.querySelector('.map-label');let size=preferred;
@@ -1837,24 +1841,43 @@ function drawMap(){
   const item=document.createElement('div'),label=document.createElement('span');item.className='map-region';label.className='map-label';
   label.textContent=window.esaI18n.t(el.querySelector('h2')?.dataset.i18nKey||({pulmonicConsonants:'子音（肺気流）',nonPulmonicConsonants:'子音（非肺気流）',vowels:'母音',otherSymbols:'その他の記号',suprasegmentalGroup:'超分節的要素',diacritics:'補助記号',tonesAndWordAccents:'声調と語アクセント'}[el.id]),window.esaChartLocale||'ja','chart');
   item.dataset.region=el.id;item.title=label.textContent;item.appendChild(label);
-  item.style.left=(100*region.left/BASE)+'%';item.style.top=(100*(region.top-mapExtent.top)/mapExtent.height)+'%';
-  item.style.width=(100*region.width/BASE)+'%';item.style.height=(100*region.height/mapExtent.height)+'%';
+  item.dataset.x=region.left/BASE;item.dataset.y=(region.top-mapExtent.top)/mapExtent.height;
+  item.dataset.w=region.width/BASE;item.dataset.h=region.height/mapExtent.height;
   mapCanvas.insertBefore(item,mapWindow);
  }
- fitMapLabels();
+ projectMap();
 }
+function projectMap(){
+ for(const item of mapCanvas.querySelectorAll('.map-region')){
+  item.style.left=(100*(Number(item.dataset.x)-mapX)*mapZoom)+'%';item.style.top=(100*(Number(item.dataset.y)-mapY)*mapZoom)+'%';
+  item.style.width=(100*Number(item.dataset.w)*mapZoom)+'%';item.style.height=(100*Number(item.dataset.h)*mapZoom)+'%';
+ }
+ document.getElementById('zoomMapDecrease').disabled=mapZoom<=1;document.getElementById('zoomMapIncrease').disabled=mapZoom>=4;fitMapLabels();
+}
+function zoomMap(value,point={x:.5,y:.5}){
+ const x=mapX+point.x/mapZoom,y=mapY+point.y/mapZoom;mapZoom=clamp(value,1,4);
+ mapX=clamp(x-point.x/mapZoom,0,1-1/mapZoom);mapY=clamp(y-point.y/mapZoom,0,1-1/mapZoom);projectMap();renderMinimap();
+}
+document.getElementById('zoomMapIncrease').addEventListener('click',()=>zoomMap(mapZoom*1.25));
+document.getElementById('zoomMapDecrease').addEventListener('click',()=>zoomMap(mapZoom/1.25));
+mapCanvas.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();const r=mapCanvas.getBoundingClientRect();zoomMap(mapZoom*Math.exp(-e.deltaY*.01),{x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height});},{passive:false});
+let mapPinch=null;
+mapCanvas.addEventListener('touchstart',e=>{if(e.touches.length!==2)return;e.preventDefault();drag=false;const a=e.touches[0],b=e.touches[1],r=mapCanvas.getBoundingClientRect(),x=((a.clientX+b.clientX)/2-r.left)/r.width,y=((a.clientY+b.clientY)/2-r.top)/r.height;mapPinch={distance:Math.max(1,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)),zoom:mapZoom,x:mapX+x/mapZoom,y:mapY+y/mapZoom};},{passive:false});
+mapCanvas.addEventListener('touchmove',e=>{if(!mapPinch||e.touches.length!==2)return;e.preventDefault();const a=e.touches[0],b=e.touches[1],r=mapCanvas.getBoundingClientRect();mapZoom=clamp(mapPinch.zoom*Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)/mapPinch.distance,1,4);mapX=clamp(mapPinch.x-((a.clientX+b.clientX)/2-r.left)/r.width/mapZoom,0,1-1/mapZoom);mapY=clamp(mapPinch.y-((a.clientY+b.clientY)/2-r.top)/r.height/mapZoom,0,1-1/mapZoom);projectMap();renderMinimap();},{passive:false});
+for(const type of ['touchend','touchcancel'])mapCanvas.addEventListener(type,()=>{mapPinch=null;drag=false;});
 function renderMinimap(){
  if(!active)return;
  const sc=scale(),extent=mapExtent||{top:0,height:Math.max(1,chart.offsetHeight)};
- const left=clamp(viewport.scrollLeft/sc/BASE,0,1),right=clamp((viewport.scrollLeft+viewport.clientWidth)/sc/BASE,0,1);
- const top=clamp((viewport.scrollTop/sc-extent.top)/extent.height,0,1),bottom=clamp(((viewport.scrollTop+viewport.clientHeight)/sc-extent.top)/extent.height,0,1);
- mapWindow.style.left=(100*left)+'%';mapWindow.style.top=(100*top)+'%';mapWindow.style.width=(100*(right-left))+'%';mapWindow.style.height=(100*(bottom-top))+'%';
+ const left=clamp((viewport.scrollLeft-GUTTER)/sc/BASE,0,1),right=clamp((viewport.scrollLeft+viewport.clientWidth-GUTTER)/sc/BASE,0,1);
+ const top=clamp(((viewport.scrollTop-GUTTER)/sc-extent.top)/extent.height,0,1),bottom=clamp(((viewport.scrollTop+viewport.clientHeight-GUTTER)/sc-extent.top)/extent.height,0,1);
+ const l=clamp((left-mapX)*mapZoom,0,1),r=clamp((right-mapX)*mapZoom,0,1),t=clamp((top-mapY)*mapZoom,0,1),b=clamp((bottom-mapY)*mapZoom,0,1);
+ mapWindow.style.left=(100*l)+'%';mapWindow.style.top=(100*t)+'%';mapWindow.style.width=(100*Math.max(0,r-l))+'%';mapWindow.style.height=(100*Math.max(0,b-t))+'%';
 }
 function moveFromMap(e){
  const rect=mapCanvas.getBoundingClientRect(),extent=mapExtent||{top:0,height:Math.max(1,chart.offsetHeight)};
  const x=clamp((e.clientX-rect.left)/rect.width,0,1),y=clamp((e.clientY-rect.top)/rect.height,0,1);
- viewport.scrollLeft=x*BASE*scale()-viewport.clientWidth/2;
- viewport.scrollTop=(extent.top+y*extent.height)*scale()-viewport.clientHeight/2;
+ viewport.scrollLeft=GUTTER+(mapX+x/mapZoom)*BASE*scale()-viewport.clientWidth/2;
+ viewport.scrollTop=GUTTER+(extent.top+(mapY+y/mapZoom)*extent.height)*scale()-viewport.clientHeight/2;
  renderMinimap();
 }
 
@@ -1866,10 +1889,10 @@ function queueViewerLayout(){
   layoutPending=0;if(!active)return;
   const width=viewport.clientWidth,height=viewport.clientHeight;if(width<=0||height<=0)return;
   const signature=width+'x'+height;if(signature===layoutSignature)return;layoutSignature=signature;
-  const old=scale(),cx=(viewport.scrollLeft+width/2)/Math.max(.001,old),cy=(viewport.scrollTop+height/2)/Math.max(.001,old);
+  const old=scale(),cx=(viewport.scrollLeft+width/2-GUTTER)/Math.max(.001,old),cy=(viewport.scrollTop+height/2-GUTTER)/Math.max(.001,old);
   baseScale=viewerBaseScale(width);
   setZoom(zoom,false);
-  viewport.scrollLeft=cx*scale()-width/2;viewport.scrollTop=cy*scale()-height/2;
+  viewport.scrollLeft=GUTTER+cx*scale()-width/2;viewport.scrollTop=GUTTER+cy*scale()-height/2;
   drawMap();renderMinimap();constrainMap();dialog.dataset.ready='true';
  });
 }
@@ -1896,7 +1919,7 @@ function closeViewer(){
 function point(t){const r=viewport.getBoundingClientRect();return{x:t.clientX-r.left,y:t.clientY-r.top};}
 function beginPinch(touches){
  const a=point(touches[0]),b=point(touches[1]),mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
- pinch={distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),zoom,chartX:(viewport.scrollLeft+mx)/scale(),chartY:(viewport.scrollTop+my)/scale()};
+ pinch={distance:Math.max(1,Math.hypot(a.x-b.x,a.y-b.y)),zoom,chartX:(viewport.scrollLeft+mx-GUTTER)/scale(),chartY:(viewport.scrollTop+my-GUTTER)/scale()};
  document.documentElement.dataset.chartGesture='pinch';
  document.dispatchEvent(new Event('esa-chart-gesture-start'));
 }
@@ -1911,7 +1934,7 @@ viewport.addEventListener('touchmove',e=>{
   e.preventDefault();if(!pinch)beginPinch(e.touches);
   const a=point(e.touches[0]),b=point(e.touches[1]),mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
   setZoom(pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/pinch.distance,false);
-  viewport.scrollLeft=pinch.chartX*scale()-mx;viewport.scrollTop=pinch.chartY*scale()-my;renderMinimap();
+  viewport.scrollLeft=GUTTER+pinch.chartX*scale()-mx;viewport.scrollTop=GUTTER+pinch.chartY*scale()-my;renderMinimap();
  }else if(e.touches.length===1&&pinchPan){
   const p=point(e.touches[0]);
   if(!pinchPan.moved&&Math.hypot(p.x-pinchPan.startX,p.y-pinchPan.startY)>6){
@@ -1930,11 +1953,11 @@ window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window
 mapToggle.addEventListener("click",()=>{if(!active){openViewer(mapToggle);showMap(true);}else showMap(map.hidden);});
 // Each zoom operation preserves the chart point under its viewport anchor.
 let pointerInside=false,pointerAnchor=null,desktopGesture=null;
-function anchorAt(p){return {x:p.x,y:p.y,chartX:(viewport.scrollLeft+p.x)/scale(),chartY:(viewport.scrollTop+p.y)/scale()};}
+function anchorAt(p){return {x:p.x,y:p.y,chartX:(viewport.scrollLeft+p.x-GUTTER)/scale(),chartY:(viewport.scrollTop+p.y-GUTTER)/scale()};}
 function zoomAt(value,anchor){
  setZoom(value,false);
- viewport.scrollLeft=anchor.chartX*scale()-anchor.x;
- viewport.scrollTop=anchor.chartY*scale()-anchor.y;
+ viewport.scrollLeft=GUTTER+anchor.chartX*scale()-anchor.x;
+ viewport.scrollTop=GUTTER+anchor.chartY*scale()-anchor.y;
  renderMinimap();
 }
 function pointerPoint(e){
@@ -1990,7 +2013,7 @@ document.getElementById('chartZoomIncrease').addEventListener('click',()=>setZoo
 document.getElementById('chartZoomDecrease').addEventListener('click',()=>setZoom(zoom/1.1));
 desktopZoom.addEventListener('change',()=>{queueViewerLayout();constrainMap();});
 viewport.addEventListener("scroll",renderMinimap,{passive:true});
-mapCanvas.addEventListener("pointerdown",e=>{drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});
+mapCanvas.addEventListener("pointerdown",e=>{if(mapPinch||!e.isPrimary)return;drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});
 mapCanvas.addEventListener("pointermove",e=>{if(drag)moveFromMap(e);});
 mapCanvas.addEventListener("pointerup",()=>{drag=false;});
 mapCanvas.addEventListener("pointercancel",()=>{drag=false;});

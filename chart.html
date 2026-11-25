@@ -882,7 +882,13 @@ html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotat
 .zoom-minimap .map-canvas{overflow:hidden;position:absolute;inset:33px 0 0;background:#f1eef7;border:0}
 .zoom-minimap .map-region{position:absolute;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1px solid #cbc5d4;background:#f1eef7;padding:1px;font-size:var(--map-label-size);line-height:1.12;font-weight:500;text-align:center;overflow:hidden}
 .zoom-minimap .map-label{display:block;width:100%;overflow-wrap:anywhere}
-.zoom-minimap .map-window{position:absolute;z-index:2;border:1.5px solid #a680de;background:rgba(166,128,222,.10);pointer-events:none;box-sizing:border-box}
+.zoom-minimap .map-window{position:absolute;z-index:2;border:1.5px solid #a680de;background:rgba(166,128,222,.10);pointer-events:auto;cursor:grab;touch-action:none;box-sizing:border-box}
+.zoom-minimap .map-window-resize{position:absolute;width:20px;height:20px;padding:0;border:0;background:transparent;cursor:nwse-resize;touch-action:none}
+.zoom-minimap .map-window-resize::after{content:"";position:absolute;width:7px;height:7px;box-sizing:border-box;border:1.5px solid #a680de;background:#faf9fc}
+.zoom-minimap .map-window-resize[data-corner="nw"]{left:0;top:0}
+.zoom-minimap .map-window-resize[data-corner="nw"]::after{left:0;top:0}
+.zoom-minimap .map-window-resize[data-corner="se"]{right:0;bottom:0}
+.zoom-minimap .map-window-resize[data-corner="se"]::after{right:0;bottom:0}
 @media(max-width:580px){.zoom-minimap{--map-label-size:9px;width:184px;height:204px}}
 </style><script>if(parent!==window)document.documentElement.classList.add("is-embedded-chart");</script><script src="ipa-fonts.js"></script><script src="i18n.js"></script></head><body><div class="chart-tool-row"><button type="button" id="chartZoomOpen" aria-haspopup="dialog" aria-controls="chartZoomDialog" data-i18n-key="⛶ 拡大表示">⛶ 拡大表示</button></div><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title"><span class="chart-title-main">国際音声記号 </span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>
@@ -1740,6 +1746,7 @@ const mapToggle=document.getElementById("zoomMapToggle"),mapGrip=document.getEle
 const zoomSlider=document.getElementById('chartZoomSlider'),zoomControls=document.getElementById('chartZoomControls');
 function syncZoomLabels(){
  const t=key=>window.esaI18n.t(key,window.esaChartLocale||'ja','chart');
+ for(const b of mapWindow.querySelectorAll('.map-window-resize'))b.setAttribute('aria-label',t('拡大倍率'));
  zoomControls.setAttribute('aria-label',t('拡大倍率'));zoomSlider.setAttribute('aria-label',t('拡大倍率'));
  for(const [id,key]of [['chartZoomIncrease','拡大'],['chartZoomDecrease','縮小'],['zoomMapIncrease','拡大'],['zoomMapDecrease','縮小']])(document.getElementById(id)||map.querySelector('#'+id)).setAttribute('aria-label',t(key));
 }
@@ -1793,7 +1800,9 @@ for(const name of ['pointerup','pointercancel','lostpointercapture'])mapGrip.add
 mapGrip.addEventListener('keydown',e=>{const delta={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!delta)return;e.preventDefault();constrainMap();const step=e.shiftKey?36:12;placeMap(mapPosition.x+delta[0]*step,mapPosition.y+delta[1]*step);});
 mapClose.addEventListener('click',()=>{showMap(false);mapToggle.focus({preventScroll:true});});
 const BASE=1040,GUTTER=8;
-let mapZoom=1,mapX=0,mapY=0;
+// The overview always shows the full chart. Only its viewport rectangle changes.
+let mapPinch=null;
+for(const corner of ['nw','se']){const b=document.createElement('button');b.type='button';b.tabIndex=-1;b.className='map-window-resize';b.dataset.corner=corner;mapWindow.appendChild(b);}
 let active=false, zoom=1, baseScale=1, lastFocus=null, drag=false;
 syncMapToggle();
 const parts=[
@@ -1841,43 +1850,40 @@ function drawMap(){
   const item=document.createElement('div'),label=document.createElement('span');item.className='map-region';label.className='map-label';
   label.textContent=window.esaI18n.t(el.querySelector('h2')?.dataset.i18nKey||({pulmonicConsonants:'子音（肺気流）',nonPulmonicConsonants:'子音（非肺気流）',vowels:'母音',otherSymbols:'その他の記号',suprasegmentalGroup:'超分節的要素',diacritics:'補助記号',tonesAndWordAccents:'声調と語アクセント'}[el.id]),window.esaChartLocale||'ja','chart');
   item.dataset.region=el.id;item.title=label.textContent;item.appendChild(label);
-  item.dataset.x=region.left/BASE;item.dataset.y=(region.top-mapExtent.top)/mapExtent.height;
-  item.dataset.w=region.width/BASE;item.dataset.h=region.height/mapExtent.height;
+  item.style.left=(100*region.left/BASE)+'%';item.style.top=(100*(region.top-mapExtent.top)/mapExtent.height)+'%';
+  item.style.width=(100*region.width/BASE)+'%';item.style.height=(100*region.height/mapExtent.height)+'%';
   mapCanvas.insertBefore(item,mapWindow);
  }
- projectMap();
+ fitMapLabels();
 }
-function projectMap(){
- for(const item of mapCanvas.querySelectorAll('.map-region')){
-  item.style.left=(100*(Number(item.dataset.x)-mapX)*mapZoom)+'%';item.style.top=(100*(Number(item.dataset.y)-mapY)*mapZoom)+'%';
-  item.style.width=(100*Number(item.dataset.w)*mapZoom)+'%';item.style.height=(100*Number(item.dataset.h)*mapZoom)+'%';
- }
- map.querySelector('#zoomMapDecrease').disabled=mapZoom<=1;map.querySelector('#zoomMapIncrease').disabled=mapZoom>=4;fitMapLabels();
-}
-function zoomMap(value,point={x:.5,y:.5}){
- const x=mapX+point.x/mapZoom,y=mapY+point.y/mapZoom;mapZoom=clamp(value,1,4);
- mapX=clamp(x-point.x/mapZoom,0,1-1/mapZoom);mapY=clamp(y-point.y/mapZoom,0,1-1/mapZoom);projectMap();renderMinimap();
-}
-map.querySelector('#zoomMapIncrease').addEventListener('click',()=>zoomMap(mapZoom*1.25));
-map.querySelector('#zoomMapDecrease').addEventListener('click',()=>zoomMap(mapZoom/1.25));
-mapCanvas.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();const r=mapCanvas.getBoundingClientRect();zoomMap(mapZoom*Math.exp(-e.deltaY*.01),{x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height});},{passive:false});
-let mapPinch=null;
-mapCanvas.addEventListener('touchstart',e=>{if(e.touches.length!==2)return;e.preventDefault();drag=false;const a=e.touches[0],b=e.touches[1],r=mapCanvas.getBoundingClientRect(),x=((a.clientX+b.clientX)/2-r.left)/r.width,y=((a.clientY+b.clientY)/2-r.top)/r.height;mapPinch={distance:Math.max(1,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)),zoom:mapZoom,x:mapX+x/mapZoom,y:mapY+y/mapZoom};},{passive:false});
-mapCanvas.addEventListener('touchmove',e=>{if(!mapPinch||e.touches.length!==2)return;e.preventDefault();const a=e.touches[0],b=e.touches[1],r=mapCanvas.getBoundingClientRect();mapZoom=clamp(mapPinch.zoom*Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)/mapPinch.distance,1,4);mapX=clamp(mapPinch.x-((a.clientX+b.clientX)/2-r.left)/r.width/mapZoom,0,1-1/mapZoom);mapY=clamp(mapPinch.y-((a.clientY+b.clientY)/2-r.top)/r.height/mapZoom,0,1-1/mapZoom);projectMap();renderMinimap();},{passive:false});
+map.querySelector('#zoomMapIncrease').addEventListener('click',()=>setZoom(zoom*1.25));
+map.querySelector('#zoomMapDecrease').addEventListener('click',()=>setZoom(zoom/1.25));
+mapCanvas.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();setZoom(zoom*Math.exp(-e.deltaY*.01));},{passive:false});
+mapCanvas.addEventListener('touchstart',e=>{
+ if(e.touches.length!==2)return;e.preventDefault();drag=false;
+ const a=e.touches[0],b=e.touches[1];mapPinch={distance:Math.max(1,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)),zoom,anchor:anchorAt({x:viewport.clientWidth/2,y:viewport.clientHeight/2})};
+},{passive:false});
+mapCanvas.addEventListener('touchmove',e=>{
+ if(!mapPinch||e.touches.length!==2)return;e.preventDefault();
+ const a=e.touches[0],b=e.touches[1],d=Math.max(1,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY));
+ // Spreading the rectangle makes the displayed chart area larger (zoom out).
+ zoomAt(mapPinch.zoom*mapPinch.distance/d,mapPinch.anchor);
+},{passive:false});
 for(const type of ['touchend','touchcancel'])mapCanvas.addEventListener(type,()=>{mapPinch=null;drag=false;});
 function renderMinimap(){
  if(!active)return;
  const sc=scale(),extent=mapExtent||{top:0,height:Math.max(1,chart.offsetHeight)};
  const left=clamp((viewport.scrollLeft-GUTTER)/sc/BASE,0,1),right=clamp((viewport.scrollLeft+viewport.clientWidth-GUTTER)/sc/BASE,0,1);
  const top=clamp(((viewport.scrollTop-GUTTER)/sc-extent.top)/extent.height,0,1),bottom=clamp(((viewport.scrollTop+viewport.clientHeight-GUTTER)/sc-extent.top)/extent.height,0,1);
- const l=clamp((left-mapX)*mapZoom,0,1),r=clamp((right-mapX)*mapZoom,0,1),t=clamp((top-mapY)*mapZoom,0,1),b=clamp((bottom-mapY)*mapZoom,0,1);
+ const l=left,r=right,t=top,b=bottom;
+ map.querySelector('#zoomMapDecrease').disabled=zoom<=1;map.querySelector('#zoomMapIncrease').disabled=zoom>=4;
  mapWindow.style.left=(100*l)+'%';mapWindow.style.top=(100*t)+'%';mapWindow.style.width=(100*Math.max(0,r-l))+'%';mapWindow.style.height=(100*Math.max(0,b-t))+'%';
 }
 function moveFromMap(e){
  const rect=mapCanvas.getBoundingClientRect(),extent=mapExtent||{top:0,height:Math.max(1,chart.offsetHeight)};
  const x=clamp((e.clientX-rect.left)/rect.width,0,1),y=clamp((e.clientY-rect.top)/rect.height,0,1);
- viewport.scrollLeft=GUTTER+(mapX+x/mapZoom)*BASE*scale()-viewport.clientWidth/2;
- viewport.scrollTop=GUTTER+(extent.top+(mapY+y/mapZoom)*extent.height)*scale()-viewport.clientHeight/2;
+ viewport.scrollLeft=GUTTER+x*BASE*scale()-viewport.clientWidth/2;
+ viewport.scrollTop=GUTTER+(extent.top+y*extent.height)*scale()-viewport.clientHeight/2;
  renderMinimap();
 }
 
@@ -1908,7 +1914,7 @@ function openViewer(returnFocus){
  }catch(e){closeViewer();throw e;}
 }
 function closeViewer(){
- if(!active)return;active=false;pinch=null;pinchPan=null;desktopGesture=null;pointerInside=false;pointerAnchor=null;mousePan=null;mapDrag=null;delete document.documentElement.dataset.chartGesture;
+ if(!active)return;active=false;pinch=null;pinchPan=null;desktopGesture=null;pointerInside=false;pointerAnchor=null;mousePan=null;mapDrag=null;mapPinch=null;drag=false;delete document.documentElement.dataset.chartGesture;
  if(layoutPending)cancelAnimationFrame(layoutPending);layoutPending=0;layoutSignature='';
  dialog.hidden=true;map.hidden=true;dialog.dataset.ready='false';syncMapToggle();
  chart.style.removeProperty('transform');chart.style.removeProperty('margin');chart.style.removeProperty('width');chart.style.removeProperty('min-width');
@@ -2013,10 +2019,27 @@ document.getElementById('chartZoomIncrease').addEventListener('click',()=>setZoo
 document.getElementById('chartZoomDecrease').addEventListener('click',()=>setZoom(zoom/1.1));
 desktopZoom.addEventListener('change',()=>{queueViewerLayout();constrainMap();});
 viewport.addEventListener("scroll",renderMinimap,{passive:true});
-mapCanvas.addEventListener("pointerdown",e=>{if(mapPinch||!e.isPrimary)return;drag=true;mapCanvas.setPointerCapture(e.pointerId);moveFromMap(e);});
-mapCanvas.addEventListener("pointermove",e=>{if(drag)moveFromMap(e);});
-mapCanvas.addEventListener("pointerup",()=>{drag=false;});
-mapCanvas.addEventListener("pointercancel",()=>{drag=false;});
+mapCanvas.addEventListener('pointerdown',e=>{
+ if(mapPinch||!e.isPrimary||e.button!==0)return;e.preventDefault();
+ const handle=e.target.closest('.map-window-resize'),inWindow=mapWindow.contains(e.target),r=mapWindow.getBoundingClientRect(),sc=scale();
+ drag={id:e.pointerId,type:handle?'resize':inWindow?'window':'navigate',corner:handle?.dataset.corner,x:e.clientX,y:e.clientY,w:r.width,h:r.height,zoom,sc,left:viewport.scrollLeft,top:viewport.scrollTop,anchorX:(viewport.scrollLeft+(handle?.dataset.corner==='nw'?viewport.clientWidth:0)-GUTTER)/sc,anchorY:(viewport.scrollTop+(handle?.dataset.corner==='nw'?viewport.clientHeight:0)-GUTTER)/sc};
+ try{mapCanvas.setPointerCapture(e.pointerId);}catch{}
+ if(drag.type==='navigate')moveFromMap(e);
+});
+mapCanvas.addEventListener('pointermove',e=>{
+ if(!drag||drag.id!==e.pointerId||mapPinch)return;e.preventDefault();
+ const a=drag,dx=e.clientX-a.x,dy=e.clientY-a.y;
+ if(a.type==='resize'){
+  const sign=a.corner==='nw'?-1:1,ratio=Math.max(.1,1+sign*(dx*a.w+dy*a.h)/Math.max(1,a.w*a.w+a.h*a.h));
+  setZoom(a.zoom/ratio,false);
+  viewport.scrollLeft=GUTTER+a.anchorX*scale()-(a.corner==='nw'?viewport.clientWidth:0);
+  viewport.scrollTop=GUTTER+a.anchorY*scale()-(a.corner==='nw'?viewport.clientHeight:0);renderMinimap();
+ }else if(a.type==='window'){
+  const r=mapCanvas.getBoundingClientRect();viewport.scrollLeft=a.left+dx/r.width*BASE*a.sc;
+  viewport.scrollTop=a.top+dy/r.height*(mapExtent?.height||chart.offsetHeight)*a.sc;renderMinimap();
+ }else moveFromMap(e);
+});
+for(const type of ['pointerup','pointercancel','lostpointercapture'])mapCanvas.addEventListener(type,()=>{drag=false;});
 document.addEventListener("keydown",e=>{
  if(!active)return;
  if(e.key==="Escape"){e.preventDefault();closeViewer();}

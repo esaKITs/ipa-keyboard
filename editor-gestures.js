@@ -15,7 +15,11 @@ function apply(){
  const readable=Math.ceil(line+parseFloat(style.paddingTop)+parseFloat(style.paddingBottom)+parseFloat(style.borderTopWidth)+parseFloat(style.borderBottomWidth));
  let reference;try{reference=Number(localStorage.getItem(heightFontKey()));if(!(reference>0)){reference=parseFloat(style.fontSize);localStorage.setItem(heightFontKey(),String(reference));}}catch(e){reference=parseFloat(style.fontSize);}
  const desired=saved*parseFloat(style.fontSize)/reference;
- const height=Math.max(api.profile()==='phone'?36:44,Math.min(Math.max(desired,readable),b.h*scale-chrome));
+ // Keep the active font slider under the pointer when upward growth reaches
+ // the viewport edge. Release restores the full font-linked height.
+ const pr=panel.getBoundingClientRect(),or=out.getBoundingClientRect();
+ const trackCapacity=range?.freezeWidth?or.height*scale+(range.top-range.control.getBoundingClientRect().top+pr.top-b.y)*scale:Infinity;
+ const height=Math.max(api.profile()==='phone'?36:44,Math.min(Math.max(desired,readable),Math.max(readable,trackCapacity),b.h*scale-chrome));
  out.dataset.manualHeight='true';if(Math.abs(parseFloat(out.style.height)-height)>.5)out.style.height=height+'px';return true;
 }
 function setHeight(n){try{localStorage.setItem(heightFontKey(),String(parseFloat(getComputedStyle(out).fontSize)));localStorage.setItem(heightKey(),String(Math.round(Math.max(api.profile()==='phone'?36:44,Math.min(1200,n)))));}catch(e){}apply();}

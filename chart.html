@@ -1741,7 +1741,7 @@ const zoomSlider=document.getElementById('chartZoomSlider'),zoomControls=documen
 function syncZoomLabels(){
  const t=key=>window.esaI18n.t(key,window.esaChartLocale||'ja','chart');
  zoomControls.setAttribute('aria-label',t('拡大倍率'));zoomSlider.setAttribute('aria-label',t('拡大倍率'));
- for(const [id,key]of [['chartZoomIncrease','拡大'],['chartZoomDecrease','縮小'],['zoomMapIncrease','拡大'],['zoomMapDecrease','縮小']])document.getElementById(id).setAttribute('aria-label',t(key));
+ for(const [id,key]of [['chartZoomIncrease','拡大'],['chartZoomDecrease','縮小'],['zoomMapIncrease','拡大'],['zoomMapDecrease','縮小']])(document.getElementById(id)||map.querySelector('#'+id)).setAttribute('aria-label',t(key));
 }
 window.addEventListener('esa-chart-locale-change',syncZoomLabels);
 window.esaI18n.ready.then(syncZoomLabels);
@@ -1852,14 +1852,14 @@ function projectMap(){
   item.style.left=(100*(Number(item.dataset.x)-mapX)*mapZoom)+'%';item.style.top=(100*(Number(item.dataset.y)-mapY)*mapZoom)+'%';
   item.style.width=(100*Number(item.dataset.w)*mapZoom)+'%';item.style.height=(100*Number(item.dataset.h)*mapZoom)+'%';
  }
- document.getElementById('zoomMapDecrease').disabled=mapZoom<=1;document.getElementById('zoomMapIncrease').disabled=mapZoom>=4;fitMapLabels();
+ map.querySelector('#zoomMapDecrease').disabled=mapZoom<=1;map.querySelector('#zoomMapIncrease').disabled=mapZoom>=4;fitMapLabels();
 }
 function zoomMap(value,point={x:.5,y:.5}){
  const x=mapX+point.x/mapZoom,y=mapY+point.y/mapZoom;mapZoom=clamp(value,1,4);
  mapX=clamp(x-point.x/mapZoom,0,1-1/mapZoom);mapY=clamp(y-point.y/mapZoom,0,1-1/mapZoom);projectMap();renderMinimap();
 }
-document.getElementById('zoomMapIncrease').addEventListener('click',()=>zoomMap(mapZoom*1.25));
-document.getElementById('zoomMapDecrease').addEventListener('click',()=>zoomMap(mapZoom/1.25));
+map.querySelector('#zoomMapIncrease').addEventListener('click',()=>zoomMap(mapZoom*1.25));
+map.querySelector('#zoomMapDecrease').addEventListener('click',()=>zoomMap(mapZoom/1.25));
 mapCanvas.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();const r=mapCanvas.getBoundingClientRect();zoomMap(mapZoom*Math.exp(-e.deltaY*.01),{x:(e.clientX-r.left)/r.width,y:(e.clientY-r.top)/r.height});},{passive:false});
 let mapPinch=null;
 mapCanvas.addEventListener('touchstart',e=>{if(e.touches.length!==2)return;e.preventDefault();drag=false;const a=e.touches[0],b=e.touches[1],r=mapCanvas.getBoundingClientRect(),x=((a.clientX+b.clientX)/2-r.left)/r.width,y=((a.clientY+b.clientY)/2-r.top)/r.height;mapPinch={distance:Math.max(1,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)),zoom:mapZoom,x:mapX+x/mapZoom,y:mapY+y/mapZoom};},{passive:false});

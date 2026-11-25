@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [phase1, controls, charts, recovery]
+        suite: [phase1, panel, overview, zoom, geometry, feedback, recovery]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,17 +47,24 @@ jobs:
           PHASE1_BASELINE_URL: http://127.0.0.1:8775/ipa-keyboard/
         run: node qa/phase1-display.cjs
       - name: Verify panel controls, gestures and overview
-        if: matrix.suite == 'controls'
+        if: matrix.suite == 'panel'
         run: |
           node qa/panel-controls.cjs
           node qa/editor-gestures.cjs
-          node qa/floating-overview.cjs
-      - name: Verify chart geometry, feedback, icons and header
-        if: matrix.suite == 'charts'
+      - name: Verify overview readability, navigation and freely placed panels
+        if: matrix.suite == 'overview'
+        run: node qa/floating-overview.cjs
+      - name: Verify desktop zoom anchors and controls
+        if: matrix.suite == 'zoom'
+        run: node qa/desktop-zoom.cjs
+      - name: Verify chart geometry and suprasegmental grouping
+        if: matrix.suite == 'geometry'
         run: |
           node qa/suprasegmental-grouping.cjs
-          node qa/desktop-zoom.cjs
           node qa/vowel-equivalence.cjs
+      - name: Verify feedback, icons and header
+        if: matrix.suite == 'feedback'
+        run: |
           node qa/header-alignment.cjs
           node qa/tap-feedback.cjs
           node qa/final-four.cjs

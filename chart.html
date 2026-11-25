@@ -1816,13 +1816,23 @@ function viewerBaseScale(width){
  // the chart origin inside this stage, rather than the viewport origin.
  return desktopZoom.matches?Math.max(1,width-2*GUTTER)/BASE:Math.min(1,Math.max(1,width-2*GUTTER)/BASE);
 }
+function sizeStage(){
+ const next=scale(),height=parseFloat(getComputedStyle(chart).height)||chart.offsetHeight;
+ const r=viewport.getBoundingClientRect(),bottom=r.top+viewport.clientHeight;
+ // Leave room to scroll the final symbols above a floating editor. This is
+ // scrollable space only: chart coordinates and overview geometry stay intact.
+ const overlaps=editorRect&&editorRect.left<r.left+viewport.clientWidth&&editorRect.right>r.left&&editorRect.bottom>r.top&&editorRect.top<bottom;
+ const clearance=overlaps?Math.max(0,bottom-Math.max(r.top,editorRect.top)+GUTTER):0;
+ stage.style.width=(BASE*next+2*GUTTER)+"px";
+ stage.style.height=(height*next+2*GUTTER+clearance)+"px";
+ stage.dataset.bottomClearance=String(clearance);
+}
 function setZoom(z,keepCenter=true){
  if(!active)return;
  const old=scale(), centerX=(viewport.scrollLeft+viewport.clientWidth/2-GUTTER)/old, centerY=(viewport.scrollTop+viewport.clientHeight/2-GUTTER)/old;
  zoom=clamp(z,1,4);chart.dataset.feedbackScale=String(zoom);
  zoomSlider.value=String(zoom);zoomSlider.style.setProperty('--zoom-fill',((zoom-1)/3*100)+'%');
- const next=scale(),height=parseFloat(getComputedStyle(chart).height)||chart.offsetHeight;
- stage.style.width=(BASE*next+2*GUTTER)+"px";stage.style.height=(height*next+2*GUTTER)+"px";
+ const next=scale();sizeStage();
  chart.style.transform="scale("+next+")";
  if(keepCenter){viewport.scrollLeft=GUTTER+centerX*next-viewport.clientWidth/2;viewport.scrollTop=GUTTER+centerY*next-viewport.clientHeight/2;}
  renderMinimap();
@@ -1952,7 +1962,7 @@ viewport.addEventListener('touchmove',e=>{
 },{passive:false,capture:true});
 function endPinch(e){if(!e.touches.length){pinch=null;pinchPan=null;delete document.documentElement.dataset.chartGesture;}else if(e.touches.length===1){pinch=null;const p=point(e.touches[0]);pinchPan={x:p.x,y:p.y,startX:p.x,startY:p.y,moved:true};}}
 viewport.addEventListener('touchend',endPinch,{passive:true});viewport.addEventListener('touchcancel',endPinch,{passive:true});
-window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.kind==='esa-chart-zoom-layout')queueViewerLayout();if(e.data?.kind==='esa-editor-rect'){editorRect=e.data.rect;constrainMap();}});
+window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.kind==='esa-chart-zoom-layout')queueViewerLayout();if(e.data?.kind==='esa-editor-rect'){editorRect=e.data.rect;if(active){sizeStage();renderMinimap();}constrainMap();}});
 openBtn.addEventListener("click",openViewer);
 document.getElementById("zoomClose").addEventListener("click",closeViewer);
 window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window.esaI18n.t("通常表示に戻る",window.esaChartLocale,"chart");const restoreButton=document.getElementById("zoomClose");restoreButton.setAttribute("aria-label",restoreLabel);restoreButton.title=restoreLabel;const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;const mapLabel=window.esaI18n.t("全体図を表示",window.esaChartLocale,"chart");mapToggle.setAttribute("aria-label",mapLabel);mapToggle.title=mapLabel;if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});

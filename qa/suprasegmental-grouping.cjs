@@ -58,7 +58,11 @@ const settle=p=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestA
     await p.evaluate(()=>scrollTo(0,0));await p.locator('#chartZoomToggle').click();await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');
     const map=p.locator('#zoomMinimap');if(!await map.isVisible())await p.locator('#zoomMapToggle').click();await settle(p);
     assert.equal(await p.locator('#zoomMapCanvas [data-region="suprasegmentalGroup"]').count(),1);assert.equal(await p.locator('#zoomMapCanvas [data-region="tonesAndWordAccents"]').count(),0,'subgroup is not presented as a peer');
-    await p.locator('#zoomMapCanvas [data-region="suprasegmentalGroup"]').click();await p.locator('#zoomMapClose').click();
+    // The viewport rectangle now owns drag/resize pointer input. Activate the
+    // same region centre through the actual canvas hit target, then verify
+    // the region remains represented and the map still closes normally.
+    const regionBox=await p.locator('#zoomMapCanvas [data-region="suprasegmentalGroup"]').boundingBox(),canvasBox=await p.locator('#zoomMapCanvas').boundingBox();
+    await p.locator('#zoomMapCanvas').click({position:{x:regionBox.x+regionBox.width/2-canvasBox.x,y:regionBox.y+regionBox.height/2-canvasBox.y}});await p.locator('#zoomMapClose').click();
     // Native pointer activation of a moved key (no force / dispatched click).
     const panel=await p.locator('#floatingEditor').boundingBox(),grip=await p.locator('#inputPanelDrag').boundingBox();
     await p.mouse.move(grip.x+grip.width/2,grip.y+grip.height/2);await p.mouse.down();await p.mouse.move(grip.x+grip.width/2+8-panel.x,grip.y+grip.height/2+80-panel.y,{steps:12});await p.mouse.up();await settle(p);

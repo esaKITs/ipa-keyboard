@@ -3,7 +3,7 @@ const PREFIX='esakits-ipa-keyboard-';
 const CACHE=PREFIX+'v83.34';
 const LEGACY='ipa-keyboard-v4';
 const CORE=['./','./index.html','./chart.html','./apple-touch-icon.png','./i18n.js','./ipa-fonts.js','./editor-gestures.js','./diacritic-display.js','./language-picker.js','./fonts/positioned-diacritics.json','./fonts/Andika-Regular.woff2','./translations.csv','./CREDITS.md','./LICENSE-MIT.txt','./fonts/OFL-Andika.txt','./fonts/DoulosSIL-Regular.woff2','./fonts/NotoSansJP-Regular.woff2','./fonts/NotoSansJP-Bold.woff2','./fonts/OFL-DoulosSIL.txt','./fonts/OFL-NotoSansJP.txt'];
-self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting())));
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
  const keys=await caches.keys();
  const old=keys.filter(key=>key===LEGACY||(key.startsWith(PREFIX)&&key!==CACHE));
@@ -23,7 +23,7 @@ self.addEventListener('fetch',event=>{
  event.respondWith((async()=>{
   const cache=await caches.open(CACHE);
   try{
-   const response=await fetch(request);
+   const response=await fetch(request,{cache:'no-cache'});
    if(response.ok)await cache.put(request,response.clone());
    return response;
   }catch(error){

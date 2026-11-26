@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [windows, regression]
+        suite: [windows]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,7 +45,7 @@ jobs:
           git archive 8efff98b06b0c2d897c9d5da154c870f2463c5c1 | tar -x -C /tmp/floating-before
           nohup python3 -m http.server 8776 --bind 127.0.0.1 --directory /tmp/floating-before >/tmp/floating-before.log 2>&1 &
       - name: Reproduce baseline and verify three phase 1 requirements
-        if: matrix.suite == 'regression'
+        if: matrix.suite == 'windows'
         env:
           PHASE1_BASELINE_URL: http://127.0.0.1:8775/ipa-keyboard/
         run: node qa/phase1-display.cjs
@@ -53,7 +53,7 @@ jobs:
         if: matrix.suite == 'windows'
         run: node qa/floating-crossing.cjs
       - name: Verify editor controls and gestures
-        if: matrix.suite == 'regression'
+        if: matrix.suite == 'windows'
         run: |
           node qa/panel-controls.cjs
           node qa/editor-gestures.cjs

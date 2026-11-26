@@ -6,9 +6,9 @@
 
 A multilingual International Phonetic Alphabet (IPA) keyboard for phonetics teaching, learning and transcription. Select symbols from an interactive chart, compose Unicode text in a floating editor, and copy it into your materials.
 
-[Open the official website](https://esakits.github.io/ipa-keyboard/) · [Reviewed preview](https://esakits-ipa-phase3-20261126.esakit.chatgpt.site/)
+[Open the official website](https://esakits.github.io/ipa-keyboard/)
 
-> **Review draft** — This README describes the reviewed v83.34 candidate at commit [`34b79b4`](https://github.com/esaKITs/ipa-keyboard/commit/34b79b411654fc866b8faee61e00eb393b795485). The improvements remain on a development branch. The official website serves the published release. The preview requires an authorized ChatGPT account.
+Release documentation for **v83.34**. The implementation and screenshots were verified at commit [`34b79b4`](https://github.com/esaKITs/ipa-keyboard/commit/34b79b411654fc866b8faee61e00eb393b795485).
 
 ## Designed for Touch
 

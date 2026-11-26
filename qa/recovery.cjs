@@ -22,7 +22,7 @@ async function gesture(p,f,name,points){
  const p=await b.newPage({viewport:{width,height:844},hasTouch:true,serviceWorkers:'block'}),errors=[],bad=[];p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(/\.(js|csv|woff2|html)(\?|$)/.test(r.url())&&r.status()>=400)bad.push(r.url());});
  try{
  await p.goto(app);const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();await f.waitForFunction(()=>typeof esaSetLocale==='function');await p.evaluate(()=>document.fonts.ready);await f.evaluate(()=>document.fonts.ready);await settle(p);
- assert.equal(await f.locator('.v83-ipa-key').count(),235);assert.equal(await p.locator('.title').textContent(),'IPA Keyboard');assert.equal(await p.locator('.v83-label').textContent(),'v83.34');
+ assert.equal(await f.locator('.v83-ipa-key').count(),235);assert.equal(await p.locator('.title-name').textContent(),'IPA Keyboard');assert.equal(await p.locator('.title-subtitle').textContent(),'Designed for Touch');assert.equal(await p.locator('.v83-label').textContent(),'v83.34');
  // Keep genuine edit history across every mode change.
  await p.locator('#out').fill('ab');await p.locator('#out').press('End');await p.locator('#out').press('c');await p.locator('#out').press('ArrowLeft');
  const saved=await p.locator('#out').evaluate(e=>({value:e.value,start:e.selectionStart,end:e.selectionEnd}));

@@ -6,9 +6,9 @@
 
 音声学の教育・学習や音声転写に使える、多言語対応の国際音声字母（IPA）入力ツールです。チャート上の記号を選び、フローティング入力パネルでUnicode文字列を作成し、教材などにコピーできます。
 
-[公式公開サイトを開く](https://esakits.github.io/ipa-keyboard/) · [確認用サイト](https://esakits-ipa-phase3-20261126.esakit.chatgpt.site/)
+[公式公開サイトを開く](https://esakits.github.io/ipa-keyboard/)
 
-> **確認用原稿** — このREADMEは、確認済みのv83.34候補版、コミット[`34b79b4`](https://github.com/esaKITs/ipa-keyboard/commit/34b79b411654fc866b8faee61e00eb393b795485)を説明しています。改良内容は作業ブランチに保存されています。公式サイトでは公開済みの版が配信されています。確認用サイトの閲覧には、許可されたChatGPTアカウントが必要です。
+**v83.34**の公開版の説明です。実装と掲載画像は、コミット[`34b79b4`](https://github.com/esaKITs/ipa-keyboard/commit/34b79b411654fc866b8faee61e00eb393b795485)で検証しています。
 
 ## Designed for Touch
 

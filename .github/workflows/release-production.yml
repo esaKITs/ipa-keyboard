@@ -1,7 +1,7 @@
 name: Verify and publish IPA Keyboard production v83.34
 on:
   push:
-    branches: [main, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119, work/seo-20261119, work/desktop-zoom-20261120, work/floating-overview-20261121, work/suprasegmental-grouping-20261121, work/raised-pitch-arrows-20261121]
+    branches: [main, work/production-replacement-20261126, release/ipa-keyboard-v83.34, work/header-alignment-20261119, work/tap-feedback-20261119, work/seo-20261119, work/desktop-zoom-20261120, work/floating-overview-20261121, work/suprasegmental-grouping-20261121, work/raised-pitch-arrows-20261121]
     paths: ['index.html', 'sitemap.xml', 'chart.html', 'i18n.js', 'translations.csv', 'translations.xlsx', 'sw.js', 'ipa-fonts.js', 'editor-gestures.js', 'diacritic-display.js', 'language-picker.js', 'fonts/**', 'qa/**', 'tools/**', '.github/workflows/release-production.yml']
   workflow_dispatch:
 permissions:
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.ref == 'refs/heads/work/raised-pitch-arrows-20261121' || github.ref == 'refs/heads/work/suprasegmental-grouping-20261121' || github.ref == 'refs/heads/work/floating-overview-20261121' || github.ref == 'refs/heads/work/desktop-zoom-20261120' || github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119' || github.ref == 'refs/heads/work/seo-20261119'
+    if: github.ref == 'refs/heads/work/production-replacement-20261126' || github.ref == 'refs/heads/work/raised-pitch-arrows-20261121' || github.ref == 'refs/heads/work/suprasegmental-grouping-20261121' || github.ref == 'refs/heads/work/floating-overview-20261121' || github.ref == 'refs/heads/work/desktop-zoom-20261120' || github.ref == 'refs/heads/release/ipa-keyboard-v83.34' || github.ref == 'refs/heads/work/header-alignment-20261119' || github.ref == 'refs/heads/work/tap-feedback-20261119' || github.ref == 'refs/heads/work/seo-20261119'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -31,9 +31,9 @@ jobs:
         run: nohup python3 qa/server.py >/tmp/ipa-production-http.log 2>&1 &
       - name: Serve immutable geometry reference
         run: |
-          git fetch --depth=1 origin a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b
+          git fetch --depth=1 origin 34b79b411654fc866b8faee61e00eb393b795485
           mkdir -p /tmp/ipa-vowel-reference
-          git archive a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b | tar -x -C /tmp/ipa-vowel-reference
+          git archive 34b79b411654fc866b8faee61e00eb393b795485 | tar -x -C /tmp/ipa-vowel-reference
           nohup python3 -m http.server 8771 --bind 127.0.0.1 --directory /tmp/ipa-vowel-reference >/tmp/ipa-vowel-reference.log 2>&1 &
       - name: Serve immutable SEO baseline
         if: github.ref == 'refs/heads/work/seo-20261119' || contains(github.event.head_commit.message, '[seo]')
@@ -75,6 +75,22 @@ jobs:
           node qa/suprasegmental-grouping.cjs
           node qa/floating-overview.cjs
           node qa/desktop-zoom.cjs
+      - name: Serve Phase 1 and floating-window baselines
+        if: github.ref == 'refs/heads/work/production-replacement-20261126'
+        run: |
+          git fetch --depth=1 origin 1646b6c148f5be0b0f420490b96515fc5839470f 8efff98b06b0c2d897c9d5da154c870f2463c5c1
+          mkdir -p /tmp/phase1-reference/ipa-keyboard /tmp/floating-before
+          git archive 1646b6c148f5be0b0f420490b96515fc5839470f | tar -x -C /tmp/phase1-reference/ipa-keyboard
+          git archive 8efff98b06b0c2d897c9d5da154c870f2463c5c1 | tar -x -C /tmp/floating-before
+          nohup python3 -m http.server 8775 --bind 127.0.0.1 --directory /tmp/phase1-reference >/tmp/phase1-baseline.log 2>&1 &
+          nohup python3 -m http.server 8776 --bind 127.0.0.1 --directory /tmp/floating-before >/tmp/floating-before.log 2>&1 &
+      - name: Verify approved Phase 1 and floating-window fixes
+        if: github.ref == 'refs/heads/work/production-replacement-20261126'
+        env:
+          PHASE1_BASELINE_URL: http://127.0.0.1:8775/ipa-keyboard/
+        run: |
+          node qa/phase1-display.cjs
+          node qa/floating-crossing.cjs
       - name: Verify cold panel responsiveness
         run: node qa/panel-controls.cjs
       - name: Verify panel and chart recovery across 100 scenarios
@@ -87,6 +103,8 @@ jobs:
       - name: Verify recovery behavior and single restore control
         run: |
           node qa/vowel-equivalence.cjs
+          node qa/phase2-chart.cjs
+          node qa/phase3-title.cjs
           node qa/header-alignment.cjs
           node qa/tap-feedback.cjs
           node qa/final-four.cjs
@@ -130,9 +148,9 @@ jobs:
               raise SystemExit('Production files did not update')
       - name: Serve immutable geometry reference
         run: |
-          git fetch --depth=1 origin a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b
+          git fetch --depth=1 origin 34b79b411654fc866b8faee61e00eb393b795485
           mkdir -p /tmp/ipa-vowel-reference
-          git archive a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b | tar -x -C /tmp/ipa-vowel-reference
+          git archive 34b79b411654fc866b8faee61e00eb393b795485 | tar -x -C /tmp/ipa-vowel-reference
           nohup python3 -m http.server 8771 --bind 127.0.0.1 --directory /tmp/ipa-vowel-reference >/tmp/ipa-vowel-reference.log 2>&1 &
       - name: Serve immutable SEO baseline
         if: contains(github.event.head_commit.message, '[seo]')
@@ -152,6 +170,8 @@ jobs:
           node qa/panel-controls.cjs
           node qa/recovery.cjs
           node qa/vowel-equivalence.cjs
+          node qa/phase2-chart.cjs
+          node qa/phase3-title.cjs
           node qa/header-alignment.cjs
           node qa/tap-feedback.cjs
           node qa/final-four.cjs

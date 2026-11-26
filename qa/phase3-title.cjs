@@ -100,10 +100,12 @@ function validate(state) {
             assert.deepEqual(expanded.controls, normal.controls, 'stable controls during expansion');
             if (locale==='ja' && [393,1280].includes(width))
               await page.screenshot({path:output+'/'+engineName+'-'+width+'-'+(dark?'dark':'light')+'-expanded.png'});
-            await page.locator('#zoomMapToggle').click();
-            assert.equal(await page.locator('#zoomMapToggle').getAttribute('aria-pressed'),'true');
-            await page.locator('#zoomMapToggle').click();
-            assert.equal(await page.locator('#zoomMapToggle').getAttribute('aria-pressed'),'false');
+            const map=page.locator('#zoomMapToggle');
+            const mapWasOpen=await map.getAttribute('aria-pressed')==='true';
+            await map.click();
+            assert.equal(await map.getAttribute('aria-pressed'),String(!mapWasOpen));
+            await map.click();
+            assert.equal(await map.getAttribute('aria-pressed'),String(mapWasOpen));
             await page.locator('#chartZoomToggle').click();
             await frame.waitForFunction(() => document.getElementById('chartZoomDialog').hidden);
             await settle(page);

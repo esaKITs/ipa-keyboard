@@ -873,6 +873,7 @@ html[data-inverse="true"] .v831-symbol-popup{--preview-fill:#303033;--preview-in
 </style><style id="overviewStyleRules">
 /* Shared by the chart and its parent-hosted, draggable overview. */
 .zoom-minimap{--float-safe-top:env(safe-area-inset-top,0px);--float-safe-bottom:env(safe-area-inset-bottom,0px);--float-safe-left:env(safe-area-inset-left,0px);--float-safe-right:env(safe-area-inset-right,0px);--map-label-size:10px;position:absolute;z-index:4;right:12px;top:72px;width:224px;height:224px;box-sizing:border-box;overflow:hidden;background:#faf9fc;color:#26323c;border:1px solid #b7b2bf;border-radius:10px;box-shadow:0 3px 12px #0002;touch-action:none;user-select:none;cursor:crosshair;font-family:'Noto Sans JP Local',sans-serif}
+.zoom-minimap,.zoom-minimap *{-webkit-tap-highlight-color:transparent}
 .zoom-minimap[hidden]{display:none!important}
 .zoom-minimap.is-parent-map{position:fixed;z-index:2147483647;transform-origin:0 0}
 html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotate(180deg);color-scheme:light}
@@ -1755,7 +1756,7 @@ function syncZoomLabels(){
 window.addEventListener('esa-chart-locale-change',syncZoomLabels);
 window.esaI18n.ready.then(syncZoomLabels);
 const desktopZoom=matchMedia('(min-width:600px) and (hover:hover) and (pointer:fine)');
-let mapPosition=null,mapDrag=null,editorRect=null,mapShown=true,mapExtent=null;
+let mapPosition=null,mapDrag=null,editorRect=null,mapShown=true,mapExtent=null,mapManuallyPlaced=false;
 function mapBounds(){
  if(map.classList.contains('is-parent-map')){
   const v=parent.visualViewport,sc=Math.max(.1,v?.scale||1);
@@ -1765,12 +1766,12 @@ function mapBounds(){
  }
  const b=dialog.getBoundingClientRect();return {left:b.left,top:b.top,width:b.width,height:b.height,scale:1};
 }
-function placeMap(x,y){
+function placeMap(x,y,avoidEditor=false){
  if(!active||map.hidden)return;
  const bounds=mapBounds(),r=map.getBoundingClientRect(),pad=6/bounds.scale;
  const availableWidth=bounds.width-(desktopZoom.matches?64/bounds.scale:0),top=pad;
  mapPosition={x:clamp(x,pad,Math.max(pad,availableWidth-r.width-pad)),y:clamp(y,top,Math.max(top,bounds.height-r.height-pad))};
- if(editorRect){
+ if(avoidEditor&&editorRect){
   let e=editorRect;
   if(map.classList.contains('is-parent-map')){
    const host=frameElement.getBoundingClientRect(),sx=host.width/frameElement.clientWidth,sy=host.height/frameElement.clientHeight;
@@ -1791,15 +1792,15 @@ function constrainMap(){
  if(!active||map.hidden)return;
  const b=mapBounds(),r=map.getBoundingClientRect();
  const initialTop=map.classList.contains('is-parent-map')?Math.max(6/b.scale,parent.document.querySelector('.app-header').getBoundingClientRect().bottom-b.top+8/b.scale):r.top-b.top;
- placeMap(mapPosition?.x??Math.max(6/b.scale,b.width-r.width-(desktopZoom.matches?64/b.scale:0)-6/b.scale),mapPosition?.y??initialTop);
+ placeMap(mapPosition?.x??Math.max(6/b.scale,b.width-r.width-(desktopZoom.matches?64/b.scale:0)-6/b.scale),mapPosition?.y??initialTop,!mapManuallyPlaced);
 }
 function syncMapToggle(){const shown=active&&!map.hidden;mapToggle.setAttribute('aria-pressed',String(shown));mapToggle.setAttribute('aria-expanded',String(shown));}
 function showMap(show){mapShown=show;map.hidden=!active||!show;syncMapToggle();if(show){fitMapLabels();constrainMap();renderMinimap();}}
 mapGrip.addEventListener('pointerdown',e=>{if(e.button!==0||mapDrag)return;e.preventDefault();const bounds=mapBounds(),r=map.getBoundingClientRect();mapDrag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left-bounds.left,top:r.top-bounds.top};try{mapGrip.setPointerCapture(e.pointerId);}catch{}mapGrip.focus({preventScroll:true});});
-mapGrip.addEventListener('pointermove',e=>{if(mapDrag?.id!==e.pointerId)return;e.preventDefault();placeMap(mapDrag.left+e.clientX-mapDrag.x,mapDrag.top+e.clientY-mapDrag.y);});
+mapGrip.addEventListener('pointermove',e=>{if(mapDrag?.id!==e.pointerId)return;e.preventDefault();mapManuallyPlaced=true;placeMap(mapDrag.left+e.clientX-mapDrag.x,mapDrag.top+e.clientY-mapDrag.y);});
 function endMapDrag(e){if(mapDrag?.id===e.pointerId)mapDrag=null;}
 for(const name of ['pointerup','pointercancel','lostpointercapture'])mapGrip.addEventListener(name,endMapDrag);
-mapGrip.addEventListener('keydown',e=>{const delta={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!delta)return;e.preventDefault();constrainMap();const step=e.shiftKey?36:12;placeMap(mapPosition.x+delta[0]*step,mapPosition.y+delta[1]*step);});
+mapGrip.addEventListener('keydown',e=>{const delta={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!delta)return;e.preventDefault();mapManuallyPlaced=true;constrainMap();const step=e.shiftKey?36:12;placeMap(mapPosition.x+delta[0]*step,mapPosition.y+delta[1]*step);});
 mapClose.addEventListener('click',()=>{showMap(false);mapToggle.focus({preventScroll:true});});
 const BASE=1040,GUTTER=8;
 // The overview always shows the full chart. Only its viewport rectangle changes.

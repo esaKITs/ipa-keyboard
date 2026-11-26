@@ -1,0 +1,64 @@
+name: Floating windows correction verification (no publication)
+on:
+  push:
+    branches: [work/floating-fix-20261126]
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
+concurrency:
+  group: floating-fix-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/work/floating-fix-20261126'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [windows, regression]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1 pngjs@7.0.0
+      - run: npx playwright install chromium webkit --with-deps
+      - name: Check sources and translation master
+        run: |
+          git diff --check HEAD~1 HEAD
+          node --check editor-gestures.js
+          python3 tools/export-translations.py translations.xlsx translations.csv --check
+      - name: Serve candidate and immutable baselines
+        run: |
+          nohup python3 qa/server.py >/tmp/phase1-http.log 2>&1 &
+          mkdir -p /tmp/phase1-reference/ipa-keyboard /tmp/ipa-vowel-reference
+          git archive 1646b6c148f5be0b0f420490b96515fc5839470f | tar -x -C /tmp/phase1-reference/ipa-keyboard
+          git archive a389cb2c9f6cae3b00ef75a4795c8aa53bdb858b | tar -x -C /tmp/ipa-vowel-reference
+          nohup python3 -m http.server 8775 --bind 127.0.0.1 --directory /tmp/phase1-reference >/tmp/phase1-baseline.log 2>&1 &
+          nohup python3 -m http.server 8771 --bind 127.0.0.1 --directory /tmp/ipa-vowel-reference >/tmp/phase1-vowel.log 2>&1 &
+          mkdir -p /tmp/floating-before
+          git archive 8efff98b06b0c2d897c9d5da154c870f2463c5c1 | tar -x -C /tmp/floating-before
+          nohup python3 -m http.server 8776 --bind 127.0.0.1 --directory /tmp/floating-before >/tmp/floating-before.log 2>&1 &
+      - name: Reproduce baseline and verify three phase 1 requirements
+        if: matrix.suite == 'regression'
+        env:
+          PHASE1_BASELINE_URL: http://127.0.0.1:8775/ipa-keyboard/
+        run: node qa/phase1-display.cjs
+      - name: Verify crossing windows and native highlight styles
+        if: matrix.suite == 'windows'
+        run: node qa/floating-crossing.cjs
+      - name: Verify editor controls and gestures
+        if: matrix.suite == 'regression'
+        run: |
+          node qa/panel-controls.cjs
+          node qa/editor-gestures.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: floating-fix-${{ matrix.suite }}-evidence
+          path: qa-production/

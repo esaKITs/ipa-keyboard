@@ -386,6 +386,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .v83-label{font:12px/1.5 system-ui,sans-serif;color:#444;padding:4px 0 8px;text-align:center}
 
 /* v83.34: draggable editor remains available above both chart viewing modes. */
+#floatingEditor,#floatingEditor *{-webkit-tap-highlight-color:transparent}
 .toolbar#floatingEditor{position:fixed;z-index:2147483647;left:8px;top:110px;width:min(480px,calc(100vw - 16px));padding:8px;border:1px solid #aaa;border-radius:12px;background:#fafaf9;box-shadow:0 6px 24px #0003;max-height:calc(var(--panel-vh,100dvh) - 16px);overflow:auto;box-sizing:border-box}
 #floatingEditor .output{display:block;min-height:58px;max-height:min(180px,calc(var(--panel-vh,100dvh)*.35));resize:none}
 .input-panel-grip{display:flex;align-items:center;gap:8px;margin:-4px -2px 6px;direction:ltr}
@@ -936,6 +937,20 @@ window.esaI18n.ready.then(function(){
 'use strict';
 const frame=document.getElementById('v83ChartFrame'),picker=document.getElementById('languageSelect'),headerZoom=document.getElementById('chartZoomToggle'),pageHeader=document.querySelector('.app-header');
 let expanded=false,layoutFrame=0,priorOverflow='',priorScroll=null,lastLayout='';
+// The surface being used stays in front while the two windows cross.
+function raiseFloatingSurface(event){
+ let surface=event.target.closest?.('#floatingEditor,#zoomMinimap');
+ if(!surface&&event.target.closest?.('#zoomMapToggle'))surface=document.getElementById('zoomMinimap');
+ if(!surface)return;
+ for(const id of ['floatingEditor','zoomMinimap']){
+  const element=document.getElementById(id);
+  if(element)element.style.zIndex=element===surface?'2147483647':'2147483646';
+ }
+}
+document.addEventListener('pointerdown',raiseFloatingSurface,true);
+document.addEventListener('focusin',raiseFloatingSurface,true);
+
+
 function setLocale(){
  const overview=frame.contentDocument?.readyState==='complete'?frame.contentDocument.getElementById('zoomMapToggle'):null;
  if(overview){document.getElementById('headerOverviewSlot').appendChild(overview);overview.setAttribute('aria-controls','zoomMinimap');}

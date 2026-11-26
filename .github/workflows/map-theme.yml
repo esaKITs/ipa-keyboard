@@ -1,0 +1,33 @@
+name: Verify dark overview selection and language focus
+on:
+  push:
+    branches: [work/map-orange-20261127]
+permissions:
+  contents: read
+env:
+  WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1 pngjs@7.0.0
+      - run: npx playwright install chromium webkit --with-deps
+      - name: Serve candidate and unchanged production baseline
+        run: |
+          nohup python3 qa/server.py >/tmp/map-theme-http.log 2>&1 &
+          mkdir -p /tmp/map-theme-before
+          git archive 7a96b1917818b0c7ca8d23cd9868fc85f7a242d2 | tar -x -C /tmp/map-theme-before
+          nohup python3 -m http.server 8778 --bind 127.0.0.1 --directory /tmp/map-theme-before >/tmp/map-theme-before.log 2>&1 &
+      - run: node qa/map-theme.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: map-theme-and-language-focus-evidence
+          path: qa-production/map-theme/

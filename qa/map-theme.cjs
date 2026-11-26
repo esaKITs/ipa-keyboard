@@ -27,17 +27,24 @@ function closestBorder(im,rect,target){let best={distance:Infinity};const cx=rec
    if([393,1280].includes(width))await map.screenshot({path:`${dir}/${name}-${width}-${dark?'dark':'light'}.png`});
    colors.push({engine:name,width,dark,state,renderedBorder:pixel.rgb,distance:pixel.distance,pass:true});assert.deepEqual(errors,[]);
    if([393,1280].includes(width)){
-    const old=await browser.newPage({viewport:{width,height:844},serviceWorkers:'block'});try{
-     await open(old,baseline,width,dark);const oldRect=await old.locator('#zoomMapWindow').boundingBox();
-     // Compare initial geometry on a fresh candidate, before the interaction checks.
-     const fresh=await browser.newPage({viewport:{width,height:844},serviceWorkers:'block'});try{
-      await open(fresh,app,width,dark);const newRect=await fresh.locator('#zoomMapWindow').boundingBox();for(const k of['x','y','width','height'])assert(Math.abs(newRect[k]-oldRect[k])<.1,'selection geometry unchanged '+JSON.stringify({name,width,dark,k,oldRect,newRect}));
-      const oldMap=PNG.sync.read(await old.locator('#zoomMinimap').screenshot({path:`${dir}/before-${name}-${width}-${dark?'dark':'light'}.png`})),newMap=PNG.sync.read(await fresh.locator('#zoomMinimap').screenshot());assert.equal(oldMap.width,newMap.width);assert.equal(oldMap.height,newMap.height);
-      const outer=await fresh.locator('#zoomMinimap').boundingBox();let changed=0,outside=0;
-      for(let y=0;y<newMap.height;y++)for(let x=0;x<newMap.width;x++){const i=(y*newMap.width+x)*4,d=Math.max(...[0,1,2].map(k=>Math.abs(oldMap.data[i+k]-newMap.data[i+k])));if(d>3){changed++;if(x<newRect.x-outer.x-2||x>newRect.x-outer.x+newRect.width+2||y<newRect.y-outer.y-2||y>newRect.y-outer.y+newRect.height+2)outside++;}}
-      assert.equal(outside,0,'map outside selection unchanged');if(dark)assert(changed>30,'visible orange change');else assert.equal(changed,0,'light palette unchanged');comparisons.push({engine:name,width,dark,changedPixels:changed,outsideChangedPixels:outside,geometryUnchanged:true});
-     }finally{await fresh.close();}
-    }finally{await old.close();}
+    // Compare baseline and candidate CSS in the same live DOM/viewport. This
+    // isolates palette changes from independent WebKit startup/scroll positions.
+    const fresh=await browser.newPage({viewport:{width,height:844},serviceWorkers:'block'});try{
+     const ff=await open(fresh,app,width,dark);await fresh.waitForTimeout(700);
+     await Promise.all([fresh.evaluate(()=>document.fonts.ready),ff.evaluate(()=>document.fonts.ready)]);
+     await ff.locator('#zoomViewport').evaluate(e=>{e.scrollLeft=0;e.scrollTop=0;});await settle(fresh);
+     const candidateStyle=await fresh.locator('#overviewHostStyles').textContent();
+     const oldSource=await(await fresh.request.get(new URL('chart.html',baseline).href)).text(),oldStyle=oldSource.match(/<style id="overviewStyleRules">([\s\S]*?)<\/style>/)[1];
+     const newRect=await fresh.locator('#zoomMapWindow').boundingBox(),outer=await fresh.locator('#zoomMinimap').boundingBox();
+     const newMap=PNG.sync.read(await fresh.locator('#zoomMinimap').screenshot({path:`${dir}/after-${name}-${width}-${dark?'dark':'light'}.png`}));
+     await fresh.locator('#overviewHostStyles').evaluate((e,css)=>{e.textContent=css;},oldStyle);await settle(fresh);
+     const oldRect=await fresh.locator('#zoomMapWindow').boundingBox(),oldMap=PNG.sync.read(await fresh.locator('#zoomMinimap').screenshot({path:`${dir}/before-${name}-${width}-${dark?'dark':'light'}.png`}));
+     for(const k of['x','y','width','height'])assert(Math.abs(newRect[k]-oldRect[k])<.1,'selection geometry unchanged '+JSON.stringify({name,width,dark,k,oldRect,newRect}));
+     assert.equal(oldMap.width,newMap.width);assert.equal(oldMap.height,newMap.height);let changed=0,outside=0;
+     for(let y=0;y<newMap.height;y++)for(let x=0;x<newMap.width;x++){const i=(y*newMap.width+x)*4,d=Math.max(...[0,1,2].map(k=>Math.abs(oldMap.data[i+k]-newMap.data[i+k])));if(d>3){changed++;if(x<newRect.x-outer.x-2||x>newRect.x-outer.x+newRect.width+2||y<newRect.y-outer.y-2||y>newRect.y-outer.y+newRect.height+2)outside++;}}
+     assert.equal(outside,0,'map outside selection unchanged');if(dark)assert(changed>30,'visible orange change');else assert.equal(changed,0,'light palette unchanged');comparisons.push({engine:name,width,dark,changedPixels:changed,outsideChangedPixels:outside,geometryUnchanged:true,method:'baseline/candidate CSS on identical live DOM'});
+     await fresh.locator('#overviewHostStyles').evaluate((e,css)=>{e.textContent=css;},candidateStyle);
+    }finally{await fresh.close();}
    }
   }finally{await page.close();}
  }

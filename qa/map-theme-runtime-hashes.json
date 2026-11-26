@@ -1,0 +1,93 @@
+{
+  "source_commit": "30e93c2eab99768898935183c1d0564a84e54528",
+  "files": [
+    {
+      "path": "CREDITS.md",
+      "sha256": "f709f7b12f6e2e38c234ed36c838d36455ebd1496d3f71a5a858678b01d0c8ae"
+    },
+    {
+      "path": "LICENSE-MIT.txt",
+      "sha256": "b81601890570aa42d7c59c28a1edb2943afb1035dd96e5a537074334210487ba"
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "sha256": "cd341d3b13c8c0926313b061ff6cf898f46c085ca1a137647cae9a6c2cb9954e"
+    },
+    {
+      "path": "chart.html",
+      "sha256": "b296f4b5ac5ba901f90bc79c06c9d9bfe7f824901a762e69b01b02b4845b58bb"
+    },
+    {
+      "path": "diacritic-display.js",
+      "sha256": "c17ffd3170df94a810f6a16986199819f1bb1806ab8c4e3d98f248e8e4639cd3"
+    },
+    {
+      "path": "editor-gestures.js",
+      "sha256": "09c076d07b243a619e183e59f9b9069108a6f56f02d4cc7fac9789118bfdcd2b"
+    },
+    {
+      "path": "fonts/Andika-Regular.woff2",
+      "sha256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb"
+    },
+    {
+      "path": "fonts/DoulosSIL-Regular.woff2",
+      "sha256": "1158ae7ce206e6c4218b4b90a1f763cf5eed9236736cba7ddcdddcb8ce099f0f"
+    },
+    {
+      "path": "fonts/NotoSansJP-Bold.woff2",
+      "sha256": "40ea680c047a37f2129af711569fad4fed0261e24752961e3d07adb9a5a0ef3a"
+    },
+    {
+      "path": "fonts/NotoSansJP-Regular.woff2",
+      "sha256": "a919d6166cc188fd4b18b813f55061d59b05f676d1b33fe5bcee8a39b3111dc9"
+    },
+    {
+      "path": "fonts/OFL-Andika.txt",
+      "sha256": "fd0f044f061aa463fa1675a71fa0c229a067e2062c321c89e5f20965883f23b2"
+    },
+    {
+      "path": "fonts/OFL-DoulosSIL.txt",
+      "sha256": "9056bde1f5d6e66c8177bf3357a8b681a1e561781ab162e0dd5ae24a401becaf"
+    },
+    {
+      "path": "fonts/OFL-NotoSansJP.txt",
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "fonts/README-IPA.md",
+      "sha256": "e0aba108542ee0ef63f7545af9322018bb82e9daf751397dbea84871a4189be5"
+    },
+    {
+      "path": "fonts/ipa-font-coverage.json",
+      "sha256": "6ff5da6588db4d4012fa6f6ff89555b473c589ad4aeca56c62973f76985599f5"
+    },
+    {
+      "path": "fonts/positioned-diacritics.json",
+      "sha256": "26b1e6ba8079523049dcf3a4a581c43aa9d7cd3224ec814484e810ae77728301"
+    },
+    {
+      "path": "i18n.js",
+      "sha256": "6b20a7143e6e99ff64c74045b64545d2b611320ee3618efdba7b93d1681fb8e9"
+    },
+    {
+      "path": "index.html",
+      "sha256": "6990354965c394537ff334ee9255833c3112c943f33025862e0780da3d99344e"
+    },
+    {
+      "path": "ipa-fonts.js",
+      "sha256": "edc268ff13ccb58459e73395a9d066f84f3c76e7123adeb1ee45b40780850947"
+    },
+    {
+      "path": "language-picker.js",
+      "sha256": "14d3be6361c985850bac02f032c21b84558a6d8d0542c4d2ba14447bddac8999"
+    },
+    {
+      "path": "sw.js",
+      "sha256": "62882645e283a13f2b39febf28510120a78a010b542918a07f16971d8ec98fc3"
+    },
+    {
+      "path": "translations.csv",
+      "sha256": "b32463b7d23a7a42e32271f73c4ddab39d37368b67ae5386396ebeb6880e34fd"
+    }
+  ]
+}

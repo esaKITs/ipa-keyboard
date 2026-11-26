@@ -1,0 +1,90 @@
+[
+  {
+    "text_preview": "pʰãŋ̊",
+    "code_points": 6,
+    "utf8_bytes": 10,
+    "url_ascii_chars": 109,
+    "roundtrip_exact": true,
+    "input": "pʰãŋ̊"
+  },
+  {
+    "text_preview": "n̩ t̚ dⁿ",
+    "code_points": 8,
+    "utf8_bytes": 12,
+    "url_ascii_chars": 113,
+    "roundtrip_exact": true,
+    "input": "n̩ t̚ dⁿ"
+  },
+  {
+    "text_preview": "t͡s t͜ʃ",
+    "code_points": 7,
+    "utf8_bytes": 10,
+    "url_ascii_chars": 107,
+    "roundtrip_exact": true,
+    "input": "t͡s t͜ʃ"
+  },
+  {
+    "text_preview": "ˈfəʊnəˌtɪks ↗ ꜜ",
+    "code_points": 15,
+    "utf8_bytes": 25,
+    "url_ascii_chars": 148,
+    "roundtrip_exact": true,
+    "input": "ˈfəʊnəˌtɪks ↗ ꜜ"
+  },
+  {
+    "text_preview": "ã",
+    "code_points": 2,
+    "utf8_bytes": 3,
+    "url_ascii_chars": 90,
+    "roundtrip_exact": true,
+    "input": "ã"
+  },
+  {
+    "text_preview": "ã",
+    "code_points": 1,
+    "utf8_bytes": 2,
+    "url_ascii_chars": 89,
+    "roundtrip_exact": true,
+    "input": "ã"
+  },
+  {
+    "text_preview": "ḁ̃",
+    "code_points": 3,
+    "utf8_bytes": 5,
+    "url_ascii_chars": 96,
+    "roundtrip_exact": true,
+    "input": "ḁ̃"
+  },
+  {
+    "text_preview": "ʰʷʲˠˤ˞",
+    "code_points": 6,
+    "utf8_bytes": 12,
+    "url_ascii_chars": 119,
+    "roundtrip_exact": true,
+    "input": "ʰʷʲˠˤ˞"
+  },
+  {
+    "text_preview": "line1\nline2\n",
+    "code_points": 12,
+    "utf8_bytes": 12,
+    "url_ascii_chars": 101,
+    "roundtrip_exact": true,
+    "input": "line1\nline2\n"
+  },
+  {
+    "text_preview": "IPA 日本語 فارسی 😀",
+    "code_points": 15,
+    "utf8_bytes": 29,
+    "url_ascii_chars": 164,
+    "roundtrip_exact": true,
+    "input": "IPA 日本語 فارسی 😀"
+  },
+  {
+    "text_preview": "pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ p",
+    "code_points": 700,
+    "utf8_bytes": 1100,
+    "url_ascii_chars": 2983,
+    "roundtrip_exact": true,
+    "input": "pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ pʰãŋ̊ "
+  }
+]

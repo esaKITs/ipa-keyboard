@@ -123,6 +123,9 @@ async function topAtOverlap(page){
      near(await page.locator('#zoomMinimap').boundingBox(),overlap,'editor movement does not displace manually placed map');
      // Keyboard focus can raise a map whose grip is covered by the editor.
      await page.locator('#zoomMapDrag').focus();
+     await page.keyboard.press('Tab');
+     await page.keyboard.press('Shift+Tab');
+     assert(await page.locator('#zoomMapDrag').evaluate(e=>e===document.activeElement),'Tab navigation returns to the map grip');
      assert.equal(await topAtOverlap(page),'zoomMinimap','focused map comes in front');
      const focus=await page.locator('#zoomMapDrag').evaluate(e=>getComputedStyle(e).outlineStyle);
      assert.notEqual(focus,'none','keyboard focus stays visible');

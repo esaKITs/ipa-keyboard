@@ -1,0 +1,262 @@
+[
+  {
+    "font": "DoulosSIL",
+    "fontSHA256": "1158ae7ce206e6c4218b4b90a1f763cf5eed9236736cba7ddcdddcb8ce099f0f",
+    "symbol": "ɓ",
+    "reference": "b",
+    "beforeInkBounds": [
+      1.9270833333333335,
+      -0.390625,
+      12.421875,
+      18.528645833333336
+    ],
+    "afterInkBounds": [
+      2.3125,
+      -0.46875,
+      14.90625,
+      22.234375
+    ],
+    "referenceInkBounds": [
+      -0.125,
+      -0.46875,
+      14.90625,
+      22.234375
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "DoulosSIL",
+    "fontSHA256": "1158ae7ce206e6c4218b4b90a1f763cf5eed9236736cba7ddcdddcb8ce099f0f",
+    "symbol": "ɗ",
+    "reference": "d",
+    "beforeInkBounds": [
+      0.8723958333333334,
+      -0.390625,
+      16.458333333333336,
+      18.528645833333336
+    ],
+    "afterInkBounds": [
+      1.046875,
+      -0.46875,
+      19.75,
+      22.234375
+    ],
+    "referenceInkBounds": [
+      1.046875,
+      -0.46875,
+      16.140625,
+      22.234375
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "DoulosSIL",
+    "fontSHA256": "1158ae7ce206e6c4218b4b90a1f763cf5eed9236736cba7ddcdddcb8ce099f0f",
+    "symbol": "ʍ",
+    "reference": "w",
+    "beforeInkBounds": [
+      0.1953125,
+      0.0,
+      19.1015625,
+      12.317708333333334
+    ],
+    "afterInkBounds": [
+      0.234375,
+      0.0,
+      22.921875,
+      14.78125
+    ],
+    "referenceInkBounds": [
+      0.1875,
+      -0.46875,
+      22.859375,
+      14.3125
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "DoulosSIL",
+    "fontSHA256": "1158ae7ce206e6c4218b4b90a1f763cf5eed9236736cba7ddcdddcb8ce099f0f",
+    "symbol": "ɕ",
+    "reference": "s",
+    "beforeInkBounds": [
+      0.8984375,
+      -3.1770833333333335,
+      10.651041666666668,
+      12.265625
+    ],
+    "afterInkBounds": [
+      1.078125,
+      -3.8125,
+      12.78125,
+      14.71875
+    ],
+    "referenceInkBounds": [
+      1.5625,
+      -0.46875,
+      11.34375,
+      14.71875
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "DoulosSIL",
+    "fontSHA256": "1158ae7ce206e6c4218b4b90a1f763cf5eed9236736cba7ddcdddcb8ce099f0f",
+    "symbol": "ʑ",
+    "reference": "z",
+    "beforeInkBounds": [
+      0.5338541666666667,
+      -3.1770833333333335,
+      11.848958333333334,
+      11.927083333333334
+    ],
+    "afterInkBounds": [
+      0.640625,
+      -3.8125,
+      14.21875,
+      14.3125
+    ],
+    "referenceInkBounds": [
+      0.640625,
+      0.0,
+      13.703125,
+      14.3125
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "Andika",
+    "fontSHA256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb",
+    "symbol": "ɓ",
+    "reference": "b",
+    "beforeInkBounds": [
+      1.6927083333333335,
+      -0.32552083333333337,
+      13.606770833333334,
+      21.09375
+    ],
+    "afterInkBounds": [
+      2.03125,
+      -0.390625,
+      16.328125,
+      25.3125
+    ],
+    "referenceInkBounds": [
+      2.03125,
+      -0.390625,
+      16.5625,
+      25.0
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "Andika",
+    "fontSHA256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb",
+    "symbol": "ɗ",
+    "reference": "d",
+    "beforeInkBounds": [
+      1.3671875,
+      -0.32552083333333337,
+      17.578125,
+      21.09375
+    ],
+    "afterInkBounds": [
+      1.640625,
+      -0.390625,
+      21.09375,
+      25.3125
+    ],
+    "referenceInkBounds": [
+      1.640625,
+      -0.390625,
+      17.265625,
+      25.0
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "Andika",
+    "fontSHA256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb",
+    "symbol": "ʍ",
+    "reference": "w",
+    "beforeInkBounds": [
+      0.2604166666666667,
+      0.0,
+      19.270833333333336,
+      13.28125
+    ],
+    "afterInkBounds": [
+      0.3125,
+      0.0,
+      23.125,
+      15.9375
+    ],
+    "referenceInkBounds": [
+      0.703125,
+      0.0,
+      23.515625,
+      15.9375
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "Andika",
+    "fontSHA256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb",
+    "symbol": "ɕ",
+    "reference": "s",
+    "beforeInkBounds": [
+      1.2369791666666667,
+      -2.5390625,
+      12.434895833333334,
+      13.541666666666668
+    ],
+    "afterInkBounds": [
+      1.484375,
+      -3.046875,
+      14.921875,
+      16.25
+    ],
+    "referenceInkBounds": [
+      1.71875,
+      -0.390625,
+      13.75,
+      16.25
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  },
+  {
+    "font": "Andika",
+    "fontSHA256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb",
+    "symbol": "ʑ",
+    "reference": "z",
+    "beforeInkBounds": [
+      1.3671875,
+      -2.4739583333333335,
+      14.192708333333334,
+      13.28125
+    ],
+    "afterInkBounds": [
+      1.640625,
+      -2.96875,
+      17.03125,
+      15.9375
+    ],
+    "referenceInkBounds": [
+      1.640625,
+      0.0,
+      14.765625,
+      15.9375
+    ],
+    "scaleChange": 1.2,
+    "note": "Hooks and descenders retain native shape; compare body scale, not equal total glyph height."
+  }
+]

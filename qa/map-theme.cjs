@@ -6,9 +6,9 @@ const settle=p=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestA
 async function open(p,url,width,dark,locale='ja'){
  await p.goto(url);const f=await(await p.locator('#v83ChartFrame').elementHandle()).contentFrame();await f.waitForFunction(()=>window.__ipaLineAudit?.rules?.length===7);
  await p.locator('#languageSelect').selectOption(locale);if((await p.locator('#contrastToggle').getAttribute('aria-pressed'))!==String(dark))await p.locator('#contrastToggle').click();
- await p.locator('#chartZoomToggle').click();await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');
+ await Promise.all([p.evaluate(()=>document.fonts.ready),f.evaluate(()=>document.fonts.ready)]);await p.locator('#chartZoomToggle').click();await f.waitForFunction(()=>document.getElementById('chartZoomDialog').dataset.ready==='true');
  if(!await p.locator('#zoomMinimap').isVisible())await p.locator('#zoomMapToggle').click();
- await f.locator('#chartZoomSlider').evaluate(e=>{e.value='2';e.dispatchEvent(new Event('input',{bubbles:true}));});await settle(p);return f;
+ await f.locator('#chartZoomSlider').evaluate(e=>{e.value='2';e.dispatchEvent(new Event('input',{bubbles:true}));});await settle(p);await p.waitForFunction(()=>{const r=document.getElementById('zoomMapWindow').getBoundingClientRect(),v=[r.x,r.y,r.width,r.height].join(',');if(window.__qaMapRect===v)window.__qaMapStable=(window.__qaMapStable||0)+1;else{window.__qaMapRect=v;window.__qaMapStable=0;}return window.__qaMapStable>=5;});return f;
 }
 function closestBorder(im,rect,target){let best={distance:Infinity};const cx=rect.x+rect.width*.55;for(let y=Math.floor(rect.y)-1;y<=Math.ceil(rect.y)+2;y++)for(let x=Math.floor(cx)-2;x<=Math.ceil(cx)+2;x++){if(x<0||y<0||x>=im.width||y>=im.height)continue;const i=(y*im.width+x)*4,c=[...im.data.subarray(i,i+3)],d=Math.hypot(...c.map((v,k)=>v-target[k]));if(d<best.distance)best={distance:d,rgb:c};}return best;}
 (async()=>{const colors=[],focus=[],comparisons=[];for(const[name,engine]of Object.entries({chromium,webkit})){
@@ -31,8 +31,8 @@ function closestBorder(im,rect,target){let best={distance:Infinity};const cx=rec
      await open(old,baseline,width,dark);const oldRect=await old.locator('#zoomMapWindow').boundingBox();
      // Compare initial geometry on a fresh candidate, before the interaction checks.
      const fresh=await browser.newPage({viewport:{width,height:844},serviceWorkers:'block'});try{
-      await open(fresh,app,width,dark);const newRect=await fresh.locator('#zoomMapWindow').boundingBox();for(const k of['x','y','width','height'])assert(Math.abs(newRect[k]-oldRect[k])<.1,'selection geometry unchanged '+k);
-      const oldMap=PNG.sync.read(await old.locator('#zoomMinimap').screenshot()),newMap=PNG.sync.read(await fresh.locator('#zoomMinimap').screenshot());assert.equal(oldMap.width,newMap.width);assert.equal(oldMap.height,newMap.height);
+      await open(fresh,app,width,dark);const newRect=await fresh.locator('#zoomMapWindow').boundingBox();for(const k of['x','y','width','height'])assert(Math.abs(newRect[k]-oldRect[k])<.1,'selection geometry unchanged '+JSON.stringify({name,width,dark,k,oldRect,newRect}));
+      const oldMap=PNG.sync.read(await old.locator('#zoomMinimap').screenshot({path:`${dir}/before-${name}-${width}-${dark?'dark':'light'}.png`})),newMap=PNG.sync.read(await fresh.locator('#zoomMinimap').screenshot());assert.equal(oldMap.width,newMap.width);assert.equal(oldMap.height,newMap.height);
       const outer=await fresh.locator('#zoomMinimap').boundingBox();let changed=0,outside=0;
       for(let y=0;y<newMap.height;y++)for(let x=0;x<newMap.width;x++){const i=(y*newMap.width+x)*4,d=Math.max(...[0,1,2].map(k=>Math.abs(oldMap.data[i+k]-newMap.data[i+k])));if(d>3){changed++;if(x<newRect.x-outer.x-2||x>newRect.x-outer.x+newRect.width+2||y<newRect.y-outer.y-2||y>newRect.y-outer.y+newRect.height+2)outside++;}}
       assert.equal(outside,0,'map outside selection unchanged');if(dark)assert(changed>30,'visible orange change');else assert.equal(changed,0,'light palette unchanged');comparisons.push({engine:name,width,dark,changedPixels:changed,outsideChangedPixels:outside,geometryUnchanged:true});
@@ -46,8 +46,8 @@ function closestBorder(im,rect,target){let best={distance:Infinity};const cx=rec
    await page.goto(app);await page.waitForFunction(()=>document.getElementById('zoomMapToggle'));
    await page.locator('#languageSelect').selectOption(locale);if((await page.locator('#contrastToggle').getAttribute('aria-pressed'))!==String(dark))await page.locator('#contrastToggle').click();
    await page.locator('#zoomMapToggle').focus();await page.keyboard.press('Shift+Tab');await settle(page);
-   const state=await page.evaluate(()=>{const s=document.getElementById('languageSelect'),b=document.getElementById('languagePickerButton'),cs=getComputedStyle(s),cb=getComputedStyle(b);return{active:document.activeElement.id,native:{outlineColor:cs.outlineColor,outlineStyle:cs.outlineStyle,opacity:cs.opacity},custom:{outlineColor:cb.outlineColor,outlineStyle:cb.outlineStyle,display:cb.display},portuguese:!!s.closest('.mobile-portuguese')}});
-   assert.equal(state.active,width<561?'languageSelect':'languagePickerButton');if(width>=561||locale==='pt-BR')assert.equal(state.custom.outlineColor,'rgb(152, 121, 211)');
+   const state=await page.evaluate(()=>{const s=document.getElementById('languageSelect'),b=document.getElementById('languagePickerButton'),cs=getComputedStyle(s),cb=getComputedStyle(b);return{active:document.activeElement.id,native:{outlineColor:cs.outlineColor,outlineStyle:cs.outlineStyle,opacity:cs.opacity,tap:cs.webkitTapHighlightColor},custom:{outlineColor:cb.outlineColor,outlineStyle:cb.outlineStyle,display:cb.display,tap:cb.webkitTapHighlightColor},portuguese:!!s.closest('.mobile-portuguese')}});
+   assert.equal(state.active,width<561?'languageSelect':'languagePickerButton');const expected=dark?'rgb(216, 178, 140)':'rgb(152, 121, 211)',tap=dark?'rgba(216, 178, 140, 0.25)':'rgba(152, 121, 211, 0.25)';assert.equal(state.native.outlineColor,expected);assert.equal(state.native.outlineStyle,'solid');assert.equal(state.native.tap,tap);if(width>=561||locale==='pt-BR')assert.equal(state.custom.outlineColor,expected);assert.equal(state.custom.tap,tap);assert.equal(await page.locator('#languageSelect').inputValue(),locale);
    if(width===393&&['ja','pt-BR'].includes(locale))await page.screenshot({path:`${dir}/focus-${name}-${locale}-${dark?'dark':'light'}.png`});
    focus.push({engine:name,width,locale,dark,...state});
   }finally{await page.close();}

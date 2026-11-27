@@ -1,7 +1,7 @@
 name: Settings reset verification (no publication)
 on:
   push:
-    branches: [work/dialog-colors-20261128]
+    branches: [work/bracket-header-20261128]
 permissions:
   contents: read
 env:

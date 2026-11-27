@@ -593,6 +593,13 @@ html[data-inverse="true"] .language-control{--language-focus-color:#d8b28c;--lan
 #settingsPanel{--settings-accent:#8063ad;--settings-link:#6c4b98}
 #settingsPanel .size-slider,#settingsPanel input[type="checkbox"]{accent-color:var(--settings-accent)}
 #settingsPanel .info-link{color:var(--settings-link)}
+#ipaFontChoices button{position:relative;padding-inline:13px 3px;font-weight:400}
+#ipaFontChoices button[data-ipa-font="doulos"]{font-family:'Doulos SIL Local',serif}
+#ipaFontChoices button[data-ipa-font="andika"]{font-family:'Andika Local',sans-serif}
+#ipaFontChoices button[aria-pressed="true"]{background:#eee8f6;font-weight:400;box-shadow:inset 0 0 0 1px var(--settings-accent)}
+#ipaFontChoices button[aria-pressed="true"]::before{content:'✓';position:absolute;left:3px;color:var(--settings-accent);font:11px system-ui,sans-serif}
+#ipaFontChoices button:focus-visible{outline-color:var(--settings-accent)}
+html[data-inverse="true"] #ipaFontChoices button[aria-pressed="true"]{background:#e4eaf0}
 #settingsPanel .compact-setting{display:flex;align-items:center;justify-content:space-between;gap:8px}
 #settingsPanel .compact-setting label{flex-shrink:0}
 /* The panel is inverted as a surface: these input colours render pale orange. */
@@ -1210,6 +1217,8 @@ document.getElementById('languageSelect').addEventListener('change',relabel);win
 'use strict';
 const picker=document.getElementById('ipaFontSelect'),frame=document.getElementById('v83ChartFrame'),storage='esakits.ipa.font.v1';
 const choices=[...document.querySelectorAll('[data-ipa-font]')];
+// Show both font names in their own typefaces, including the unselected choice.
+esaIPAFonts.load(document,'andika').catch(()=>{});
 function sync(){choices.forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.ipaFont===picker.value));b.disabled=picker.disabled;});}
 choices.forEach(b=>b.addEventListener('click',()=>{picker.value=b.dataset.ipaFont;picker.dispatchEvent(new Event('change'));}));
 let selected='doulos',generation=0;

@@ -1,5 +1,5 @@
 {
-  "commit": "74164c983bc8e9c8701ebe3e381722ddd8593ab6",
+  "commit": "391cd42bca752c4772e0e9c77345a25881210401",
   "files": [
     {
       "path": "editor-gestures.js",
@@ -89,5 +89,6 @@
       "path": "fonts/NotoSansJP-Regular.woff2",
       "sha256": "a919d6166cc188fd4b18b813f55061d59b05f676d1b33fe5bcee8a39b3111dc9"
     }
-  ]
+  ],
+  "note": "Only qa/tap-feedback.cjs changed from 74164c98; application bytes identical"
 }

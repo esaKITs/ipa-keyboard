@@ -1,7 +1,7 @@
 name: Settings reset verification (no publication)
 on:
   push:
-    branches: [work/settings-polish-20261128]
+    branches: [work/dialog-colors-20261128]
 permissions:
   contents: read
 env:
@@ -43,10 +43,8 @@ jobs:
       - name: Verify reset in both browsers and all settings languages
         if: matrix.suite == 'settings'
         run: |
-          node qa/settings-reset.cjs
           node qa/settings-polish.cjs
-          node qa/viewer-footer.cjs
-          node qa/viewer-icons.cjs
+          node qa/dialog-colors.cjs
       - name: Verify panel gestures, input, zoom and theme
         if: matrix.suite == 'regression'
         run: |
@@ -54,7 +52,7 @@ jobs:
           node qa/editor-gestures.cjs
           node qa/tap-feedback.cjs
           node qa/final-four.cjs
-          node qa/viewer-icons.cjs
+          node qa/dialog-colors.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -1,0 +1,26 @@
+name: Verify zoom release overview keyboard navigation
+on:
+  push:
+    branches: [work/zoom-release-20261127]
+permissions:
+  contents: read
+env:
+  WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1 pngjs@7.0.0
+      - run: npx playwright install chromium webkit --with-deps
+      - run: nohup python3 qa/server.py >/tmp/zoom-release-http.log 2>&1 &
+      - run: node qa/floating-overview.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: zoom-release-overview-evidence
+          path: qa-production/

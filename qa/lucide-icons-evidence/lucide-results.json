@@ -1,0 +1,92 @@
+[
+  {
+    "browser": "chromium",
+    "width": 320,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "real browser clipboard"
+  },
+  {
+    "browser": "chromium",
+    "width": 375,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "real browser clipboard"
+  },
+  {
+    "browser": "chromium",
+    "width": 393,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "real browser clipboard"
+  },
+  {
+    "browser": "chromium",
+    "width": 768,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "real browser clipboard"
+  },
+  {
+    "browser": "chromium",
+    "width": 1280,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "real browser clipboard"
+  },
+  {
+    "browser": "webkit",
+    "width": 320,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "writeText argument interception"
+  },
+  {
+    "browser": "webkit",
+    "width": 375,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "writeText argument interception"
+  },
+  {
+    "browser": "webkit",
+    "width": 393,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "writeText argument interception"
+  },
+  {
+    "browser": "webkit",
+    "width": 768,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "writeText argument interception"
+  },
+  {
+    "browser": "webkit",
+    "width": 1280,
+    "locales": 5,
+    "themes": 2,
+    "geometry": "unchanged",
+    "sixActions": "passed",
+    "clipboard": "writeText argument interception"
+  }
+]

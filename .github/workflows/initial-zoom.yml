@@ -1,11 +1,12 @@
-name: Verify 1.25x entry and pinch restore (no production publication)
+name: Verify live 1.25x entry and pinch restore
 on:
   push:
-    branches: [work/initial-zoom-125-20261127]
+    branches: [work/initial-zoom-public-20261127]
 permissions:
   contents: read
 env:
   WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
+  APP_URL: https://esakits.github.io/ipa-keyboard/
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -18,6 +19,17 @@ jobs:
       - run: npm install --no-save playwright@1.61.1
       - run: npx playwright install chromium webkit --with-deps
       - run: nohup python3 qa/server.py >/tmp/initial-zoom-http.log 2>&1 &
+      - name: Wait for approved public chart
+        shell: python
+        run: |
+          import urllib.request,pathlib,time
+          for n in range(36):
+              try:
+                  req=urllib.request.Request('https://esakits.github.io/ipa-keyboard/chart.html?zoom-release='+str(n),headers={'Cache-Control':'no-cache'})
+                  assert urllib.request.urlopen(req,timeout=10).read()==pathlib.Path('chart.html').read_bytes()
+                  break
+              except Exception: time.sleep(5)
+          else: raise SystemExit('Public chart not updated')
       - run: node qa/initial-zoom.cjs
       - run: node qa/desktop-zoom.cjs
       - run: node qa/editor-gestures.cjs

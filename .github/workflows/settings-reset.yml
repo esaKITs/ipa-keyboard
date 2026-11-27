@@ -19,6 +19,8 @@ jobs:
         suite: [settings, regression]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -26,7 +28,7 @@ jobs:
       - run: npx playwright install chromium webkit --with-deps
       - name: Check source and translation master
         run: |
-          git -c core.whitespace=cr-at-eol diff --check HEAD~1 HEAD
+          git -c core.whitespace=cr-at-eol diff --check 391cd42bca752c4772e0e9c77345a25881210401 HEAD
           node --check qa/settings-reset.cjs
           python3 tools/export-translations.py translations.xlsx translations.csv --check
           python3 - <<'PY'

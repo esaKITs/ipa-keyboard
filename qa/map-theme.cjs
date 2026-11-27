@@ -17,9 +17,10 @@ function closestBorder(im,rect,target){let best={distance:Infinity};const cx=rec
   const page=await browser.newPage({viewport:{width,height:844},hasTouch:width<600,serviceWorkers:'block'}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   try{
    const frame=await open(page,app,width,dark),map=page.locator('#zoomMinimap'),window=page.locator('#zoomMapWindow'),r=await window.boundingBox();
+   if(dark)assert.equal(await page.locator('#zoomMapCanvas').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(241, 238, 233)');
    const state=await window.evaluate(e=>({border:getComputedStyle(e).borderTopColor,fill:getComputedStyle(e).backgroundColor,corner:getComputedStyle(e.querySelector('.map-window-resize'),'::after').borderTopColor}));
    assert.equal(state.border,dark?'rgb(104, 66, 28)':'rgb(166, 128, 222)');assert.equal(state.corner,state.border);
-   const shot=await page.screenshot(),pixel=closestBorder(PNG.sync.read(shot),r,dark?[216,178,140]:[166,128,222]);assert(pixel.distance<7,'rendered border '+JSON.stringify({name,width,dark,pixel,r}));
+   const shot=await page.screenshot(),pixel=closestBorder(PNG.sync.read(shot),r,dark?[216,178,140]:[166,128,222]);assert(pixel.distance<7,'rendered border '+JSON.stringify({name,width,dark,pixel,r}));if(dark){const im=PNG.sync.read(shot),counts=new Map();for(let y=Math.ceil(r.y)+3;y<Math.min(im.height,r.y+r.height-3);y++)for(let x=Math.ceil(r.x)+3;x<Math.min(im.width,r.x+r.width-3);x++){const i=(y*im.width+x)*4,key=[...im.data.subarray(i,i+3)].join(',');counts.set(key,(counts.get(key)||0)+1);}const rgb=[...counts].sort((a,b)=>b[1]-a[1])[0][0].split(',').map(Number);assert(rgb[0]>rgb[1]&&rgb[1]>rgb[2],'selection interior is warm, not purple '+rgb);state.renderedInterior=rgb;}
    // The same palette change must not change movement, scaling or input.
    const beforeScale=await frame.locator('#chartZoomSlider').inputValue();await page.locator('#zoomMapIncrease').click();assert(+await frame.locator('#chartZoomSlider').inputValue()>+beforeScale);
    await page.locator('#zoomMapDrag').press('ArrowDown');await settle(page);const moved=await map.boundingBox();assert(moved.y>=0&&moved.x>=0);
@@ -42,7 +43,7 @@ function closestBorder(im,rect,target){let best={distance:Infinity};const cx=rec
      for(const k of['x','y','width','height'])assert(Math.abs(newRect[k]-oldRect[k])<.1,'selection geometry unchanged '+JSON.stringify({name,width,dark,k,oldRect,newRect}));
      assert.equal(oldMap.width,newMap.width);assert.equal(oldMap.height,newMap.height);let changed=0,outside=0;
      for(let y=0;y<newMap.height;y++)for(let x=0;x<newMap.width;x++){const i=(y*newMap.width+x)*4,d=Math.max(...[0,1,2].map(k=>Math.abs(oldMap.data[i+k]-newMap.data[i+k])));if(d>3){changed++;if(x<newRect.x-outer.x-2||x>newRect.x-outer.x+newRect.width+2||y<newRect.y-outer.y-2||y>newRect.y-outer.y+newRect.height+2)outside++;}}
-     assert.equal(outside,0,'map outside selection unchanged');if(dark)assert(changed>30,'visible orange change');else assert.equal(changed,0,'light palette unchanged');comparisons.push({engine:name,width,dark,changedPixels:changed,outsideChangedPixels:outside,geometryUnchanged:true,method:'baseline/candidate CSS on identical live DOM'});
+     if(dark){assert(outside>0,'purple map base replaced');const base=await fresh.locator('#zoomMapCanvas').evaluate(e=>getComputedStyle(e).backgroundColor);assert.equal(base,'rgb(241, 238, 247)','comparison currently uses original CSS');}else assert.equal(outside,0,'light map unchanged');if(dark)assert(changed>30,'visible orange change');else assert.equal(changed,0,'light palette unchanged');comparisons.push({engine:name,width,dark,changedPixels:changed,outsideChangedPixels:outside,geometryUnchanged:true,method:'baseline/candidate CSS on identical live DOM'});
      await fresh.locator('#overviewHostStyles').evaluate((e,css)=>{e.textContent=css;},candidateStyle);
     }finally{await fresh.close();}
    }

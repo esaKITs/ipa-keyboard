@@ -895,9 +895,12 @@ html[data-inverse="true"] .zoom-minimap.is-parent-map{filter:invert(1) hue-rotat
 .zoom-minimap .map-window-resize[data-corner="nw"]::after{left:0;top:0}
 .zoom-minimap .map-window-resize[data-corner="se"]{right:0;bottom:0}
 .zoom-minimap .map-window-resize[data-corner="se"]::after{right:0;bottom:0}
-/* Match the editor's warm accent before the existing dark-mode inversion. */
+/* Dark overview: replace the purple base as well as the translucent selection. */
+html[data-inverse="true"] .zoom-minimap{background:#faf9f7;border-color:#bfb8b0}
+html[data-inverse="true"] .zoom-minimap .map-heading{background:#faf9f7;border-bottom-color:#cbc5bd}
+html[data-inverse="true"] .zoom-minimap .map-canvas,html[data-inverse="true"] .zoom-minimap .map-region{background:#f1eee9;border-color:#cbc5bd}
 html[data-inverse="true"] .zoom-minimap .map-window{border-color:#68421c;background:rgba(104,66,28,.10)}
-html[data-inverse="true"] .zoom-minimap .map-window-resize::after{border-color:#68421c}
+html[data-inverse="true"] .zoom-minimap .map-window-resize::after{border-color:#68421c;background:#faf9f7}
 @media(max-width:580px){.zoom-minimap{--map-label-size:9px;width:184px;height:204px}}
 </style><script>if(parent!==window)document.documentElement.classList.add("is-embedded-chart");</script><script src="ipa-fonts.js"></script><script src="i18n.js"></script></head><body><div class="chart-tool-row"><button type="button" id="chartZoomOpen" aria-haspopup="dialog" aria-controls="chartZoomDialog" data-i18n-key="⛶ 拡大表示">⛶ 拡大表示</button></div><div id="chartScaleShell"><div id="chartScaleContent"><div id="chart"><h1 id="title"><span class="chart-title-main">国際音声記号 </span></h1><div id="pulmonicConsonants">
 		<h2>子音（肺気流）</h2>

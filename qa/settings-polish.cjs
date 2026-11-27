@@ -1,0 +1,10 @@
+const {chromium,webkit}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
+const app=process.env.APP_URL||'http://127.0.0.1:8765/ipa-keyboard/';fs.mkdirSync('qa-production',{recursive:true});
+(async()=>{for(const[name,engine]of Object.entries({chromium,webkit})){const b=await engine.launch();for(const width of[320,393,768,1280]){const p=await b.newPage({viewport:{width,height:1000},serviceWorkers:'block'});await p.goto(app);await p.evaluate(()=>window.esaI18n.ready);await p.locator('#out').fill('ˈpʰãŋ̊');for(const locale of['ja','en','pt-BR','fa','ja-osaka'])for(const dark of[false,true]){
+ await p.locator('#languageSelect').selectOption(locale);if(await p.locator('#contrastToggle').getAttribute('aria-pressed')!==String(dark))await p.locator('#contrastToggle').click();if(await p.locator('#settingsToggle').getAttribute('aria-expanded')!=='true')await p.locator('#settingsToggle').click();
+ const layout=await p.locator('#settingsReset').evaluate(e=>({same:e.parentElement.contains(document.getElementById('warnToggle')),size:parseFloat(getComputedStyle(e).fontSize),color:getComputedStyle(document.getElementById('glowStrengthSlider')).accentColor}));assert(layout.same);assert(layout.size<=10);assert.equal(layout.color,dark?'rgb(104, 66, 28)':'rgb(128, 99, 173)');
+ for(const [opener,id]of[['fontInfoBtn','fontInfoDialog'],['offlineInfoBtn','offlineInfoDialog']])for(const close of['button','Escape']){
+ await p.locator('#'+opener).click();assert(await p.locator('#'+id).isVisible());if(close==='button')await p.locator('#'+id+' [data-close-dialog]').click();else await p.keyboard.press('Escape');assert.equal(await p.locator('#settingsToggle').getAttribute('aria-expanded'),'true');assert(await p.locator('#settingsPanel').isVisible());assert.equal(await p.locator('#out').inputValue(),'ˈpʰãŋ̊');
+ }
+ if(locale==='ja')await p.screenshot({path:`qa-production/polish-${name}-${width}-${dark?'dark':'light'}.png`});
+ }console.log('PASS POLISH',name,width,'all locales/themes; both dialogs via close/Escape');await p.close();}await b.close();}})().catch(e=>{console.error(e);process.exit(1)});

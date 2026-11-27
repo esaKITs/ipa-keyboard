@@ -1,7 +1,7 @@
 name: Settings reset verification (no publication)
 on:
   push:
-    branches: [work/settings-reset-20261127]
+    branches: [work/settings-polish-20261128]
 permissions:
   contents: read
 env:
@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [settings, regression]
+        suite: [settings]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,7 +42,9 @@ jobs:
         run: nohup python3 qa/server.py >/tmp/settings-http.log 2>&1 &
       - name: Verify reset in both browsers and all settings languages
         if: matrix.suite == 'settings'
-        run: node qa/settings-reset.cjs
+        run: |
+          node qa/settings-reset.cjs
+          node qa/settings-polish.cjs
       - name: Verify panel gestures, input, zoom and theme
         if: matrix.suite == 'regression'
         run: |

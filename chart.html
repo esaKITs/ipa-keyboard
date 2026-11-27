@@ -1856,7 +1856,10 @@ function sizeStage(){
  // Leave room to scroll the final symbols above a floating editor. This is
  // scrollable space only: chart coordinates and overview geometry stay intact.
  const overlaps=editorRect&&editorRect.left<r.left+viewport.clientWidth&&editorRect.right>r.left&&editorRect.bottom>r.top&&editorRect.top<bottom;
- const clearance=overlaps?Math.max(0,bottom-Math.max(r.top,editorRect.top)+GUTTER):0;
+ // Only a panel covering the viewport's lower edge needs trailing space.
+ // A floating panel in the middle leaves usable space below it.
+ const blocksBottom=overlaps&&editorRect.bottom>=bottom-GUTTER-1;
+ const clearance=blocksBottom?Math.max(0,bottom-Math.max(r.top,editorRect.top)+GUTTER):0;
  stage.style.width=(BASE*next+2*GUTTER)+"px";
  viewerFooter.style.left=GUTTER+'px';viewerFooter.style.top=(height*next+GUTTER)+'px';
  viewerFooter.style.width=Math.max(1,Math.min(BASE*next,viewport.clientWidth-2*GUTTER))+'px';

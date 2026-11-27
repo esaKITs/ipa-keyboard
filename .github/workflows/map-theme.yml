@@ -1,11 +1,12 @@
-name: Verify dark overview selection and language focus
+name: Verify live production theme colors
 on:
   push:
-    branches: [work/map-orange-20261127]
+    branches: [work/color-public-verification-20261127]
 permissions:
   contents: read
 env:
   WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
+  APP_URL: https://esakits.github.io/ipa-keyboard/
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -25,6 +26,19 @@ jobs:
           mkdir -p /tmp/map-theme-before
           git archive 7a96b1917818b0c7ca8d23cd9868fc85f7a242d2 | tar -x -C /tmp/map-theme-before
           nohup python3 -m http.server 8778 --bind 127.0.0.1 --directory /tmp/map-theme-before >/tmp/map-theme-before.log 2>&1 &
+      - name: Wait for exact approved public assets
+        shell: python
+        run: |
+          import urllib.request, pathlib, time
+          for attempt in range(36):
+              try:
+                  for name in ['index.html','chart.html']:
+                      req=urllib.request.Request('https://esakits.github.io/ipa-keyboard/'+name+'?color-check='+str(attempt),headers={'Cache-Control':'no-cache'})
+                      assert urllib.request.urlopen(req,timeout=10).read()==pathlib.Path(name).read_bytes(),name
+                  print('Live assets match verified color candidate');break
+              except Exception as e:
+                  print(str(e));time.sleep(5)
+          else: raise SystemExit('Live assets mismatch')
       - run: node qa/map-theme.cjs
       - uses: actions/upload-artifact@v4
         if: always()

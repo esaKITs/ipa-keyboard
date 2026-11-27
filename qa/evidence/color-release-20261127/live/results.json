@@ -1,0 +1,1270 @@
+{
+  "colors": [
+    {
+      "engine": "chromium",
+      "width": 320,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 320,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 375,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 768,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 320,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 320,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 375,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 768,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "dark": false,
+      "state": {
+        "border": "rgb(166, 128, 222)",
+        "fill": "rgba(166, 128, 222, 0.1)",
+        "corner": "rgb(166, 128, 222)"
+      },
+      "renderedBorder": [
+        166,
+        128,
+        222
+      ],
+      "distance": 0,
+      "pass": true
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "dark": true,
+      "state": {
+        "border": "rgb(104, 66, 28)",
+        "fill": "rgba(104, 66, 28, 0.1)",
+        "corner": "rgb(104, 66, 28)",
+        "renderedInterior": [
+          40,
+          33,
+          25
+        ]
+      },
+      "renderedBorder": [
+        216,
+        178,
+        140
+      ],
+      "distance": 0,
+      "pass": true
+    }
+  ],
+  "comparisons": [
+    {
+      "engine": "chromium",
+      "width": 393,
+      "dark": false,
+      "changedPixels": 0,
+      "outsideChangedPixels": 0,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "dark": true,
+      "changedPixels": 36845,
+      "outsideChangedPixels": 25424,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "dark": false,
+      "changedPixels": 0,
+      "outsideChangedPixels": 0,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "dark": true,
+      "changedPixels": 49219,
+      "outsideChangedPixels": 44276,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "dark": false,
+      "changedPixels": 0,
+      "outsideChangedPixels": 0,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "dark": true,
+      "changedPixels": 36808,
+      "outsideChangedPixels": 25386,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "dark": false,
+      "changedPixels": 0,
+      "outsideChangedPixels": 0,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "dark": true,
+      "changedPixels": 49232,
+      "outsideChangedPixels": 44296,
+      "geometryUnchanged": true,
+      "method": "baseline/candidate CSS on identical live DOM"
+    }
+  ],
+  "focus": [
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "ja",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(0, 0, 0)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "ja",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "en",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(0, 0, 0)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "en",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "pt-BR",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": true
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "pt-BR",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": true
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "fa",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(0, 0, 0)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "fa",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "ja-osaka",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(0, 0, 0)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 393,
+      "locale": "ja-osaka",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "ja",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "ja",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "en",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "en",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "pt-BR",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "pt-BR",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "fa",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "fa",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "ja-osaka",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "locale": "ja-osaka",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "ja",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgba(0, 0, 0, 0.8)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "ja",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "en",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgba(0, 0, 0, 0.8)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "en",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "pt-BR",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": true
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "pt-BR",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": true
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "fa",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgba(0, 0, 0, 0.8)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "fa",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "ja-osaka",
+      "dark": false,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgba(0, 0, 0, 0.8)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 393,
+      "locale": "ja-osaka",
+      "dark": true,
+      "active": "languageSelect",
+      "native": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "opacity": "1",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(255, 255, 255)",
+        "outlineStyle": "none",
+        "display": "none",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "ja",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "ja",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "en",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "en",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "pt-BR",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "pt-BR",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "fa",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "fa",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "ja-osaka",
+      "dark": false,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(17, 17, 17)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(152, 121, 211)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(152, 121, 211, 0.25)"
+      },
+      "portuguese": false
+    },
+    {
+      "engine": "webkit",
+      "width": 1280,
+      "locale": "ja-osaka",
+      "dark": true,
+      "active": "languagePickerButton",
+      "native": {
+        "outlineColor": "rgb(238, 238, 238)",
+        "outlineStyle": "none",
+        "opacity": "0",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "custom": {
+        "outlineColor": "rgb(216, 178, 140)",
+        "outlineStyle": "solid",
+        "display": "flex",
+        "tap": "rgba(216, 178, 140, 0.25)"
+      },
+      "portuguese": false
+    }
+  ]
+}

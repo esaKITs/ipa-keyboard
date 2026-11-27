@@ -1,0 +1,28 @@
+name: Verify 1.25x entry and pinch restore (no production publication)
+on:
+  push:
+    branches: [work/initial-zoom-125-20261127]
+permissions:
+  contents: read
+env:
+  WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1
+      - run: npx playwright install chromium webkit --with-deps
+      - run: nohup python3 qa/server.py >/tmp/initial-zoom-http.log 2>&1 &
+      - run: node qa/initial-zoom.cjs
+      - run: node qa/desktop-zoom.cjs
+      - run: node qa/editor-gestures.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: initial-zoom-and-pinch-evidence
+          path: qa-production/

@@ -1,0 +1,45 @@
+{
+  "files": [
+    {
+      "file": "index.html",
+      "changed": true,
+      "sha256": "74d0a5cabe2a54b81f6cbdff512d545da1af0f4a047607f22b1f9b1d70047d1e"
+    },
+    {
+      "file": "chart.html",
+      "changed": true,
+      "sha256": "9897ef4e862b1b3299679a6b4178f23326a72a1a309d5fc595ad35f86e328860"
+    },
+    {
+      "file": "editor-gestures.js",
+      "changed": false,
+      "sha256": "09c076d07b243a619e183e59f9b9069108a6f56f02d4cc7fac9789118bfdcd2b"
+    },
+    {
+      "file": "ipa-fonts.js",
+      "changed": false,
+      "sha256": "edc268ff13ccb58459e73395a9d066f84f3c76e7123adeb1ee45b40780850947"
+    },
+    {
+      "file": "translations.csv",
+      "changed": false,
+      "sha256": "22b359e1bfbc0ef9259de25c6ce618fe72c888d021e5f906e1ce11a51cce0b75"
+    },
+    {
+      "file": "translations.xlsx",
+      "changed": false,
+      "sha256": "38e029c840e5809c51b0a82ec8991a331d4e5c9cc6f3fb079da2fb85cad40a78"
+    },
+    {
+      "file": "sw.js",
+      "changed": false,
+      "sha256": "62882645e283a13f2b39febf28510120a78a010b542918a07f16971d8ec98fc3"
+    },
+    {
+      "file": "language-picker.js",
+      "changed": false,
+      "sha256": "14d3be6361c985850bac02f032c21b84558a6d8d0542c4d2ba14447bddac8999"
+    }
+  ],
+  "allInlineSvgUnchanged": true
+}

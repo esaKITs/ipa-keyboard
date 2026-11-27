@@ -45,6 +45,8 @@ jobs:
         run: |
           node qa/settings-reset.cjs
           node qa/settings-polish.cjs
+          node qa/viewer-footer.cjs
+          node qa/viewer-icons.cjs
       - name: Verify panel gestures, input, zoom and theme
         if: matrix.suite == 'regression'
         run: |

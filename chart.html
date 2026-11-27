@@ -1931,11 +1931,11 @@ function queueViewerLayout(){
  });
 }
 function openViewer(returnFocus,initialView){
- if(active)return;active=true;entryFocus=initialView||null;lastFocus=returnFocus?.nodeType===1?returnFocus:document.activeElement;layoutSignature='';
+ if(active)return;active=true;entryFocus=Number.isFinite(initialView?.x)&&Number.isFinite(initialView?.y)?initialView:null;lastFocus=returnFocus?.nodeType===1?returnFocus:document.activeElement;layoutSignature='';
  try{
   dialog.hidden=false;map.hidden=!mapShown;dialog.dataset.ready='false';document.body.style.overflow='hidden';
   stage.appendChild(chart);chart.style.margin='0';chart.style.width=BASE+'px';chart.style.minWidth=BASE+'px';
-  zoom=clamp((initialView?.zoom??1.25)*(parent!==window?(parent.visualViewport?.scale||1):1),1,4);baseScale=viewerBaseScale(viewport.clientWidth);
+  zoom=clamp((initialView?.zoom??1)*(parent!==window?(parent.visualViewport?.scale||1):1),1,4);baseScale=viewerBaseScale(viewport.clientWidth);
   setZoom(zoom,false);viewport.scrollLeft=0;viewport.scrollTop=0;
   drawMap();renderMinimap();syncMapToggle();notifyZoom(true);queueViewerLayout();
   (parent!==window?viewport:document.getElementById('zoomClose')).focus({preventScroll:true});
@@ -1981,7 +1981,7 @@ viewport.addEventListener('touchmove',e=>{
 function endPinch(e){if(!e.touches.length){pinch=null;pinchPan=null;delete document.documentElement.dataset.chartGesture;}else if(e.touches.length===1){pinch=null;const p=point(e.touches[0]);pinchPan={x:p.x,y:p.y,startX:p.x,startY:p.y,moved:true};}}
 viewport.addEventListener('touchend',endPinch,{passive:true});viewport.addEventListener('touchcancel',endPinch,{passive:true});
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.kind==='esa-chart-zoom-layout')queueViewerLayout();if(e.data?.kind==='esa-editor-rect'){editorRect=e.data.rect;if(active){sizeStage();renderMinimap();}constrainMap();}});
-openBtn.addEventListener("click",openViewer);
+openBtn.addEventListener("click",()=>openViewer(null,{zoom:1.25}));
 window.addEventListener('esa-inline-pinch-viewer',e=>openViewer(null,e.detail));
 document.getElementById("zoomClose").addEventListener("click",closeViewer);
 window.addEventListener("esa-chart-locale-change",()=>{const restoreLabel=window.esaI18n.t("通常表示に戻る",window.esaChartLocale,"chart");const restoreButton=document.getElementById("zoomClose");restoreButton.setAttribute("aria-label",restoreLabel);restoreButton.title=restoreLabel;const closeLabel=window.esaI18n.t("閉じる",window.esaChartLocale,"chart");mapClose.setAttribute("aria-label",closeLabel);mapClose.title=closeLabel;const mapLabel=window.esaI18n.t("全体図を表示",window.esaChartLocale,"chart");mapToggle.setAttribute("aria-label",mapLabel);mapToggle.title=mapLabel;if(active){drawMap();renderMinimap();constrainMap();queueViewerLayout();}});

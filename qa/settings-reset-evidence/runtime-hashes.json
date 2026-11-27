@@ -1,0 +1,50 @@
+[
+  {
+    "file": "index.html",
+    "changed": true,
+    "before": "6990354965c394537ff334ee9255833c3112c943f33025862e0780da3d99344e",
+    "after": "3b50fba7690ad4408263c50cf6330f5842feacd7285aab840ee60544380cebf3"
+  },
+  {
+    "file": "chart.html",
+    "changed": false,
+    "before": "4e6962d66af0e8d69b153f6f25b844324fe392ea7888f1fa4adce09a3e302fe9",
+    "after": "4e6962d66af0e8d69b153f6f25b844324fe392ea7888f1fa4adce09a3e302fe9"
+  },
+  {
+    "file": "editor-gestures.js",
+    "changed": false,
+    "before": "09c076d07b243a619e183e59f9b9069108a6f56f02d4cc7fac9789118bfdcd2b",
+    "after": "09c076d07b243a619e183e59f9b9069108a6f56f02d4cc7fac9789118bfdcd2b"
+  },
+  {
+    "file": "ipa-fonts.js",
+    "changed": false,
+    "before": "edc268ff13ccb58459e73395a9d066f84f3c76e7123adeb1ee45b40780850947",
+    "after": "edc268ff13ccb58459e73395a9d066f84f3c76e7123adeb1ee45b40780850947"
+  },
+  {
+    "file": "i18n.js",
+    "changed": false,
+    "before": "6b20a7143e6e99ff64c74045b64545d2b611320ee3618efdba7b93d1681fb8e9",
+    "after": "6b20a7143e6e99ff64c74045b64545d2b611320ee3618efdba7b93d1681fb8e9"
+  },
+  {
+    "file": "language-picker.js",
+    "changed": false,
+    "before": "14d3be6361c985850bac02f032c21b84558a6d8d0542c4d2ba14447bddac8999",
+    "after": "14d3be6361c985850bac02f032c21b84558a6d8d0542c4d2ba14447bddac8999"
+  },
+  {
+    "file": "sw.js",
+    "changed": false,
+    "before": "62882645e283a13f2b39febf28510120a78a010b542918a07f16971d8ec98fc3",
+    "after": "62882645e283a13f2b39febf28510120a78a010b542918a07f16971d8ec98fc3"
+  },
+  {
+    "file": "translations.csv",
+    "changed": true,
+    "before": "b32463b7d23a7a42e32271f73c4ddab39d37368b67ae5386396ebeb6880e34fd",
+    "after": "22b359e1bfbc0ef9259de25c6ce618fe72c888d021e5f906e1ce11a51cce0b75"
+  }
+]

@@ -1,0 +1,134 @@
+{
+  "commit": "9e2e0593330aad6c1338866d332ce32527d2ebb6",
+  "verified_at_utc": "2026-11-28T01:47:51.288958+00:00",
+  "files": [
+    {
+      "file": "index.html",
+      "matches": true,
+      "bytes": 149413,
+      "sha256": "ad7e5e0895643338a19e6f628dadd2d561f4b2dcc663d83117db242e2eaa364e"
+    },
+    {
+      "file": "chart.html",
+      "matches": true,
+      "bytes": 151061,
+      "sha256": "ef44d05c1b09539eb4f04d6cc70b32e83a956c1c8b960c7307a162f775835288"
+    },
+    {
+      "file": "i18n.js",
+      "matches": true,
+      "bytes": 2406,
+      "sha256": "6b20a7143e6e99ff64c74045b64545d2b611320ee3618efdba7b93d1681fb8e9"
+    },
+    {
+      "file": "translations.csv",
+      "matches": true,
+      "bytes": 49721,
+      "sha256": "22b359e1bfbc0ef9259de25c6ce618fe72c888d021e5f906e1ce11a51cce0b75"
+    },
+    {
+      "file": "translations.xlsx",
+      "matches": true,
+      "bytes": 87637,
+      "sha256": "38e029c840e5809c51b0a82ec8991a331d4e5c9cc6f3fb079da2fb85cad40a78"
+    },
+    {
+      "file": "ipa-fonts.js",
+      "matches": true,
+      "bytes": 1505,
+      "sha256": "edc268ff13ccb58459e73395a9d066f84f3c76e7123adeb1ee45b40780850947"
+    },
+    {
+      "file": "editor-gestures.js",
+      "matches": true,
+      "bytes": 8263,
+      "sha256": "09c076d07b243a619e183e59f9b9069108a6f56f02d4cc7fac9789118bfdcd2b"
+    },
+    {
+      "file": "diacritic-display.js",
+      "matches": true,
+      "bytes": 8834,
+      "sha256": "c17ffd3170df94a810f6a16986199819f1bb1806ab8c4e3d98f248e8e4639cd3"
+    },
+    {
+      "file": "language-picker.js",
+      "matches": true,
+      "bytes": 5728,
+      "sha256": "14d3be6361c985850bac02f032c21b84558a6d8d0542c4d2ba14447bddac8999"
+    },
+    {
+      "file": "sw.js",
+      "matches": true,
+      "bytes": 2260,
+      "sha256": "62882645e283a13f2b39febf28510120a78a010b542918a07f16971d8ec98fc3"
+    },
+    {
+      "file": "apple-touch-icon.png",
+      "matches": true,
+      "bytes": 5479,
+      "sha256": "cd341d3b13c8c0926313b061ff6cf898f46c085ca1a137647cae9a6c2cb9954e"
+    },
+    {
+      "file": "sitemap.xml",
+      "matches": true,
+      "bytes": 174,
+      "sha256": "6fa9936677e98187bd5a23648b94ee8b7137b73e58a2b318813fab4a1d8f9768"
+    },
+    {
+      "file": "CREDITS.md",
+      "matches": true,
+      "bytes": 2872,
+      "sha256": "f709f7b12f6e2e38c234ed36c838d36455ebd1496d3f71a5a858678b01d0c8ae"
+    },
+    {
+      "file": "LICENSE-MIT.txt",
+      "matches": true,
+      "bytes": 1142,
+      "sha256": "b81601890570aa42d7c59c28a1edb2943afb1035dd96e5a537074334210487ba"
+    },
+    {
+      "file": "fonts/DoulosSIL-Regular.woff2",
+      "matches": true,
+      "bytes": 313742,
+      "sha256": "1158ae7ce206e6c4218b4b90a1f763cf5eed9236736cba7ddcdddcb8ce099f0f"
+    },
+    {
+      "file": "fonts/Andika-Regular.woff2",
+      "matches": true,
+      "bytes": 295740,
+      "sha256": "bd46cba17fb1ee30023f88376810cee1787c918d34933e0d761485375e2c1bcb"
+    },
+    {
+      "file": "fonts/NotoSansJP-Regular.woff2",
+      "matches": true,
+      "bytes": 2302848,
+      "sha256": "a919d6166cc188fd4b18b813f55061d59b05f676d1b33fe5bcee8a39b3111dc9"
+    },
+    {
+      "file": "fonts/NotoSansJP-Bold.woff2",
+      "matches": true,
+      "bytes": 2352060,
+      "sha256": "40ea680c047a37f2129af711569fad4fed0261e24752961e3d07adb9a5a0ef3a"
+    },
+    {
+      "file": "fonts/ipa-font-coverage.json",
+      "matches": true,
+      "bytes": 4594,
+      "sha256": "6ff5da6588db4d4012fa6f6ff89555b473c589ad4aeca56c62973f76985599f5"
+    },
+    {
+      "file": "fonts/positioned-diacritics.json",
+      "matches": true,
+      "bytes": 22911,
+      "sha256": "26b1e6ba8079523049dcf3a4a581c43aa9d7cd3224ec814484e810ae77728301"
+    },
+    {
+      "file": "third_party/lucide/LICENSE",
+      "matches": true,
+      "bytes": 3208,
+      "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+    }
+  ],
+  "final_main_commit": "ca3a38cff4000f503d7ff0624806d6e167ebd606",
+  "note": "Final main differs from app release only in qa/recovery.cjs viewport-height argument."
+}

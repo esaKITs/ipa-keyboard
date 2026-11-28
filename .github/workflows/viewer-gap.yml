@@ -1,0 +1,43 @@
+name: Enlarged viewer trailing space verification (no publication)
+on:
+  push:
+    branches: [work/viewer-gap-20261128]
+permissions:
+  contents: read
+env:
+  WEBKIT_SKIA_ENABLE_CPU_RENDERING: '1'
+concurrency:
+  group: viewer-gap-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save playwright@1.61.1 pngjs@7.0.0
+      - run: npx playwright install chromium webkit --with-deps
+      - name: Check sources and serve baseline and candidate
+        run: |
+          git diff --check 0afac47c9172ff5638a0afa06723160e8fb1f684 HEAD
+          node --check qa/viewer-gap.cjs
+          nohup python3 qa/server.py >/tmp/gap-http.log 2>&1 &
+          mkdir -p /tmp/gap-baseline
+          git archive 0afac47c9172ff5638a0afa06723160e8fb1f684 | tar -x -C /tmp/gap-baseline
+          nohup python3 -m http.server 8778 --bind 127.0.0.1 --directory /tmp/gap-baseline >/tmp/gap-baseline.log 2>&1 &
+      - name: Reproduce excessive space and verify panel placement
+        run: node qa/viewer-gap.cjs
+      - name: Verify footer restoration and zoom feedback
+        run: |
+          node qa/viewer-footer.cjs
+          node qa/tap-feedback.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: viewer-gap-evidence
+          path: qa-production/

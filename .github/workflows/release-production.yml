@@ -119,6 +119,10 @@ jobs:
           path: qa-production/
   public:
     if: github.ref == 'refs/heads/main'
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [navigation, charts, feedback, editor]
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -132,7 +136,7 @@ jobs:
         shell: python
         run: |
           import urllib.request, pathlib, time
-          files=['apple-touch-icon.png','index.html','sitemap.xml','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js','fonts/Andika-Regular.woff2','fonts/ipa-font-coverage.json','CREDITS.md','LICENSE-MIT.txt','editor-gestures.js','diacritic-display.js','language-picker.js','fonts/positioned-diacritics.json']
+          files=['apple-touch-icon.png','index.html','sitemap.xml','chart.html','i18n.js','translations.csv','ipa-fonts.js','sw.js','fonts/Andika-Regular.woff2','fonts/ipa-font-coverage.json','CREDITS.md','LICENSE-MIT.txt','editor-gestures.js','diacritic-display.js','language-picker.js','fonts/positioned-diacritics.json','third_party/lucide/LICENSE']
           for attempt in range(36):
               try:
                   for name in files:
@@ -164,20 +168,30 @@ jobs:
           APP_URL: https://esakits.github.io/ipa-keyboard/
           PUBLIC_CHECK: '1'
         run: |
-          node qa/suprasegmental-grouping.cjs
-          node qa/floating-overview.cjs
-          node qa/desktop-zoom.cjs
-          node qa/panel-controls.cjs
-          node qa/recovery.cjs
-          node qa/vowel-equivalence.cjs
-          node qa/phase2-chart.cjs
-          node qa/phase3-title.cjs
-          node qa/header-alignment.cjs
-          node qa/tap-feedback.cjs
-          node qa/final-four.cjs
-          node qa/editor-gestures.cjs
-          node qa/viewer-icons.cjs
-          node qa/production.cjs
+          case "${{ matrix.group }}" in
+            navigation)
+              node qa/suprasegmental-grouping.cjs
+              node qa/floating-overview.cjs
+              node qa/desktop-zoom.cjs
+              ;;
+            charts)
+              node qa/vowel-equivalence.cjs
+              node qa/phase2-chart.cjs
+              node qa/phase3-title.cjs
+              node qa/header-alignment.cjs
+              ;;
+            feedback)
+              node qa/tap-feedback.cjs
+              node qa/final-four.cjs
+              ;;
+            editor)
+              node qa/panel-controls.cjs
+              node qa/recovery.cjs
+              node qa/editor-gestures.cjs
+              node qa/viewer-icons.cjs
+              node qa/production.cjs
+              ;;
+          esac
       - name: Verify public SEO and exact visual equivalence
         if: contains(github.event.head_commit.message, '[seo]')
         env:
@@ -189,5 +203,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ipa-production-public-screenshots
+          name: ipa-production-public-${{ matrix.group }}-screenshots
           path: qa-production/

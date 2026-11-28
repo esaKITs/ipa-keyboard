@@ -830,6 +830,11 @@ html[data-inverse="true"] .zoom-map-open[aria-pressed="true"]{box-shadow:0 0 10p
    scale; retain natural ascenders, descenders, small capitals and modifiers. */
 #chart #nonPulmonicConsonants tbody td,#chart #otherSymbols tbody td{font-size:32px}
 #chart #otherSymbols th .ipa{font-size:32px}
+#zoomSourceFooter{position:absolute;left:8px;font:10px/1.4 system-ui,sans-serif;color:#555}
+#zoomSourceFooter .source-note,#zoomSourceFooter>details{width:100%;max-width:100%;margin:7px 0}
+#zoomSourceFooter .esakits-bottom{padding:12px 0}
+#zoomSourceFooter .brand-name{font:700 22px/1.15 system-ui,sans-serif}
+#zoomSourceFooter .brand-full,#zoomSourceFooter .esakits-copyright{font:10px/1.4 system-ui,sans-serif}
 </style>
 <style id="v83-symbol-feedback">
 /* Interaction-only layer: the original chart geometry and measured SVG coordinates stay untouched. */
@@ -1757,6 +1762,18 @@ SOFTWARE.
 "use strict";
 const chart=document.getElementById("chart"), originalParent=chart.parentNode, originalNext=chart.nextSibling;
 const openBtn=document.getElementById("chartZoomOpen"), dialog=document.getElementById("chartZoomDialog");
+// The enlarged view must retain the notes and branding below the chart.
+const viewerFooter=document.createElement('div');viewerFooter.id='zoomSourceFooter';
+const footerOrigins=[];
+function showViewerFooter(){
+ for(const node of [...originalParent.children].filter(n=>n.matches('.source-note,details'))){
+  const marker=document.createComment('viewer footer return');node.before(marker);footerOrigins.push({node,marker});viewerFooter.appendChild(node);
+ }
+ try{const brand=parent!==window?parent.document.querySelector('.esakits-bottom'):null;if(brand){const copy=brand.cloneNode(true);copy.dataset.viewerBrand='true';viewerFooter.appendChild(copy);}}catch(e){}
+ stage.appendChild(viewerFooter);
+}
+function restoreViewerFooter(){for(const {node,marker}of footerOrigins.splice(0)){marker.replaceWith(node);}viewerFooter.replaceChildren();viewerFooter.remove();}
+
 const viewport=document.getElementById("zoomViewport"), stage=document.getElementById("zoomStage");
 const map=document.getElementById("zoomMinimap"), mapCanvas=document.getElementById("zoomMapCanvas"), mapWindow=document.getElementById("zoomMapWindow");
 const mapToggle=document.getElementById("zoomMapToggle"),mapGrip=document.getElementById("zoomMapDrag"),mapClose=document.getElementById("zoomMapClose");
@@ -1839,11 +1856,17 @@ function sizeStage(){
  // Leave room to scroll the final symbols above a floating editor. This is
  // scrollable space only: chart coordinates and overview geometry stay intact.
  const overlaps=editorRect&&editorRect.left<r.left+viewport.clientWidth&&editorRect.right>r.left&&editorRect.bottom>r.top&&editorRect.top<bottom;
- const clearance=overlaps?Math.max(0,bottom-Math.max(r.top,editorRect.top)+GUTTER):0;
+ // Only a panel covering the viewport's lower edge needs trailing space.
+ // A floating panel in the middle leaves usable space below it.
+ const blocksBottom=overlaps&&editorRect.bottom>=bottom-GUTTER-1;
+ const clearance=blocksBottom?Math.max(0,bottom-Math.max(r.top,editorRect.top)+GUTTER):0;
  stage.style.width=(BASE*next+2*GUTTER)+"px";
- stage.style.height=(height*next+2*GUTTER+clearance)+"px";
+ viewerFooter.style.left=GUTTER+'px';viewerFooter.style.top=(height*next+GUTTER)+'px';
+ viewerFooter.style.width=Math.max(1,Math.min(BASE*next,viewport.clientWidth-2*GUTTER))+'px';
+ stage.style.height=(height*next+viewerFooter.offsetHeight+2*GUTTER+clearance)+"px";
  stage.dataset.bottomClearance=String(clearance);
 }
+new ResizeObserver(()=>{if(active)sizeStage();}).observe(viewerFooter);
 function setZoom(z,keepCenter=true){
  if(!active)return;
  const old=scale(), centerX=(viewport.scrollLeft+viewport.clientWidth/2-GUTTER)/old, centerY=(viewport.scrollTop+viewport.clientHeight/2-GUTTER)/old;
@@ -1934,7 +1957,7 @@ function openViewer(returnFocus,initialView){
  if(active)return;active=true;entryFocus=Number.isFinite(initialView?.x)&&Number.isFinite(initialView?.y)?initialView:null;lastFocus=returnFocus?.nodeType===1?returnFocus:document.activeElement;layoutSignature='';
  try{
   dialog.hidden=false;map.hidden=!mapShown;dialog.dataset.ready='false';document.body.style.overflow='hidden';
-  stage.appendChild(chart);chart.style.margin='0';chart.style.width=BASE+'px';chart.style.minWidth=BASE+'px';
+  stage.appendChild(chart);showViewerFooter();chart.style.margin='0';chart.style.width=BASE+'px';chart.style.minWidth=BASE+'px';
   zoom=clamp((initialView?.zoom??1)*(parent!==window?(parent.visualViewport?.scale||1):1),1,4);baseScale=viewerBaseScale(viewport.clientWidth);
   setZoom(zoom,false);viewport.scrollLeft=0;viewport.scrollTop=0;
   drawMap();renderMinimap();syncMapToggle();notifyZoom(true);queueViewerLayout();
@@ -1944,7 +1967,7 @@ function openViewer(returnFocus,initialView){
 function closeViewer(){
  if(!active)return;active=false;entryFocus=null;pinch=null;pinchPan=null;desktopGesture=null;pointerInside=false;pointerAnchor=null;mousePan=null;mapDrag=null;mapPinch=null;drag=false;delete document.documentElement.dataset.chartGesture;
  if(layoutPending)cancelAnimationFrame(layoutPending);layoutPending=0;layoutSignature='';
- dialog.hidden=true;map.hidden=true;dialog.dataset.ready='false';syncMapToggle();
+ restoreViewerFooter();dialog.hidden=true;map.hidden=true;dialog.dataset.ready='false';syncMapToggle();
  chart.style.removeProperty('transform');chart.style.removeProperty('margin');chart.style.removeProperty('width');chart.style.removeProperty('min-width');
  if(originalNext)originalParent.insertBefore(chart,originalNext);else originalParent.appendChild(chart);
  document.body.style.overflow='';window.dispatchEvent(new Event('resize'));notifyZoom(false);
